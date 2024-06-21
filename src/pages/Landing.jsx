@@ -1,8 +1,12 @@
-
+import { LandingPage } from "../app/Styles"
 
 const Landing = () => {
   return (
-    <div></div>
+    <LandingPage>
+      <h1>Welcome to ProyectoFinal</h1>
+      <button>Jugador</button>
+      <button>Observador</button>
+    </LandingPage>
   )
 }
 
