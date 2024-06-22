@@ -1,10 +1,12 @@
-import { GlobalStyle } from './styles';
+import { GlobalStyle } from './app/Styles';
 import Router from "./app/Router";
 
-const App = () => (
-    <GlobalStyle>
-        <Router />
-    </GlobalStyle>
-);
+const App = () => {
+    return (
+        <GlobalStyle>
+            <Router />
+        </GlobalStyle>
+    )
+};
 
 export default App;
