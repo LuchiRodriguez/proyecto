@@ -1,5 +1,5 @@
 import Login from "../components/Login"
-import NavBar from "../component/NavBar"
+import NavBar from "../components/NavBar"
 
 
 const Jugador = () => {
