@@ -198,3 +198,12 @@ export const Form = styled.form`
 		box-shadow: 0 0 10px 0 #03e9f4 inset, 0 0 20px 2px #03e9f4;
 	}
 `
+
+export const PerfilStyle = styled.div`
+display: flex; 
+
+.entrance {
+border : 2px solid #03e9f4 ;
+
+}
+`
