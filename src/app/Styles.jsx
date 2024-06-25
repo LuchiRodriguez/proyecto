@@ -133,6 +133,28 @@ export const LandingPage = styled.div`
 	}
 `
 
+
+export const NavBarStyle = styled.nav`
+.navbar {
+    background: #BCBAB6;
+    height: 50px; 
+	position: absolute; 
+	bottom: 0; 
+	width: 100%; 
+display: flex; 
+align-items	: center;
+justify-content: center;
+}
+
+.navbarlist {
+	list-style: none;
+	display: flex; 
+	justify-content: space-between;
+	padding: 5px;
+	width: 100%; 
+}
+`
+
 export const Form = styled.form`
 	color: #03e9f4;
 	display: flex;
