@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
 import { NavBarStyle } from '../app/Styles';
+import userImg from '../app/img/user.png';
+import challenge from '../app/img/challenge.png'
+import home from '../app/img/home.png'
 
 const NavBar = () => {
     return (
         <NavBarStyle>
-            <div className="navbar">
-                <ul className="navbarlist">
-                    <li><Link to="/"><img src="/src/fotos/icons8-casa-48.png" alt="" /></Link></li>
-                    <li><Link to="/jugador"><img src="/src/fotos/icons8-objetivo-50.png" alt="" /></Link></li>
-                    <li><Link to="/perfil"><img src="/src/fotos/icons8-usuario-de-género-neutro-50.png" alt="" /></Link>
-                    </li>
+                <ul>
+                    <li><Link to="/"><img src={home} alt="" /></Link></li>
+                    <li><Link to="/jugador"><img src={challenge} alt="" /></Link></li>
+                    <li><Link to="/perfil"><img src={userImg} alt="" /></Link></li>
                 </ul>
-            </div>
         </NavBarStyle>
     )
 }

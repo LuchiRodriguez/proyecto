@@ -1,13 +1,21 @@
-import NavBar from '../components/NavBar';
-import Login from '../components/Login';
+import Login from "../components/Login"
+import NavBar from "../components/NavBar"
+import {useUserContext} from '../app/UserProvider';
+
 
 const Observador = () => {
+  const [user, ] = useUserContext();
   return (
-    <div>
-      <Login />
-
+    <>
+    {
+      user ?
+      <>
       <NavBar />
-    </div>
+      </>
+      :
+      <Login />
+    }
+    </>
   )
 }
 

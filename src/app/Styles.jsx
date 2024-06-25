@@ -135,24 +135,24 @@ export const LandingPage = styled.div`
 
 
 export const NavBarStyle = styled.nav`
-.navbar {
-    background: #BCBAB6;
-    height: 50px; 
-	position: absolute; 
-	bottom: 0; 
-	width: 100%; 
-display: flex; 
-align-items	: center;
-justify-content: center;
-}
-
-.navbarlist {
-	list-style: none;
-	display: flex; 
-	justify-content: space-between;
-	padding: 5px;
-	width: 100%; 
-}
+	box-sizing: border-box;
+	ul{
+		margin: 0;
+		padding: 0;
+		border-top: 1px solid #03e9f4;
+		position: absolute;
+		bottom: 0; 
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		list-style: none;
+	}
+	img{
+		width: 30px;
+		height: 30px;
+		padding: 10px;
+		color:#03e9f4;
+	}
 `
 
 export const Form = styled.form`

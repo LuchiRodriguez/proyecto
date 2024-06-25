@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const Login = () => {
     const [existingUser, setExistingUser] = useState(true);
-    const [, setUser] = useUserContext({});
+    const [, setUser] = useUserContext();
   return (
     <Form>
         {existingUser ? 
