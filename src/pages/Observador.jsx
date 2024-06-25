@@ -1,7 +1,11 @@
+import NavBar from "../component/NavBar"
 
 const Observador = () => {
   return (
-    <div>Observador</div>
+    <div>Observador
+
+      <NavBar />
+    </div>
   )
 }
 

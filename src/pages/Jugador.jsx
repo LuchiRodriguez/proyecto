@@ -1,8 +1,13 @@
+import NavBar from "../component/NavBar"
 
 
 const Jugador = () => {
   return (
-    <div>Jugador</div>
+    <div>
+      Jugador
+
+      <NavBar />
+    </div>
   )
 }
 
