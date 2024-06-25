@@ -136,6 +136,14 @@ export const LandingPage = styled.div`
 
 export const NavBarStyle = styled.nav`
 	box-sizing: border-box;
+    height: 50px; 
+	width: 100%; 
+display: flex; 
+align-items	: center;
+justify-content: center;
+position: absolute; 
+	bottom: 0; 
+
 	ul{
 		margin: 0;
 		padding: 0;
@@ -154,14 +162,6 @@ export const NavBarStyle = styled.nav`
 		padding: 10px;
 		color:#03e9f4;
 	}
-
-    height: 50px; 
-	width: 100%; 
-display: flex; 
-align-items	: center;
-justify-content: center;
-position: absolute; 
-	bottom: 0; 
 
 `
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar"
 import { PerfilStyle, ContainerPages } from '../app/Styles';
 
@@ -7,7 +7,8 @@ const Perfil = () => {
     const [email,] = useState();
     const [perfil,] = useState();
     const [image, setImage] = useState(null);
-
+    const [challengesData, setChallengesData] = useState([]);
+    const [totalPoints, setTotalPoints] = useState(0);
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -19,6 +20,22 @@ const Perfil = () => {
         }
     }
 
+    useEffect(() => {
+        fetch("../components/desafios.json")
+            .then((res) => res.json())
+            .then((data) => {
+                setChallengesData(data);
+                calculateTotalPoints(data);
+            });
+    }, []);
+
+    const calculateTotalPoints = (challenges) => {
+        let total = 0;
+        for (const challenge of challenges) {
+            total += parseInt(challenge.points, 10);
+        }
+        setTotalPoints(total);
+    }
     return (
         <div>
             <ContainerPages>Perfil</ContainerPages>
@@ -32,9 +49,10 @@ const Perfil = () => {
                     )}
                 </div>
                 <div className="information">
-                    <p>Nombre del usuario: {nombre} </p>
+                    <p>Username : {nombre} </p>
                     <p>Email: {email} </p>
-                    <p>Perfil del usuario: {perfil}</p>
+                    <p>User profile: {perfil}</p>
+                    <p>Points: {totalPoints}</p>
                 </div>
             </PerfilStyle>
             <NavBar />
