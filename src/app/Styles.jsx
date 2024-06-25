@@ -132,3 +132,47 @@ export const LandingPage = styled.div`
 		}
 	}
 `
+
+export const Form = styled.form`
+	color: #03e9f4;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: auto;
+	input{
+		text-transform: uppercase;
+		margin-top: 60px;
+		background-color: #202124;
+		border: #03e9f4 3px solid;
+		border-radius: 10px;
+		height: 30px;
+		width: 300px;
+		padding: 6px;
+		color: white;
+		-webkit-transition: all .15s ease-in-out;
+  		transition: all .15s ease-in-out;
+	}
+	input:focus{
+		box-shadow: 0 0 10px 0 #03e9f4 inset, 0 0 20px 2px #03e9f4;
+	}
+	p{
+		font-size: xx-small;
+		text-align: center;
+	}
+	span{
+		cursor: pointer;
+	}
+	button{
+		background-color: #202124;
+		border: #03e9f4 3px solid;
+		border-radius: 10px;
+		color: #03e9f4;
+		padding: 10px;
+		margin-top: 30px;
+	}
+	button:focus{
+		box-shadow: 0 0 10px 0 #03e9f4 inset, 0 0 20px 2px #03e9f4;
+	}
+`

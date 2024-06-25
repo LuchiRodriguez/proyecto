@@ -1,7 +1,10 @@
+import Login from '../components/Login';
 
 const Observador = () => {
   return (
-    <div>Observador</div>
+    <div>
+      <Login/>
+    </div>
   )
 }
 
