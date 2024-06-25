@@ -147,14 +147,14 @@ export const NavBarStyle = styled.nav`
 		justify-content: space-between;
 		list-style: none;
 	}
+	
 	img{
 		width: 30px;
 		height: 30px;
 		padding: 10px;
 		color:#03e9f4;
 	}
-.navbar {
-    background: #BCBAB6;
+
     height: 50px; 
 	width: 100%; 
 display: flex; 
@@ -162,17 +162,6 @@ align-items	: center;
 justify-content: center;
 position: absolute; 
 	bottom: 0; 
-}
-
-
-.navbarlist {
-	list-style: none;
-	display: flex; 
-	justify-content: space-between;
-	width: 100%; 
-	position: absolute; 
-	bottom: 0; 
-}
 
 `
 
