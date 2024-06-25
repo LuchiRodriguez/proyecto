@@ -7,7 +7,7 @@ const Perfil = () => {
     const [email,] = useState();
     const [perfil,] = useState();
     const [image, setImage] = useState(null);
-    const [challengesData, setChallengesData] = useState([]);
+    const [, setChallengesData] = useState([]);
     const [totalPoints, setTotalPoints] = useState(0);
     const handleFileChange = (e) => {
         const file = e.target.files[0];
