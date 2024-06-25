@@ -1,13 +1,11 @@
 import { useState } from "react";
-import useUserContext from "../app/UserProvider"
-import PerfilStyle from "../app/Styles"
 import NavBar from "../components/NavBar"
-import Landing from "./Landing";
+import { PerfilStyle, ContainerPages } from '../app/Styles';
 
 const Perfil = () => {
-    const [user,] = useUserContext({});
-    const [nombre, setNombre] = useState();
-    const [email, setEmail] = useState();
+    const [nombre,] = useState();
+    const [email,] = useState();
+    const [perfil,] = useState();
     const [image, setImage] = useState(null);
 
     const handleFileChange = (e) => {
@@ -20,26 +18,25 @@ const Perfil = () => {
             }
         }
     }
+
     return (
-        <div>Perfil
-            {!user ?
-                <Landing />
-                :
-                <PerfilStyle>
-                    <div className="entrance">
-                        <input type="file" accept="image/*" onChange={handleFileChange} />
-                        {image && (
-                            <div className="foto">
-                                <img src={image} alt="Selected" style={{ maxWidth: '100%', maxHeight: '300px' }} />
-                            </div>
-                        )}
-                    </div>
-                    <div className="information">
-                        <p>Nombre del usuario: {nombre} </p>
-                        <p>Email: {email} </p>
-                    </div>
-                </PerfilStyle>
-            }
+        <div>
+            <ContainerPages>Perfil</ContainerPages>
+            <PerfilStyle>
+                <div className="entrance">
+                    <input type="file" accept="image/*" onChange={handleFileChange} />
+                    {image && (
+                        <div className="foto">
+                            <img src={image} alt="Selected" style={{ maxWidth: '100%', maxHeight: '300px' }} />
+                        </div>
+                    )}
+                </div>
+                <div className="information">
+                    <p>Nombre del usuario: {nombre} </p>
+                    <p>Email: {email} </p>
+                    <p>Perfil del usuario: {perfil}</p>
+                </div>
+            </PerfilStyle>
             <NavBar />
         </div>
     )
