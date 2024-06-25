@@ -138,21 +138,24 @@ export const NavBarStyle = styled.nav`
 .navbar {
     background: #BCBAB6;
     height: 50px; 
-	position: absolute; 
-	bottom: 0; 
 	width: 100%; 
 display: flex; 
 align-items	: center;
 justify-content: center;
+position: absolute; 
+	bottom: 0; 
 }
+
 
 .navbarlist {
 	list-style: none;
 	display: flex; 
 	justify-content: space-between;
-	padding: 5px;
 	width: 100%; 
+	position: absolute; 
+	bottom: 0; 
 }
+
 `
 
 export const Form = styled.form`
@@ -200,10 +203,14 @@ export const Form = styled.form`
 `
 
 export const PerfilStyle = styled.div`
-display: flex; 
+padding: 10px; 
 
 .entrance {
 border : 2px solid #03e9f4 ;
-
+margin-right: 100px;
 }
+`
+
+export const ContainerPages = styled.div`
+padding: 10px; 
 `
