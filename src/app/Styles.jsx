@@ -17,23 +17,26 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const LandingPage = styled.div`
-<<<<<<< HEAD
-	color: white;
-=======
-	
 	text-align: center;
 	margin-top: 200px;
 	h1{
-		color: #7edd03;
+		color: #03e9f4;
 		text-transform: uppercase;
 		font-size: x-large;
+		margin-bottom: 30px;
+	}
+	div{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 	a{
 		width: 180px;
 		position: relative;
 		display: inline-block;
 		padding: 20px 0;
-		margin: 50px 10px;
+		margin: 40px 10px;
 		color: #03e9f4;
 		text-decoration: none;
 		transition: 0.5s;
@@ -128,5 +131,4 @@ export const LandingPage = styled.div`
 			bottom: 100%;
 		}
 	}
->>>>>>> Luchi
 `
