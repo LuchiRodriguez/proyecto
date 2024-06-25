@@ -136,6 +136,14 @@ export const LandingPage = styled.div`
 
 export const NavBarStyle = styled.nav`
 	box-sizing: border-box;
+    height: 50px; 
+	width: 100%; 
+display: flex; 
+align-items	: center;
+justify-content: center;
+position: absolute; 
+	bottom: 0; 
+
 	ul{
 		margin: 0;
 		padding: 0;
@@ -147,12 +155,14 @@ export const NavBarStyle = styled.nav`
 		justify-content: space-between;
 		list-style: none;
 	}
+	
 	img{
 		width: 30px;
 		height: 30px;
 		padding: 10px;
 		color:#03e9f4;
 	}
+
 `
 
 export const Form = styled.form`
@@ -200,10 +210,14 @@ export const Form = styled.form`
 `
 
 export const PerfilStyle = styled.div`
-display: flex; 
+padding: 10px; 
 
 .entrance {
 border : 2px solid #03e9f4 ;
-
+margin-right: 100px;
 }
+`
+
+export const ContainerPages = styled.div`
+padding: 10px; 
 `

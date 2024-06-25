@@ -9,7 +9,7 @@ const NavBar = () => {
         <NavBarStyle>
                 <ul>
                     <li><Link to="/"><img src={home} alt="" /></Link></li>
-                    <li><Link to="/jugador"><img src={challenge} alt="" /></Link></li>
+                    <li><Link to="/challenges"><img src={challenge} alt="" /></Link></li>
                     <li><Link to="/perfil"><img src={userImg} alt="" /></Link></li>
                 </ul>
         </NavBarStyle>
