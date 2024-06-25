@@ -9,6 +9,7 @@ const Perfil = () => {
     const [image, setImage] = useState(null);
     const [, setChallengesData] = useState([]);
     const [totalPoints, setTotalPoints] = useState(0);
+
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {

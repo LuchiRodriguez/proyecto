@@ -218,6 +218,6 @@ margin-right: 100px;
 }
 `
 
-export const ContainerPages = styled.div`
+export const ContainerPages = styled.p`
 padding: 10px; 
 `

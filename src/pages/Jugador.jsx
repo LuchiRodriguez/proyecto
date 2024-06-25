@@ -1,20 +1,20 @@
 import Login from "../components/Login"
 import NavBar from "../components/NavBar"
-import {useUserContext} from '../app/UserProvider';
+import { useUserContext } from '../app/UserProvider';
 
 
 const Jugador = () => {
-  const [user, ] = useUserContext();
+  const [user,] = useUserContext();
   return (
     <>
-    {
-      user ?
-      <>
-      <NavBar />
-      </>
-      :
-      <Login />
-    }
+      {
+        user ?
+          <>
+            <NavBar />
+          </>
+          :
+          <Login />
+      }
     </>
   )
 }
