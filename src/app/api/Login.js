@@ -1,5 +1,12 @@
 import axios from 'axios';
-const instance = axios.create({ baseURL: 'http://localhost:8080/login' });
 
-// READ
-export const postUsers = async () => await instance.post('/');
+export const postUser = async (username, password) => {
+axios.post("http://localhost:8080/login",{},
+  {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "basic " + btoa(username + ":" + password),
+    },
+  }
+).then((response) => console.log(response),(error) => console.log(error))
+}

@@ -2,11 +2,12 @@
 import {Form} from '../app/Styles'
 import { useUserContext } from '../app/UserProvider';
 import { useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
-// import {postUsers} from '../app/api/Login';
+import { useNavigate, useParams } from 'react-router-dom';
+import {postUser} from '../app/api/Login';
 import {createUser} from '../app/api/Register';
 
 const Login = () => {
+      const navigate = useNavigate();
     const params = useParams();
     const [existingUser, setExistingUser] = useState(true);
     const [rol, setRol] = useState();
@@ -28,10 +29,16 @@ const Login = () => {
     <Form>
         {existingUser ? 
         <>
-            <input type="text" id="user" name="user" placeholder='Username or email'></input>
-            <input type="password" id="password" name="password" placeholder='Password'></input>
+            <input type="text" id="user" name="user" placeholder='Email' onChange={(e)=> setUserName(e.target.value)}></input>
+            <input type="password" id="password" name="password" placeholder='Password' onChange={(e)=> setPassword(e.target.value)}></input>
             <p>New in Final-Project ?<br /><span onClick={()=>setExistingUser(false)}>Create an account</span></p>
-            <button onClick={()=>setUser()}>LOGIN</button>
+            <button type='button' onClick={async() => {
+              await postUser(username, password);
+              setUser(username, password);
+              navigate('/home')
+            }}>
+              LOGIN
+            </button>
         </>
         :
         <>
@@ -39,8 +46,10 @@ const Login = () => {
             <input type="text" id="email" name="email" placeholder='Email' onChange={(e)=> setEmail(e.target.value)}></input>
             <input type="password" id="password" name="password" placeholder='Password' onChange={(e)=> setPassword(e.target.value)}></input>
             <p>Already have an account ?<br /><span onClick={()=>setExistingUser(true)}>Login</span></p>
-            <button type='button' onClick={async()=>{
+            <button type='button' onClick={async() => {
               await createUser({rol, username, email, password});
+              setUser({rol, username, email});
+              navigate('/home')
             }}>
               REGISTER
             </button>
