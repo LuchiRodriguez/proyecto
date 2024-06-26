@@ -141,7 +141,7 @@ export const NavBarStyle = styled.nav`
 display: flex; 
 align-items	: center;
 justify-content: center;
-position: absolute; 
+position: fixed; 
 	bottom: 0; 
 
 	ul{
@@ -221,3 +221,5 @@ margin-right: 100px;
 export const ContainerPages = styled.p`
 padding: 10px; 
 `
+
+//navbar fixed
