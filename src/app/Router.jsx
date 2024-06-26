@@ -11,9 +11,8 @@ const Router = () => {
         <BrowserRouter>
             <Routes>
                 <Route index element={<Landing />} />
-                <Route path="/jugador/*" element={<Jugador />} />
-                <Route path="/observador" element={<Observador />} />
-                <Route path="/home" element={<Home />} />
+                <Route path="/:name" element={<Jugador />} />
+                <Route path="/:name" element={<Observador />} />
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/challenges" element={<Challenges />} />
             </Routes>
