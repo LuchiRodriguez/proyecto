@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import challenges from '../components/desafios.json'
+import NavBar from '../components/NavBar';
 
 const Challenges = () => {
     const [isPlayer, ] = useState(true);
@@ -22,6 +23,7 @@ const Challenges = () => {
                 </>
                 )
             }
+            <NavBar />
         </>
     )
 }
