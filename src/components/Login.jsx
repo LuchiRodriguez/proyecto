@@ -1,10 +1,17 @@
 import {Form} from '../app/Styles'
 import { useUserContext } from '../app/UserProvider';
 import { useState } from 'react';
+// import { useRoute } from 'react-router-dom';
+// import {postUsers} from '../app/api/Login';
+// import {createUser} from '../app/api/Register';
 
 const Login = () => {
+    // const route = useRoute();
+    // const currentRouteName = route.path;
     const [existingUser, setExistingUser] = useState(true);
     const [, setUser] = useUserContext();
+    
+    // console.log("11111111111", currentRouteName)
   return (
     <Form>
         {existingUser ? 
