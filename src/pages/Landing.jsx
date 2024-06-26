@@ -1,23 +1,25 @@
 import {LandingPage} from '../app/Styles'
+import { Link } from 'react-router-dom';
+
 const Landing = () => {
   return (
     <LandingPage>
       <h1>Welcome to final-project</h1>
       <div>
-        <a href="/jugador">
+        <Link to="/jugador">
           <span></span>
           <span></span>
           <span></span>
           <span></span>
           PLAYER
-        </a>
-        <a href="/observador">
+        </Link>
+        <Link to="/observador">
           <span></span>
           <span></span>
           <span></span>
           <span></span>
           WATCHER
-        </a>
+        </Link>
       </div>
     </LandingPage>
   )
