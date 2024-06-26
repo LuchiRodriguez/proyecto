@@ -138,10 +138,10 @@ export const NavBarStyle = styled.nav`
 	box-sizing: border-box;
     height: 50px; 
 	width: 100%; 
-display: flex; 
-align-items	: center;
-justify-content: center;
-position: absolute; 
+	display: flex; 
+	align-items	: center;
+	justify-content: center;
+	position: absolute; 
 	bottom: 0; 
 
 	ul{
@@ -183,7 +183,6 @@ export const Form = styled.form`
 		width: 300px;
 		padding: 6px;
 		color: white;
-		-webkit-transition: all .15s ease-in-out;
   		transition: all .15s ease-in-out;
 	}
 	input:focus{
@@ -210,14 +209,23 @@ export const Form = styled.form`
 `
 
 export const PerfilStyle = styled.div`
-padding: 10px; 
-
-.entrance {
-border : 2px solid #03e9f4 ;
-margin-right: 100px;
-}
-`
-
-export const ContainerPages = styled.p`
-padding: 10px; 
+	padding: 10px; 
+	font-size: small;
+	color: #03e9f4;
+	.entrance {
+		button{
+			background-color: #202124;
+			border: #03e9f4 3px solid;
+			border-radius: 10px;
+			color: #03e9f4;
+			padding: 10px;
+			margin-top: 30px;
+		}
+		img{
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			border : 2px solid #03e9f4 ;
+		}
+	}
 `
