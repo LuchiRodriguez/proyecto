@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar"
-import { PerfilStyle, ContainerPages } from '../app/Styles';
+import { PerfilStyle} from '../app/Styles';
+import {useUserContext} from '../app/UserProvider';
 
 const Perfil = () => {
+    const [user, ] = useUserContext();
     const [nombre,] = useState();
     const [email,] = useState();
     const [perfil,] = useState();
@@ -22,6 +24,7 @@ const Perfil = () => {
     }
 
     useEffect(() => {
+        console.log(user);
         fetch("../components/desafios.json")
             .then((res) => res.json())
             .then((data) => {
@@ -37,19 +40,15 @@ const Perfil = () => {
         }
         setTotalPoints(total);
     }
+
     return (
-        <div>
-            <ContainerPages>Perfil</ContainerPages>
+        <>
             <PerfilStyle>
                 <div className="entrance">
+                    <img src={image} alt="" />
                     <input type="file" accept="image/*" onChange={handleFileChange} />
-                    {image && (
-                        <div className="foto">
-                            <img src={image} alt="Selected" style={{ maxWidth: '100%', maxHeight: '300px' }} />
-                        </div>
-                    )}
                 </div>
-                <div className="information">
+                <div>
                     <p>Username : {nombre} </p>
                     <p>Email: {email} </p>
                     <p>User profile: {perfil}</p>
@@ -57,7 +56,7 @@ const Perfil = () => {
                 </div>
             </PerfilStyle>
             <NavBar />
-        </div>
+        </>
     )
 }
 
