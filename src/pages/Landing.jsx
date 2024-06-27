@@ -1,19 +1,19 @@
-import {LandingPage} from '../app/Styles'
-import { Link } from 'react-router-dom';
+import { LandingPage } from "../app/Styles";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
     <LandingPage>
       <h1>Welcome to final-project</h1>
       <div>
-        <Link to="/jugador">
+        <Link to="/login/jugador">
           <span></span>
           <span></span>
           <span></span>
           <span></span>
           PLAYER
         </Link>
-        <Link to="/observador">
+        <Link to="/login/observador">
           <span></span>
           <span></span>
           <span></span>
@@ -22,7 +22,7 @@ const Landing = () => {
         </Link>
       </div>
     </LandingPage>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;

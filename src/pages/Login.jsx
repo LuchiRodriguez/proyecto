@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { postUser } from "../app/api/Login";
 import { createUser } from "../app/api/Register";
+import UserHook from "../app/UserHook";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,8 +16,14 @@ const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [points, setPoints] = useState();
+  // const { user } = UserHook();
   const [user, setUser] = useUserContext();
 
+  useEffect(() => {
+    console.log("aaaaaaa");
+    setUser(333333333);
+  }, []);
+  console.log("7777777777770", user);
   const settingRol = () => {
     if (params.name == "jugador") {
       setRol(0);
@@ -35,9 +42,9 @@ const Login = () => {
         <>
           <input
             type="text"
-            id="user"
-            name="user"
-            placeholder="Email"
+            id="username"
+            name="username"
+            placeholder="Username"
             onChange={(e) => setUserName(e.target.value)}
           ></input>
           <input
