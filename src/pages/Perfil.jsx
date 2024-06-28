@@ -62,7 +62,7 @@ const Perfil = () => {
         <div className="entrance">
           <img src={image} alt="" />
           <input type="file" accept="image/*" onChange={handleFileChange} />
-          <button onClick={saveFoto}>Guardar foto</button>
+          <button onClick={saveFoto}>Save</button>
         </div>
         <div>
           <p>Username : {nombre} </p>
