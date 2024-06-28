@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import desafios from '../components/desafios.json'
 import NavBar from '../components/NavBar';
 import { useUserContext } from '../app/UserProvider';
 import { Link } from 'react-router-dom';
 
 const Challenges = () => {
     const [isPlayer, setIsPlayer] = useState();
-    const [challenges] = useState(desafios);
+    const [challenges, setChallenges] = useState([]);
     const { user } = useUserContext();
 
     useEffect(() => {
@@ -64,7 +63,10 @@ const Challenges = () => {
             }
             {
                 !isPlayer &&
-                <Link to={"/createChallenge"} />
+                <div>
+                    <img src="../app/img/create challenge.svg" alt="" />
+                    <Link to={"/createChallenge"} />
+                </div>
             }
             <NavBar />
         </>
