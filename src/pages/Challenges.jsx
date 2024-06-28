@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom';
 const Challenges = () => {
     const [isPlayer, setIsPlayer] = useState();
     const [challenges] = useState(desafios);
-    const user = useUserContext();
+    const { user } = useUserContext();
 
     useEffect(() => {
         settingRol();
+        saveChallenge();
     }, [user]);
 
 
@@ -22,9 +23,25 @@ const Challenges = () => {
         }
     }
 
-    const challengeSave = () => {
-        //id del desafio para que busque cuál es, y el id del usuario con un put
-    }
+    const saveChallenge = async (challengeId) => {
+        try {
+            const response = await fetch(`/challenge/${challengeId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId: user.id }),
+            });
+
+            if (response.ok) {
+                console.log('User enrolled in challenge:', challengeId);
+            } else {
+                console.error('Error enrolling in challenge:', response.status);
+            }
+        } catch (error) {
+            console.error('Error enrolling in challenge:', error);
+        }
+    };
     return (
         <>
             {
@@ -38,7 +55,7 @@ const Challenges = () => {
                         {
                             isPlayer &&
                             <button onClick={() =>
-                                challengeSave()
+                                saveChallenge(challenge.id)
                             }>Apuntarse</button>
                         }
                     </div>
