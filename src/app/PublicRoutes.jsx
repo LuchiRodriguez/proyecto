@@ -7,7 +7,7 @@ const PublicRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route index element={<Landing />} />
-        <Route path="/login/:name" element={<Login />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

@@ -6,14 +6,14 @@ const Landing = () => {
     <LandingPage>
       <h1>Welcome to final-project</h1>
       <div>
-        <Link to="/login/jugador">
+        <Link to="/login">
           <span></span>
           <span></span>
           <span></span>
           <span></span>
           PLAYER
         </Link>
-        <Link to="/login/observador">
+        <Link to="/login">
           <span></span>
           <span></span>
           <span></span>
