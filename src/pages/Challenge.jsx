@@ -41,16 +41,6 @@ const Challenge = () => {
           />
         </div>
         <div className="formGroup">
-          <label htmlFor="description">Description: </label>
-          <input
-            type="text"
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </div>
-        <div className="formGroup">
           <label htmlFor="points">Points: </label>
           <input
             type="number"
