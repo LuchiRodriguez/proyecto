@@ -4,24 +4,19 @@ import { useEffect } from "react";
 import { useUserContext } from "./UserProvider";
 
 const UserHook = () => {
-  const [, setUser] = useUserContext();
-  const user = {
-    username: username,
-    email: email,
-    rol: rol,
-    points: points,
-  };
-
+  const [user, setUser] = useUserContext();
   useEffect(() => {
     if (user) {
-      localStorage.setItem("user");
+      localStorage.setItem("user", user);
     } else {
       const userAux = localStorage.getItem("user");
-      if (userAux) setUser(userAux);
+      if (userAux) {
+        setUser(userAux);
+      }
     }
   }, [user]);
 
-  return {};
+  return { user };
 };
 
 export default UserHook;

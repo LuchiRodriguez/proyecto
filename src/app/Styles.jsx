@@ -215,6 +215,20 @@ export const Form = styled.form`
   }
 `;
 
+export const ChooseRol = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  padding: 0;
+  width: 80%;
+  font-size: x-small;
+  input {
+    margin: 0;
+    width: 10px;
+    height: 10px;
+  }
+`;
+
 export const PerfilStyle = styled.div`
   padding: 10px;
   font-size: small;
