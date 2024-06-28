@@ -101,7 +101,7 @@ const Login = () => {
                 points,
               });
               localStorage.setItem("user", response.config.data);
-              navigate("/home");
+              navigate("/");
             }}
           >
             REGISTER
