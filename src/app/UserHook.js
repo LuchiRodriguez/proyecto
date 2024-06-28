@@ -11,7 +11,7 @@ const UserHook = () => {
     } else {
       const userAux = localStorage.getItem("user");
       if (userAux) {
-        setUser(userAux);
+        setUser(JSON.parse(userAux));
       }
     }
   }, [user]);
