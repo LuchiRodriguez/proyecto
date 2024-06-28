@@ -1,34 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import NavBar from "../components/NavBar";
+import { getChallenges } from "../app/api/Challenge";
 
 const Home = () => {
   const [videos, setVideos] = useState([]);
 
-  const handleVideoUpload = (e) => {
-    const file = e.target.file[0];
-    const url = URL.createObjectURL(file);
+  useEffect(() => {
 
-    setVideos([...videos, { url: url, title: file.name }]);
-  };
+    getChallenges().then(data => console.log(data));
 
-  return (
-    <div className="container">
-      <input type="file" onChange={handleVideoUpload} />
-      {videos.map((video) => (
-        <div className="videosItem" key={video.url}>
-          <h3>{video.title}</h3>
-          <ReactPlayer
-            url={video.url}
-            controls={true}
-            width="500"
-            height="300"
-          />
-        </div>
-      ))}
-      <NavBar />
-    </div>
-  );
+  }, [])
+
+
+
+
+
+
+
 };
 
 export default Home;

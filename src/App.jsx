@@ -4,7 +4,7 @@ import Router from "./app/Router";
 
 const App = () => (
     <UserProvider>
-        <GlobalStyle/>
+        <GlobalStyle />
         <Router />
     </UserProvider>
 );
