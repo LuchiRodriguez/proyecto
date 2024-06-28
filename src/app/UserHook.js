@@ -7,7 +7,7 @@ const UserHook = () => {
   const [user, setUser] = useUserContext();
   useEffect(() => {
     if (user) {
-      localStorage.setItem("user", user);
+      localStorage.setItem("user", JSON.stringify(user));
     } else {
       const userAux = localStorage.getItem("user");
       if (userAux) {
