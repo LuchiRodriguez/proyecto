@@ -41,6 +41,7 @@ getUserById().then(data => console.log(data))
         <div className="entrance">
           <img src={image} alt="" />
           <input type="file" accept="image/*" onChange={handleFileChange} />
+          <button onClick={saveFoto}>Save</button>
         </div>
         <div>
           <p>Username : {nombre} </p>
