@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ReactPlayer from 'react-player';
-
+import ReactPlayer from "react-player";
+import NavBar from "../components/NavBar";
 
 const Home = () => {
   const [videos, setVideos] = useState([]);
@@ -9,7 +9,7 @@ const Home = () => {
     const file = e.target.file[0];
     const url = URL.createObjectURL(file);
 
-    setVideos([...videos, { url: url, title: file.name }])
+    setVideos([...videos, { url: url, title: file.name }]);
   };
 
   return (
@@ -18,11 +18,17 @@ const Home = () => {
       {videos.map((video) => (
         <div className="videosItem" key={video.url}>
           <h3>{video.title}</h3>
-          <ReactPlayer url={video.url} controls={true} width="500" height="300" />
+          <ReactPlayer
+            url={video.url}
+            controls={true}
+            width="500"
+            height="300"
+          />
         </div>
       ))}
+      <NavBar />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
