@@ -23,6 +23,20 @@ const Perfil = () => {
     }
   };
 
+  const saveFoto = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+    if (!image) {
+      return alert('Please select an image to save');
+    }
+
+    const formData = new FormData();
+    formData.append('image', image);
+    fetch('/api/save-profile-image', {
+      method: 'POST',
+      body: formData
+    })
+  };
+
   useEffect(() => {
     console.log(user);
     fetch("../components/desafios.json")
@@ -30,6 +44,7 @@ const Perfil = () => {
       .then((data) => {
         setChallengesData(data);
         calculateTotalPoints(data);
+        FormData();
       });
   }, []);
 
@@ -47,6 +62,7 @@ const Perfil = () => {
         <div className="entrance">
           <img src={image} alt="" />
           <input type="file" accept="image/*" onChange={handleFileChange} />
+          <button onClick={saveFoto}>Guardar foto</button>
         </div>
         <div>
           <p>Username : {nombre} </p>
