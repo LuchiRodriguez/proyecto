@@ -8,9 +8,24 @@ const Home = () => {
 
   useEffect(() => {
 
-    getChallenges().then(data => console.log(data.data));
+    getChallenges().then(data => setVideos(data.data));
 
   }, [])
+
+
+  return (
+
+    videos.map((video) =>
+      <div key={video.id}>
+        <div>
+          <img src={video.player.imagenUrl} />
+          <p>{video.player.username}</p>
+        </div>
+        <p>{video.description}</p>
+      </div>
+    )
+
+  )
 
 
 
