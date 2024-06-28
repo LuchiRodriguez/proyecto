@@ -1,26 +1,20 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Landing from '../pages/Landing'
-import Jugador from '../pages/Jugador'
-import Observador from '../pages/Observador'
-import Home from '../pages/Home'
-import Perfil from '../pages/Perfil'
-import Challenges from '../pages/Challenges'
-import Challenge from '../pages/Challenge'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "../pages/Home";
+import Perfil from "../pages/Perfil";
+import Challenges from "../pages/Challenges";
+import Challenge from "../pages/Challenge";
 
 const Router = () => {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route index element={<Landing />} />
-                <Route path="/:name" element={<Jugador />} />
-                <Route path="/:name" element={<Observador />} />
-                <Route path="/home" element={<Home/>}/>
-                <Route path="/perfil" element={<Perfil />} />
-                <Route path="/challenges" element={<Challenges />} />
-                <Route path="/createChallenge" element={<Challenge />} />
-            </Routes>
-        </BrowserRouter>
-    )
-}
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="/perfil" element={<Perfil />} />
+        <Route path="/challenges" element={<Challenges />} />
+        <Route path="/createChallenge" element={<Challenge />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-export default Router
+export default Router;
