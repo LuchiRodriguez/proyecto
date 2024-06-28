@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import { PerfilStyle } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
+import { getUserById } from "../app/api/User";
 
 const Perfil = () => {
   const [user] = useUserContext();
@@ -9,7 +10,6 @@ const Perfil = () => {
   const [email] = useState();
   const [perfil] = useState();
   const [image, setImage] = useState(null);
-  const [, setChallengesData] = useState([]);
   const [totalPoints, setTotalPoints] = useState(0);
 
   const handleFileChange = (e) => {
@@ -23,15 +23,9 @@ const Perfil = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(user);
-    fetch("../components/desafios.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setChallengesData(data);
-        calculateTotalPoints(data);
-      });
-  }, []);
+useEffect(() => {
+getUserById().then(data => console.log(data))
+}, [])
 
   const calculateTotalPoints = (challenges) => {
     let total = 0;
