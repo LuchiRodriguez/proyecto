@@ -8,7 +8,7 @@ const Home = () => {
 
   useEffect(() => {
 
-    getChallenges().then(data => console.log(data));
+    getChallenges().then(data => console.log(data.data));
 
   }, [])
 

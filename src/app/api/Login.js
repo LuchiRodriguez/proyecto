@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setAuth } from "./Challenge";
 
 export const postUser = async (username, password) => {
   const response = await axios.post(
@@ -11,5 +12,8 @@ export const postUser = async (username, password) => {
       },
     }
   );
+  setAuth(username, password);
+
+  //si tiene exito llamar a setAuth pasandole usuario y contraseña
   return response;
 };
