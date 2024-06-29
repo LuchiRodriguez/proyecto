@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import { PerfilStyle } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
-import { getUserById } from "../app/api/User";
+import { getUserByUsername } from "../app/api/User";
+
 
 const Perfil = () => {
   const [user] = useUserContext();
@@ -24,7 +25,7 @@ const Perfil = () => {
   };
 
 useEffect(() => {
-getUserById().then(data => console.log(data))
+getUserByUsername().then(data => console.log(data))
 }, [])
 
   const calculateTotalPoints = (challenges) => {
