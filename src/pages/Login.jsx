@@ -43,9 +43,9 @@ const Login = () => {
           <button
             type="button"
             onClick={async () => {
-              await postUser(username, password).then((data) =>
-                setUser(JSON.stringify({ ...data.data, username, password }))
-              );
+              await postUser(username, password).then((data) => {
+                setUser({ ...data.data, username, password });
+              });
               try {
                 navigate("/");
               } catch (error) {
