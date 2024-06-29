@@ -23,7 +23,7 @@ const UserHook = () => {
       }
     }
     setAuth(username, password);
-  }, [user]);
+  }, [password, username, setUser, user]);
 
   return { user };
 };
