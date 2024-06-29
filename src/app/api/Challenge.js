@@ -13,3 +13,6 @@ export const getChallenges = async () => await instance.get('');
 
 // DELETE
 export const deleteChallenge = async (id) => await instance.delete("/" + id);
+
+// UPDATE
+export const updateChallenge = async (obj) => await instance.post("/", obj);

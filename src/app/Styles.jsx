@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 		letter-spacing: 4px;
         color: white;
 		margin: 0;
-		padding: 0;
+		padding: 10px;
 	}
 `;
 
@@ -252,7 +252,35 @@ export const PerfilStyle = styled.div`
   }
 `;
 
+export const UserInfo = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: small;
+  color: #03e9f4;
+  img{
+   width: 40px;
+   border-radius: 100%;
+   }
+`;
+export const ChallengeBox = styled.div`
+position: relative;
 
+button{
+position: absolute;
+ right: 0px;
+}
+video {
+width: 100%;
+height: 400px;
+}
+.player{
+font-size: 10px;
+span{
+color: #03e9f4;
+}
+
+`;
 export const ButtonChallenge = styled(Link)`
 display: flex; 
 align-items: right; 

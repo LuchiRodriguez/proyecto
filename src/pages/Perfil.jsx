@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import { PerfilStyle } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
+import { getUserByUsername } from "../app/api/User";
+
 
 const Perfil = () => {
   const [user] = useUserContext();
@@ -9,7 +11,6 @@ const Perfil = () => {
   const [email] = useState();
   const [perfil] = useState();
   const [image, setImage] = useState(null);
-  const [, setChallengesData] = useState([]);
   const [totalPoints, setTotalPoints] = useState(0);
 
   const handleFileChange = (e) => {
@@ -23,30 +24,9 @@ const Perfil = () => {
     }
   };
 
-  const saveFoto = (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
-    if (!image) {
-      return alert('Please select an image to save');
-    }
-
-    const formData = new FormData();
-    formData.append('image', image);
-    fetch('/api/save-profile-image', {
-      method: 'POST',
-      body: formData
-    })
-  };
-
-  useEffect(() => {
-    console.log(user);
-    fetch("../components/desafios.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setChallengesData(data);
-        calculateTotalPoints(data);
-        FormData();
-      });
-  }, []);
+useEffect(() => {
+getUserByUsername().then(data => console.log(data))
+}, [])
 
   const calculateTotalPoints = (challenges) => {
     let total = 0;
