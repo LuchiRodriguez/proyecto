@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import Brose from "../app/fonts/Brose.ttf";
+import { Link } from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
 	@font-face {
@@ -250,3 +251,21 @@ export const PerfilStyle = styled.div`
     }
   }
 `;
+
+
+export const ButtonChallenge = styled(Link)`
+display: flex; 
+align-items: right; 
+justify-content: right;
+padding: 10px; 
+cursor: pointer; 
+bottom: 50px; 
+  right: 0px; 
+  position: fixed; 
+
+img {
+  width: 50px; 
+  height: 50px; 
+  
+}
+`
