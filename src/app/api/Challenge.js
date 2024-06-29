@@ -1,5 +1,5 @@
 import axios from "axios";
-const instance = axios.create({ baseURL: "http://localhost:8080/challenge" });
+const instance = axios.create({ baseURL: "http://localhost:8080/challenges" });
 
 export const setAuth = (username, password) => {
     instance.defaults.headers.common.Authorization = 'Basic ' + btoa(username + ':' + password);

@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { createChallenge } from "../app/api/Challenge";
 import { useUserContext } from "../app/UserProvider";
+import { useNavigate } from "react-router-dom";
 
 const Challenge = () => {
-  // const history = useHistory(); //Para obtener el objeto historia para navegar.
   const { user } = useUserContext();
   const [description, setDescription] = useState("");
   const [points, setPoints] = useState("");
-  const [pointsError, setPointsError] = useState(""); //Para lidiar con los puntos mal validados.
+  const [pointsError, setPointsError] = useState("");
+  const navigate = useNavigate();
+  //Para lidiar con los puntos mal validados.
 
   const handleSubmit = async (e) => {
     e.preventDefault(); //evita el envío predeterminado del formulario
@@ -20,12 +22,14 @@ const Challenge = () => {
     try {
       const res = await createChallenge(description, points, user);
       console.log("New challenge created: ", res.data);
-      history.push("/challenges"); //redirigir hacia la lista de challenges
+
+      navigate("/challenges")
+
     } catch (error) {
       console.log("Error creating challenge:", error);
     }
   };
-  //que no se muestre o que no se pueda modificar. el id
+
   return (
     <div>
       {user && <p>{user}</p>}
