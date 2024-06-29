@@ -43,9 +43,9 @@ const Login = () => {
           <button
             type="button"
             onClick={async () => {
-              await postUser(username, password).then((data) =>
-                setUser(JSON.stringify({ ...data.data, username }))
-              );
+              await postUser(username, password).then((data) => {
+                setUser({ ...data.data, username, password });
+              });
               try {
                 navigate("/");
               } catch (error) {
@@ -100,7 +100,10 @@ const Login = () => {
                 password,
                 points,
               });
-              localStorage.setItem("user", JSON.stringify({ rol, username }));
+              localStorage.setItem(
+                "user",
+                JSON.stringify({ rol, username, password })
+              );
               navigate("/");
             }}
           >
