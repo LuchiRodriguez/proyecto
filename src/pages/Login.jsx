@@ -44,7 +44,7 @@ const Login = () => {
             type="button"
             onClick={async () => {
               await postUser(username, password).then((data) =>
-                setUser(JSON.stringify({ ...data.data, username }))
+                setUser(JSON.stringify({ ...data.data, username, password }))
               );
               try {
                 navigate("/");
@@ -100,7 +100,10 @@ const Login = () => {
                 password,
                 points,
               });
-              localStorage.setItem("user", JSON.stringify({ rol, username }));
+              localStorage.setItem(
+                "user",
+                JSON.stringify({ rol, username, password })
+              );
               navigate("/");
             }}
           >
