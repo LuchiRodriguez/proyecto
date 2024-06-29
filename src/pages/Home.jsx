@@ -7,7 +7,7 @@ const Home = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    getChallenges().then((data) => setVideos(data));
+    getChallenges().then((data) => setVideos(data.data));
   }, []);
 
   return (
