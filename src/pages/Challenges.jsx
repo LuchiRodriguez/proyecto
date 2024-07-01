@@ -25,7 +25,7 @@ useEffect(() => {
     return (
         <>
              {challenge?.map((ch) => 
-      <Challenge key={ch.id} ch={ch}/>
+      <Challenge key={ch.id} ch={ch} refetch={refetch}/>
       )}
             {
                 user.rol === "watcher" && (

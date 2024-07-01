@@ -6,7 +6,7 @@ export const setAuth = (username, password) => {
 };
 
 // CREATE
-export const createChallenge = async (obj) => await instance.post("/", obj);
+export const createChallenge = async (formData) => await instance.post("", formData);
 
 // READ
 export const getChallenges = async () => await instance.get('');

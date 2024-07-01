@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { createChallenge } from "../app/api/Challenge";
 import { useUserContext } from "../app/UserProvider";
+import { useNavigate } from "react-router-dom";
 
 const CreateChallenge = () => {
   // const history = useHistory(); //Para obtener el objeto historia para navegar.
-  const { user } = useUserContext();
+  const [ user ] = useUserContext();
   const [description, setDescription] = useState("");
   const [points, setPoints] = useState("");
   const [pointsError, setPointsError] = useState(""); //Para lidiar con los puntos mal validados.
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault(); //evita el envío predeterminado del formulario
@@ -16,11 +18,16 @@ const CreateChallenge = () => {
       setPointsError("Los puntos deben estar entre 1 y 500");
       return;
     }
+    const formData = new FormData();
+    formData.append("description", description)
+    formData.append("points", points)
+    formData.append("watcher", user.username)
+
 
     try {
-      const res = await createChallenge(description, points, user);
+      const res = await createChallenge(formData);
       console.log("New challenge created: ", res.data);
-      history.push("/challenges"); //redirigir hacia la lista de challenges
+      navigate("/challenges"); //redirigir hacia la lista de challenges
     } catch (error) {
       console.log("Error creating challenge:", error);
     }
@@ -28,7 +35,6 @@ const CreateChallenge = () => {
   //que no se muestre o que no se pueda modificar. el id
   return (
     <div>
-      {user && <p>{user}</p>}
       <form onSubmit={handleSubmit}>
         <div className="formGroup">
           <label htmlFor="description">Description: </label>

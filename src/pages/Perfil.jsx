@@ -28,7 +28,7 @@ const Perfil = () => {
         <div>
           <p>Username : {userProfile.username} </p>
           <p>Email: {userProfile.email} </p>
-          <p>Points: {userProfile.points}</p>
+          {user.rol === "player" && <p>Points: {userProfile.points}</p>}
         </div>
       </PerfilStyle>
       <NavBar />
