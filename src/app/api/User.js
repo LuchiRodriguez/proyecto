@@ -33,3 +33,13 @@ export const getUserByUsername = async (username) => {
     throw error;
   }
 };
+
+export const updateUserImage = async (FormData) => {
+  try {
+    const response = await instance.post(`/upload`, FormData);
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}

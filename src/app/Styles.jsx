@@ -248,6 +248,7 @@ export const PerfilStyle = styled.div`
       height: 100px;
       border-radius: 50%;
       border: 2px solid #03e9f4;
+      object-fit: cover;
     }
   }
 `;
@@ -260,7 +261,10 @@ export const UserInfo = styled.div`
   color: #03e9f4;
   img{
    width: 40px;
-   border-radius: 100%;
+   height: 40px;
+    border-radius: 50%;
+    border: 2px solid #03e9f4;
+      object-fit: cover;
    }
 `;
 export const ChallengeBox = styled.div`
