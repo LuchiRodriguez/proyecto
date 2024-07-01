@@ -4,6 +4,7 @@ import {ButtonChallenge,} from '../app/Styles';
 import {getChallenges} from '../app/api/Challenge';
 import {useUserContext} from '../app/UserProvider';
 import Challenge from './Challenge';
+import iconPlus from '../app/img/icons8-más-50.png'
 
 const Challenges = () => {
 const [user] = useUserContext();
@@ -29,7 +30,7 @@ useEffect(() => {
             {
                 user.rol === "watcher" && (
                     <ButtonChallenge to={"/createChallenge"}>
-                        <img src="../app/img/icons8-más-50.png" alt="" />
+                        <img src={iconPlus} alt="" />
                     </ButtonChallenge>
                 )
             }

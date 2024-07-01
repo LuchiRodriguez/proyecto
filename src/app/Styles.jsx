@@ -283,8 +283,8 @@ justify-content: right;
 padding: 10px; 
 cursor: pointer; 
 bottom: 50px; 
-  right: 0px; 
-  position: fixed; 
+right: 0px; 
+position: fixed; 
 
 img {
   width: 50px; 
