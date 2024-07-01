@@ -1,70 +1,69 @@
 import { useState } from "react";
-import { createChallenge } from "../app/api/Challenge";
+import { UserInfo, ChallengeBox } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
+import { updateChallenge, postChallengeVideo } from "../app/api/Challenge";
+import { useNavigate } from "react-router-dom";
 
-const Challenge = () => {
-  // const history = useHistory(); //Para obtener el objeto historia para navegar.
-  const { user } = useUserContext();
-  const [description, setDescription] = useState("");
-  const [points, setPoints] = useState("");
-  const [pointsError, setPointsError] = useState(""); //Para lidiar con los puntos mal validados.
+const Challenge = ({ ch, refetch }) => {
+  const [user] = useUserContext();
+  const [file, setFile] = useState(null);
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); //evita el envío predeterminado del formulario
+  const handleVideo = async (e) => {
+    e.preventDefault();
 
-    if (points < 1 || points > 500) {
-      setPointsError("Los puntos deben estar entre 1 y 500");
-      return;
-    }
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("player", user.username);
+    formData.append("points", ch.points);
 
-    try {
-      const res = await createChallenge(description, points, user);
-      console.log("New challenge created: ", res.data);
-      history.push("/challenges"); //redirigir hacia la lista de challenges
-    } catch (error) {
-      console.log("Error creating challenge:", error);
-    }
+    await postChallengeVideo(ch.id, formData);
+    refetch();
+    navigate("/");
   };
-  //que no se muestre o que no se pueda modificar. el id
+
+  const handleClick = async () => {
+    await updateChallenge(ch.id, user.username);
+    refetch();
+  };
   return (
-    <div>
-      {user && <p>{user}</p>}
-      <form onSubmit={handleSubmit}>
-        <div className="formGroup">
-          <label htmlFor="description">Description: </label>
-          <input
-            type="text"
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </div>
-        <div className="formGroup">
-          <label htmlFor="points">Points: </label>
-          <input
-            type="number"
-            id="points"
-            value={points}
-            onChange={(e) => {
-              const newPoints = parseInt(e.target.value, 10);
-              if (isNaN(newPoints)) {
-                setPointsError("Los puntos deben ser un número entero");
-                return;
-              }
-              setPoints(newPoints);
-              setPointsError(""); //Borrar el error si los puntos son válidos.
-            }}
-            min="1"
-            max="500"
-            required
-          />
-          {pointsError && <span className="error">{pointsError}</span>}
-        </div>
-        <button type="submit">Crear desafío</button>
-      </form>
-    </div>
+    <>
+      <ChallengeBox>
+        <UserInfo>
+          {ch.watcher.imagenUrl ? (
+            <img src={ch.watcher.imagenUrl} />
+          ) : (
+            <img
+              src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+              alt=""
+            />
+          )}
+          <p>{ch.watcher.username}</p>
+        </UserInfo>
+        <p>{ch.description}</p>
+        <p>{ch.points}</p>
+
+        {ch.player != null ? (
+          <p className="player">
+            Aceptado por <span>{ch.player.username}</span>
+          </p>
+        ) : (
+          <button onClick={handleClick}>
+            Aceptar desafio
+          </button>
+        )}
+
+        {ch.player != null && (
+          <div>
+            <form onSubmit={handleVideo} encType="multipart/form-data">
+              <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+              <br />
+              <button type="submit">Subir video</button>
+            </form>
+          </div>
+        )}
+      </ChallengeBox>
+    </>
   );
 };
-
 export default Challenge;

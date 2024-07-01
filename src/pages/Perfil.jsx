@@ -2,53 +2,58 @@ import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import { PerfilStyle } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
-import { getUserByUsername } from "../app/api/User";
-
+import { getUserByUsername, updateUserImage } from "../app/api/User";
 
 const Perfil = () => {
   const [user] = useUserContext();
-  const [nombre] = useState();
-  const [email] = useState();
-  const [perfil] = useState();
-  const [image, setImage] = useState(null);
-  const [totalPoints, setTotalPoints] = useState(0);
+  const [userProfile, setUserProfile] = useState({});
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
+  const refetch = () => {
+    getUserByUsername(user.username).then((data) => setUserProfile(data));
+  }
+
+  useEffect(() => {
+    refetch();
+  }, []);
+
+  const handleImageChange = async (event) => {
+    const file = event.target.files[0];
+    // Aquí podrías hacer la petición al servidor para subir la imagen
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-        reader.readAsDataURL(file);
-      };
-    }
-  };
+      const formData = new FormData();
+      formData.append("username", userProfile.username);
+      formData.append("file", file);
 
-useEffect(() => {
-getUserByUsername().then(data => console.log(data))
-}, [])
-
-  const calculateTotalPoints = (challenges) => {
-    let total = 0;
-    for (const challenge of challenges) {
-      total += parseInt(challenge.points, 10);
+    await updateUserImage(formData);
+    refetch();
     }
-    setTotalPoints(total);
   };
 
   return (
     <>
       <PerfilStyle>
-        <div className="entrance">
-          <img src={image} alt="" />
-          <input type="file" accept="image/*" onChange={handleFileChange} />
-          <button onClick={saveFoto}>Save</button>
+          <div className="entrance">
+          <input
+            type="file"
+            id="fileInput"
+            style={{ display: "none" }}
+            onChange={handleImageChange}
+          />
+          <img
+            src={
+              userProfile.imagenUrl
+                ? userProfile.imagenUrl
+                : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+            }
+            alt=""
+            onClick={() => document.getElementById("fileInput").click()}
+            style={{ cursor: "pointer" }}
+          />
         </div>
         <div>
-          <p>Username : {nombre} </p>
-          <p>Email: {email} </p>
-          <p>User profile: {perfil}</p>
-          <p>Points: {totalPoints}</p>
+          <p>Username : {userProfile.username} </p>
+          <p>Email: {userProfile.email} </p>
+          {user.rol === "player" && <p>Points: {userProfile.points}</p>}
         </div>
       </PerfilStyle>
       <NavBar />

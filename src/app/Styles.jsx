@@ -248,6 +248,7 @@ export const PerfilStyle = styled.div`
       height: 100px;
       border-radius: 50%;
       border: 2px solid #03e9f4;
+      object-fit: cover;
     }
   }
 `;
@@ -260,16 +261,14 @@ export const UserInfo = styled.div`
   color: #03e9f4;
   img{
    width: 40px;
-   border-radius: 100%;
+   height: 40px;
+    border-radius: 50%;
+    border: 2px solid #03e9f4;
+      object-fit: cover;
    }
 `;
 export const ChallengeBox = styled.div`
-position: relative;
-
-button{
-position: absolute;
- right: 0px;
-}
+margin-bottom: 50px;
 video {
 width: 100%;
 height: 400px;
@@ -288,8 +287,8 @@ justify-content: right;
 padding: 10px; 
 cursor: pointer; 
 bottom: 50px; 
-  right: 0px; 
-  position: fixed; 
+right: 0px; 
+position: fixed; 
 
 img {
   width: 50px; 

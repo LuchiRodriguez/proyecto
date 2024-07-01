@@ -7,7 +7,7 @@ import {UserInfo, ChallengeBox} from '../app/Styles';
 const Home = () => {
   const [videos, setVideos] = useState([]);
   
-  const challenges = videos.filter(video => video.videoUtal !== null);
+  const challenges = videos.filter(video => video.videoUrl !== null);
   
   useEffect(() => {
     getChallenges().then((data) => setVideos(data.data));

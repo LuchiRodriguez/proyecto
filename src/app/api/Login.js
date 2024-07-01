@@ -12,7 +12,7 @@ export const postUser = async (username, password) => {
       },
     }
   );
-  //si tiene exito llamar a setAuth pasandole usuario y contraseña
+ 
   setAuth(username, password);
   return response;
 };
