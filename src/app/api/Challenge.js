@@ -15,4 +15,12 @@ export const getChallenges = async () => await instance.get('');
 export const deleteChallenge = async (id) => await instance.delete("/" + id);
 
 // UPDATE
-export const updateChallenge = async (obj) => await instance.post("/", obj);
+export const updateChallenge = async (id, username) => await instance.put(`/${id}`, {username});
+
+// UPLOAD VIDEO
+// export const postChallengeVideo = async (id, file) => await instance.post(`/${id}/upload`, file);
+export const postChallengeVideo = async (id, formData) => await instance.post(`/${id}/upload`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });

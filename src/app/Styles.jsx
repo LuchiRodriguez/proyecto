@@ -264,12 +264,7 @@ export const UserInfo = styled.div`
    }
 `;
 export const ChallengeBox = styled.div`
-position: relative;
-
-button{
-position: absolute;
- right: 0px;
-}
+margin-bottom: 50px;
 video {
 width: 100%;
 height: 400px;
