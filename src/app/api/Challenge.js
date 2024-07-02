@@ -6,6 +6,7 @@ export const createChallenge = async (formData) => await instance.post("/challen
 // READ
 export const getChallenges = async () => await instance.get("/challenge");
 
+
 // DELETE
 export const deleteChallenge = async (id) => await instance.delete("/challenge" + id);
 

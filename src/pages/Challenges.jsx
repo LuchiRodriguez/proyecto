@@ -16,11 +16,6 @@ const Challenges = () => {
 
     const challenge = challenges.filter(video => video.videoUrl == null);
 
-    const fetchData = async () => {
-        const res = await getChallenges();
-        setChallenges(res.data);
-    }
-
     useEffect(() => {
         refetch();
     }, []);

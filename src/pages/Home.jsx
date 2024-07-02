@@ -10,7 +10,11 @@ const Home = () => {
   const challenges = videos.filter(video => video.videoUrl !== null);
 
   useEffect(() => {
-    getChallenges().then((data) => setVideos(data.data));
+    console.log('ttttt')
+    getChallenges().then((data) => {
+      console.log('11111111111', data)
+      data && setVideos(data.data)
+    });
   }, []);
 
   return (

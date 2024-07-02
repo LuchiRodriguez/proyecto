@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const CreateChallenge = () => {
   // const history = useHistory(); //Para obtener el objeto historia para navegar.
-  const [ user ] = useUserContext();
+  const [user] = useUserContext();
   const [description, setDescription] = useState("");
   const [points, setPoints] = useState("");
   const [pointsError, setPointsError] = useState(""); //Para lidiar con los puntos mal validados.
@@ -27,7 +27,7 @@ const CreateChallenge = () => {
     try {
       const res = await createChallenge(formData);
       console.log("New challenge created: ", res.data);
-      navigate("/challenges"); //redirigir hacia la lista de challenges
+      navigate("/challenge"); //redirigir hacia la lista de challenges
     } catch (error) {
       console.log("Error creating challenge:", error);
     }
