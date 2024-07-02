@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 // import ReactPlayer from "react-player";
 import NavBar from "../components/NavBar";
 import { getChallenges } from "../app/api/Challenge";
-import {UserInfo, ChallengeBox} from '../app/Styles';
+import { UserInfo, ChallengeBox } from '../app/Styles';
 
 const Home = () => {
   const [videos, setVideos] = useState([]);
-  
+
   const challenges = videos.filter(video => video.videoUrl !== null);
-  
+
   useEffect(() => {
     getChallenges().then((data) => setVideos(data.data));
   }, []);
-  
+
   return (
     <>
       {challenges?.map((challenge) => (

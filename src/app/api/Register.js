@@ -1,11 +1,11 @@
-import axios from 'axios';
-const instance = axios.create({ baseURL: 'http://localhost:8080/user/register' });
+
+import { instance } from './Challenge';
 
 // CREATE
-export const createUser = async (obj) => await instance.post('', obj);
+export const createUser = async (obj) => await instance.post('/user/register', obj);
 
 // READ
-export const getUsers = async () => await instance.get('/');
+export const getUsers = async () => await instance.get('/user');
 
 // DELETE
-export const deleteUser = async (id) => await instance.delete('/' + id)
+export const deleteUser = async (id) => await instance.delete('/user' + id)
