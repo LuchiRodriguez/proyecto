@@ -1,72 +1,42 @@
 import { useEffect, useState } from 'react'
 import NavBar from '../components/NavBar';
+import { ButtonChallenge, } from '../app/Styles';
+import { getChallenges } from '../app/api/Challenge';
 import { useUserContext } from '../app/UserProvider';
-import { Link } from 'react-router-dom';
+import Challenge from './Challenge';
+import iconPlus from '../app/img/icons8-más-50.png'
 
 const Challenges = () => {
-    const [isPlayer, setIsPlayer] = useState();
+    const [user] = useUserContext();
     const [challenges, setChallenges] = useState([]);
-    const { user } = useUserContext();
 
-    useEffect(() => {
-        settingRol();
-        saveChallenge();
-    }, [user]);
-
-
-    const settingRol = () => {
-        if (user?.rol === 0) {
-            setIsPlayer(true);
-        } else {
-            setIsPlayer(false);
-        }
+    const refetch = () => {
+        getChallenges().then((data) => setChallenges(data.data));
     }
 
-    const saveChallenge = async (challengeId) => {
-        try {
-            const response = await fetch(`/challenge/${challengeId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userId: user.id }),
-            });
+    const challenge = challenges.filter(video => video.videoUrl == null);
 
-            if (response.ok) {
-                console.log('User enrolled in challenge:', challengeId);
-            } else {
-                console.error('Error enrolling in challenge:', response.status);
-            }
-        } catch (error) {
-            console.error('Error enrolling in challenge:', error);
-        }
-    };
+    const fetchData = async () => {
+        const res = await getChallenges();
+        setChallenges(res.data);
+    }
+
+    useEffect(() => {
+        refetch();
+    }, []);
+
+
     return (
         <>
+            {challenge?.map((ch) =>
+                <Challenge key={ch.id} ch={ch} refetch={refetch} />
+            )}
             {
-                challenges.map((challenge) =>
-                    <div key={challenge.id}>
-                        <h2>{challenge.name}</h2>
-                        <div className='challengeInfo'>
-                            <p>{challenge.date}</p>
-                            <p>{challenge.points}</p>
-                        </div>
-                        {
-                            isPlayer &&
-                            <button onClick={() =>
-                                saveChallenge(challenge.id)
-                            }>Apuntarse</button>
-                        }
-                    </div>
+                user.rol === "watcher" && (
+                    <ButtonChallenge to={"/createChallenge"}>
+                        <img src={iconPlus} alt="" />
+                    </ButtonChallenge>
                 )
-
-            }
-            {
-                !isPlayer &&
-                <div>
-                    <img src="../app/img/create challenge.svg" alt="" />
-                    <Link to={"/createChallenge"} />
-                </div>
             }
             <NavBar />
         </>

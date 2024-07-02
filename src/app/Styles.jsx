@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import Brose from "../app/fonts/Brose.ttf";
+import { Link } from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
 	@font-face {
@@ -12,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 		letter-spacing: 4px;
         color: white;
 		margin: 0;
-		padding: 0;
+		padding: 10px;
 	}
 `;
 
@@ -247,6 +248,51 @@ export const PerfilStyle = styled.div`
       height: 100px;
       border-radius: 50%;
       border: 2px solid #03e9f4;
+      object-fit: cover;
     }
   }
 `;
+
+export const UserInfo = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: small;
+  color: #03e9f4;
+  img{
+   width: 40px;
+   height: 40px;
+    border-radius: 50%;
+    border: 2px solid #03e9f4;
+      object-fit: cover;
+   }
+`;
+export const ChallengeBox = styled.div`
+margin-bottom: 50px;
+video {
+width: 100%;
+height: 400px;
+}
+.player{
+font-size: 10px;
+span{
+color: #03e9f4;
+}
+
+`;
+export const ButtonChallenge = styled(Link)`
+display: flex; 
+align-items: right; 
+justify-content: right;
+padding: 10px; 
+cursor: pointer; 
+bottom: 50px; 
+right: 0px; 
+position: fixed; 
+
+img {
+  width: 50px; 
+  height: 50px; 
+  
+}
+`
