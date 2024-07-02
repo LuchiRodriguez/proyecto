@@ -9,10 +9,7 @@ export const setAuth = (username, password) => {
 export const createChallenge = async (formData) => await instance.post("", formData);
 
 // READ
-export const getChallenges = async () => {
-  console.log("222222222222", instance.defaults.headers.common.Authorization)
-  await instance.get('');
-}
+export const getChallenges = async () => await instance.get('');
 
 // DELETE
 export const deleteChallenge = async (id) => await instance.delete("/" + id);
