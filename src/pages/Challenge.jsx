@@ -58,9 +58,9 @@ const Challenge = ({ ch, refetch }) => {
             Aceptado por <span>{ch.player.username}</span>
           </p>
         ) : (
-          <button onClick={handleClick}>
-            Aceptar desafio
-          </button>
+          user.rol == "player" && (
+            <button onClick={handleClick}>Aceptar desafio</button>
+          )
         )}
 
         {ch.player != null && (
@@ -74,10 +74,7 @@ const Challenge = ({ ch, refetch }) => {
             </form>
             {isUploading && (
               <div>
-                <img
-                  src="https://i.gifer.com/ZKZg.gif"
-                  alt="Cargando..."
-                />
+                <img src="https://i.gifer.com/ZKZg.gif" alt="Cargando..." />
                 <h3>Subiendo archivo, por favor espere...</h3>
               </div>
             )}
