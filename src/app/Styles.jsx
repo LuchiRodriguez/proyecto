@@ -295,3 +295,11 @@ export const ButtonChallenge = styled(Link)`
     height: 50px;
   }
 `;
+
+export const PopUpCreateChallenge = styled.div`
+  display: ${({ create }) => (create ? "block" : "none")};
+`;
+
+export const ChallengesList = styled.div`
+  display: ${({ create }) => (create ? "none" : "block")};
+`;
