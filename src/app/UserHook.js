@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useUserContext } from "./UserProvider";
 import { setAuth } from "./api/User"; // Importamos la función correcta
 
@@ -21,4 +21,3 @@ const UserHook = () => {
 };
 
 export default UserHook;
-

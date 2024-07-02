@@ -142,7 +142,6 @@ export const NavBarStyle = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
   bottom: 0;
   background-color: #202124;
   ul {
@@ -259,40 +258,39 @@ export const UserInfo = styled.div`
   align-items: center;
   font-size: small;
   color: #03e9f4;
-  img{
-   width: 40px;
-   height: 40px;
+  img {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     border: 2px solid #03e9f4;
-      object-fit: cover;
-   }
+    object-fit: cover;
+  }
 `;
 export const ChallengeBox = styled.div`
-margin-bottom: 50px;
-video {
-width: 100%;
-height: 400px;
-}
-.player{
-font-size: 10px;
-span{
-color: #03e9f4;
-}
-
+  margin-bottom: 50px;
+  video {
+    width: 100%;
+    height: 400px;
+  }
+  .player {
+    font-size: 10px;
+  }
+  span {
+    color: #03e9f4;
+  }
 `;
 export const ButtonChallenge = styled(Link)`
-display: flex; 
-align-items: right; 
-justify-content: right;
-padding: 10px; 
-cursor: pointer; 
-bottom: 50px; 
-right: 0px; 
-position: fixed; 
+  display: flex;
+  align-items: right;
+  justify-content: right;
+  padding: 10px;
+  cursor: pointer;
+  bottom: 50px;
+  right: 0px;
+  position: fixed;
 
-img {
-  width: 50px; 
-  height: 50px; 
-  
-}
-`
+  img {
+    width: 50px;
+    height: 50px;
+  }
+`;
