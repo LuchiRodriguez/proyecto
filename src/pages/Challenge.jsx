@@ -22,6 +22,7 @@ const Challenge = ({ ch, refetch }) => {
     try {
       await postChallengeVideo(ch.id, formData);
       refetch();
+      setIsUploading(true);
       navigate("/");
     } catch (error) {
       console.error("Error al subir el video:", error);
@@ -77,7 +78,7 @@ const Challenge = ({ ch, refetch }) => {
                   src="https://i.gifer.com/ZKZg.gif"
                   alt="Cargando..."
                 />
-                <p>Subiendo archivo, por favor espere...</p>
+                <h2>Subiendo archivo, por favor espere...</h2>
               </div>
             )}
           </div>
