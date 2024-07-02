@@ -295,3 +295,13 @@ export const ButtonChallenge = styled(Link)`
     height: 50px;
   }
 `;
+
+export const Cargando = styled.div`
+margin: auto; 
+
+`
+
+export const UploadingGif = styled.img`
+width: 200px; 
+height: 200px; 
+`
