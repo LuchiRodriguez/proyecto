@@ -19,8 +19,10 @@ import axios from 'axios';
 const instance = axios.create({ baseURL: 'http://localhost:8080/user' });
 
 export const setAuth = (username, password) => {
+  console.log("11111111111111", username, password)
   const encodedCredentials = btoa(`${username}:${password}`);
   instance.defaults.headers.common.Authorization = `Basic ${encodedCredentials}`;
+  console.log("3333333333",instance.defaults.headers.common.Authorization )
 };
 
 // READ
