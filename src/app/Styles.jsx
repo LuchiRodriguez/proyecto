@@ -260,12 +260,12 @@ export const UserInfo = styled.div`
   font-size: small;
   color: #03e9f4;
   img{
-   width: 40px;
-   height: 40px;
+  width: 40px;
+  height: 40px;
     border-radius: 50%;
     border: 2px solid #03e9f4;
       object-fit: cover;
-   }
+}
 `;
 export const ChallengeBox = styled.div`
 margin-bottom: 50px;
@@ -277,9 +277,9 @@ height: 400px;
 font-size: 10px;
 span{
 color: #03e9f4;
-}
-
+}}
 `;
+
 export const ButtonChallenge = styled(Link)`
 display: flex; 
 align-items: right; 

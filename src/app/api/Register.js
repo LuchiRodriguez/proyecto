@@ -1,5 +1,4 @@
-
-import { instance } from './Challenge';
+import { instance } from "./api";
 
 // CREATE
 export const createUser = async (obj) => await instance.post('/user/register', obj);

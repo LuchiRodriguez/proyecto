@@ -1,25 +1,4 @@
-// import axios from 'axios';
-// const instance = axios.create({ baseURL: 'http://localhost:8080/user' });
-
-// export const setAuth = (username, password) => {
-//     instance.defaults.headers.common.Authorization = 'Basic ' + btoa(username + ':' + password);
-// };
-// // READ
-// export const getUserByUsername = async (username) =>{
-//     try {
-//         await instance.get(`/${username}`);
-//     } catch (error) {
-//         console.error("Error:" + error)
-//     }
-
-// } 
-
-import { instance } from "./Challenge";
-
-export const setAuth = (username, password) => {
-  const encodedCredentials = btoa(`${username}:${password}`);
-  instance.defaults.headers.common.Authorization = `Basic ${encodedCredentials}`;
-};
+import { instance } from "./api";
 
 // READ
 export const getUserByUsername = async (username) => {

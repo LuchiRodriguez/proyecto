@@ -1,5 +1,6 @@
 import axios from "axios";
-import { setAuth } from "./Challenge";
+import { setAuth } from "./api";
+
 
 export const postUser = async (username, password) => {
   const response = await axios.post(
@@ -12,7 +13,7 @@ export const postUser = async (username, password) => {
       },
     }
   );
- 
+
   setAuth(username, password);
   return response;
 };

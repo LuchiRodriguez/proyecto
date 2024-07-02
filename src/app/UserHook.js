@@ -1,6 +1,6 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useUserContext } from "./UserProvider";
-import { setAuth } from "./api/User"; // Importamos la función correcta
+import { setAuth } from "./api/api";
 
 const UserHook = () => {
   const [user, setUser] = useUserContext();

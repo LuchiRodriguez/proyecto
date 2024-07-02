@@ -1,15 +1,10 @@
-import axios from "axios";
-export const instance = axios.create({ baseURL: "http://localhost:8080" });
-
-export const setAuth = (username, password) => {
-  instance.defaults.headers.common.Authorization = 'Basic ' + btoa(username + ':' + password);
-};
+import { instance } from "./api";
 
 // CREATE
 export const createChallenge = async (formData) => await instance.post("/challenge", formData);
 
 // READ
-export const getChallenges = async () => await instance.get('/challenge');
+export const getChallenges = async () => await instance.get("/challenge");
 
 // DELETE
 export const deleteChallenge = async (id) => await instance.delete("/challenge" + id);
@@ -19,7 +14,7 @@ export const updateChallenge = async (id, username) => await instance.put(`/chal
 
 // UPLOAD VIDEO
 // export const postChallengeVideo = async (id, file) => await instance.post(`/${id}/upload`, file);
-export const postChallengeVideo = async (id, formData) => await instance.post(`/${id}/upload`, formData, {
+export const postChallengeVideo = async (id, formData) => await instance.post(`/challenge/${id}/upload`, formData, {
   headers: {
     'Content-Type': 'multipart/form-data'
   }
