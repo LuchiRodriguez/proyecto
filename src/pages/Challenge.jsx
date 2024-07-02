@@ -7,25 +7,35 @@ import { useNavigate } from "react-router-dom";
 const Challenge = ({ ch, refetch }) => {
   const [user] = useUserContext();
   const [file, setFile] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
   const navigate = useNavigate();
 
   const handleVideo = async (e) => {
     e.preventDefault();
+    setIsUploading(true);
 
     const formData = new FormData();
     formData.append("file", file);
     formData.append("player", user.username);
     formData.append("points", ch.points);
 
-    await postChallengeVideo(ch.id, formData);
-    refetch();
-    navigate("/");
+    try {
+      await postChallengeVideo(ch.id, formData);
+      refetch();
+      setIsUploading(true);
+      navigate("/");
+    } catch (error) {
+      console.error("Error al subir el video:", error);
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   const handleClick = async () => {
     await updateChallenge(ch.id, user.username);
     refetch();
   };
+
   return (
     <>
       <ChallengeBox>
@@ -58,12 +68,24 @@ const Challenge = ({ ch, refetch }) => {
             <form onSubmit={handleVideo} encType="multipart/form-data">
               <input type="file" onChange={(e) => setFile(e.target.files[0])} />
               <br />
-              <button type="submit">Subir video</button>
+              <button type="submit" disabled={isUploading}>
+                {isUploading ? "Subiendo..." : "Subir video"}
+              </button>
             </form>
+            {isUploading && (
+              <div>
+                <img
+                  src="https://i.gifer.com/ZKZg.gif"
+                  alt="Cargando..."
+                />
+                <h2>Subiendo archivo, por favor espere...</h2>
+              </div>
+            )}
           </div>
         )}
       </ChallengeBox>
     </>
   );
 };
+
 export default Challenge;
