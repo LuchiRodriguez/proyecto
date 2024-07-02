@@ -137,6 +137,7 @@ export const LandingPage = styled.div`
 
 export const NavBarStyle = styled.nav`
   box-sizing: border-box;
+  position: fixed;
   height: 50px;
   width: 100%;
   display: flex;
@@ -149,7 +150,6 @@ export const NavBarStyle = styled.nav`
     margin: 0;
     padding: 0;
     border-top: 1px solid #03e9f4;
-    position: absolute;
     bottom: 0;
     width: 100%;
     display: flex;
