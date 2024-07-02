@@ -1,5 +1,5 @@
 import axios from "axios";
-const instance = axios.create({ baseURL: "http://localhost:8080/challenges" });
+const instance = axios.create({ baseURL: "http://localhost:8080/" });
 
 export const setAuth = (username, password) => {
     instance.defaults.headers.common.Authorization = 'Basic ' + btoa(username + ':' + password);
@@ -9,7 +9,10 @@ export const setAuth = (username, password) => {
 export const createChallenge = async (formData) => await instance.post("", formData);
 
 // READ
-export const getChallenges = async () => await instance.get('');
+export const getChallenges = async () => {
+console.log("222222222222", instance.defaults.headers.common.Authorization)
+  await instance.get('');
+}
 
 // DELETE
 export const deleteChallenge = async (id) => await instance.delete("/" + id);
