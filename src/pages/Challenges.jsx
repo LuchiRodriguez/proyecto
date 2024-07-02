@@ -11,12 +11,15 @@ const Challenges = () => {
     const [challenges, setChallenges] = useState([]);
 
     const refetch = () => {
-        console.log('111111111111', user)
-        user && getChallenges().then((data) => setChallenges(data.data));
+        getChallenges().then((data) => setChallenges(data.data));
     }
 
     const challenge = challenges.filter(video => video.videoUrl == null);
 
+    const fetchData = async () => {
+        const res = await getChallenges();
+        setChallenges(res.data);
+    }
 
     useEffect(() => {
         refetch();

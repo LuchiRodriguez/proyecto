@@ -11,9 +11,9 @@
 //     } catch (error) {
 //         console.error("Error:" + error)
 //     }
-    
+
 // } 
-    
+
 import { instance } from "./Challenge";
 
 export const setAuth = (username, password) => {
