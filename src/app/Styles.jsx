@@ -303,3 +303,12 @@ export const PopUpCreateChallenge = styled.div`
 export const ChallengesList = styled.div`
   display: ${({ create }) => (create ? "none" : "block")};
 `;
+
+export const Cargando = styled.div`
+margin: auto; 
+`
+
+export const UploadingGif = styled.img`
+width: 200px; 
+height: 200px; 
+`

@@ -68,7 +68,7 @@ const Challenge = ({ ch, refetch }) => {
             <form onSubmit={handleVideo} encType="multipart/form-data">
               <input type="file" onChange={(e) => setFile(e.target.files[0])} />
               <br />
-              <button type="submit" disabled={isUploading}>
+              <button disabled={isUploading}>
                 {isUploading ? "Subiendo..." : "Subir video"}
               </button>
             </form>
@@ -78,7 +78,7 @@ const Challenge = ({ ch, refetch }) => {
                   src="https://i.gifer.com/ZKZg.gif"
                   alt="Cargando..."
                 />
-                <h2>Subiendo archivo, por favor espere...</h2>
+                <h3>Subiendo archivo, por favor espere...</h3>
               </div>
             )}
           </div>
