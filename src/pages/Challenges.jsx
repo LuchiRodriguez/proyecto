@@ -1,41 +1,47 @@
-import { useEffect, useState } from 'react'
-import NavBar from '../components/NavBar';
-import { ButtonChallenge, } from '../app/Styles';
-import { getChallenges } from '../app/api/Challenge';
-import { useUserContext } from '../app/UserProvider';
-import Challenge from './Challenge';
-import iconPlus from '../app/img/icons8-más-50.png'
+import { useEffect, useState } from "react";
+import NavBar from "../components/NavBar";
+import { ButtonChallenge, ChallengesList } from "../app/Styles";
+import { getChallenges } from "../app/api/Challenge";
+import { useUserContext } from "../app/UserProvider";
+import Challenge from "./Challenge";
+import iconPlus from "../app/img/icons8-más-50.png";
+import CreateChallenge from "./CreateChallenge";
 
 const Challenges = () => {
-    const [user] = useUserContext();
-    const [challenges, setChallenges] = useState([]);
+  const [user] = useUserContext();
+  const [challenges, setChallenges] = useState([]);
+  const [create, setCreate] = useState(false);
 
-    const refetch = () => {
-        getChallenges().then((data) => setChallenges(data.data));
-    }
+  const refetch = () => {
+    getChallenges().then((data) => setChallenges(data.data));
+  };
 
-    const challenge = challenges.filter(video => video.videoUrl == null);
+  const challenge = challenges.filter((video) => video.videoUrl == null);
 
-    useEffect(() => {
-        refetch();
-    }, []);
+  useEffect(() => {
+    refetch();
+  }, []);
 
+  return (
+    <>
+      <ChallengesList create={create}>
+        {challenge?.map((ch) => (
+          <Challenge key={ch.id} ch={ch} refetch={refetch} />
+        ))}
+      </ChallengesList>
+      {user.rol === "watcher" && (
+        <ButtonChallenge onClick={() => setCreate(true)}>
+          <img src={iconPlus} alt="" />
+        </ButtonChallenge>
+      )}
+      <CreateChallenge
+        create={create}
+        setCreate={setCreate}
+        refetch={refetch}
+      />
+      <NavBar />
+    </>
+  );
+};
 
-    return (
-        <>
-            {challenge?.map((ch) =>
-                <Challenge key={ch.id} ch={ch} refetch={refetch} />
-            )}
-            {
-                user.rol === "watcher" && (
-                    <ButtonChallenge to={"/createChallenge"}>
-                        <img src={iconPlus} alt="" />
-                    </ButtonChallenge>
-                )
-            }
-            <NavBar />
-        </>
-    )
-}
-
-export default Challenges
+export default Challenges;

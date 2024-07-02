@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { createChallenge } from "../app/api/Challenge";
 import { useUserContext } from "../app/UserProvider";
-import { useNavigate } from "react-router-dom";
+import { PopUpCreateChallenge } from "../app/Styles";
 
-const CreateChallenge = () => {
+const CreateChallenge = ({ create, setCreate, refetch }) => {
   // const history = useHistory(); //Para obtener el objeto historia para navegar.
   const [user] = useUserContext();
   const [description, setDescription] = useState("");
   const [points, setPoints] = useState("");
   const [pointsError, setPointsError] = useState(""); //Para lidiar con los puntos mal validados.
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault(); //evita el envío predeterminado del formulario
@@ -19,22 +18,22 @@ const CreateChallenge = () => {
       return;
     }
     const formData = new FormData();
-    formData.append("description", description)
-    formData.append("points", points)
-    formData.append("watcher", user.username)
-
+    formData.append("description", description);
+    formData.append("points", points);
+    formData.append("watcher", user.username);
 
     try {
       const res = await createChallenge(formData);
       console.log("New challenge created: ", res.data);
-      navigate("/challenge"); //redirigir hacia la lista de challenges
+      refetch();
+      setCreate(false);
     } catch (error) {
       console.log("Error creating challenge:", error);
     }
   };
   //que no se muestre o que no se pueda modificar. el id
   return (
-    <div>
+    <PopUpCreateChallenge create={create}>
       <form onSubmit={handleSubmit}>
         <div className="formGroup">
           <label htmlFor="description">Description: </label>
@@ -69,7 +68,7 @@ const CreateChallenge = () => {
         </div>
         <button type="submit">Crear desafío</button>
       </form>
-    </div>
+    </PopUpCreateChallenge>
   );
 };
 
