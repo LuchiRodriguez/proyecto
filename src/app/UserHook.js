@@ -21,4 +21,3 @@ const UserHook = () => {
 };
 
 export default UserHook;
-

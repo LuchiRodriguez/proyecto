@@ -80,9 +80,9 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           ></input>
           <ChooseRol>
-            <input type="radio" name="rol" onClick={() => setRol(0)} />
+            <input type="radio" name="rol" onClick={() => setRol("player")} />
             <label htmlFor="jugador">Jugador</label>
-            <input type="radio" name="rol" onClick={() => setRol(1)} />
+            <input type="radio" name="rol" onClick={() => setRol("watcher")} />
             <label htmlFor="observador">Observador</label>
           </ChooseRol>
           <p>
