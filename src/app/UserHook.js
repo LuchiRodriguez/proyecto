@@ -1,13 +1,11 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { useUserContext } from "./UserProvider";
-import { setAuth } from "./api/Challenge";
+import { setAuth } from "./api/User"; // Importamos la función correcta
 
 const UserHook = () => {
   const [user, setUser] = useUserContext();
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -22,10 +20,16 @@ const UserHook = () => {
         setPassword(userAux.password);
       }
     }
-    setAuth(username, password);
-  }, [password, username, setUser, user]);
+  }, [setUser, user]);
+
+  useEffect(() => {
+    if (username && password) {
+      setAuth(username, password);
+    }
+  }, [username, password]);
 
   return { user };
 };
 
 export default UserHook;
+
