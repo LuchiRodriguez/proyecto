@@ -21,10 +21,10 @@ const Home = () => {
         <ChallengeBox key={challenge.id}>
           <UserInfo>
             {challenge.watcher.imagenUrl ? <img src={challenge.watcher.imagenUrl} /> : <img src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png" alt="" />}
-            <p>{challenge.watcher.username}</p>
+            <p>{challenge.player.username}</p>
           </UserInfo>
           <p>{challenge.description}</p>
-          <p className="player">Reaclizado por <span>{challenge.player.username}</span></p>
+          <p className="player"> Challenged by <span>{challenge.watcher.username}</span></p>
           <video src={challenge.videoUrl} autoPlay controls></video>
         </ChallengeBox>
       ))}
