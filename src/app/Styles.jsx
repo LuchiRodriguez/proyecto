@@ -281,17 +281,9 @@ export const UserInfo = styled.div`
 `;
 
 export const ChallengeBox = styled.div`
+  color: #03e9f4;
   margin-bottom: 50px;
-  video {
-    width: 100%;
-    height: 400px;
-  }
-  .player {
-    font-size: 10px;
-    span {
-      color: #03e9f4;
-    }
-  }
+  font-size: small;
 `;
 
 export const ButtonChallenge = styled(Link)`
@@ -364,9 +356,8 @@ export const ChallengesList = styled.div`
 
 export const Cargando = styled.div`
   margin: auto;
-`;
-
-export const UploadingGif = styled.img`
-  width: 20px;
-  height: 20px;
+  img {
+    width: 20px;
+    height: 20px;
+  }
 `;
