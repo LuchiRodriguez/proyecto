@@ -35,38 +35,36 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
   return (
     <PopUpCreateChallenge create={create}>
       <form onSubmit={handleSubmit}>
-        <div className="formGroup">
-          <label htmlFor="description">Description: </label>
-          <input
-            type="text"
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
+        <label htmlFor="description">Description: </label>
+        <input
+          type="text"
+          id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+        <label htmlFor="points">Points: </label>
+        <input
+          type="number"
+          id="points"
+          value={points}
+          onChange={(e) => {
+            const newPoints = parseInt(e.target.value, 10);
+            if (isNaN(newPoints)) {
+              setPointsError("Los puntos deben ser un número entero");
+              return;
+            }
+            setPoints(newPoints);
+            setPointsError(""); //Borrar el error si los puntos son válidos.
+          }}
+          min="1"
+          max="500"
+          required
+        />
+        {pointsError && <span className="error">{pointsError}</span>}
+        <div>
+          <button type="submit">Crear desafío</button>
         </div>
-        <div className="formGroup">
-          <label htmlFor="points">Points: </label>
-          <input
-            type="number"
-            id="points"
-            value={points}
-            onChange={(e) => {
-              const newPoints = parseInt(e.target.value, 10);
-              if (isNaN(newPoints)) {
-                setPointsError("Los puntos deben ser un número entero");
-                return;
-              }
-              setPoints(newPoints);
-              setPointsError(""); //Borrar el error si los puntos son válidos.
-            }}
-            min="1"
-            max="500"
-            required
-          />
-          {pointsError && <span className="error">{pointsError}</span>}
-        </div>
-        <button type="submit">Crear desafío</button>
       </form>
     </PopUpCreateChallenge>
   );
