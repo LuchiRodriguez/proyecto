@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserInfo, ChallengeBox } from "../app/Styles";
+import { UserInfo, ChallengeBox, Cargando, UploadingGif } from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
 import { updateChallenge, postChallengeVideo } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
@@ -73,10 +73,13 @@ const Challenge = ({ ch, refetch }) => {
               </button>
             </form>
             {isUploading && (
-              <div>
-                <img src="https://i.gifer.com/ZKZg.gif" alt="Cargando..." />
+              <Cargando>
+                <UploadingGif
+                  src="https://i.gifer.com/ZKZg.gif"
+                  alt="Cargando..."
+                />
                 <h3>Subiendo archivo, por favor espere...</h3>
-              </div>
+              </Cargando>
             )}
           </div>
         )}
