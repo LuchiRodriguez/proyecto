@@ -19,7 +19,7 @@ const NavBar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/perfil">
+          <Link to="/profile">
             <img src={userImg} alt="" />
           </Link>
         </li>

@@ -15,6 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState();
   const [points, setPoints] = useState();
   const [user, setUser] = useUserContext();
+  const [error, setError] = useState(null);
 
   return (
     <Form>
@@ -45,13 +46,15 @@ const Login = () => {
           <button
             type="button"
             onClick={async () => {
-              await postUser(username, password).then((data) => {
-                setUser({ ...data.data, username, password });
-              });
+              setError(null);
               try {
+                await postUser(username, password).then((data) => {
+                  setUser({ ...data.data, username, password });
+                });
+
                 navigate("/");
               } catch (error) {
-                console.log(error);
+                setError(error.message);
               }
             }}
           >
@@ -86,9 +89,9 @@ const Login = () => {
           ></input>
           <ChooseRol>
             <input type="radio" name="rol" onClick={() => setRol("player")} />
-            <label htmlFor="jugador">Jugador</label>
+            <label htmlFor="jugador">Player</label>
             <input type="radio" name="rol" onClick={() => setRol("watcher")} />
-            <label htmlFor="observador">Observador</label>
+            <label htmlFor="observador">Watcher</label>
           </ChooseRol>
           <p>
             Already have an account ?<br />

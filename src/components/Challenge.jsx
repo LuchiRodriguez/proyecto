@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserInfo, ChallengeBox, Cargando } from "../app/Styles";
+import { UserInfo, ChallengeBox, UploadingDiv } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { updateChallenge, postChallengeVideo } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +25,7 @@ const Challenge = ({ ch, refetch }) => {
       setIsUploading(true);
       navigate("/");
     } catch (error) {
-      console.error("Error al subir el video:", error);
+      console.error("Error uploading video:", error);
     } finally {
       setIsUploading(false);
     }
@@ -39,26 +39,26 @@ const Challenge = ({ ch, refetch }) => {
   return (
     <ChallengeBox>
       <UserInfo>
-        {ch.watcher.imagenUrl ? (
-          <img src={ch.watcher.imagenUrl} />
+        {ch.player.imagenUrl ? (
+          <img src={ch.player.imagenUrl} />
         ) : (
           <img
             src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
             alt=""
           />
         )}
-        <p>{ch.watcher.username}</p>
+        <p>{ch.player.username}</p>
       </UserInfo>
-      <p>Te desafía a: {ch.description}</p>
-      <p>Recompensa: {ch.points}</p>
+      <p>Challenges you to: {ch.description}</p>
+      <p>Reward: {ch.points}</p>
 
       {ch.player != null ? (
-        <p className="player">
-          Aceptado por <span>{ch.player.username}</span>
+        <p className="watcher">
+          Accepted by <span>{ch.watcher.username}</span>
         </p>
       ) : (
         user.rol == "player" && (
-          <button onClick={handleClick}>Aceptar desafio</button>
+          <button onClick={handleClick}>Accept challenge</button>
         )
       )}
 
@@ -68,14 +68,14 @@ const Challenge = ({ ch, refetch }) => {
             <input type="file" onChange={(e) => setFile(e.target.files[0])} />
             <br />
             <button disabled={isUploading}>
-              {isUploading ? "Subiendo..." : "Subir video"}
+              {isUploading ? "Uploading..." : "Upload video"}
             </button>
           </form>
           {isUploading && (
-            <Cargando>
+            <UploadingDiv>
               <img src="https://i.gifer.com/ZKZg.gif" alt="Cargando..." />
-              <h3>Subiendo archivo, por favor espere...</h3>
-            </Cargando>
+              <h3>Uploading file, please wait...</h3>
+            </UploadingDiv>
           )}
         </div>
       )}

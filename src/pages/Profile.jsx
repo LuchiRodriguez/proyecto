@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import logoutBtn from "../app/img/logout.png";
 
 const Profile = () => {
-  const [user, setUser] = useUserContext();
+  const [user] = useUserContext();
   const [userProfile, setUserProfile] = useState({});
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const Profile = () => {
 
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
-    // Aquí podrías hacer la petición al servidor para subir la imagen
+    // Here you can do the server's peticion for uploading the image. 
     if (file) {
       const formData = new FormData();
       formData.append("username", userProfile.username);
@@ -44,6 +44,7 @@ const Profile = () => {
           <input
             type="file"
             id="fileInput"
+            accept="image/*"
             style={{ display: "none" }}
             onChange={handleImageChange}
           />
@@ -63,13 +64,11 @@ const Profile = () => {
         {user.rol === "player" && (
           <ProfileInfo>
             <p>
-              Points
-              <br />
+              Points: <br />
               {userProfile.points}
             </p>
             <p>
-              Challenges
-              <br />3
+              Challenges: <br />3
             </p>
           </ProfileInfo>
         )}
