@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import { PerfilStyle, ProfileImg, ProfileInfo } from "../app/Styles";
+import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
-import { useNavigate } from 'react-router-dom';
-import { FaPowerOff } from "react-icons/fa6"
+import { useNavigate } from "react-router-dom";
+import logoutBtn from "../app/img/logout.png";
 
 const Perfil = () => {
   const [user, setUser] = useUserContext();
   const [userProfile, setUserProfile] = useState({});
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const refetch = () => {
     getUserByUsername(user.username).then((data) => setUserProfile(data));
@@ -32,13 +32,10 @@ const Perfil = () => {
     }
   };
   const logout = () => {
-
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
     setUser();
-    navigate('/');
-
-  }
-
+    navigate("/");
+  };
 
   return (
     <>
@@ -61,6 +58,7 @@ const Perfil = () => {
             onClick={() => document.getElementById("fileInput").click()}
             style={{ cursor: "pointer" }}
           />
+          <p>{user.rol}</p>
           <p>{userProfile.username} </p>
         </ProfileImg>
         {user.rol === "player" && (
@@ -75,7 +73,9 @@ const Perfil = () => {
           </ProfileInfo>
         )}
       </PerfilStyle>
-      <FaPowerOff onClick={logout} />
+      <LogoutBtn onClick={() => logout()}>
+        <img src={logoutBtn} alt="" />
+      </LogoutBtn>
       <NavBar />
     </>
   );

@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 		background-color: #202124;
 		font-family: Brose;
 		letter-spacing: 4px;
-        color: white;
+    color: white;
 		margin: 0;
 		padding: 10px;
 	}
@@ -146,8 +146,6 @@ export const NavBarStyle = styled.nav`
     margin: 0;
     padding: 0;
     border-top: 1px solid #03e9f4;
-    bottom: 0;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     list-style: none;
@@ -282,8 +280,11 @@ export const UserInfo = styled.div`
 
 export const ChallengeBox = styled.div`
   color: #03e9f4;
-  margin-bottom: 50px;
   font-size: small;
+  video {
+    width: 90%;
+    height: 400px;
+  }
 `;
 
 export const ButtonChallenge = styled(Link)`
@@ -356,6 +357,18 @@ export const ChallengesList = styled.div`
 
 export const Cargando = styled.div`
   margin: auto;
+  img {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+export const LogoutBtn = styled.button`
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  background-color: #202124;
+  border: none;
   img {
     width: 20px;
     height: 20px;
