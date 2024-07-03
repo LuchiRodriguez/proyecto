@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserInfo, ChallengeBox, Cargando, UploadingGif } from '../app/Styles';
+import { UserInfo, ChallengeBox, Cargando, UploadingGif } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { updateChallenge, postChallengeVideo } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
@@ -83,7 +83,6 @@ const Challenge = ({ ch, refetch }) => {
         </div>
       )}
     </ChallengeBox>
-    </>
   );
 };
 
