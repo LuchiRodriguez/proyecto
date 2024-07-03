@@ -4,17 +4,17 @@ import { useUserContext } from "../app/UserProvider";
 import { PopUpCreateChallenge } from "../app/Styles";
 
 const CreateChallenge = ({ create, setCreate, refetch }) => {
-  // const history = useHistory(); //Para obtener el objeto historia para navegar.
+  // const history = useHistory(); //To get the history object to browse. 
   const [user] = useUserContext();
   const [description, setDescription] = useState("");
   const [points, setPoints] = useState("");
-  const [pointsError, setPointsError] = useState(""); //Para lidiar con los puntos mal validados.
+  const [pointsError, setPointsError] = useState(""); //To deal with poorly validated points.
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); //evita el envío predeterminado del formulario
+    e.preventDefault(); //Prevent default form submission
 
     if (points < 1 || points > 500) {
-      setPointsError("Los puntos deben estar entre 1 y 500");
+      setPointsError("Points must be between 1 and 500");
       return;
     }
     const formData = new FormData();
@@ -31,7 +31,7 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
       console.log("Error creating challenge:", error);
     }
   };
-  //que no se muestre o que no se pueda modificar. el id
+  //that is not displayed or that cannot be modified. the ID
   return (
     <PopUpCreateChallenge create={create}>
       <form onSubmit={handleSubmit}>
@@ -54,11 +54,11 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
             onChange={(e) => {
               const newPoints = parseInt(e.target.value, 10);
               if (isNaN(newPoints)) {
-                setPointsError("Los puntos deben ser un número entero");
+                setPointsError("Points must be a whole number");
                 return;
               }
               setPoints(newPoints);
-              setPointsError(""); //Borrar el error si los puntos son válidos.
+              setPointsError(""); //Clear the error if the points are valid.
             }}
             min="1"
             max="500"
@@ -66,7 +66,7 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
           />
           {pointsError && <span className="error">{pointsError}</span>}
         </div>
-        <button type="submit">Crear desafío</button>
+        <button type="submit">Create challenge</button>
       </form>
     </PopUpCreateChallenge>
   );
