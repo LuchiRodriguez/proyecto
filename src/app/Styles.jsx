@@ -370,3 +370,7 @@ export const UploadingGif = styled.img`
   width: 20px;
   height: 20px;
 `;
+export const LogoutButton = styled.button`
+  background-image: ;
+  
+`
