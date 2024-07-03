@@ -15,6 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState();
   const [points, setPoints] = useState();
   const [user, setUser] = useUserContext();
+  const [error, setError] = useState(null);
 
   return (
     <Form>
@@ -43,13 +44,15 @@ const Login = () => {
           <button
             type="button"
             onClick={async () => {
-              await postUser(username, password).then((data) => {
-                setUser({ ...data.data, username, password });
-              });
+              setError(null);
               try {
+                await postUser(username, password).then((data) => {
+                  setUser({ ...data.data, username, password });
+                });
+
                 navigate("/");
               } catch (error) {
-                console.log(error);
+                setError(error.message);
               }
             }}
           >
