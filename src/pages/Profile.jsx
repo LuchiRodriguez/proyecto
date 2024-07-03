@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import { PerfilStyle, ProfileImg, ProfileInfo } from "../app/Styles";
+import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
+import { useNavigate } from "react-router-dom";
+import logoutBtn from "../app/img/logout.png";
 
-const Profile = () => {
+const Perfil = () => {
   const [user] = useUserContext();
   const [userProfile, setUserProfile] = useState({});
+  const navigate = useNavigate();
 
   const refetch = () => {
     getUserByUsername(user.username).then((data) => setUserProfile(data));
@@ -28,6 +31,11 @@ const Profile = () => {
       refetch();
     }
   };
+  const logout = () => {
+    localStorage.removeItem("user");
+    setUser();
+    navigate("/");
+  };
 
   return (
     <>
@@ -36,6 +44,7 @@ const Profile = () => {
           <input
             type="file"
             id="fileInput"
+            accept="image/*"
             style={{ display: "none" }}
             onChange={handleImageChange}
           />
@@ -49,6 +58,7 @@ const Profile = () => {
             onClick={() => document.getElementById("fileInput").click()}
             style={{ cursor: "pointer" }}
           />
+          <p>{user.rol}</p>
           <p>{userProfile.username} </p>
         </ProfileImg>
         {user.rol === "player" && (
@@ -63,6 +73,9 @@ const Profile = () => {
           </ProfileInfo>
         )}
       </PerfilStyle>
+      <LogoutBtn onClick={() => logout()}>
+        <img src={logoutBtn} alt="" />
+      </LogoutBtn>
       <NavBar />
     </>
   );

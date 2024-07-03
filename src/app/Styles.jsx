@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 		background-color: #202124;
 		font-family: HungerGames;
 		letter-spacing: 4px;
-        color: white;
+    color: white;
 		margin: 0;
 		padding: 10px;
 	}
@@ -146,8 +146,6 @@ export const NavBarStyle = styled.nav`
     margin: 0;
     padding: 0;
     border-top: 1px solid #03e9f4;
-    bottom: 0;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     list-style: none;
@@ -281,16 +279,11 @@ export const UserInfo = styled.div`
 `;
 
 export const ChallengeBox = styled.div`
-  margin-bottom: 50px;
+  color: #03e9f4;
+  font-size: small;
   video {
     width: 100%;
     height: 400px;
-  }
-  .player {
-    font-size: 10px;
-    span {
-      color: #03e9f4;
-    }
   }
 `;
 
@@ -359,15 +352,26 @@ export const PopUpCreateChallenge = styled.div`
 `;
 
 export const ChallengesList = styled.div`
-  display: ${({ create }) => (create ? "none" : "block")};
+  display: ${({ $create }) => ($create ? "none" : "block")};
 `;
 
 export const UploadingDiv = styled.div`
 display: block; 
   margin: auto;
+  img {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
-export const UploadingGif = styled.img`
-  width: 20px;
-  height: 20px;
+export const LogoutBtn = styled.button`
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  background-color: #202124;
+  border: none;
+  img {
+    width: 20px;
+    height: 20px;
+  }
 `;
