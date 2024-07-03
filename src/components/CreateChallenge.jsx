@@ -58,7 +58,7 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
                 return;
               }
               setPoints(newPoints);
-              setPointsError(""); //Clear the error if the points are valid. 
+              setPointsError(""); //Borrar el error si los puntos son válidos.
             }}
             min="1"
             max="500"
@@ -66,7 +66,7 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
           />
           {pointsError && <span className="error">{pointsError}</span>}
         </div>
-        <button type="submit">Create challenge</button>
+        <button type="submit">Crear desafío</button>
       </form>
     </PopUpCreateChallenge>
   );

@@ -141,6 +141,7 @@ export const NavBarStyle = styled.nav`
   width: 100%;
   left: 0;
   bottom: 0;
+  background-color: #202124;
   ul {
     margin: 0;
     padding: 0;
@@ -278,6 +279,7 @@ export const UserInfo = styled.div`
     object-fit: cover;
   }
 `;
+
 export const ChallengeBox = styled.div`
   margin-bottom: 50px;
   video {
@@ -303,13 +305,57 @@ export const ButtonChallenge = styled(Link)`
   position: fixed;
 
   img {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
   }
 `;
 
 export const PopUpCreateChallenge = styled.div`
-  display: ${({ create }) => (create ? "block" : "none")};
+  display: ${({ create }) => (create ? "flex" : "none")};
+  align-items: center;
+  height: 100vh;
+  color: #03e9f4;
+  font-size: small;
+  form {
+    border: 2px solid #03e9f4;
+    border-radius: 10px;
+    padding: 10px;
+    button {
+      background-color: #202124;
+      border: #03e9f4 3px solid;
+      border-radius: 10px;
+      color: #03e9f4;
+      padding: 10px;
+      &:focus {
+        box-shadow: 0 0 10px 0 #03e9f4 inset, 0 0 20px 2px #03e9f4;
+      }
+    }
+    div {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  input {
+    margin: 10px 0;
+    color: #03e9f4;
+    background-color: #202124 !important;
+    outline: none;
+    text-transform: uppercase;
+    border: #03e9f4 3px solid;
+    border-radius: 10px;
+    height: 10px;
+    width: 90%;
+    padding: 6px;
+    transition: all 0.15s ease-in-out;
+    &:focus {
+      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
+      background-color: #202124;
+    }
+    &:active {
+      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
+      background-color: #202124;
+    }
+  }
 `;
 
 export const ChallengesList = styled.div`
@@ -322,6 +368,6 @@ display: block;
 `;
 
 export const UploadingGif = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 20px;
+  height: 20px;
 `;
