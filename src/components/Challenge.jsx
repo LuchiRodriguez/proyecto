@@ -83,7 +83,6 @@ const Challenge = ({ ch, refetch }) => {
         </div>
       )}
     </ChallengeBox>
-    </>
   );
 };
 
