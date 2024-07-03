@@ -100,6 +100,7 @@ const Login = () => {
                 password,
                 points,
               });
+              setUser({ rol, username, password });
               localStorage.setItem(
                 "user",
                 JSON.stringify({ rol, username, password })
