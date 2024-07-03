@@ -361,7 +361,3 @@ export const Cargando = styled.div`
     height: 20px;
   }
 `;
-export const LogoutButton = styled.button`
-  background-image: ;
-  
-`
