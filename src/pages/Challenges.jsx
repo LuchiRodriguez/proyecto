@@ -3,9 +3,9 @@ import NavBar from "../components/NavBar";
 import { ButtonChallenge, ChallengesList } from "../app/Styles";
 import { getChallenges } from "../app/api/Challenge";
 import { useUserContext } from "../app/UserProvider";
-import Challenge from "./Challenge";
+import Challenge from "../components/Challenge";
 import iconPlus from "../app/img/icons8-más-50.png";
-import CreateChallenge from "./CreateChallenge";
+import CreateChallenge from "../components/CreateChallenge";
 
 const Challenges = () => {
   const [user] = useUserContext();
