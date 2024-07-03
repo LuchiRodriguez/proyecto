@@ -63,11 +63,13 @@ const Perfil = () => {
         {user.rol === "player" && (
           <ProfileInfo>
             <p>
-              Points: <br />
+              Points
+              <br />
               {userProfile.points}
             </p>
             <p>
-              Challenges: <br />3
+              Challenges
+              <br />3
             </p>
           </ProfileInfo>
         )}
