@@ -3,10 +3,13 @@ import NavBar from "../components/NavBar";
 import { PerfilStyle, ProfileImg, ProfileInfo } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
+import { useNavigate } from 'react-router-dom';
+import { FaPowerOff } from "react-icons/fa6"
 
 const Perfil = () => {
-  const [user] = useUserContext();
+  const [user, setUser] = useUserContext();
   const [userProfile, setUserProfile] = useState({});
+  const navigate = useNavigate()
 
   const refetch = () => {
     getUserByUsername(user.username).then((data) => setUserProfile(data));
@@ -28,6 +31,14 @@ const Perfil = () => {
       refetch();
     }
   };
+  const logout = () => {
+
+    localStorage.removeItem('user');
+    setUser();
+    navigate('/');
+
+  }
+
 
   return (
     <>
@@ -63,6 +74,7 @@ const Perfil = () => {
           </ProfileInfo>
         )}
       </PerfilStyle>
+      <FaPowerOff onClick={logout} />
       <NavBar />
     </>
   );
