@@ -351,7 +351,7 @@ export const PopUpCreateChallenge = styled.div`
 `;
 
 export const ChallengesList = styled.div`
-  display: ${({ create }) => (create ? "none" : "block")};
+  display: ${({ $create }) => ($create ? "none" : "block")};
 `;
 
 export const Cargando = styled.div`
