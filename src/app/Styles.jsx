@@ -282,7 +282,7 @@ export const ChallengeBox = styled.div`
   color: #03e9f4;
   font-size: small;
   video {
-    width: 90%;
+    width: 100%;
     height: 400px;
   }
 `;
