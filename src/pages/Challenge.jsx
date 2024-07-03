@@ -58,9 +58,9 @@ const Challenge = ({ ch, refetch }) => {
             Aceptado por <span>{ch.player.username}</span>
           </p>
         ) : (
-          <button onClick={handleClick}>
-            Aceptar desafio
-          </button>
+          user.rol == "player" && (
+            <button onClick={handleClick}>Aceptar desafio</button>
+          )
         )}
 
         {ch.player != null && (
