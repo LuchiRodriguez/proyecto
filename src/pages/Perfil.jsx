@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import { PerfilStyle } from "../app/Styles";
+import { PerfilStyle, ProfileImg, ProfileInfo } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
 
@@ -10,7 +10,7 @@ const Perfil = () => {
 
   const refetch = () => {
     getUserByUsername(user.username).then((data) => setUserProfile(data));
-  }
+  };
 
   useEffect(() => {
     refetch();
@@ -24,15 +24,15 @@ const Perfil = () => {
       formData.append("username", userProfile.username);
       formData.append("file", file);
 
-    await updateUserImage(formData);
-    refetch();
+      await updateUserImage(formData);
+      refetch();
     }
   };
 
   return (
     <>
       <PerfilStyle>
-          <div className="entrance">
+        <ProfileImg>
           <input
             type="file"
             id="fileInput"
@@ -49,12 +49,19 @@ const Perfil = () => {
             onClick={() => document.getElementById("fileInput").click()}
             style={{ cursor: "pointer" }}
           />
-        </div>
-        <div>
-          <p>Username : {userProfile.username} </p>
-          <p>Email: {userProfile.email} </p>
-          {user.rol === "player" && <p>Points: {userProfile.points}</p>}
-        </div>
+          <p>{userProfile.username} </p>
+        </ProfileImg>
+        {user.rol === "player" && (
+          <ProfileInfo>
+            <p>
+              Points: <br />
+              {userProfile.points}
+            </p>
+            <p>
+              Challenges: <br />3
+            </p>
+          </ProfileInfo>
+        )}
       </PerfilStyle>
       <NavBar />
     </>
