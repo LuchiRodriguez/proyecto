@@ -6,7 +6,7 @@ import { getUserByUsername, updateUserImage } from "../app/api/User";
 import { useNavigate } from "react-router-dom";
 import logoutBtn from "../app/img/logout.png";
 
-const Perfil = () => {
+const Profile = () => {
   const [user] = useUserContext();
   const [userProfile, setUserProfile] = useState({});
   const navigate = useNavigate();
