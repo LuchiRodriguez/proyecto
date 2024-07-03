@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserInfo, ChallengeBox, Cargando, UploadingGif } from '../app/Styles';
+import { UserInfo, ChallengeBox, UploadingGif, UploadingDiv } from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
 import { updateChallenge, postChallengeVideo } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +25,7 @@ const Challenge = ({ ch, refetch }) => {
       setIsUploading(true);
       navigate("/");
     } catch (error) {
-      console.error("Error al subir el video:", error);
+      console.error("Error uploading video:", error);
     } finally {
       setIsUploading(false);
     }
@@ -55,11 +55,11 @@ const Challenge = ({ ch, refetch }) => {
 
         {ch.player != null ? (
           <p className="player">
-            Aceptado por <span>{ch.player.username}</span>
+            Accepted by <span>{ch.player.username}</span>
           </p>
         ) : (
           user.rol == "player" && (
-            <button onClick={handleClick}>Aceptar desafio</button>
+            <button onClick={handleClick}>Accept challenge</button>
           )
         )}
 
@@ -69,17 +69,17 @@ const Challenge = ({ ch, refetch }) => {
               <input type="file" onChange={(e) => setFile(e.target.files[0])} />
               <br />
               <button disabled={isUploading}>
-                {isUploading ? "Subiendo..." : "Subir video"}
+                {isUploading ? "Uploading..." : "Upload video"}
               </button>
             </form>
             {isUploading && (
-              <Cargando>
+              <UploadingDiv>
                 <UploadingGif
                   src="https://i.gifer.com/ZKZg.gif"
-                  alt="Cargando..."
+                  alt="Uploading..."
                 />
-                <h3>Subiendo archivo, por favor espere...</h3>
-              </Cargando>
+                <h3>Uploading, please wait...</h3>
+              </UploadingDiv>
             )}
           </div>
         )}

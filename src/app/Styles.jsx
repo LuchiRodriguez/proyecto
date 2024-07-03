@@ -1,15 +1,15 @@
 import styled, { createGlobalStyle } from "styled-components";
-import Brose from "../app/fonts/Brose.ttf";
+import HungerGames from "./fonts/HungerGames.ttf"
 import { Link } from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
 	@font-face {
-		font-family: Brose;
-		src: url(${Brose});
+		font-family: HungerGames;
+		src: url(${HungerGames});
 	}
 	body {
 		background-color: #202124;
-		font-family: Brose;
+		font-family: HungerGames;
 		letter-spacing: 4px;
         color: white;
 		margin: 0;
@@ -232,7 +232,7 @@ export const PerfilStyle = styled.div`
   border: 2px solid #03e9f4;
   border-radius: 10px;
   padding: 10px;
-  font-size: small;
+  /* font-size: small; */
   color: #03e9f4;
   height: 80vh;
 `;
@@ -268,7 +268,7 @@ export const UserInfo = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
-  font-size: small;
+  /* font-size: small; */
   color: #03e9f4;
   img {
     width: 40px;
@@ -316,7 +316,8 @@ export const ChallengesList = styled.div`
   display: ${({ create }) => (create ? "none" : "block")};
 `;
 
-export const Cargando = styled.div`
+export const UploadingDiv = styled.div`
+display: block; 
   margin: auto;
 `;
 

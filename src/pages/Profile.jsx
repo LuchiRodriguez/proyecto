@@ -4,7 +4,7 @@ import { PerfilStyle, ProfileImg, ProfileInfo } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
 
-const Perfil = () => {
+const Profile = () => {
   const [user] = useUserContext();
   const [userProfile, setUserProfile] = useState({});
 
@@ -18,7 +18,7 @@ const Perfil = () => {
 
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
-    // Aquí podrías hacer la petición al servidor para subir la imagen
+    // Here you can do the server's peticion for uploading the image. 
     if (file) {
       const formData = new FormData();
       formData.append("username", userProfile.username);
@@ -68,4 +68,4 @@ const Perfil = () => {
   );
 };
 
-export default Perfil;
+export default Profile;

@@ -81,9 +81,9 @@ const Login = () => {
           ></input>
           <ChooseRol>
             <input type="radio" name="rol" onClick={() => setRol("player")} />
-            <label htmlFor="jugador">Jugador</label>
+            <label htmlFor="jugador">Player</label>
             <input type="radio" name="rol" onClick={() => setRol("watcher")} />
-            <label htmlFor="observador">Observador</label>
+            <label htmlFor="observador">Watcher</label>
           </ChooseRol>
           <p>
             Already have an account ?<br />
