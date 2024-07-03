@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import logoutBtn from "../app/img/logout.png";
 
 const Profile = () => {
-  const [user] = useUserContext();
+  const [user, setUser] = useUserContext();
   const [userProfile, setUserProfile] = useState({});
   const navigate = useNavigate();
 
