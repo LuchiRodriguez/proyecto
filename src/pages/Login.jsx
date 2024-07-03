@@ -26,6 +26,7 @@ const Login = () => {
             name="username"
             placeholder="Username"
             onChange={(e) => setUserName(e.target.value)}
+            required
           ></input>
           <input
             type="password"
@@ -33,6 +34,7 @@ const Login = () => {
             name="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+            required
           ></input>
           <p>
             New in Final-Project ?<br />
@@ -64,6 +66,7 @@ const Login = () => {
             name="username"
             placeholder="Username"
             onChange={(e) => setUserName(e.target.value)}
+            required
           ></input>
           <input
             type="text"
@@ -71,6 +74,7 @@ const Login = () => {
             name="email"
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
+            required
           ></input>
           <input
             type="password"
@@ -78,6 +82,7 @@ const Login = () => {
             name="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+            required
           ></input>
           <ChooseRol>
             <input type="radio" name="rol" onClick={() => setRol("player")} />

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserInfo, ChallengeBox, Cargando, UploadingGif } from '../app/Styles';
+import { UserInfo, ChallengeBox, Cargando } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { updateChallenge, postChallengeVideo } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
@@ -37,54 +37,49 @@ const Challenge = ({ ch, refetch }) => {
   };
 
   return (
-    <>
-      <ChallengeBox>
-        <UserInfo>
-          {ch.watcher.imagenUrl ? (
-            <img src={ch.watcher.imagenUrl} />
-          ) : (
-            <img
-              src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
-              alt=""
-            />
-          )}
-          <p>{ch.watcher.username}</p>
-        </UserInfo>
-        <p>{ch.description}</p>
-        <p>{ch.points}</p>
-
-        {ch.player != null ? (
-          <p className="player">
-            Aceptado por <span>{ch.player.username}</span>
-          </p>
+    <ChallengeBox>
+      <UserInfo>
+        {ch.watcher.imagenUrl ? (
+          <img src={ch.watcher.imagenUrl} />
         ) : (
-          user.rol == "player" && (
-            <button onClick={handleClick}>Aceptar desafio</button>
-          )
+          <img
+            src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+            alt=""
+          />
         )}
+        <p>{ch.watcher.username}</p>
+      </UserInfo>
+      <p>Te desafía a: {ch.description}</p>
+      <p>Recompensa: {ch.points}</p>
 
-        {ch.player != null && (
-          <div>
-            <form onSubmit={handleVideo} encType="multipart/form-data">
-              <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-              <br />
-              <button disabled={isUploading}>
-                {isUploading ? "Subiendo..." : "Subir video"}
-              </button>
-            </form>
-            {isUploading && (
-              <Cargando>
-                <UploadingGif
-                  src="https://i.gifer.com/ZKZg.gif"
-                  alt="Cargando..."
-                />
-                <h3>Subiendo archivo, por favor espere...</h3>
-              </Cargando>
-            )}
-          </div>
-        )}
-      </ChallengeBox>
-    </>
+      {ch.player != null ? (
+        <p className="player">
+          Aceptado por <span>{ch.player.username}</span>
+        </p>
+      ) : (
+        user.rol == "player" && (
+          <button onClick={handleClick}>Aceptar desafio</button>
+        )
+      )}
+
+      {ch.player != null && (
+        <div>
+          <form onSubmit={handleVideo} encType="multipart/form-data">
+            <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+            <br />
+            <button disabled={isUploading}>
+              {isUploading ? "Subiendo..." : "Subir video"}
+            </button>
+          </form>
+          {isUploading && (
+            <Cargando>
+              <img src="https://i.gifer.com/ZKZg.gif" alt="Cargando..." />
+              <h3>Subiendo archivo, por favor espere...</h3>
+            </Cargando>
+          )}
+        </div>
+      )}
+    </ChallengeBox>
   );
 };
 
