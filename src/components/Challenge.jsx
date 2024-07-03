@@ -65,7 +65,7 @@ const Challenge = ({ ch, refetch }) => {
       {ch.player != null && (
         <div>
           <form onSubmit={handleVideo} encType="multipart/form-data">
-            <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+            <input type="file" accept="video/*" onChange={(e) => setFile(e.target.files[0])} />
             <br />
             <button disabled={isUploading}>
               {isUploading ? "Subiendo..." : "Subir video"}
