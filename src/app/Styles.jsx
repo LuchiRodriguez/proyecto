@@ -139,6 +139,7 @@ export const NavBarStyle = styled.nav`
   position: fixed;
   height: 50px;
   width: 100%;
+  left: 0;
   bottom: 0;
   ul {
     margin: 0;
@@ -224,26 +225,43 @@ export const ChooseRol = styled.div`
 `;
 
 export const PerfilStyle = styled.div`
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #03e9f4;
+  border-radius: 10px;
   padding: 10px;
   font-size: small;
   color: #03e9f4;
-  .entrance {
-    button {
-      background-color: #202124;
-      border: #03e9f4 3px solid;
-      border-radius: 10px;
-      color: #03e9f4;
-      padding: 10px;
-      margin-top: 30px;
-    }
-    img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 2px solid #03e9f4;
-      object-fit: cover;
-    }
+  height: 80vh;
+`;
+
+export const ProfileImg = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  button {
+    background-color: #202124;
+    border: #03e9f4 3px solid;
+    border-radius: 10px;
+    color: #03e9f4;
+    padding: 10px;
+    margin-top: 30px;
   }
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #03e9f4;
+    object-fit: cover;
+  }
+`;
+
+export const ProfileInfo = styled.div`
+  display: flex;
+  text-align: center;
+  gap: 20px;
 `;
 
 export const UserInfo = styled.div`
