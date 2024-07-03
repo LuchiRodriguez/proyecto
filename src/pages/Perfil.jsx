@@ -36,6 +36,7 @@ const Perfil = () => {
           <input
             type="file"
             id="fileInput"
+            accept="image/*"
             style={{ display: "none" }}
             onChange={handleImageChange}
           />

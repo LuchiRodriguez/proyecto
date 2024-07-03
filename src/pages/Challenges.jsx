@@ -24,7 +24,7 @@ const Challenges = () => {
 
   return (
     <>
-      <ChallengesList create={create}>
+      <ChallengesList $create={create}>
         {challenge?.map((ch) => (
           <Challenge key={ch.id} ch={ch} refetch={refetch} />
         ))}

@@ -309,11 +309,11 @@ export const ButtonChallenge = styled(Link)`
 `;
 
 export const PopUpCreateChallenge = styled.div`
-  display: ${({ create }) => (create ? "block" : "none")};
+  display: ${({ $create }) => ($create ? "block" : "none")};
 `;
 
 export const ChallengesList = styled.div`
-  display: ${({ create }) => (create ? "none" : "block")};
+  display: ${({ $create }) => ($create ? "none" : "block")};
 `;
 
 export const Cargando = styled.div`

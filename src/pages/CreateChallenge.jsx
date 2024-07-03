@@ -33,7 +33,7 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
   };
   //que no se muestre o que no se pueda modificar. el id
   return (
-    <PopUpCreateChallenge create={create}>
+    <PopUpCreateChallenge $create={create}>
       <form onSubmit={handleSubmit}>
         <div className="formGroup">
           <label htmlFor="description">Description: </label>
