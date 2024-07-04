@@ -37,6 +37,8 @@ const Profile = () => {
     navigate("/");
   };
 
+
+
   return (
     <>
       <PerfilStyle>
@@ -68,7 +70,16 @@ const Profile = () => {
               {userProfile.points}
             </p>
             <p>
-              Challenges: <br />3
+              Challenges: <br />
+              {userProfile.challengeCompleted}
+            </p>
+          </ProfileInfo>
+        )}
+        {user.rol === "watcher" && (
+          <ProfileInfo>
+            <p>
+              Challenges: <br />
+              {userProfile.proposedChallenge}
             </p>
           </ProfileInfo>
         )}
