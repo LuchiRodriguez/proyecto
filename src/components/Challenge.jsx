@@ -8,33 +8,49 @@ const Challenge = ({ ch, refetch }) => {
   const [user] = useUserContext();
   const [file, setFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+  const [acceptChallengeError, setAcceptChallengeError] = useState("");
+
   const navigate = useNavigate();
   console.log(ch.watcher.username, 1111111111)
   const handleVideo = async (e) => {
     e.preventDefault();
     setIsUploading(true);
+    setUploadError(""); //Clear any previous upload errors
 
     const formData = new FormData();
     formData.append("file", file);
+    console.log(file)
     formData.append("player", user.username);
     formData.append("watcher", ch.watcher.username);
     formData.append("points", ch.points);
 
+    if (file && file.size > 500 * 1024 * 1024) {
+      setUploadError("File size exceeds the limit (500 MB). Please upload a smaller file.");
+      setIsUploading(false);
+      return;
+    }
+
     try {
       await postChallengeVideo(ch.id, formData);
       refetch();
-      setIsUploading(true);
+      setIsUploading(false);
       navigate("/");
     } catch (error) {
       console.error("Error uploading video:", error);
-    } finally {
+      setUploadError("Failed to upload video. Please try again.")
       setIsUploading(false);
     }
   };
 
   const handleClick = async () => {
-    await updateChallenge(ch.id, user.username);
-    refetch();
+    try {
+      await updateChallenge(ch.id, user.username);
+      refetch();
+    } catch (error) {
+      console.error("Error accepting challenge:", error);
+      setAcceptChallengeError("Failed to accept challenge. Please try again");
+    }
   };
 
   return (
@@ -59,7 +75,10 @@ const Challenge = ({ ch, refetch }) => {
         </p>
       ) : (
         user.rol == "player" && (
-          <button onClick={handleClick}>Accept challenge</button>
+          <>
+            <button onClick={handleClick}>Accept challenge</button>
+            {acceptChallengeError && <p style={{ color: 'red' }}>{acceptChallengeError}</p>}
+          </>
         )
       )}
 
@@ -72,6 +91,7 @@ const Challenge = ({ ch, refetch }) => {
               {isUploading ? "Uploading..." : "Upload video"}
             </button>
           </form>
+          {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
           {isUploading && (
             <UploadingDiv>
               <img

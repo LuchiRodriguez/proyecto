@@ -15,12 +15,16 @@ const Login = () => {
   const [password, setPassword] = useState();
   const [points, setPoints] = useState();
   const [user, setUser] = useUserContext();
-  const [error, setError] = useState(null);
+  const [error, setError] = useState();
 
   return (
     <Form>
       {existingUser ? (
         <>
+          {error &&
+            <p style={{ color: 'rgb(255, 0, 0)' }}> Failed to login. Please try again
+            </p>}
+
           <input
             type="text"
             id="username"
@@ -101,7 +105,7 @@ const Login = () => {
             type="button"
             onClick={async () => {
               setPoints(0);
-              const response = await createUser({
+              await createUser({
                 rol,
                 username,
                 email,

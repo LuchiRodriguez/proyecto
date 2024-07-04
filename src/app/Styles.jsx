@@ -136,6 +136,10 @@ export const LandingPage = styled.div`
 `;
 
 export const NavBarStyle = styled.nav`
+
+  box-sizing: border-box;
+
+
   position: fixed;
   height: 50px;
   width: 100%;
@@ -376,4 +380,9 @@ export const LogoutBtn = styled.button`
     height: 20px;
     cursor: pointer;
   }
+`;
+
+export const Li = styled.li`
+ 
+ counter-reset: item;
 `;

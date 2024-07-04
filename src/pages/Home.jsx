@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-// import ReactPlayer from "react-player";
+import { useEffect, useState, lazy, Suspense } from "react";
 import NavBar from "../components/NavBar";
 import { getChallenges } from "../app/api/Challenge";
 import { UserInfo, ChallengeBox } from "../app/Styles";
+
+const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const Home = () => {
   const [videos, setVideos] = useState([]);
@@ -35,7 +36,9 @@ const Home = () => {
             {" "}
             Challenged by <span>{challenge.watcher.username}</span>
           </p>
-          <video src={challenge.videoUrl} autoPlay controls loop></video>
+          <Suspense fallback={<div>Loading video...</div>}>
+            <LazyVideo src={challenge.videoUrl} />
+          </Suspense>
         </ChallengeBox>
       ))}
       <NavBar />
