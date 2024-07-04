@@ -27,6 +27,7 @@ const Perfil = () => {
       formData.append("username", userProfile.username);
       formData.append("file", file);
 
+
       await updateUserImage(formData);
       refetch();
     }
@@ -68,7 +69,7 @@ const Perfil = () => {
               {userProfile.points}
             </p>
             <p>
-              Challenges: <br />3
+              Challenges: <br />
             </p>
           </ProfileInfo>
         )}

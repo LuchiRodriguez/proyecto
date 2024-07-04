@@ -9,7 +9,7 @@ const Challenge = ({ ch, refetch }) => {
   const [file, setFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const navigate = useNavigate();
-
+  console.log(ch.watcher.username, 1111111111)
   const handleVideo = async (e) => {
     e.preventDefault();
     setIsUploading(true);
@@ -17,6 +17,7 @@ const Challenge = ({ ch, refetch }) => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("player", user.username);
+    formData.append("watcher", ch.watcher.username);
     formData.append("points", ch.points);
 
     try {
