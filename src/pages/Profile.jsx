@@ -21,12 +21,11 @@ const Profile = () => {
 
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
-    // Aquí podrías hacer la petición al servidor para subir la imagen
+    // Here you can do the server's peticion for uploading the image. 
     if (file) {
       const formData = new FormData();
       formData.append("username", userProfile.username);
       formData.append("file", file);
-
 
       await updateUserImage(formData);
       refetch();
@@ -45,6 +44,7 @@ const Profile = () => {
           <input
             type="file"
             id="fileInput"
+            accept="image/*"
             style={{ display: "none" }}
             onChange={handleImageChange}
           />
@@ -64,13 +64,11 @@ const Profile = () => {
         {user.rol === "player" && (
           <ProfileInfo>
             <p>
-              Points
-              <br />
+              Points: <br />
               {userProfile.points}
             </p>
             <p>
-              Challenges
-              <br />3
+              Challenges: <br />3
             </p>
           </ProfileInfo>
         )}
