@@ -136,6 +136,10 @@ export const LandingPage = styled.div`
 `;
 
 export const NavBarStyle = styled.nav`
+
+  box-sizing: border-box;
+
+
   position: fixed;
   height: 50px;
   width: 100%;
