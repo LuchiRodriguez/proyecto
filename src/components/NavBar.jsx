@@ -3,6 +3,7 @@ import { NavBarStyle } from "../app/Styles";
 import userImg from "../app/img/user.png";
 import challenge from "../app/img/challenge.png";
 import home from "../app/img/home.png";
+import ranking from "../app/img/trophy.png";
 
 const NavBar = () => {
   return (
@@ -21,6 +22,11 @@ const NavBar = () => {
         <li>
           <Link to="/profile">
             <img src={userImg} alt="" />
+          </Link>
+        </li>
+        <li>
+          <Link to="/ranking">
+            <img src={ranking} alt="" />
           </Link>
         </li>
       </ul>

@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "username": "username",
+    "points": 30
+  },
+  {
+    "id": 2,
+    "username": "username",
+    "points": 24
+  },
+  {
+    "id": 3,
+    "username": "username",
+    "points": 10
+  },
+  {
+    "id": 4,
+    "username": "username",
+    "points": 50
+  }
+]

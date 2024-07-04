@@ -380,3 +380,8 @@ export const LogoutBtn = styled.button`
     height: 20px;
   }
 `;
+
+export const Li = styled.li`
+ 
+ counter-reset: item;
+`;
