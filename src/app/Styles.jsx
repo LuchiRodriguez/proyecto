@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 		letter-spacing: 4px;
     color: white;
 		margin: 0;
-		padding: 10px;
+		padding: 20px;
 	}
 `;
 
@@ -294,7 +294,6 @@ export const ChallengeBox = styled.div`
 
 export const ButtonChallenge = styled(Link)`
   display: flex;
-  align-items: right;
   justify-content: right;
   padding: 10px;
   cursor: pointer;
@@ -311,10 +310,16 @@ export const ButtonChallenge = styled(Link)`
 export const PopUpCreateChallenge = styled.div`
   display: ${({ $create }) => ($create ? "flex" : "none")};
   align-items: center;
-  height: 100vh;
+  justify-content: center;
+  height: 95vh;
   color: #03e9f4;
   font-size: small;
   form {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
     border: 2px solid #03e9f4;
     border-radius: 10px;
     padding: 10px;
@@ -333,6 +338,28 @@ export const PopUpCreateChallenge = styled.div`
       justify-content: center;
     }
   }
+    textarea{
+    margin: 10px 0;
+    color: #03e9f4;
+    background-color: #202124 !important;
+    outline: none;
+    text-transform: uppercase;
+    border: #03e9f4 3px solid;
+    border-radius: 10px;
+    height: 100px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+    transition: all 0.15s ease-in-out;
+    &:focus {
+      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
+      background-color: #202124;
+    }
+    &:active {
+      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
+      background-color: #202124;
+    }
+    }
   input {
     margin: 10px 0;
     color: #03e9f4;
@@ -342,7 +369,7 @@ export const PopUpCreateChallenge = styled.div`
     border: #03e9f4 3px solid;
     border-radius: 10px;
     height: 10px;
-    width: 90%;
+    width: 20%;
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
@@ -381,7 +408,18 @@ export const LogoutBtn = styled.button`
   }
 `;
 
+
+export const RankingDiv = styled.div`
+h1{
+text-align: center;
+}
+`
+
 export const Li = styled.li`
- 
- counter-reset: item;
+list-style: decimal;
+.ranking{
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
 `;

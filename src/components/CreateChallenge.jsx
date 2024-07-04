@@ -41,17 +41,15 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
     <PopUpCreateChallenge $create={create}>
       <form onSubmit={handleSubmit}>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <div className="formGroup">
+        
           <label htmlFor="description">Description: </label>
-          <input
+          <textarea
             type="text"
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
           />
-        </div>
-        <div className="formGroup">
           <label htmlFor="points">Points: </label>
           <input
             type="number"
@@ -71,7 +69,6 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
             required
           />
           {pointsError && <p style={{ color: "red" }}>{pointsError}</p>}
-        </div>
         <button type="submit">Create challenge</button>
       </form>
     </PopUpCreateChallenge>

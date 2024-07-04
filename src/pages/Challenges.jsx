@@ -30,7 +30,7 @@ const Challenges = () => {
         ))}
       </ChallengesList>
       {user.rol === "watcher" && (
-        <ButtonChallenge onClick={() => setCreate(true)}>
+        <ButtonChallenge onClick={() => setCreate(!create)}>
           <img src={iconPlus} alt="" />
         </ButtonChallenge>
       )}

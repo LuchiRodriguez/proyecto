@@ -1,23 +1,32 @@
-import React from 'react';
-import usuarios from '../app/api/Users.json';
 import NavBar from './NavBar';
-import { Li } from '../app/Styles';
+import {Li, RankingDiv} from '../app/Styles';
+import { useEffect, useState } from 'react';
+import {getUserRanking} from '../app/api/User';
 
 const Ranking = () => {
+  const [listRanking, setListRankings] = useState([])
+
+useEffect(() => {
+  getUserRanking().then(data => setListRankings(data))
+}, [])
+
+console.log(listRanking)
+
   return (
     <>
-      <div>
+      <RankingDiv>
         <h1>Ranking</h1>
         <ul>
-          {usuarios.map((usuario, index) => (
-            <Li key={index}>
+          {listRanking.map((usuario) => (
+            <Li key={usuario.id}>
+              <div className='ranking'>
               <p>{usuario.username}</p>
-              <p>Points: {usuario.points}</p>
-
+              <p>{usuario.points}</p>
+              </div>
             </Li>
           ))}
         </ul>
-      </div>
+      </RankingDiv>
       <NavBar />
     </>
 
