@@ -9,6 +9,7 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
   const [description, setDescription] = useState("");
   const [points, setPoints] = useState("");
   const [pointsError, setPointsError] = useState(""); //To deal with poorly validated points.
+  const [error, setError] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault(); //Prevent default form submission
@@ -16,6 +17,7 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
     if (points < 1 || points > 500) {
       setPointsError("Points must be between 1 and 500");
       return;
+
     }
     const formData = new FormData();
     formData.append("description", description);
@@ -31,12 +33,14 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
       setCreate(false);
     } catch (error) {
       console.log("Error creating challenge:", error);
+      setError("Failed to create challenge. Please try again")
     }
   };
   //that is not displayed or that cannot be modified. the ID
   return (
     <PopUpCreateChallenge $create={create}>
       <form onSubmit={handleSubmit}>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         <div className="formGroup">
           <label htmlFor="description">Description: </label>
           <input
@@ -55,18 +59,18 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
             value={points}
             onChange={(e) => {
               const newPoints = parseInt(e.target.value, 10);
-              if (isNaN(newPoints)) {
-                setPointsError("Points must be a whole number");
-                return;
+              if (newPoints < 1 || newPoints > 500) {
+                setPointsError("Points must be between 1 and 500")
+              } else {
+                setPointsError(""); //Clear the error if the points are valid.
+                setPoints(newPoints);
               }
-              setPoints(newPoints);
-              setPointsError(""); //Clear the error if the points are valid.
             }}
             min="1"
             max="500"
             required
           />
-          {pointsError && <span className="error">{pointsError}</span>}
+          {pointsError && <p style={{ color: "red" }}>{pointsError}</p>}
         </div>
         <button type="submit">Create challenge</button>
       </form>
