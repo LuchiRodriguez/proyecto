@@ -26,6 +26,8 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
       const res = await createChallenge(formData);
       console.log("New challenge created: ", res.data);
       refetch();
+      setDescription("");
+      setPoints("");
       setCreate(false);
     } catch (error) {
       console.log("Error creating challenge:", error);

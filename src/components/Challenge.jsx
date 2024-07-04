@@ -39,22 +39,22 @@ const Challenge = ({ ch, refetch }) => {
   return (
     <ChallengeBox>
       <UserInfo>
-        {ch.player.imagenUrl ? (
-          <img src={ch.player.imagenUrl} />
+        {ch.watcher.imagenUrl ? (
+          <img src={ch.watcher.imagenUrl} />
         ) : (
           <img
             src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
             alt=""
           />
         )}
-        <p>{ch.player.username}</p>
+        <p>{ch.watcher.username}</p>
       </UserInfo>
       <p>Challenges you to: {ch.description}</p>
       <p>Reward: {ch.points}</p>
 
       {ch.player != null ? (
         <p className="watcher">
-          Accepted by <span>{ch.watcher.username}</span>
+          Accepted by <span>{ch.player.username}</span>
         </p>
       ) : (
         user.rol == "player" && (
@@ -65,7 +65,7 @@ const Challenge = ({ ch, refetch }) => {
       {ch.player != null && (
         <div>
           <form onSubmit={handleVideo} encType="multipart/form-data">
-            <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+            <input type="file" accept="video/*" onChange={(e) => setFile(e.target.files[0])} />
             <br />
             <button disabled={isUploading}>
               {isUploading ? "Uploading..." : "Upload video"}

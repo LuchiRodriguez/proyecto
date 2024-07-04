@@ -20,8 +20,8 @@ const Home = () => {
       {challenges?.map((challenge) => (
         <ChallengeBox key={challenge.id}>
           <UserInfo>
-            {challenge.watcher.imagenUrl ? (
-              <img src={challenge.watcher.imagenUrl} />
+            {challenge.player.imagenUrl ? (
+              <img src={challenge.player.imagenUrl} />
             ) : (
               <img
                 src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
