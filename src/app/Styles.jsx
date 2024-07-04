@@ -281,6 +281,7 @@ export const UserInfo = styled.div`
 export const ChallengeBox = styled.div`
   color: #03e9f4;
   font-size: small;
+  margin-bottom: 50px;
   video {
     width: 100%;
     height: 400px;
@@ -304,7 +305,7 @@ export const ButtonChallenge = styled(Link)`
 `;
 
 export const PopUpCreateChallenge = styled.div`
-  display: ${({ create }) => (create ? "flex" : "none")};
+  display: ${({ $create }) => ($create ? "flex" : "none")};
   align-items: center;
   height: 100vh;
   color: #03e9f4;
