@@ -38,6 +38,15 @@ const Profile = () => {
     navigate("/");
   };
 
+  const completados = () => {
+    if (user.rol == "watcher") {
+      userProfile.completados
+      console.log(userProfile.completados, 11111);
+      console.log(userProfile.proposedChallenge, 22222)
+    }
+
+  }
+
   return (
     <>
       <PerfilStyle>
@@ -70,7 +79,9 @@ const Profile = () => {
             </p>
             <p>
               Challenges
-              <br />3
+              <br />
+              {completados}
+              {userProfile.proposedChallenge}
             </p>
           </ProfileInfo>
         )}
