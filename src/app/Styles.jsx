@@ -136,8 +136,8 @@ export const LandingPage = styled.div`
 `;
 
 export const NavBarStyle = styled.nav`
+  border-top: 1px solid #03e9f4;
   box-sizing: border-box;
-
   position: fixed;
   height: 50px;
   width: 100%;
@@ -145,9 +145,8 @@ export const NavBarStyle = styled.nav`
   bottom: 0;
   background-color: #202124;
   ul {
-    margin: 0;
+    margin: 0 30px;
     padding: 0;
-    border-top: 1px solid #03e9f4;
     display: flex;
     justify-content: space-between;
     list-style: none;
@@ -233,9 +232,8 @@ export const PerfilStyle = styled.div`
   border: 2px solid #03e9f4;
   border-radius: 10px;
   padding: 10px;
-  /* font-size: small; */
   color: #03e9f4;
-  height: 80vh;
+  height: 88vh;
 `;
 
 export const ProfileImg = styled.div`
@@ -280,10 +278,13 @@ export const UserInfo = styled.div`
   }
 `;
 
+export const ChallengeInfo = styled.div`
+  margin-left: 10px;
+`;
+
 export const ChallengeBox = styled.div`
   color: #03e9f4;
   font-size: small;
-  margin-bottom: 100px;
   border: 2px solid #03e9f4;
   padding: 10px;
   border-radius: 10px;
@@ -399,8 +400,8 @@ export const UploadingDiv = styled.div`
 
 export const LogoutBtn = styled.button`
   position: fixed;
-  top: 25px;
-  right: 25px;
+  top: 30px;
+  right: 30px;
   background-color: #202124;
   border: none;
   img {

@@ -3,7 +3,7 @@ import { NavBarStyle } from "../app/Styles";
 import userImg from "../app/img/user.png";
 import challenge from "../app/img/challenge.png";
 import home from "../app/img/home.png";
-import ranking from "../app/img/trophy.png";
+import ranking from "../app/img/ranking.png";
 
 const NavBar = () => {
   return (
