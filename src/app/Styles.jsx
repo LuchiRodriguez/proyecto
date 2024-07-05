@@ -285,7 +285,7 @@ export const UserInfo = styled.div`
 export const ChallengeBox = styled.div`
   color: #03e9f4;
   font-size: small;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   video {
     width: 100%;
     height: 400px;
