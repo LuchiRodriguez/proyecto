@@ -20,3 +20,13 @@ export const updateUserImage = async (FormData) => {
     throw error;
   }
 }
+
+export const getUserRanking = async () => {
+  try {
+    const response = await instance.get(`/user/ranking`);
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};

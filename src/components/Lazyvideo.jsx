@@ -1,9 +1,11 @@
-import React from "react";
+import { forwardRef } from "react";
 
-const LazyVideo = ({ src }) => {
+
+// eslint-disable-next-line react/display-name
+const LazyVideo = forwardRef(({ src }, ref) => {
   return (
-    <video src={src} autoPlay controls></video>
+    <video ref={ref} src={src} controls width="100%" />
   );
-};
+});
 
 export default LazyVideo;

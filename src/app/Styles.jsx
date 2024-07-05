@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
-import HungerGames from "./fonts/HungerGames.ttf"
+import HungerGames from "./fonts/HungerGames.ttf";
 import { Link } from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 		letter-spacing: 4px;
     color: white;
 		margin: 0;
-		padding: 10px;
+		padding: 20px;
 	}
 `;
 
@@ -136,10 +136,8 @@ export const LandingPage = styled.div`
 `;
 
 export const NavBarStyle = styled.nav`
-
+  border-top: 1px solid #03e9f4;
   box-sizing: border-box;
-
-
   position: fixed;
   height: 50px;
   width: 100%;
@@ -147,9 +145,8 @@ export const NavBarStyle = styled.nav`
   bottom: 0;
   background-color: #202124;
   ul {
-    margin: 0;
+    margin: 0 30px;
     padding: 0;
-    border-top: 1px solid #03e9f4;
     display: flex;
     justify-content: space-between;
     list-style: none;
@@ -235,9 +232,8 @@ export const PerfilStyle = styled.div`
   border: 2px solid #03e9f4;
   border-radius: 10px;
   padding: 10px;
-  /* font-size: small; */
   color: #03e9f4;
-  height: 80vh;
+  height: 88vh;
 `;
 
 export const ProfileImg = styled.div`
@@ -282,19 +278,24 @@ export const UserInfo = styled.div`
   }
 `;
 
+export const ChallengeInfo = styled.div`
+  margin-left: 10px;
+`;
+
 export const ChallengeBox = styled.div`
   color: #03e9f4;
   font-size: small;
-  margin-bottom: 50px;
+  border: 2px solid #03e9f4;
+  padding: 10px;
+  border-radius: 10px;
   video {
     width: 100%;
-    height: 400px;
+    border-radius: 10px;
   }
 `;
 
 export const ButtonChallenge = styled(Link)`
   display: flex;
-  align-items: right;
   justify-content: right;
   padding: 10px;
   cursor: pointer;
@@ -311,10 +312,16 @@ export const ButtonChallenge = styled(Link)`
 export const PopUpCreateChallenge = styled.div`
   display: ${({ $create }) => ($create ? "flex" : "none")};
   align-items: center;
-  height: 100vh;
+  justify-content: center;
+  height: 95vh;
   color: #03e9f4;
   font-size: small;
   form {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border: 2px solid #03e9f4;
     border-radius: 10px;
     padding: 10px;
@@ -333,6 +340,28 @@ export const PopUpCreateChallenge = styled.div`
       justify-content: center;
     }
   }
+  textarea {
+    margin: 10px 0;
+    color: #03e9f4;
+    background-color: #202124 !important;
+    outline: none;
+    text-transform: uppercase;
+    border: #03e9f4 3px solid;
+    border-radius: 10px;
+    height: 100px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+    transition: all 0.15s ease-in-out;
+    &:focus {
+      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
+      background-color: #202124;
+    }
+    &:active {
+      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
+      background-color: #202124;
+    }
+  }
   input {
     margin: 10px 0;
     color: #03e9f4;
@@ -342,7 +371,7 @@ export const PopUpCreateChallenge = styled.div`
     border: #03e9f4 3px solid;
     border-radius: 10px;
     height: 10px;
-    width: 90%;
+    width: 20%;
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
@@ -361,7 +390,7 @@ export const ChallengesList = styled.div`
 `;
 
 export const UploadingDiv = styled.div`
-display: block; 
+  display: block;
   margin: auto;
   img {
     width: 20px;
@@ -371,8 +400,8 @@ display: block;
 
 export const LogoutBtn = styled.button`
   position: fixed;
-  top: 25px;
-  right: 25px;
+  top: 30px;
+  right: 30px;
   background-color: #202124;
   border: none;
   img {
@@ -382,7 +411,33 @@ export const LogoutBtn = styled.button`
   }
 `;
 
+export const RankingDiv = styled.div`
+  ul {
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  h1 {
+    text-align: center;
+  }
+`;
+
 export const Li = styled.li`
- 
- counter-reset: item;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .username {
+    width: 140px;
+  }
+  .points {
+    width: 50px;
+  }
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #03e9f4;
+    object-fit: cover;
+  }
 `;
