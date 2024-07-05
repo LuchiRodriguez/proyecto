@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
-import HungerGames from "./fonts/HungerGames.ttf"
+import HungerGames from "./fonts/HungerGames.ttf";
 import { Link } from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
@@ -136,9 +136,7 @@ export const LandingPage = styled.div`
 `;
 
 export const NavBarStyle = styled.nav`
-
   box-sizing: border-box;
-
 
   position: fixed;
   height: 50px;
@@ -286,9 +284,12 @@ export const ChallengeBox = styled.div`
   color: #03e9f4;
   font-size: small;
   margin-bottom: 100px;
+  border: 2px solid #03e9f4;
+  padding: 10px;
+  border-radius: 10px;
   video {
     width: 100%;
-    height: 400px;
+    border-radius: 10px;
   }
 `;
 
@@ -315,11 +316,11 @@ export const PopUpCreateChallenge = styled.div`
   color: #03e9f4;
   font-size: small;
   form {
-  width: 300px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border: 2px solid #03e9f4;
     border-radius: 10px;
     padding: 10px;
@@ -338,7 +339,7 @@ export const PopUpCreateChallenge = styled.div`
       justify-content: center;
     }
   }
-    textarea{
+  textarea {
     margin: 10px 0;
     color: #03e9f4;
     background-color: #202124 !important;
@@ -359,7 +360,7 @@ export const PopUpCreateChallenge = styled.div`
       box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
       background-color: #202124;
     }
-    }
+  }
   input {
     margin: 10px 0;
     color: #03e9f4;
@@ -388,7 +389,7 @@ export const ChallengesList = styled.div`
 `;
 
 export const UploadingDiv = styled.div`
-display: block; 
+  display: block;
   margin: auto;
   img {
     width: 20px;
@@ -408,30 +409,29 @@ export const LogoutBtn = styled.button`
   }
 `;
 
-
 export const RankingDiv = styled.div`
-ul{
-padding: 0px;
-display: flex;
-flex-direction: column;
-gap: 25px;
-}
-h1{
-text-align: center;
-}
-`
+  ul {
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  h1 {
+    text-align: center;
+  }
+`;
 
 export const Li = styled.li`
-display: flex;
-align-items: center;
-justify-content: space-between;
-.username{
-width: 140px;
-}
-.points{
-width: 50px;
-}
-img {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .username {
+    width: 140px;
+  }
+  .points {
+    width: 50px;
+  }
+  img {
     width: 40px;
     height: 40px;
     border-radius: 50%;

@@ -9,26 +9,18 @@ const NavBar = () => {
   return (
     <NavBarStyle>
       <ul>
-        <li>
-          <Link to="/">
-            <img src={home} alt="" />
-          </Link>
-        </li>
-        <li>
-          <Link to="/challenges">
-            <img src={challenge} alt="" />
-          </Link>
-        </li>
-        <li>
-          <Link to="/profile">
-            <img src={userImg} alt="" />
-          </Link>
-        </li>
-        <li>
-          <Link to="/ranking">
-            <img src={ranking} alt="" />
-          </Link>
-        </li>
+        <Link to="/">
+          <img src={home} alt="" />
+        </Link>
+        <Link to="/challenges">
+          <img src={challenge} alt="" />
+        </Link>
+        <Link to="/ranking">
+          <img src={ranking} alt="" />
+        </Link>
+        <Link to="/profile">
+          <img src={userImg} alt="" />
+        </Link>
       </ul>
     </NavBarStyle>
   );
