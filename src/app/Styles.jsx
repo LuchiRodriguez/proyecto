@@ -410,16 +410,32 @@ export const LogoutBtn = styled.button`
 
 
 export const RankingDiv = styled.div`
+ul{
+padding: 0px;
+display: flex;
+flex-direction: column;
+gap: 25px;
+}
 h1{
 text-align: center;
 }
 `
 
 export const Li = styled.li`
-list-style: decimal;
-.ranking{
 display: flex;
 align-items: center;
 justify-content: space-between;
+.username{
+width: 140px;
 }
+.points{
+width: 50px;
+}
+img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #03e9f4;
+    object-fit: cover;
+  }
 `;
