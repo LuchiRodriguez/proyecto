@@ -414,7 +414,7 @@ ul{
 padding: 0px;
 display: flex;
 flex-direction: column;
-gap: 25px;
+gap: 15px;
 }
 h1{
 text-align: center;
@@ -424,18 +424,73 @@ text-align: center;
 export const Li = styled.li`
 display: flex;
 align-items: center;
-justify-content: space-between;
+
+
 .username{
-width: 140px;
+max-width: 100px;
 }
 .points{
-width: 50px;
+margin-left: 100px;
 }
 img {
+  right: 10px; 
     width: 40px;
     height: 40px;
     border-radius: 50%;
     border: 2px solid #03e9f4;
     object-fit: cover;
   }
+p{
+  padding: 5px; 
+}
 `;
+
+export const ButtonStyle = styled.button`
+border: 1px solid #03e9f4;
+border-radius: 5px;
+background-color: transparent;  
+color: white; 
+font-family: HungerGames; 
+padding: 7px; 
+`
+
+export const InputStyle = styled.input`
+border: 1px solid #03e9f4;
+border-radius: 5px;
+background-color: transparent;  
+color: white; 
+padding: 7px; 
+`
+
+export const CrownStyle = styled.img`
+margin: auto; 
+display: block; 
+width: 180px; 
+height: 50px; 
+`
+
+export const FirstPlace = styled.div`
+background-color: #F2D553;
+list-style: none;
+border-radius: 10px;
+border: 1px solid transparent; 
+`
+
+export const SecondPlace = styled.div`
+background-color: silver;
+list-style: none;
+border-radius: 10px;
+border: 1px solid transparent; 
+`
+
+export const ThirdPlace = styled.div`
+background-color: #D9B191;
+list-style: none;
+border-radius: 10px;
+border: 1px solid transparent; 
+`
+
+export const AnotherPlace = styled.div`
+border: 1px solid #03e9f4;
+border-radius: 10px;
+`

@@ -20,15 +20,16 @@ const NavBar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/profile">
-            <img src={userImg} alt="" />
-          </Link>
-        </li>
-        <li>
           <Link to="/ranking">
             <img src={ranking} alt="" />
           </Link>
         </li>
+        <li>
+          <Link to="/profile">
+            <img src={userImg} alt="" />
+          </Link>
+        </li>
+
       </ul>
     </NavBarStyle>
   );

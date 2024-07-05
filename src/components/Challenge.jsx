@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserInfo, ChallengeBox, UploadingDiv } from "../app/Styles";
+import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, InputStyle } from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
 import { updateChallenge, postChallengeVideo } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
@@ -75,7 +75,7 @@ const Challenge = ({ ch, refetch }) => {
       ) : (
         user.rol == "player" && (
           <>
-            <button onClick={handleClick}>Accept challenge</button>
+            <ButtonStyle onClick={handleClick}>Accept challenge</ButtonStyle>
             {acceptChallengeError && <p style={{ color: 'red' }}>{acceptChallengeError}</p>}
           </>
         )
@@ -84,11 +84,12 @@ const Challenge = ({ ch, refetch }) => {
       {ch.player != null && (
         <div>
           <form onSubmit={handleVideo} encType="multipart/form-data">
-            <input type="file" accept="video/*" onChange={(e) => setFile(e.target.files[0])} />
+            <InputStyle type="file" accept="video/*" onChange={(e) => setFile(e.target.files[0])} />
             <br />
-            <button disabled={isUploading}>
+            <br />
+            <ButtonStyle disabled={isUploading}>
               {isUploading ? "Uploading..." : "Upload video"}
-            </button>
+            </ButtonStyle>
           </form>
           {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
           {isUploading && (
