@@ -81,7 +81,7 @@ const Challenge = ({ ch, refetch }) => {
         )
       )}
 
-      {ch.player != null && (
+      {ch.player != null && ch.player.username == user.username ? (
         <div>
           <form onSubmit={handleVideo} encType="multipart/form-data">
             <input type="file" accept="video/*" onChange={(e) => setFile(e.target.files[0])} />
@@ -101,7 +101,7 @@ const Challenge = ({ ch, refetch }) => {
             </UploadingDiv>
           )}
         </div>
-      )}
+      ) : null}
     </ChallengeBox>
   );
 };
