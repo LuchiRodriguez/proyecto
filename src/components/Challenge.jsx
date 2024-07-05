@@ -20,7 +20,7 @@ const Challenge = ({ ch, refetch }) => {
 
     const formData = new FormData();
     formData.append("file", file);
-    console.log(file)
+    formData.append("watcher", ch.watcher.username);
     formData.append("player", user.username);
     formData.append("points", ch.points);
 
@@ -66,7 +66,7 @@ const Challenge = ({ ch, refetch }) => {
         <p>{ch.watcher.username}</p>
       </UserInfo>
       <p>Challenges you to: {ch.description}</p>
-      <p>Reward: {ch.points}</p>
+      <p>Reward:{ch.points}</p>
 
       {ch.player != null ? (
         <p className="watcher">
