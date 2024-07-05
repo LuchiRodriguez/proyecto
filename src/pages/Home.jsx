@@ -1,14 +1,14 @@
 import { useEffect, useState, lazy, Suspense, useRef } from "react";
 import NavBar from "../components/NavBar";
 import { getChallenges } from "../app/api/Challenge";
-import { UserInfo, ChallengeBox } from "../app/Styles";
+import { UserInfo, ChallengeBox, ChallengeInfo } from "../app/Styles";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const Home = () => {
   const [videos, setVideos] = useState([]);
   const videoRefs = useRef([]);
-  
+
   const challenges = videos.filter((video) => video.videoUrl !== null);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Home = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.play();
           } else {
@@ -31,7 +31,7 @@ const Home = () => {
       { threshold: 0.5 } // Adjust as needed
     );
 
-    videoRefs.current.forEach(video => {
+    videoRefs.current.forEach((video) => {
       if (video) {
         observer.observe(video);
       }
@@ -39,7 +39,7 @@ const Home = () => {
 
     return () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      videoRefs.current.forEach(video => {
+      videoRefs.current.forEach((video) => {
         if (video) {
           observer.unobserve(video);
         }
@@ -62,15 +62,17 @@ const Home = () => {
             )}
             <p>{challenge.player.username}</p>
           </UserInfo>
-          <p>{challenge.description}</p>
-          <p className="player">
-            {" "}
-            Challenged by <span>{challenge.watcher.username}</span>
-          </p>
+          <ChallengeInfo>
+            <p>{challenge.description}</p>
+            <p className="player">
+              {" "}
+              Challenged by <span>{challenge.watcher.username}</span>
+            </p>
+          </ChallengeInfo>
           <Suspense fallback={<div>Loading video...</div>}>
             <LazyVideo
               src={challenge.videoUrl}
-              ref={el => (videoRefs.current[index] = el)}
+              ref={(el) => (videoRefs.current[index] = el)}
             />
           </Suspense>
         </ChallengeBox>
@@ -81,4 +83,3 @@ const Home = () => {
 };
 
 export default Home;
-
