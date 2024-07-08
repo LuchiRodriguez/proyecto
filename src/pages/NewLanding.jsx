@@ -1,7 +1,7 @@
 import "../app/Landing.css";
+import { Link } from "react-router-dom";
 
 const NewLanding = () => {
-  const overallLoadTime = 7000;
   const numberOfEls = 50;
 
   /*
@@ -46,36 +46,12 @@ const NewLanding = () => {
     return;
   }
 
-  /*
-   * Perect loading function
-   */
-  function percentLoader(id, start, end, duration) {
-    var range = end - start;
-    var current = start;
-    var increment = end > start ? 1 : -1;
-    var stepTime = Math.abs(Math.floor(duration / range));
-    var obj = document.getElementById(id);
-    var timer = setInterval(function () {
-      current += increment;
-      obj.innerHTML = current + "%";
-      if (current == end) {
-        clearInterval(timer);
-      }
-    }, stepTime);
-
-    return;
-  }
-
   //speedUpCircles();
 
   // Create Helix animation
   createHelix();
   // Create Dash array animations
   createDashArray();
-  // Start loading text animation after setTimeout
-  setTimeout(function () {
-    percentLoader("loading", 0, 100, overallLoadTime - 4000);
-  }, overallLoadTime - 3000);
 
   /* 
  End the boot cycle
@@ -104,9 +80,15 @@ const NewLanding = () => {
       <div className="boot-screen">
         <div className="boot-sequence">
           <h1 className="boot-sequence-text">WELCOME</h1>
-          <button className="btn" id="js-fast-boot" onClick={() => pauseBoot()}>
-            PRESS START
-          </button>
+          <Link to="/login">
+            <button
+              className="btn"
+              id="js-fast-boot"
+              onClick={() => pauseBoot()}
+            >
+              START
+            </button>
+          </Link>
           <div className="outter-circle">
             <svg
               className="white-circle"
@@ -123,7 +105,7 @@ const NewLanding = () => {
           </div>
           <div className="inner-circle">
             <svg
-              className="white-circle"
+              className="red-circle"
               viewBox="0 0 708 702"
               xmlns="http://www.w3.org/2000/svg"
             >

@@ -4,7 +4,6 @@ import { useUserContext } from "../app/UserProvider";
 import { PopUpCreateChallenge } from "../app/Styles";
 
 const CreateChallenge = ({ create, setCreate, refetch }) => {
-  // const history = useHistory(); //To get the history object to browse. 
   const [user] = useUserContext();
   const [description, setDescription] = useState("");
   const [points, setPoints] = useState("");
