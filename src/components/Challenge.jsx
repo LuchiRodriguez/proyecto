@@ -27,7 +27,7 @@ const Challenge = ({ ch, refetch }) => {
 
     const formData = new FormData();
     formData.append("file", file);
-    console.log(file);
+    console.log(file)
     formData.append("player", user.username);
     formData.append("watcher", ch.watcher.username);
     formData.append("points", ch.points);
@@ -75,49 +75,48 @@ const Challenge = ({ ch, refetch }) => {
         )}
         <p>{ch.watcher.username}</p>
       </UserInfo>
-      <ChallengeInfo>
-        <p>Challenges you to: {ch.description}</p>
-        <p>Reward: {ch.points}</p>
+      <p>Challenges you to: {ch.description}</p>
+      <p>Reward: {ch.points}</p>
 
-        {ch.player != null ? (
-          <p className="watcher">
-            Accepted by <span>{ch.player.username}</span>
-          </p>
-        ) : (
-          user.rol == "player" && (
-            <>
-              <ButtonStyle onClick={() => handleClick()}>
-                Accept challenge
-              </ButtonStyle>
-              {acceptChallengeError && (
-                <p style={{ color: "red" }}>{acceptChallengeError}</p>
-              )}
-            </>
-          )
-        )}
-
-        {ch.player != null && (
-          <UploadVideo>
-            {isUploading ? (
-              <UploadingDiv>
-                <img src="https://i.gifer.com/ZKZg.gif" alt="Uploading..." />
-                <h3>Uploading file, please wait...</h3>
-              </UploadingDiv>
-            ) : (
-              <form onSubmit={handleVideo} encType="multipart/form-data">
-                <input
-                  id="file-upload"
-                  type="file"
-                  accept="video/*"
-                  onChange={(e) => setFile(e.target.files[0])}
-                />
-              </form>
+      {ch.player != null ? (
+        <p className="watcher">
+          Accepted by <span>{ch.player.username}</span>
+        </p>
+      ) : (
+        user.rol == "player" && (
+          <>
+            <ButtonStyle onClick={() => handleClick()}>
+              Accept challenge
+            </ButtonStyle>
+            {acceptChallengeError && (
+              <p style={{ color: "red" }}>{acceptChallengeError}</p>
             )}
-            {uploadError && <p style={{ color: "red" }}>{uploadError}</p>}
-          </UploadVideo>
-        )}
-      </ChallengeInfo>
-    </ChallengeBox>
+          </>
+        )
+      )}
+
+      {ch.player != null && (
+        <UploadVideo>
+          {isUploading ? (
+            <UploadingDiv>
+              <img src="https://i.gifer.com/ZKZg.gif" alt="Uploading..." />
+              <h3>Uploading file, please wait...</h3>
+            </UploadingDiv>
+          ) : (
+            <form onSubmit={handleVideo} encType="multipart/form-data">
+              <input
+                id="file-upload"
+                type="file"
+                accept="video/*"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+            </form>
+          )}
+          {uploadError && <p style={{ color: "red" }}>{uploadError}</p>}
+        </UploadVideo>
+      )}
+    </ChallengeInfo>
+    </ChallengeBox >
   );
 };
 

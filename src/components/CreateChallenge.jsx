@@ -40,34 +40,34 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
     <PopUpCreateChallenge $create={create}>
       <form onSubmit={handleSubmit}>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        
-          <label htmlFor="description">Description: </label>
-          <textarea
-            type="text"
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-          <label htmlFor="points">Points: </label>
-          <input
-            type="number"
-            id="points"
-            value={points}
-            onChange={(e) => {
-              const newPoints = parseInt(e.target.value, 10);
-              if (newPoints < 1 || newPoints > 500) {
-                setPointsError("Points must be between 1 and 500")
-              } else {
-                setPointsError(""); //Clear the error if the points are valid.
-                setPoints(newPoints);
-              }
-            }}
-            min="1"
-            max="500"
-            required
-          />
-          {pointsError && <p style={{ color: "red" }}>{pointsError}</p>}
+
+        <label htmlFor="description">Description: </label><br />
+        <textarea
+          type="text"
+          id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        /><br />
+        <label htmlFor="points">Points: </label>
+        <input
+          type="number"
+          id="points"
+          value={points}
+          onChange={(e) => {
+            const newPoints = parseInt(e.target.value, 10);
+            if (newPoints < 1 || newPoints > 500) {
+              setPointsError("Points must be between 1 and 500")
+            } else {
+              setPointsError(""); //Clear the error if the points are valid.
+              setPoints(newPoints);
+            }
+          }}
+          min="1"
+          max="500"
+          required
+        /><br /><br />
+        {pointsError && <p style={{ color: "red" }}>{pointsError}</p>}
         <button type="submit">Create challenge</button>
       </form>
     </PopUpCreateChallenge>
