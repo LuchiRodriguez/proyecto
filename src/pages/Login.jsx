@@ -21,11 +21,15 @@ const Login = () => {
     <Form>
       {existingUser ? (
         <>
-          {error &&
-            <p style={{ color: 'rgb(255, 0, 0)' }}> Failed to login. Please try again
-            </p>}
+          {error && (
+            <p style={{ color: "rgb(255, 0, 0)" }}>
+              {" "}
+              Failed to login. Please try again
+            </p>
+          )}
 
           <input
+            autoComplete="off"
             type="text"
             id="username"
             name="username"
@@ -34,6 +38,7 @@ const Login = () => {
             required
           ></input>
           <input
+            autoComplete="off"
             type="password"
             id="password"
             name="password"
@@ -68,6 +73,7 @@ const Login = () => {
       ) : (
         <>
           <input
+            autoComplete="off"
             type="text"
             id="username"
             name="username"
@@ -76,6 +82,7 @@ const Login = () => {
             required
           ></input>
           <input
+            autoComplete="off"
             type="text"
             id="email"
             name="email"
@@ -84,6 +91,7 @@ const Login = () => {
             required
           ></input>
           <input
+            autoComplete="off"
             type="password"
             id="password"
             name="password"
