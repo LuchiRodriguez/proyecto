@@ -12,7 +12,6 @@ const Challenge = ({ ch, refetch }) => {
   const [acceptChallengeError, setAcceptChallengeError] = useState("");
 
   const navigate = useNavigate();
-  console.log(ch.watcher.username, 1111111111)
   const handleVideo = async (e) => {
     e.preventDefault();
     setIsUploading(true);
@@ -56,7 +55,7 @@ const Challenge = ({ ch, refetch }) => {
   return (
     <ChallengeBox>
       <UserInfo>
-        {ch.watcher.imagenUrl ? (
+        {ch.watcher.imagenUrl != null ? (
           <img src={ch.watcher.imagenUrl} />
         ) : (
           <img
