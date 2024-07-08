@@ -119,7 +119,7 @@ export const PerfilStyle = styled.div`
   border: 2px solid #03e9f4;
   border-radius: 10px;
   padding: 10px;
-  color: #03e9f4;
+  color: ${(props) => props.theme.primaryColor};
   height: 88vh;
 `;
 
@@ -131,7 +131,7 @@ export const ProfileImg = styled.div`
     background-color: #202124;
     border: #03e9f4 3px solid;
     border-radius: 10px;
-    color: #03e9f4;
+    color: ${(props) => props.theme.primaryColor};
     padding: 10px;
     margin-top: 30px;
   }
@@ -139,7 +139,7 @@ export const ProfileImg = styled.div`
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    border: 2px solid #03e9f4;
+    border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
 `;
@@ -159,8 +159,11 @@ export const UserInfo = styled.div`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 2px solid #03e9f4;
+    border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
+  }
+  p{
+    color: ${(props) => props.theme.primaryColor};
   }
 `;
 
@@ -174,7 +177,7 @@ export const ChallengeInfo = styled.div`
 `;
 
 export const ChallengeBox = styled.div`
-  color: #03e9f4;
+  color: white;
   font-size: small;
   border: 2px solid #03e9f4;
   padding: 10px;
@@ -211,7 +214,6 @@ export const PopUpCreateChallenge = styled.div`
   form {
     width: 300px;
     height: 300px;
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
     border: 2px solid #03e9f4;
@@ -418,6 +420,6 @@ export const ThirdPlace = styled.div`
 `;
 
 export const AnotherPlace = styled.div`
-  border: 1px solid #03e9f4;
-  border-radius: 10px;
-`;
+border: 1px solid #03e9f4;
+border-radius: 10px;
+`
