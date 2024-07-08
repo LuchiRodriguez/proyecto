@@ -6,9 +6,9 @@ import { GlobalStyle } from "./app/Styles.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 
-    <UserProvider>
-      <GlobalStyle />
-      <App />
-    </UserProvider>
-  
+  <UserProvider>
+    <GlobalStyle />
+    <App />
+  </UserProvider>
+
 );
