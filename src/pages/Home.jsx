@@ -1,7 +1,7 @@
 import { useEffect, useState, lazy, Suspense, useRef } from "react";
 import NavBar from "../components/NavBar";
 import { getChallenges } from "../app/api/Challenge";
-import { UserInfo, ChallengeBox, ChallengeInfo } from "../app/Styles";
+import {UserInfo, ChallengeInfo, ChallengeVideo} from '../app/Styles';
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
@@ -50,7 +50,7 @@ const Home = () => {
   return (
     <>
       {challenges?.map((challenge, index) => (
-        <ChallengeBox key={challenge.id}>
+        <ChallengeVideo key={challenge.id}>
           <UserInfo>
             {challenge.player.imagenUrl ? (
               <img src={challenge.player.imagenUrl} />
@@ -75,7 +75,7 @@ const Home = () => {
               ref={(el) => (videoRefs.current[index] = el)}
             />
           </Suspense>
-        </ChallengeBox>
+        </ChallengeVideo>
       ))}
       <NavBar />
     </>
