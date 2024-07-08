@@ -3,6 +3,9 @@ import NavBar from "../components/NavBar";
 import { getChallenges } from "../app/api/Challenge";
 import { UserInfo, ChallengeBox, ChallengeInfo } from "../app/Styles";
 
+
+
+
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const Home = () => {
@@ -47,6 +50,10 @@ const Home = () => {
     };
   }, [videos]);
 
+
+
+
+
   return (
     <>
       {challenges?.map((challenge, index) => (
@@ -73,9 +80,12 @@ const Home = () => {
             <LazyVideo
               src={challenge.videoUrl}
               ref={(el) => (videoRefs.current[index] = el)}
+
             />
           </Suspense>
+        
         </ChallengeBox>
+
       ))}
       <NavBar />
     </>
