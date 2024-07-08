@@ -377,3 +377,17 @@ export const AnotherPlace = styled.div`
   border: 1px solid #03e9f4;
   border-radius: 10px;
 `;
+
+export const ChangeProfileButton = styled.button`
+  position: fixed;
+  border: none;
+  top: 30px;
+  left: 30px;
+  background-color: #202124;
+  img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+`;
+
