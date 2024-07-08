@@ -1,15 +1,16 @@
 import styled, { createGlobalStyle } from "styled-components";
-import HungerGames from "./fonts/HungerGames.ttf";
+import Minecraft from "./fonts/Minecraft.ttf";
 import { Link } from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
 	@font-face {
-		font-family: HungerGames;
-		src: url(${HungerGames});
+		font-family: Minecraft;
+		src: url(${Minecraft});
 	}
 	body {
+    text-transform: uppercase;
 		background-color: #202124;
-		font-family: HungerGames;
+		font-family: Minecraft;
 		letter-spacing: 4px;
     color: white;
 		margin: 0;
@@ -332,7 +333,7 @@ export const ButtonStyle = styled.button`
   border-radius: 5px;
   background-color: transparent;
   color: white;
-  font-family: HungerGames;
+  font-family: Minecraft;
   padding: 7px;
 `;
 
