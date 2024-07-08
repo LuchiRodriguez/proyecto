@@ -13,7 +13,9 @@ const Challenges = () => {
   const [create, setCreate] = useState(false);
 
   const refetch = () => {
-    getChallenges().then((data) => setChallenges(data.data));
+    getChallenges().then((data) => {
+      setChallenges(data.data)
+    });
   };
 
   const challenge = challenges.filter((video) => video.videoUrl == null);
@@ -25,7 +27,7 @@ const Challenges = () => {
   return (
     <>
       <ChallengesList $create={create}>
-        {challenge?.map((ch) => (
+        {challenge.map((ch) => (
           <Challenge key={ch.id} ch={ch} refetch={refetch} />
         ))}
       </ChallengesList>

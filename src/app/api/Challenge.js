@@ -8,7 +8,7 @@ export const getChallenges = async () => await instance.get("/challenge");
 
 
 // DELETE
-export const deleteChallenge = async (id) => await instance.delete("/challenge" + id);
+export const deleteChallenge = async (id) => await instance.delete(`/challenge/${id}`);
 
 // UPDATE
 export const updateChallenge = async (id, username) => await instance.put(`/challenge/${id}`, { username });

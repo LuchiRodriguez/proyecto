@@ -146,6 +146,7 @@ export const ProfileInfo = styled.div`
 `;
 
 export const UserInfo = styled.div`
+position: relative;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -170,11 +171,25 @@ export const ChallengeBox = styled.div`
   border: 2px solid #03e9f4;
   padding: 10px;
   border-radius: 10px;
+  margin-bottom: 30px;
   video {
     width: 100%;
     border-radius: 10px;
   }
 `;
+
+export const ChallengeVideo = styled.div`
+  color: #03e9f4;
+  font-size: small;
+  border: 2px solid #03e9f4;
+  padding: 10px;
+  border-radius: 10px;
+  video {
+    width: 100%;
+    border-radius: 10px;
+  }
+`;
+
 
 export const ButtonChallenge = styled(Link)`
   display: flex;
@@ -375,4 +390,16 @@ export const ThirdPlace = styled.div`
 export const AnotherPlace = styled.div`
   border: 1px solid #03e9f4;
   border-radius: 10px;
+`;
+
+export const ButtonDelete = styled.button`
+background-color: red;
+    border-radius: 50%;
+    color: white;
+    border: none;
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
 `;

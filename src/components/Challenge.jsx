@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, InputStyle } from '../app/Styles';
+import {UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, InputStyle, ButtonDelete} from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
-import { updateChallenge, postChallengeVideo } from "../app/api/Challenge";
+import {updateChallenge, postChallengeVideo, deleteChallenge} from '../app/api/Challenge';
 import { useNavigate } from "react-router-dom";
 
 const Challenge = ({ ch, refetch }) => {
@@ -10,9 +10,8 @@ const Challenge = ({ ch, refetch }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState("");
   const [acceptChallengeError, setAcceptChallengeError] = useState("");
-
   const navigate = useNavigate();
-  console.log(ch.watcher.username, 1111111111)
+
   const handleVideo = async (e) => {
     e.preventDefault();
     setIsUploading(true);
@@ -20,7 +19,7 @@ const Challenge = ({ ch, refetch }) => {
 
     const formData = new FormData();
     formData.append("file", file);
-    console.log(file)
+
     formData.append("player", user.username);
     formData.append("watcher", ch.watcher.username);
     formData.append("points", ch.points);
@@ -53,6 +52,16 @@ const Challenge = ({ ch, refetch }) => {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      await deleteChallenge(ch.id);
+      refetch();
+    } catch (error) {
+      console.error("Error deleting challenge:", error);
+      setAcceptChallengeError("Failed to delete challenge. Please try again");
+    }
+  };
+
   return (
     <ChallengeBox>
       <UserInfo>
@@ -65,6 +74,7 @@ const Challenge = ({ ch, refetch }) => {
           />
         )}
         <p>{ch.watcher.username}</p>
+        {user.rol === "moderador" && <ButtonDelete onClick={handleDelete}>X</ButtonDelete>} 
       </UserInfo>
       <p>Challenges you to: {ch.description}</p>
       <p>Reward: {ch.points}</p>
