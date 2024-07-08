@@ -150,7 +150,6 @@ export const UserInfo = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
-  /* font-size: small; */
   color: #03e9f4;
   img {
     width: 40px;
@@ -328,10 +327,11 @@ export const Li = styled.li`
 `;
 
 export const ButtonStyle = styled.button`
-  border: 1px solid #03e9f4;
+  border: 1px solid #f40e03;
   border-radius: 5px;
   background-color: transparent;
-  color: white;
+  color: #03e9f4;
+  text-transform: uppercase;
   font-family: Minecraft;
   padding: 7px;
 `;
@@ -342,6 +342,25 @@ export const InputStyle = styled.input`
   background-color: transparent;
   color: white;
   padding: 7px;
+`;
+
+export const UploadVideo = styled.div`
+  form {
+    margin-top: 25px;
+  }
+  input {
+    color: #202124;
+  }
+  input::file-selector-button {
+    display: block;
+    border: 1px solid #03e9f4;
+    background-color: #202124;
+    color: #03e9f4;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
 `;
 
 export const CrownStyle = styled.img`
