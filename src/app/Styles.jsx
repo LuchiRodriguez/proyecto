@@ -17,124 +17,6 @@ export const GlobalStyle = createGlobalStyle`
 	}
 `;
 
-export const LandingPage = styled.div`
-  text-align: center;
-  margin-top: 200px;
-  h1 {
-    color: #03e9f4;
-    text-transform: uppercase;
-    font-size: x-large;
-    margin-bottom: 30px;
-  }
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  a {
-    width: 180px;
-    position: relative;
-    display: inline-block;
-    padding: 20px 0;
-    margin: 40px 10px;
-    color: #03e9f4;
-    text-decoration: none;
-    transition: 0.5s;
-    letter-spacing: 4px;
-    overflow: hidden;
-  }
-  a:hover {
-    background: #03e9f4;
-    color: #050801;
-    box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
-      0 0 50px #03e9f4;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-  }
-  a:nth-child(1) {
-    filter: hue-rotate(270deg);
-  }
-  a:nth-child(2) {
-    filter: hue-rotate(110deg);
-  }
-  a span {
-    position: absolute;
-    display: block;
-  }
-  a span:nth-child(1) {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #03e9f4);
-    animation: animate1 1s linear infinite;
-  }
-  @keyframes animate1 {
-    0% {
-      left: -100%;
-    }
-    50%,
-    100% {
-      left: 100%;
-    }
-  }
-  a span:nth-child(2) {
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, #03e9f4);
-    animation: animate2 1s linear infinite;
-    animation-delay: 0.25s;
-  }
-  @keyframes animate2 {
-    0% {
-      top: -100%;
-    }
-    50%,
-    100% {
-      top: 100%;
-    }
-  }
-  a span:nth-child(3) {
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent, #03e9f4);
-    animation: animate3 1s linear infinite;
-    animation-delay: 0.5s;
-  }
-  @keyframes animate3 {
-    0% {
-      right: -100%;
-    }
-    50%,
-    100% {
-      right: 100%;
-    }
-  }
-
-  a span:nth-child(4) {
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent, #03e9f4);
-    animation: animate4 1s linear infinite;
-    animation-delay: 0.75s;
-  }
-  @keyframes animate4 {
-    0% {
-      bottom: -100%;
-    }
-    50%,
-    100% {
-      bottom: 100%;
-    }
-  }
-`;
-
 export const NavBarStyle = styled.nav`
   border-top: 1px solid #03e9f4;
   box-sizing: border-box;
@@ -412,85 +294,85 @@ export const LogoutBtn = styled.button`
 `;
 
 export const RankingDiv = styled.div`
-ul{
-padding: 0px;
-display: flex;
-flex-direction: column;
-gap: 15px;
-}
-h1{
-text-align: center;
-}
-`
+  ul {
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  h1 {
+    text-align: center;
+  }
+`;
 
 export const Li = styled.li`
-display: flex;
-align-items: center;
-justify-content: space-between;
-.username{
-width: 140px;
-}
-.points{
-width: 50px;
-}
-img {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .username {
+    width: 140px;
+  }
+  .points {
+    width: 50px;
+  }
+  img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     border: 2px solid #03e9f4;
     object-fit: cover;
   }
-p{
-  padding: 5px; 
-}
+  p {
+    padding: 5px;
+  }
 `;
 
 export const ButtonStyle = styled.button`
-border: 1px solid #03e9f4;
-border-radius: 5px;
-background-color: transparent;  
-color: white; 
-font-family: HungerGames; 
-padding: 7px; 
-`
+  border: 1px solid #03e9f4;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  font-family: HungerGames;
+  padding: 7px;
+`;
 
 export const InputStyle = styled.input`
-border: 1px solid #03e9f4;
-border-radius: 5px;
-background-color: transparent;  
-color: white; 
-padding: 7px; 
-`
+  border: 1px solid #03e9f4;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  padding: 7px;
+`;
 
 export const CrownStyle = styled.img`
-margin: auto; 
-display: block; 
-width: 180px; 
-height: 50px; 
-`
+  margin: auto;
+  display: block;
+  width: 180px;
+  height: 50px;
+`;
 
 export const FirstPlace = styled.div`
-background-color: #F2D553;
-list-style: none;
-border-radius: 10px;
-border: 1px solid transparent; 
-`
+  background-color: #f2d553;
+  list-style: none;
+  border-radius: 10px;
+  border: 1px solid transparent;
+`;
 
 export const SecondPlace = styled.div`
-background-color: silver;
-list-style: none;
-border-radius: 10px;
-border: 1px solid transparent; 
-`
+  background-color: silver;
+  list-style: none;
+  border-radius: 10px;
+  border: 1px solid transparent;
+`;
 
 export const ThirdPlace = styled.div`
-background-color: #D9B191;
-list-style: none;
-border-radius: 10px;
-border: 1px solid transparent; 
-`
+  background-color: #d9b191;
+  list-style: none;
+  border-radius: 10px;
+  border: 1px solid transparent;
+`;
 
 export const AnotherPlace = styled.div`
-border: 1px solid #03e9f4;
-border-radius: 10px;
-`
+  border: 1px solid #03e9f4;
+  border-radius: 10px;
+`;

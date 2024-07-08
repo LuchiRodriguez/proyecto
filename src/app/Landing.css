@@ -8,12 +8,6 @@ html {
     font-family: Minecraft;
 }
 
-body {
-    background: #161421;
-    height: 100vh;
-    position: relative;
-}
-
 interaction {
     transition: .2s ease-in-out box-shadow;
     outline: none;
@@ -28,7 +22,7 @@ interaction {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border: 1px solid white;
+    border: 1px solid #F40E03;
     background: none;
     color:  #03e9f4;
     padding: 7px 13px;
@@ -42,7 +36,6 @@ interaction {
         transition:
             .2s ease-in-out border-color,
             .2s ease-in-out box-shadow;
-        border-color: #F40E03;
     }
 }
 
@@ -57,8 +50,8 @@ interaction {
     position: absolute;
     top: 0;
     left: 0;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     opacity: .3;
     z-index: 1000;
     user-select: none;
@@ -73,8 +66,8 @@ interaction {
         position: absolute;
         top: 0;
         left: 0;
-        height: 100vh;
-        width: 100vw;
+        height: 100%;
+        width: 100%;
         opacity: 1;
         transform: none;
         transition: 2s ease-in opacity, 2s ease-in transform;
@@ -85,8 +78,8 @@ interaction {
     position: absolute;
     top: 0;
     left: 0;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     opacity: .3;
     z-index: 1000;
     user-select: none;
@@ -101,8 +94,8 @@ interaction {
         position: absolute;
         top: 0;
         left: 0;
-        height: 100vh;
-        width: 100vw;
+        height: 100%;
+        width: 100%;
         opacity: 1;
         transform: none;
         transition: 2s ease-in opacity, 2s ease-in transform;
@@ -144,7 +137,7 @@ interaction {
 
 @keyframes vline {
     to {
-        transform: translate(0, 100vh)
+        transform: translate(0, 100%)
     }
 }
 
@@ -297,8 +290,8 @@ interaction {
 
 .boot-screen {
     overflow: hidden;
-    height: 100vh;
-    max-height: 100vh;
+    height: 100%;
+    max-height: 100%;
     transition: .2s .25s ease-in-out opacity;
 
     &:before,
@@ -306,8 +299,8 @@ interaction {
         content: '';
         display: block;
         position: fixed;
-        height: 100vh;
-        width: 100vw;
+        height: 100%;
+        width: 100%;
         left: 0;
         top: 0;
         z-index: 10;
@@ -398,8 +391,8 @@ interaction {
 
 .outter-circle {
     position: absolute;
-    width: 500px;
-    height: 500px;
+    width: 350px;
+    height: 350px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -414,13 +407,13 @@ interaction {
 
 .inner-circle {
     position: absolute;
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 
-    .white-circle {
+    .red-circle {
         stroke: #F40E03;
         transform: rotate(0deg);
         transform-origin: center;
