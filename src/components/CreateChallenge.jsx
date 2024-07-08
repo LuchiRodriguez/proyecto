@@ -16,7 +16,6 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
     if (points < 1 || points > 500) {
       setPointsError("Points must be between 1 and 500");
       return;
-
     }
     const formData = new FormData();
     formData.append("description", description);
@@ -32,41 +31,43 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
       setCreate(false);
     } catch (error) {
       console.log("Error creating challenge:", error);
-      setError("Failed to create challenge. Please try again")
+      setError("Failed to create challenge. Please try again");
     }
   };
   //that is not displayed or that cannot be modified. the ID
   return (
     <PopUpCreateChallenge $create={create}>
       <form onSubmit={handleSubmit}>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-
-        <label htmlFor="description">Description: </label><br />
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <label htmlFor="description">Description: </label>
         <textarea
           type="text"
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
-        /><br />
-        <label htmlFor="points">Points: </label>
-        <input
-          type="number"
-          id="points"
-          value={points}
-          onChange={(e) => {
-            const newPoints = parseInt(e.target.value, 10);
-            if (newPoints < 1 || newPoints > 500) {
-              setPointsError("Points must be between 1 and 500")
-            } else {
-              setPointsError(""); //Clear the error if the points are valid.
-              setPoints(newPoints);
-            }
-          }}
-          min="1"
-          max="500"
-          required
-        /><br /><br />
+        />
+        <div>
+          <label htmlFor="points">Points: </label>
+          <input
+            type="number"
+            id="points"
+            value={points}
+            onChange={(e) => {
+              const newPoints = parseInt(e.target.value, 10);
+              if (newPoints < 1 || newPoints > 500) {
+                setPointsError("Points must be between 1 and 500");
+              } else {
+                setPointsError(""); //Clear the error if the points are valid.
+                setPoints(newPoints);
+              }
+            }}
+            min="1"
+            max="500"
+            required
+          />
+        </div>
+
         {pointsError && <p style={{ color: "red" }}>{pointsError}</p>}
         <button type="submit">Create challenge</button>
       </form>
