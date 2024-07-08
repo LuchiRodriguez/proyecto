@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, InputStyle } from '../app/Styles';
+import {
+  UserInfo,
+  ChallengeBox,
+  UploadingDiv,
+  ButtonStyle,
+  UploadVideo,
+  ChallengeInfo,
+} from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { updateChallenge, postChallengeVideo } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
@@ -20,13 +27,15 @@ const Challenge = ({ ch, refetch }) => {
 
     const formData = new FormData();
     formData.append("file", file);
-    console.log(file)
+    console.log(file);
     formData.append("player", user.username);
     formData.append("watcher", ch.watcher.username);
     formData.append("points", ch.points);
 
     if (file && file.size > 500 * 1024 * 1024) {
-      setUploadError("File size exceeds the limit (500 MB). Please upload a smaller file.");
+      setUploadError(
+        "File size exceeds the limit (500 MB). Please upload a smaller file."
+      );
       setIsUploading(false);
       return;
     }
@@ -38,7 +47,7 @@ const Challenge = ({ ch, refetch }) => {
       navigate("/");
     } catch (error) {
       console.error("Error uploading video:", error);
-      setUploadError("Failed to upload video. Please try again.")
+      setUploadError("Failed to upload video. Please try again.");
       setIsUploading(false);
     }
   };
@@ -66,44 +75,48 @@ const Challenge = ({ ch, refetch }) => {
         )}
         <p>{ch.watcher.username}</p>
       </UserInfo>
-      <p>Challenges you to: {ch.description}</p>
-      <p>Reward: {ch.points}</p>
+      <ChallengeInfo>
+        <p>Challenges you to: {ch.description}</p>
+        <p>Reward: {ch.points}</p>
 
-      {ch.player != null ? (
-        <p className="watcher">
-          Accepted by <span>{ch.player.username}</span>
-        </p>
-      ) : (
-        user.rol == "player" && (
-          <>
-            <ButtonStyle onClick={handleClick}>Accept challenge</ButtonStyle>
-            {acceptChallengeError && <p style={{ color: 'red' }}>{acceptChallengeError}</p>}
-          </>
-        )
-      )}
+        {ch.player != null ? (
+          <p className="watcher">
+            Accepted by <span>{ch.player.username}</span>
+          </p>
+        ) : (
+          user.rol == "player" && (
+            <>
+              <ButtonStyle onClick={() => handleClick()}>
+                Accept challenge
+              </ButtonStyle>
+              {acceptChallengeError && (
+                <p style={{ color: "red" }}>{acceptChallengeError}</p>
+              )}
+            </>
+          )
+        )}
 
-      {ch.player != null && (
-        <div>
-          <form onSubmit={handleVideo} encType="multipart/form-data">
-            <InputStyle type="file" accept="video/*" onChange={(e) => setFile(e.target.files[0])} />
-            <br />
-            <br />
-            <ButtonStyle disabled={isUploading}>
-              {isUploading ? "Uploading..." : "Upload video"}
-            </ButtonStyle>
-          </form>
-          {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
-          {isUploading && (
-            <UploadingDiv>
-              <img
-                src="https://i.gifer.com/ZKZg.gif"
-                alt="Uploading..."
-              />
-              <h3>Uploading file, please wait...</h3>
-            </UploadingDiv>
-          )}
-        </div>
-      )}
+        {ch.player != null && (
+          <UploadVideo>
+            {isUploading ? (
+              <UploadingDiv>
+                <img src="https://i.gifer.com/ZKZg.gif" alt="Uploading..." />
+                <h3>Uploading file, please wait...</h3>
+              </UploadingDiv>
+            ) : (
+              <form onSubmit={handleVideo} encType="multipart/form-data">
+                <input
+                  id="file-upload"
+                  type="file"
+                  accept="video/*"
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
+              </form>
+            )}
+            {uploadError && <p style={{ color: "red" }}>{uploadError}</p>}
+          </UploadVideo>
+        )}
+      </ChallengeInfo>
     </ChallengeBox>
   );
 };
