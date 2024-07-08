@@ -289,6 +289,7 @@ export const LogoutBtn = styled.button`
   img {
     width: 20px;
     height: 20px;
+    cursor: pointer;
   }
 `;
 
