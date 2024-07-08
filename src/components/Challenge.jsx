@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserInfo, ChallengeBox, UploadingDiv } from "../app/Styles";
+import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, InputStyle } from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
 import { updateChallenge, postChallengeVideo } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ const Challenge = ({ ch, refetch }) => {
   const [acceptChallengeError, setAcceptChallengeError] = useState("");
 
   const navigate = useNavigate();
-
+  console.log(ch.watcher.username, 1111111111)
   const handleVideo = async (e) => {
     e.preventDefault();
     setIsUploading(true);
@@ -22,6 +22,7 @@ const Challenge = ({ ch, refetch }) => {
     formData.append("file", file);
     console.log(file)
     formData.append("player", user.username);
+    formData.append("watcher", ch.watcher.username);
     formData.append("points", ch.points);
 
     if (file && file.size > 500 * 1024 * 1024) {
@@ -75,7 +76,7 @@ const Challenge = ({ ch, refetch }) => {
       ) : (
         user.rol == "player" && (
           <>
-            <button onClick={handleClick}>Accept challenge</button>
+            <ButtonStyle onClick={handleClick}>Accept challenge</ButtonStyle>
             {acceptChallengeError && <p style={{ color: 'red' }}>{acceptChallengeError}</p>}
           </>
         )
@@ -84,11 +85,12 @@ const Challenge = ({ ch, refetch }) => {
       {ch.player != null && ch.player.username == user.username ? (
         <div>
           <form onSubmit={handleVideo} encType="multipart/form-data">
-            <input type="file" accept="video/*" onChange={(e) => setFile(e.target.files[0])} />
+            <InputStyle type="file" accept="video/*" onChange={(e) => setFile(e.target.files[0])} />
             <br />
-            <button disabled={isUploading}>
+            <br />
+            <ButtonStyle disabled={isUploading}>
               {isUploading ? "Uploading..." : "Upload video"}
-            </button>
+            </ButtonStyle>
           </form>
           {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
           {isUploading && (
