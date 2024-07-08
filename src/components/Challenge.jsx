@@ -75,47 +75,48 @@ const Challenge = ({ ch, refetch }) => {
         )}
         <p>{ch.watcher.username}</p>
       </UserInfo>
-      <p>Challenges you to: {ch.description}</p>
-      <p>Reward: {ch.points}</p>
+      <ChallengeInfo>
+        <p>Challenges you to: {ch.description}</p>
+        <p>Reward: {ch.points}</p>
 
-      {ch.player != null ? (
-        <p className="watcher">
-          Accepted by <span>{ch.player.username}</span>
-        </p>
-      ) : (
-        user.rol == "player" && (
-          <>
-            <ButtonStyle onClick={() => handleClick()}>
-              Accept challenge
-            </ButtonStyle>
-            {acceptChallengeError && (
-              <p style={{ color: "red" }}>{acceptChallengeError}</p>
+        {ch.player != null ? (
+          <p className="watcher">
+            Accepted by <span>{ch.player.username}</span>
+          </p>
+        ) : (
+          user.rol == "player" && (
+            <>
+              <ButtonStyle onClick={() => handleClick()}>
+                Accept challenge
+              </ButtonStyle>
+              {acceptChallengeError && (
+                <p style={{ color: "red" }}>{acceptChallengeError}</p>
+              )}
+            </>
+          )
+        )}
+
+        {ch.player != null && (
+          <UploadVideo>
+            {isUploading ? (
+              <UploadingDiv>
+                <img src="https://i.gifer.com/ZKZg.gif" alt="Uploading..." />
+                <h3>Uploading file, please wait...</h3>
+              </UploadingDiv>
+            ) : (
+              <form onSubmit={handleVideo} encType="multipart/form-data">
+                <input
+                  id="file-upload"
+                  type="file"
+                  accept="video/*"
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
+              </form>
             )}
-          </>
-        )
-      )}
-
-      {ch.player != null && (
-        <UploadVideo>
-          {isUploading ? (
-            <UploadingDiv>
-              <img src="https://i.gifer.com/ZKZg.gif" alt="Uploading..." />
-              <h3>Uploading file, please wait...</h3>
-            </UploadingDiv>
-          ) : (
-            <form onSubmit={handleVideo} encType="multipart/form-data">
-              <input
-                id="file-upload"
-                type="file"
-                accept="video/*"
-                onChange={(e) => setFile(e.target.files[0])}
-              />
-            </form>
-          )}
-          {uploadError && <p style={{ color: "red" }}>{uploadError}</p>}
-        </UploadVideo>
-      )}
-    </ChallengeInfo>
+            {uploadError && <p style={{ color: "red" }}>{uploadError}</p>}
+          </UploadVideo>
+        )}
+      </ChallengeInfo>
     </ChallengeBox >
   );
 };
