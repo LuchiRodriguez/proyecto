@@ -377,6 +377,15 @@ export const UploadVideo = styled.div`
     margin-left: 25%;
     margin-right: 25%;
   }
+  button {
+    display: block;
+    border: 1px solid #f40e03;
+    background-color: #202124;
+    color: #03e9f4;
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+  }
 `;
 
 export const CrownStyle = styled.img`

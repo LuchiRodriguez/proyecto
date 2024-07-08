@@ -103,12 +103,16 @@ const Challenge = ({ ch, refetch }) => {
               </UploadingDiv>
             ) : (
               <form onSubmit={handleVideo} encType="multipart/form-data">
-                <input
-                  id="file-upload"
-                  type="file"
-                  accept="video/*"
-                  onChange={(e) => setFile(e.target.files[0])}
-                />
+                {file ? (
+                  <button>Upload video</button>
+                ) : (
+                  <input
+                    id="file-upload"
+                    type="file"
+                    accept="video/*"
+                    onChange={(e) => setFile(e.target.files[0])}
+                  />
+                )}
               </form>
             )}
             {uploadError && <p style={{ color: "red" }}>{uploadError}</p>}
