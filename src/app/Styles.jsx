@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import Minecraft from "./fonts/Minecraft.ttf";
+import Roboto from "./fonts/Roboto-Medium.ttf";
 import { Link } from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
@@ -7,10 +8,13 @@ export const GlobalStyle = createGlobalStyle`
 		font-family: Minecraft;
 		src: url(${Minecraft});
 	}
+  @font-face {
+		font-family: Roboto;
+		src: url(${Roboto});
+	}
 	body {
     text-transform: uppercase;
 		background-color: #202124;
-		font-family: Minecraft;
 		letter-spacing: 4px;
     color: white;
 		margin: 0;
@@ -44,6 +48,7 @@ export const NavBarStyle = styled.nav`
 `;
 
 export const Form = styled.form`
+  font-family: Roboto;
   color: #03e9f4;
   display: flex;
   flex-direction: column;
@@ -74,7 +79,6 @@ export const Form = styled.form`
   }
 
   p {
-    font-size: xx-small;
     text-align: center;
   }
   span {
@@ -161,7 +165,12 @@ export const UserInfo = styled.div`
 `;
 
 export const ChallengeInfo = styled.div`
+  font-family: Roboto;
   margin-left: 10px;
+  button {
+    margin-left: 25%;
+    margin-right: 25%;
+  }
 `;
 
 export const ChallengeBox = styled.div`
@@ -179,7 +188,7 @@ export const ChallengeBox = styled.div`
 export const ButtonChallenge = styled(Link)`
   display: flex;
   justify-content: right;
-  padding: 10px;
+  padding: 15px 25px;
   cursor: pointer;
   bottom: 50px;
   right: 0px;
@@ -207,7 +216,12 @@ export const PopUpCreateChallenge = styled.div`
     border: 2px solid #03e9f4;
     border-radius: 10px;
     padding: 10px;
+    label {
+      padding: 15px 10px;
+    }
     button {
+      font-family: Roboto;
+      text-transform: uppercase;
       background-color: #202124;
       border: #03e9f4 3px solid;
       border-radius: 10px;
@@ -219,11 +233,11 @@ export const PopUpCreateChallenge = styled.div`
     }
     div {
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
+      align-items: center;
     }
   }
   textarea {
-    margin: 10px 0;
     color: #03e9f4;
     background-color: #202124 !important;
     outline: none;
@@ -333,7 +347,7 @@ export const ButtonStyle = styled.button`
   background-color: transparent;
   color: #03e9f4;
   text-transform: uppercase;
-  font-family: Minecraft;
+  font-family: Roboto;
   padding: 7px;
 `;
 
@@ -346,6 +360,7 @@ export const InputStyle = styled.input`
 `;
 
 export const UploadVideo = styled.div`
+  font-family: Roboto;
   form {
     margin-top: 25px;
   }
@@ -354,7 +369,7 @@ export const UploadVideo = styled.div`
   }
   input::file-selector-button {
     display: block;
-    border: 1px solid #03e9f4;
+    border: 1px solid #f40e03;
     background-color: #202124;
     color: #03e9f4;
     border-radius: 10px;
