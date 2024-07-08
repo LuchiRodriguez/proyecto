@@ -55,7 +55,7 @@ const Challenge = ({ ch, refetch }) => {
   return (
     <ChallengeBox>
       <UserInfo>
-        {ch.watcher.imagenUrl != null ? (
+        {ch.watcher.imagenUrl != ? (
           <img src={ch.watcher.imagenUrl} />
         ) : (
           <img
