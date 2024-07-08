@@ -179,6 +179,7 @@ export const ChallengeBox = styled.div`
   border: 2px solid #03e9f4;
   padding: 10px;
   border-radius: 10px;
+  margin-bottom: 15px;
   video {
     width: 100%;
     border-radius: 10px;
