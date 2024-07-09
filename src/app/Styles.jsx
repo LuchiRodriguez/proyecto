@@ -12,9 +12,14 @@ export const GlobalStyle = createGlobalStyle`
 		font-family: Roboto;
 		src: url(${Roboto});
 	}
+  :root{
+    --blue: #03e9f4;
+    --red: #f40e03;
+    --black: #202124;
+  }
 	body {
     text-transform: uppercase;
-		background-color: #202124;
+		background-color: var(--black);
 		letter-spacing: 4px;
     color: white;
 		margin: 0;
@@ -23,14 +28,14 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const NavBarStyle = styled.nav`
-  border-top: 1px solid #03e9f4;
+  border-top: 1px solid var(--blue);
   box-sizing: border-box;
   position: fixed;
   height: 50px;
   width: 100%;
   left: 0;
   bottom: 0;
-  background-color: #202124;
+  background-color: var(--black);
   ul {
     margin: 0 30px;
     padding: 0;
@@ -43,13 +48,13 @@ export const NavBarStyle = styled.nav`
     width: 30px;
     height: 30px;
     padding: 10px;
-    color: #03e9f4;
+    color: var(--blue);
   }
 `;
 
 export const Form = styled.form`
   font-family: Roboto;
-  color: #03e9f4;
+  color: var(--blue);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,24 +62,24 @@ export const Form = styled.form`
   height: 100vh;
   margin: auto;
   input {
-    color: #03e9f4;
-    background-color: #202124 !important;
+    color: var(--blue);
+    background-color: var(--black) !important;
     outline: none;
     text-transform: uppercase;
     margin-top: 60px;
-    border: #03e9f4 3px solid;
+    border: var(--blue) 3px solid;
     border-radius: 10px;
     height: 30px;
     width: 300px;
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
-      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
-      background-color: #202124;
+      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      background-color: var(--black);
     }
     &:active {
-      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
-      background-color: #202124;
+      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      background-color: var(--black);
     }
   }
 
@@ -85,15 +90,15 @@ export const Form = styled.form`
     cursor: pointer;
   }
   button {
-    background-color: #202124;
-    border: #03e9f4 3px solid;
+    background-color: var(--black);
+    border: var(--blue) 3px solid;
     border-radius: 10px;
-    color: #03e9f4;
+    color: var(--blue);
     padding: 10px;
     margin-top: 30px;
   }
   button:focus {
-    box-shadow: 0 0 10px 0 #03e9f4 inset, 0 0 20px 2px #03e9f4;
+    box-shadow: 0 0 10px 0 var(--blue) inset, 0 0 20px 2px var(--blue);
   }
 `;
 
@@ -116,7 +121,7 @@ export const PerfilStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid #03e9f4;
+  border: 2px solid var(--blue);
   border-radius: 10px;
   padding: 10px;
   color: ${(props) => props.theme.primaryColor};
@@ -131,8 +136,8 @@ export const ProfileImg = styled.div`
   flex-direction: column;
   align-items: center;
   button {
-    background-color: #202124;
-    border: #03e9f4 3px solid;
+    background-color: var(--black);
+    border: var(--blue) 3px solid;
     border-radius: 10px;
     color: ${(props) => props.theme.primaryColor};
     padding: 10px;
@@ -154,10 +159,11 @@ export const ProfileInfo = styled.div`
 `;
 
 export const UserInfo = styled.div`
+  position: relative;
   display: flex;
   gap: 10px;
   align-items: center;
-  color: #03e9f4;
+  color: var(--blue);
   img {
     width: 40px;
     height: 40px;
@@ -165,7 +171,7 @@ export const UserInfo = styled.div`
     border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
-  p{
+  p {
     color: ${(props) => props.theme.primaryColor};
   }
 `;
@@ -182,7 +188,20 @@ export const ChallengeInfo = styled.div`
 export const ChallengeBox = styled.div`
   color: white;
   font-size: small;
-  border: 2px solid #03e9f4;
+  border: 2px solid var(--blue);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  video {
+    width: 100%;
+    border-radius: 10px;
+  }
+`;
+
+export const ChallengeVideo = styled.div`
+  color: var(--blue);
+  font-size: small;
+  border: 2px solid var(--blue);
   padding: 10px;
   border-radius: 10px;
   video {
@@ -211,14 +230,14 @@ export const PopUpCreateChallenge = styled.div`
   align-items: center;
   justify-content: center;
   height: 95vh;
-  color: #03e9f4;
+  color: var(--blue);
   font-size: small;
   form {
     width: 300px;
     height: 300px;
     flex-direction: column;
     justify-content: space-between;
-    border: 2px solid #03e9f4;
+    border: 2px solid var(--blue);
     border-radius: 10px;
     padding: 10px;
     label {
@@ -227,13 +246,13 @@ export const PopUpCreateChallenge = styled.div`
     button {
       font-family: Roboto;
       text-transform: uppercase;
-      background-color: #202124;
-      border: #03e9f4 3px solid;
+      background-color: var(--black);
+      border: var(--blue) 3px solid;
       border-radius: 10px;
-      color: #03e9f4;
+      color: var(--blue);
       padding: 10px;
       &:focus {
-        box-shadow: 0 0 10px 0 #03e9f4 inset, 0 0 20px 2px #03e9f4;
+        box-shadow: 0 0 10px 0 var(--blue) inset, 0 0 20px 2px var(--blue);
       }
     }
     div {
@@ -243,11 +262,11 @@ export const PopUpCreateChallenge = styled.div`
     }
   }
   textarea {
-    color: #03e9f4;
-    background-color: #202124 !important;
+    color: var(--blue);
+    background-color: var(--black) !important;
     outline: none;
     text-transform: uppercase;
-    border: #03e9f4 3px solid;
+    border: var(--blue) 3px solid;
     border-radius: 10px;
     height: 100px;
     width: 100%;
@@ -255,33 +274,33 @@ export const PopUpCreateChallenge = styled.div`
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
-      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
-      background-color: #202124;
+      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      background-color: var(--black);
     }
     &:active {
-      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
-      background-color: #202124;
+      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      background-color: var(--black);
     }
   }
   input {
     margin: 10px 0;
-    color: #03e9f4;
-    background-color: #202124 !important;
+    color: var(--blue);
+    background-color: var(--black) !important;
     outline: none;
     text-transform: uppercase;
-    border: #03e9f4 3px solid;
+    border: var(--blue) 3px solid;
     border-radius: 10px;
     height: 10px;
     width: 20%;
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
-      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
-      background-color: #202124;
+      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      background-color: var(--black);
     }
     &:active {
-      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
-      background-color: #202124;
+      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      background-color: var(--black);
     }
   }
 `;
@@ -303,7 +322,7 @@ export const LogoutBtn = styled.button`
   position: fixed;
   top: 30px;
   right: 30px;
-  background-color: #202124;
+  background-color: var(--black);
   border: none;
   img {
     width: 20px;
@@ -338,7 +357,7 @@ export const Li = styled.li`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 2px solid #03e9f4;
+    border: 2px solid var(--blue);
     object-fit: cover;
   }
   p {
@@ -347,17 +366,17 @@ export const Li = styled.li`
 `;
 
 export const ButtonStyle = styled.button`
-  border: 1px solid #f40e03;
+  border: 1px solid var(--red);
   border-radius: 5px;
   background-color: transparent;
-  color: #03e9f4;
+  color: var(--blue);
   text-transform: uppercase;
   font-family: Roboto;
   padding: 7px;
 `;
 
 export const InputStyle = styled.input`
-  border: 1px solid #03e9f4;
+  border: 1px solid var(--blue);
   border-radius: 5px;
   background-color: transparent;
   color: white;
@@ -370,13 +389,13 @@ export const UploadVideo = styled.div`
     margin-top: 25px;
   }
   input {
-    color: #202124;
+    color: var(--black);
   }
   input::file-selector-button {
     display: block;
-    border: 1px solid #f40e03;
-    background-color: #202124;
-    color: #03e9f4;
+    border: 1px solid var(--red);
+    background-color: var(--black);
+    color: var(--blue);
     border-radius: 10px;
     padding: 10px;
     margin-left: 25%;
@@ -384,9 +403,9 @@ export const UploadVideo = styled.div`
   }
   button {
     display: block;
-    border: 1px solid #f40e03;
-    background-color: #202124;
-    color: #03e9f4;
+    border: 1px solid var(--red);
+    background-color: var(--black);
+    color: var(--blue);
     border-radius: 10px;
     padding: 10px;
     margin: auto;
@@ -422,22 +441,18 @@ export const ThirdPlace = styled.div`
 `;
 
 export const AnotherPlace = styled.div`
-  border: 1px solid #03e9f4;
+  border: 1px solid var(--blue);
   border-radius: 10px;
 `;
 
-export const ChangeProfileButton = styled.button`
-  position: fixed;
+export const ButtonDelete = styled.button`
+  background-color: red;
+  border-radius: 50%;
+  color: white;
   border: none;
-  top: 30px;
-  left: 30px;
-  background-color: #202124;
-  img {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-  }
+  position: absolute;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
 `;
-
-
-
