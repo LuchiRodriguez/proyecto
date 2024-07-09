@@ -12,6 +12,11 @@ export const GlobalStyle = createGlobalStyle`
 		font-family: Roboto;
 		src: url(${Roboto});
 	}
+  :root{
+    --blue: #03e9f4;
+    --red: #f40e03;
+    --black: #202124;
+  }
 	body {
     text-transform: uppercase;
 		background-color: #202124;
