@@ -1,7 +1,19 @@
 import { useState } from "react";
-import {UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, ButtonDelete, UploadVideo, ChallengeInfo} from '../app/Styles';
+import {
+  UserInfo,
+  ChallengeBox,
+  UploadingDiv,
+  ButtonStyle,
+  ButtonDelete,
+  UploadVideo,
+  ChallengeInfo,
+} from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
-import {updateChallenge, postChallengeVideo, deleteChallenge} from '../app/api/Challenge';
+import {
+  updateChallenge,
+  postChallengeVideo,
+  deleteChallenge,
+} from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
 
 const Challenge = ({ ch, refetch }) => {
@@ -72,7 +84,9 @@ const Challenge = ({ ch, refetch }) => {
           />
         )}
         <p>{ch.watcher.username}</p>
-        {user.rol === "moderador" && <ButtonDelete onClick={handleDelete}>X</ButtonDelete>} 
+        {user.rol === "moderador" && (
+          <ButtonDelete onClick={handleDelete}>X</ButtonDelete>
+        )}
       </UserInfo>
       <ChallengeInfo>
         <p>Challenges you to: {ch.description}</p>
@@ -104,19 +118,23 @@ const Challenge = ({ ch, refetch }) => {
               </UploadingDiv>
             ) : (
               <form onSubmit={handleVideo} encType="multipart/form-data">
-                <input
-                  id="file-upload"
-                  type="file"
-                  accept="video/*"
-                  onChange={(e) => setFile(e.target.files[0])}
-                />
+                {file ? (
+                  <button>Upload video</button>
+                ) : (
+                  <input
+                    id="file-upload"
+                    type="file"
+                    accept="video/*"
+                    onChange={(e) => setFile(e.target.files[0])}
+                  />
+                )}
               </form>
             )}
             {uploadError && <p style={{ color: "red" }}>{uploadError}</p>}
           </UploadVideo>
         )}
       </ChallengeInfo>
-    </ChallengeBox >
+    </ChallengeBox>
   );
 };
 
