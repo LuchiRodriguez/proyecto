@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postUser } from "../app/api/Login";
 import { createUser } from "../app/api/Register";
+import SelectRol from "../components/SelectRol";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -99,12 +100,13 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           ></input>
-          <ChooseRol>
+          {/* <ChooseRol>
             <input type="radio" name="rol" onClick={() => setRol("player")} />
             <label htmlFor="jugador">Player</label>
             <input type="radio" name="rol" onClick={() => setRol("watcher")} />
             <label htmlFor="observador">Watcher</label>
-          </ChooseRol>
+          </ChooseRol> */}
+          <SelectRol />
           <p>
             Already have an account ?<br />
             <span onClick={() => setExistingUser(true)}>Login</span>
