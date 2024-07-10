@@ -143,14 +143,9 @@
 // export default Challenge;
 
 import { useState } from "react";
-import {
-  UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, ButtonDelete,
-  UploadVideo, ChallengeInfo,
-} from "../app/Styles";
+import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, ButtonDelete, UploadVideo, ChallengeInfo, } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
-import {
-  updateChallenge, postChallengeVideo, deleteChallenge,
-} from "../app/api/Challenge";
+import { updateChallenge, postChallengeVideo, deleteChallenge, } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
 import loadingicono from "../app/img/lodingicon.gif"
 
