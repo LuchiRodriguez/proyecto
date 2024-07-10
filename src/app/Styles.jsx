@@ -203,7 +203,13 @@ export const Interaction = styled.div`
   border-top: 2px solid var(--blue);
   margin-top: 10px;
   padding: 10px;
+  button {
+    background-color: var(--black);
+    border: none;
+    padding: 0;
+  }
   img {
+    background-color: var(--black);
     width: 20px;
     height: 20px;
   }

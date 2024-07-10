@@ -116,7 +116,8 @@ const Login = () => {
             labelOn="Player"
             labelOff="Watcher"
             isChecked={isOn}
-            onChange={handleToggle}
+            setRol={setRol}
+            onChange={() => handleToggle()}
             theme={{
               background: "#eee",
               toggleActive: "#03e9f4", // Custom green
