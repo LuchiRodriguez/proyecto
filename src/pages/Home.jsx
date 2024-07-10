@@ -1,7 +1,6 @@
 import { useEffect, useState, lazy, Suspense, useRef } from "react";
 import NavBar from "../components/NavBar";
-import { getChallenges } from "../app/api/Challenge";
-import { postVideo } from "../app/api/Video";
+import { getChallenges, postChallengeVideo } from "../app/api/Challenge";
 import {
   UserInfo,
   ChallengeInfo,
@@ -10,30 +9,31 @@ import {
 } from "../app/Styles";
 import dislike from "../app/img/dislike.png";
 import likeImg from "../app/img/like.png";
+import { useUserContext } from "../app/UserProvider";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const Home = () => {
-  const [videos, setVideos] = useState([]);
+  const [user] = useUserContext();
+  const [allChallenges, setAllChallenges] = useState([]);
   const videoRefs = useRef([]);
   const [like, setLike] = useState(false);
 
   const handleLike = async (ch) => {
     const formData = new FormData();
     formData.append("id", ch.id);
+    formData.append("user", user.username);
     setLike(!like);
 
     try {
-      await postVideo(ch.id);
+      await postChallengeVideo(ch.id);
     } catch (error) {
       console.error("Error liking:", error);
     }
   };
 
-  const challenge = allChallenges.filter(
-    (challenges) => challenges.videos !== null
-  );
-  console.log(challenge);
+  const challenge = allChallenges.filter((challenges) => challenges.videos !== null);
+
   useEffect(() => {
     getChallenges().then((data) => {
       setAllChallenges(data.data);
@@ -61,13 +61,14 @@ const Home = () => {
     });
 
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       videoRefs.current.forEach((video) => {
         if (video) {
           observer.unobserve(video);
         }
       });
     };
-  }, []);
+  }, [challenge]);
 
   return (
     <>
