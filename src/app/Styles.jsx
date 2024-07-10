@@ -128,7 +128,6 @@ export const PerfilStyle = styled.div`
   height: 88vh;
   background-size: cover;
   background-position: center;
-  
 `;
 
 export const ProfileImg = styled.div`
@@ -502,5 +501,49 @@ background: none;
   width: 20px;
   height: 20px;
   cursor: pointer;
-}
+  position: relative;
+  margin-top: 20px;
+  width: 100px;
+  height: 40px;
+  background-color: var(--black);
+  border-radius: 17px;
+  input {
+    width: 100px;
+  }
+`;
+
+export const SwitchSlider = styled.div`
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+  border-radius: 17px;
+  background-color: ${({ $ischecked, theme }) =>
+    $ischecked ? theme.toggleActive : theme.toggleInactive};
+`;
+
+export const SwitchInput = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  z-index: -1;
+
+  &:checked + ${SwitchSlider} {
+    transform: translateX(calc(100% - 100px));
+  }
+`;
+
+export const SwitchText = styled.span`
+  font-weight: bolder;
+  position: absolute;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--black);
+  transition: 0.3s;
+  transform: ${({ $ischecked }) =>
+    $ischecked ? "translateX(18px)" : "translateX(10px)"};
 `;
