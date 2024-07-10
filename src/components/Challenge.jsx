@@ -23,16 +23,19 @@ const Challenge = ({ ch, refetch }) => {
   const [uploadError, setUploadError] = useState("");
   const [acceptChallengeError, setAcceptChallengeError] = useState("");
   const navigate = useNavigate();
+
+
   const handleVideo = async (e) => {
     e.preventDefault();
     setIsUploading(true);
     setUploadError(""); //Clear any previous upload errors
 
     const formData = new FormData();
-    formData.append("file", file);
     formData.append("player", user.username);
     formData.append("watcher", ch.watcher.username);
+    formData.append("file", file);
     formData.append("points", ch.points);
+    formData.append("challenge", ch.id);
 
     if (file && file.size > 500 * 1024 * 1024) {
       setUploadError(
@@ -43,7 +46,7 @@ const Challenge = ({ ch, refetch }) => {
     }
 
     try {
-      await postChallengeVideo(ch.id, formData);
+      await postChallengeVideo(formData);
       refetch();
       setIsUploading(false);
       navigate("/");

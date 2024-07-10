@@ -6,14 +6,14 @@ import {UserInfo, ChallengeInfo, ChallengeVideo} from '../app/Styles';
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const Home = () => {
-  const [videos, setVideos] = useState([]);
+  const [allChallenges, setAllChallenges] = useState([]);
   const videoRefs = useRef([]);
 
-  const challenges = videos.filter((video) => video.videoUrl !== null);
-
+  const challenge = allChallenges.filter((challenges) => challenges.videos !== null);
+console.log(challenge);
   useEffect(() => {
     getChallenges().then((data) => {
-      setVideos(data.data);
+      setAllChallenges(data.data);
     });
   }, []);
 
@@ -45,14 +45,14 @@ const Home = () => {
         }
       });
     };
-  }, [videos]);
+  }, []);
 
   return (
     <>
-      {challenges?.map((challenge, index) => (
+      {challenge?.map((challenge, index) => (
         <ChallengeVideo key={challenge.id}>
           <UserInfo>
-            {challenge.player.imagenUrl ? (
+            {challenge.player.imagenUrl == null ? (
               <img src={challenge.player.imagenUrl} />
             ) : (
               <img
@@ -71,7 +71,7 @@ const Home = () => {
           </ChallengeInfo>
           <Suspense fallback={<div>Loading video...</div>}>
             <LazyVideo
-              src={challenge.videoUrl}
+              src={challenge.videos.videoUrl}
               ref={(el) => (videoRefs.current[index] = el)}
             />
           </Suspense>
@@ -83,3 +83,5 @@ const Home = () => {
 };
 
 export default Home;
+
+
