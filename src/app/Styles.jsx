@@ -195,6 +195,17 @@ export const ChallengeBox = styled.div`
   }
 `;
 
+export const Interaction = styled.div`
+  display: flex;
+  border-top: 2px solid var(--blue);
+  margin-top: 10px;
+  padding: 10px;
+  img {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
 export const ChallengeVideo = styled.div`
   color: #03e9f4;
   font-size: small;

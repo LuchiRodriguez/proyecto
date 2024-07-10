@@ -1,7 +1,14 @@
 import { useEffect, useState, lazy, Suspense, useRef } from "react";
 import NavBar from "../components/NavBar";
 import { getChallenges } from "../app/api/Challenge";
-import {UserInfo, ChallengeInfo, ChallengeVideo} from '../app/Styles';
+import {
+  UserInfo,
+  ChallengeInfo,
+  ChallengeVideo,
+  Interaction,
+} from "../app/Styles";
+import dislike from "../app/img/dislike.png";
+import like from "../app/img/like.png";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
@@ -75,6 +82,9 @@ const Home = () => {
               ref={(el) => (videoRefs.current[index] = el)}
             />
           </Suspense>
+          <Interaction>
+            <img src={dislike} alt="" />
+          </Interaction>
         </ChallengeVideo>
       ))}
       <NavBar />
