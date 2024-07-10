@@ -18,7 +18,7 @@ export const cancelChallenge = async (id) => await axios.patch(`/challenge/${id}
 
 // UPLOAD VIDEO
 // export const postChallengeVideo = async (id, file) => await instance.post(`/${id}/upload`, file);
-export const postChallengeVideo = async (id, formData) => await instance.post(`/challenge/${id}/upload`, formData, {
+export const postChallengeVideo = async (formData) => await instance.post('/challenge/upload', formData, {
   headers: {
     'Content-Type': 'multipart/form-data'
   }

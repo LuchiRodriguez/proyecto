@@ -6,8 +6,6 @@ import Theme from "./components/Theme";
 const App = () => {
   const { user } = UserHook();
 
-  console.log("User role:", user?.rol);
-
   return (<Theme rol={user?.rol || "default"}>{user ? <Router /> : <PublicRoutes />}</Theme>)
 };
 
