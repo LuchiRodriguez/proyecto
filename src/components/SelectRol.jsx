@@ -6,17 +6,33 @@ import {
 } from "../app/Styles";
 import { useState } from "react";
 
-const SelectRol = ({ labelOn, labelOff, isChecked, onChange, theme }) => {
+const SelectRol = ({
+  labelOn,
+  labelOff,
+  isChecked,
+  onChange,
+  theme,
+  setRol,
+}) => {
   const [checked, setChecked] = useState(isChecked);
 
   const handleToggle = () => {
     setChecked(!checked);
     onChange && onChange(!checked); // Call provided onChange function
+    if (checked) {
+      setRol("Player");
+    } else {
+      setRol("Watcher");
+    }
   };
 
   return (
     <SwitchContainer theme={theme}>
-      <SwitchInput type="checkbox" checked={checked} onChange={handleToggle} />
+      <SwitchInput
+        type="checkbox"
+        checked={checked}
+        onChange={() => handleToggle()}
+      />
       <SwitchSlider isChecked={checked} theme={theme} />
       <SwitchText isChecked={checked}>
         {checked ? labelOn : labelOff}
@@ -33,7 +49,7 @@ SelectRol.defaultProps = {
     background: "#ccc",
     toggleActive: "#03e9f4", // Green
     toggleInactive: "#f40e03", // Red
-    text: "#000",
+    text: "#202124",
   },
 };
 

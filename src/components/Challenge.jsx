@@ -119,7 +119,10 @@ const Challenge = ({ ch, refetch }) => {
                 <h3>Uploading file, please wait...</h3>
               </UploadingDiv>
             ) : (
-              <form onSubmit={handleVideo} encType="multipart/form-data">
+              <form
+                onSubmit={() => handleVideo()}
+                encType="multipart/form-data"
+              >
                 {file ? (
                   <button>Upload video</button>
                 ) : (
