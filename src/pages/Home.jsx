@@ -1,19 +1,42 @@
 import { useEffect, useState, lazy, Suspense, useRef } from "react";
 import NavBar from "../components/NavBar";
 import { getChallenges } from "../app/api/Challenge";
-import {UserInfo, ChallengeInfo, ChallengeVideo} from '../app/Styles';
+import { postVideo } from "../app/api/Video";
+import {
+  UserInfo,
+  ChallengeInfo,
+  ChallengeVideo,
+  Interaction,
+} from "../app/Styles";
+import dislike from "../app/img/dislike.png";
+import likeImg from "../app/img/like.png";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const Home = () => {
   const [videos, setVideos] = useState([]);
   const videoRefs = useRef([]);
+  const [like, setLike] = useState(false);
 
-  const challenges = videos.filter((video) => video.videoUrl !== null);
+  const handleLike = async (ch) => {
+    const formData = new FormData();
+    formData.append("id", ch.id);
+    setLike(!like);
 
+    try {
+      await postVideo(ch.id);
+    } catch (error) {
+      console.error("Error liking:", error);
+    }
+  };
+
+  const challenge = allChallenges.filter(
+    (challenges) => challenges.videos !== null
+  );
+  console.log(challenge);
   useEffect(() => {
     getChallenges().then((data) => {
-      setVideos(data.data);
+      setAllChallenges(data.data);
     });
   }, []);
 
@@ -38,21 +61,20 @@ const Home = () => {
     });
 
     return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       videoRefs.current.forEach((video) => {
         if (video) {
           observer.unobserve(video);
         }
       });
     };
-  }, [videos]);
+  }, []);
 
   return (
     <>
-      {challenges?.map((challenge, index) => (
+      {challenge?.map((challenge, index) => (
         <ChallengeVideo key={challenge.id}>
           <UserInfo>
-            {challenge.player.imagenUrl ? (
+            {challenge.player.imagenUrl == null ? (
               <img src={challenge.player.imagenUrl} />
             ) : (
               <img
@@ -71,10 +93,15 @@ const Home = () => {
           </ChallengeInfo>
           <Suspense fallback={<div>Loading video...</div>}>
             <LazyVideo
-              src={challenge.videoUrl}
+              src={challenge.videos.videoUrl}
               ref={(el) => (videoRefs.current[index] = el)}
             />
           </Suspense>
+          <Interaction>
+            <button onClick={() => handleLike(challenge)}>
+              <img src={!like ? likeImg : dislike} alt="" />
+            </button>
+          </Interaction>
         </ChallengeVideo>
       ))}
       <NavBar />

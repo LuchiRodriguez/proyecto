@@ -13,9 +13,12 @@ export const deleteChallenge = async (id) => await instance.delete(`/challenge/$
 // UPDATE
 export const updateChallenge = async (id, username) => await instance.put(`/challenge/${id}`, { username });
 
+// CANCEL
+export const cancelChallenge = async (id) => await axios.patch(`/challenge/${id}`);
+
 // UPLOAD VIDEO
 // export const postChallengeVideo = async (id, file) => await instance.post(`/${id}/upload`, file);
-export const postChallengeVideo = async (id, formData) => await instance.post(`/challenge/${id}/upload`, formData, {
+export const postChallengeVideo = async (formData) => await instance.post('/challenge/upload', formData, {
   headers: {
     'Content-Type': 'multipart/form-data'
   }

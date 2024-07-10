@@ -126,6 +126,8 @@ export const PerfilStyle = styled.div`
   padding: 10px;
   color: ${(props) => props.theme.primaryColor};
   height: 88vh;
+  background-size: cover;
+  background-position: center;
 `;
 
 export const ProfileImg = styled.div`
@@ -192,6 +194,23 @@ export const ChallengeBox = styled.div`
   video {
     width: 100%;
     border-radius: 10px;
+  }
+`;
+
+export const Interaction = styled.div`
+  display: flex;
+  border-top: 2px solid var(--blue);
+  margin-top: 10px;
+  padding: 10px;
+  button {
+    background-color: var(--black);
+    border: none;
+    padding: 0;
+  }
+  img {
+    background-color: var(--black);
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -328,8 +347,8 @@ export const UploadingDiv = styled.div`
   display: block;
   margin: auto;
   img {
-    width: 20px;
-    height: 20px;
+    width: 60px;
+    height: 60px;
   }
 `;
 
@@ -472,9 +491,15 @@ export const ButtonDelete = styled.button`
   font-size: 16px;
 `;
 
-export const SwitchContainer = styled.label`
-  display: flex;
-  align-items: center;
+export const ChangeProfileButton = styled.button`
+position: fixed;
+border: none;
+top: 30px;
+left: 30px;
+background: none;
+  img {
+  width: 20px;
+  height: 20px;
   cursor: pointer;
   position: relative;
   margin-top: 20px;
@@ -496,8 +521,8 @@ export const SwitchSlider = styled.div`
   bottom: 0;
   transition: 0.4s;
   border-radius: 17px;
-  background-color: ${({ isChecked, theme }) =>
-    isChecked ? theme.toggleActive : theme.toggleInactive};
+  background-color: ${({ $ischecked, theme }) =>
+    $ischecked ? theme.toggleActive : theme.toggleInactive};
 `;
 
 export const SwitchInput = styled.input`
@@ -519,6 +544,6 @@ export const SwitchText = styled.span`
   line-height: 1;
   color: var(--black);
   transition: 0.3s;
-  transform: ${({ isChecked }) =>
-    isChecked ? "translateX(18px)" : "translateX(10px)"};
+  transform: ${({ $ischecked }) =>
+    $ischecked ? "translateX(18px)" : "translateX(10px)"};
 `;

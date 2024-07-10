@@ -1,20 +1,9 @@
 import { useState } from "react";
-import {
-  UserInfo,
-  ChallengeBox,
-  UploadingDiv,
-  ButtonStyle,
-  ButtonDelete,
-  UploadVideo,
-  ChallengeInfo,
-} from "../app/Styles";
+import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, ButtonDelete, UploadVideo, ChallengeInfo, } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
-import {
-  updateChallenge,
-  postChallengeVideo,
-  deleteChallenge,
-} from "../app/api/Challenge";
+import { updateChallenge, postChallengeVideo, deleteChallenge, } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
+import loadingicono from "../app/img/lodingicon.gif"
 
 const Challenge = ({ ch, refetch }) => {
   const [user] = useUserContext();
@@ -22,34 +11,35 @@ const Challenge = ({ ch, refetch }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState("");
   const [acceptChallengeError, setAcceptChallengeError] = useState("");
+  const [challengeAccepted, setChallengeAccepted] = useState(ch.player !== null);
   const navigate = useNavigate();
+
   const handleVideo = async (e) => {
     e.preventDefault();
     setIsUploading(true);
-    setUploadError(""); //Clear any previous upload errors
+    setUploadError("");
 
     const formData = new FormData();
-    formData.append("file", file);
     formData.append("player", user.username);
     formData.append("watcher", ch.watcher.username);
+    formData.append("file", file);
     formData.append("points", ch.points);
+    formData.append("challenge", ch.id);
 
     if (file && file.size > 500 * 1024 * 1024) {
-      setUploadError(
-        "File size exceeds the limit (500 MB). Please upload a smaller file."
-      );
+      setUploadError("File size exceeds the limit (500 MB). Please upload a smaller file.");
       setIsUploading(false);
       return;
     }
 
     try {
-      await postChallengeVideo(ch.id, formData);
+      await postChallengeVideo(formData);
       refetch();
       setIsUploading(false);
       navigate("/");
     } catch (error) {
       console.error("Error uploading video:", error);
-      setUploadError("Failed to upload video. Please try again.");
+      setUploadError("Failed to upload video. Please try again.")
       setIsUploading(false);
     }
   };
@@ -58,10 +48,15 @@ const Challenge = ({ ch, refetch }) => {
     try {
       await updateChallenge(ch.id, user.username);
       refetch();
+      setChallengeAccepted(true);
     } catch (error) {
       console.error("Error accepting challenge:", error);
       setAcceptChallengeError("Failed to accept challenge. Please try again");
     }
+  };
+
+  const handleCancel = () => {
+    setChallengeAccepted(false);
   };
 
   const handleDelete = async () => {
@@ -77,7 +72,7 @@ const Challenge = ({ ch, refetch }) => {
   return (
     <ChallengeBox>
       <UserInfo>
-        {ch.watcher.imagenUrl ? (
+        {ch.watcher.imagenUrl != null ? (
           <img src={ch.watcher.imagenUrl} />
         ) : (
           <img
@@ -94,14 +89,20 @@ const Challenge = ({ ch, refetch }) => {
         <p>Challenges you to: {ch.description}</p>
         <p>Reward: {ch.points}</p>
 
-        {ch.player != null ? (
-          <p className="watcher">
-            Accepted by <span>{ch.player.username}</span>
-          </p>
+        {challengeAccepted ? (
+          <>
+            <p className="watcher">
+              Accepted by <span>{user.username}</span>
+            </p>
+            <ButtonStyle
+              onClick={handleCancel}>
+              Cancelar desafío
+            </ButtonStyle>
+          </>
         ) : (
-          user.rol == "player" && (
+          user.rol === "player" && (
             <>
-              <ButtonStyle onClick={() => handleClick()}>
+              <ButtonStyle onClick={handleClick}>
                 Accept challenge
               </ButtonStyle>
               {acceptChallengeError && (
@@ -111,15 +112,18 @@ const Challenge = ({ ch, refetch }) => {
           )
         )}
 
-        {ch.player != null && (
+        {challengeAccepted && (
           <UploadVideo>
             {isUploading ? (
               <UploadingDiv>
-                <img src="https://i.gifer.com/ZKZg.gif" alt="Uploading..." />
+                <img src={loadingicono} alt="Uploading..." />
                 <h3>Uploading file, please wait...</h3>
               </UploadingDiv>
             ) : (
-              <form onSubmit={handleVideo} encType="multipart/form-data">
+              <form
+                onSubmit={() => handleVideo()}
+                encType="multipart/form-data"
+              >
                 {file ? (
                   <button>Upload video</button>
                 ) : (

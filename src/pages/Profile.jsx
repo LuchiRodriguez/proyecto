@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn } from "../app/Styles";
+import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, ChangeProfileButton } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
 import { useNavigate } from "react-router-dom";
 import logoutBtn from "../app/img/logout.png";
+import pencilIcon from "../app/img/pencil.png";
 
 const Profile = () => {
   const [user, setUser] = useUserContext();
@@ -21,7 +22,6 @@ const Profile = () => {
 
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
-    // Here you can do the server's peticion for uploading the image. 
     if (file) {
       const formData = new FormData();
       formData.append("username", userProfile.username);
@@ -31,17 +31,17 @@ const Profile = () => {
       refetch();
     }
   };
+
   const logout = () => {
     localStorage.removeItem("user");
     setUser();
     navigate("/");
   };
 
-
-
   return (
     <>
       <PerfilStyle>
+
         <ProfileImg>
           <input
             type="file"
@@ -57,11 +57,11 @@ const Profile = () => {
                 : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
             }
             alt=""
-            onClick={() => document.getElementById("fileInput").click()}
             style={{ cursor: "pointer" }}
           />
+
           <p>{user.rol}</p>
-          <p>{userProfile.username} </p>
+          <p>{userProfile.username}</p>
         </ProfileImg>
         {user.rol === "player" && (
           <ProfileInfo>
@@ -84,9 +84,12 @@ const Profile = () => {
           </ProfileInfo>
         )}
       </PerfilStyle>
-      <LogoutBtn onClick={() => logout()}>
-        <img src={logoutBtn} alt="" />
+      <LogoutBtn onClick={logout}>
+        <img src={logoutBtn} alt="Logout" />
       </LogoutBtn>
+      <ChangeProfileButton onClick={() => console.log()}>
+        <img src={pencilIcon} alt="" />
+      </ChangeProfileButton>
       <NavBar />
     </>
   );
