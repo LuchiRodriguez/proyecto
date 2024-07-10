@@ -492,14 +492,20 @@ export const ButtonDelete = styled.button`
 `;
 
 export const ChangeProfileButton = styled.button`
-position: fixed;
-border: none;
-top: 30px;
-left: 30px;
-background: none;
+  position: fixed;
+  border: none;
+  top: 30px;
+  left: 30px;
+  background: none;
   img {
-  width: 20px;
-  height: 20px;
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+export const SwitchContainer = styled.label`
+  display: flex;
+  align-items: center;
   cursor: pointer;
   position: relative;
   margin-top: 20px;
