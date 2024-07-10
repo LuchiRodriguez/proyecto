@@ -14,7 +14,7 @@ const Challenges = () => {
 
   const refetch = () => {
     getChallenges().then((data) => {
-      setChallenges(data.data)
+      setChallenges(data.data);
     });
   };
 
@@ -26,7 +26,7 @@ const Challenges = () => {
 
   return (
     <>
-      <ChallengesList $create={create}>
+      <ChallengesList>
         {challenge.map((ch) => (
           <Challenge key={ch.id} ch={ch} refetch={refetch} />
         ))}
