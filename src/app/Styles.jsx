@@ -454,70 +454,53 @@ export const ButtonDelete = styled.button`
   font-size: 16px;
 `;
 
-export const SwitchButton = styled.div`
-  border-radius: 10px;
-  overflow: hidden;
-  width: 240px;
-  text-align: center;
-  font-size: 18px;
-  letter-spacing: 1px;
-  color: var(--blue);
+export const SwitchContainer = styled.label`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
   position: relative;
-  padding-right: 120px;
-  position: relative;
-  margin-top: 30px;
-
-  &::before {
-    content: "Wacther";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    pointer-events: none;
-  }
-
+  margin-top: 20px;
+  width: 100px;
+  height: 40px;
+  background-color: var(--black);
+  border-radius: 17px;
   input {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 2;
+    width: 100px;
+  }
+`;
 
-    &::checked + label::before {
-      transform: translateX(120px);
-      transition: transform 300ms linear;
-    }
-  }
-  label {
-    position: relative;
-    padding: 15px 0;
-    display: block;
-    user-select: none;
-    pointer-events: none;
+export const SwitchSlider = styled.div`
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+  border-radius: 17px;
+  background-color: ${({ isChecked, theme }) =>
+    isChecked ? theme.toggleActive : theme.toggleInactive};
+`;
 
-    &::before {
-      content: "";
-      background: #fff;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      border-radius: 30px;
-      transform: translateX(0);
-      transition: transform 300ms;
-    }
+export const SwitchInput = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  z-index: -1;
+
+  &:checked + ${SwitchSlider} {
+    transform: translateX(calc(100% - 100px));
   }
-  span {
-    position: relative;
-  }
+`;
+
+export const SwitchText = styled.span`
+  font-weight: bolder;
+  position: absolute;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--black);
+  transition: 0.3s;
+  transform: ${({ isChecked }) =>
+    isChecked ? "translateX(18px)" : "translateX(10px)"};
 `;

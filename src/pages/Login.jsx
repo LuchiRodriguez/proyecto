@@ -18,6 +18,12 @@ const Login = () => {
   const [user, setUser] = useUserContext();
   const [error, setError] = useState();
 
+  const [isOn, setIsOn] = useState(false);
+
+  const handleToggle = (newValue) => {
+    setIsOn(newValue);
+  };
+
   return (
     <Form>
       {existingUser ? (
@@ -106,7 +112,17 @@ const Login = () => {
             <input type="radio" name="rol" onClick={() => setRol("watcher")} />
             <label htmlFor="observador">Watcher</label>
           </ChooseRol> */}
-          <SelectRol />
+          <SelectRol
+            labelOn="Player"
+            labelOff="Watcher"
+            isChecked={isOn}
+            onChange={handleToggle}
+            theme={{
+              background: "#eee",
+              toggleActive: "#03e9f4", // Custom green
+              toggleInactive: "#f40e03", // Custom red
+            }}
+          />
           <p>
             Already have an account ?<br />
             <span onClick={() => setExistingUser(true)}>Login</span>
