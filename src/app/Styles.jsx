@@ -224,14 +224,22 @@ export const ButtonChallenge = styled(Link)`
 
 export const PopUpCreateChallenge = styled.div`
   display: ${({ $create }) => ($create ? "flex" : "none")};
+  background-color: rgba(32, 33, 36, 0.9);
+  position: absolute;
   align-items: center;
   justify-content: center;
   height: 95vh;
   color: #03e9f4;
   font-size: small;
+  top: 0;
+  bottom: 0;
+  right: 20px;
+  left: 20px;
   form {
-    width: 300px;
+    display: flex;
+    width: 100%;
     height: 300px;
+    background-color: var(--black);
     flex-direction: column;
     justify-content: space-between;
     border: 2px solid #03e9f4;
@@ -300,10 +308,20 @@ export const PopUpCreateChallenge = styled.div`
       background-color: #202124;
     }
   }
+  .closeButton {
+    position: absolute;
+    top: 250px;
+    right: 15px;
+    background-color: var(--black);
+    color: var(--blue);
+    border-radius: 10px;
+    border: none;
+    font-size: medium;
+  }
 `;
 
 export const ChallengesList = styled.div`
-  display: ${({ $create }) => ($create ? "none" : "block")};
+  display: block;
 `;
 
 export const UploadingDiv = styled.div`
