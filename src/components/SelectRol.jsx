@@ -9,20 +9,20 @@ import { useState } from "react";
 const SelectRol = ({
   labelOn,
   labelOff,
-  isChecked,
+  ischecked,
   onChange,
   theme,
   setRol,
 }) => {
-  const [checked, setChecked] = useState(isChecked);
+  const [checked, setChecked] = useState(ischecked);
 
   const handleToggle = () => {
     setChecked(!checked);
     onChange && onChange(!checked); // Call provided onChange function
-    if (checked) {
-      setRol("Player");
+    if (!checked) {
+      setRol("player");
     } else {
-      setRol("Watcher");
+      setRol("watcher");
     }
   };
 

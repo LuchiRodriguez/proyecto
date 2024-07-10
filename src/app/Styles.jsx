@@ -513,8 +513,8 @@ export const SwitchSlider = styled.div`
   bottom: 0;
   transition: 0.4s;
   border-radius: 17px;
-  background-color: ${({ isChecked, theme }) =>
-    isChecked ? theme.toggleActive : theme.toggleInactive};
+  background-color: ${({ $ischecked, theme }) =>
+    $ischecked ? theme.toggleActive : theme.toggleInactive};
 `;
 
 export const SwitchInput = styled.input`
@@ -536,6 +536,6 @@ export const SwitchText = styled.span`
   line-height: 1;
   color: var(--black);
   transition: 0.3s;
-  transform: ${({ isChecked }) =>
-    isChecked ? "translateX(18px)" : "translateX(10px)"};
+  transform: ${({ $ischecked }) =>
+    $ischecked ? "translateX(18px)" : "translateX(10px)"};
 `;
