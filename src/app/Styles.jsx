@@ -313,8 +313,8 @@ export const UploadingDiv = styled.div`
   display: block;
   margin: auto;
   img {
-    width: 20px;
-    height: 20px;
+    width: 60px;
+    height: 60px;
   }
 `;
 
@@ -455,4 +455,17 @@ export const ButtonDelete = styled.button`
   width: 30px;
   height: 30px;
   font-size: 16px;
+`;
+
+export const ChangeProfileButton = styled.button`
+position: fixed;
+border: none;
+top: 30px;
+left: 30px;
+background: none;
+  img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
 `;

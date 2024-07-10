@@ -1,12 +1,7 @@
 import { useState } from "react";
 import {
-  UserInfo,
-  ChallengeBox,
-  UploadingDiv,
-  ButtonStyle,
-  ButtonDelete,
-  UploadVideo,
-  ChallengeInfo,
+  UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, ButtonDelete,
+  UploadVideo, ChallengeInfo,
 } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import {
@@ -15,6 +10,7 @@ import {
   deleteChallenge,
 } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
+import loadingicono from "../app/img/lodingicon.gif"
 
 const Challenge = ({ ch, refetch }) => {
   const [user] = useUserContext();
@@ -113,7 +109,7 @@ const Challenge = ({ ch, refetch }) => {
           <UploadVideo>
             {isUploading ? (
               <UploadingDiv>
-                <img src="https://i.gifer.com/ZKZg.gif" alt="Uploading..." />
+                <img src={loadingicono} alt="Uploading..." />
                 <h3>Uploading file, please wait...</h3>
               </UploadingDiv>
             ) : (
