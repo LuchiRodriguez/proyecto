@@ -1,6 +1,6 @@
 import { useEffect, useState, lazy, Suspense, useRef } from "react";
 import NavBar from "../components/NavBar";
-import { getChallenges } from "../app/api/Challenge";
+import { getChallenges, postChallengeVideo } from "../app/api/Challenge";
 import {
   UserInfo,
   ChallengeInfo,
@@ -8,15 +8,31 @@ import {
   Interaction,
 } from "../app/Styles";
 import dislike from "../app/img/dislike.png";
-import like from "../app/img/like.png";
+import likeImg from "../app/img/like.png";
+import { useUserContext } from "../app/UserProvider";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const Home = () => {
+  const [user] = useUserContext();
   const [videos, setVideos] = useState([]);
   const videoRefs = useRef([]);
+  const [like, setLike] = useState(false);
 
   const challenges = videos.filter((video) => video.videoUrl !== null);
+
+  const handleLike = async (ch) => {
+    const formData = new FormData();
+    formData.append("id", ch.id);
+    formData.append("user", user.username);
+    setLike(!like);
+
+    try {
+      await postChallengeVideo(ch.id);
+    } catch (error) {
+      console.error("Error liking:", error);
+    }
+  };
 
   useEffect(() => {
     getChallenges().then((data) => {
@@ -83,7 +99,9 @@ const Home = () => {
             />
           </Suspense>
           <Interaction>
-            <img src={dislike} alt="" />
+            <button onClick={() => handleLike(challenge)}>
+              <img src={!like ? likeImg : dislike} alt="" />
+            </button>
           </Interaction>
         </ChallengeVideo>
       ))}
