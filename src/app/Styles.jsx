@@ -391,7 +391,7 @@ export const Li = styled.li`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 2px solid var(--blue);
+    border: 2px solid /*var(--blue)*/ ${(props) => props.theme.primaryColor} ;
     object-fit: cover;
   }
   p {
@@ -403,7 +403,7 @@ export const ButtonStyle = styled.button`
   border: 1px solid var(--red);
   border-radius: 5px;
   background-color: transparent;
-  color: var(--blue);
+  color: var(--red);
   text-transform: uppercase;
   font-family: Roboto;
   padding: 7px;
@@ -475,7 +475,7 @@ export const ThirdPlace = styled.div`
 `;
 
 export const AnotherPlace = styled.div`
-  border: 1px solid var(--blue);
+  border: 1px solid var(--red);
   border-radius: 10px;
 `;
 
@@ -492,14 +492,20 @@ export const ButtonDelete = styled.button`
 `;
 
 export const ChangeProfileButton = styled.button`
-position: fixed;
-border: none;
-top: 30px;
-left: 30px;
-background: none;
+  position: fixed;
+  border: none;
+  top: 30px;
+  left: 30px;
+  background: none;
   img {
-  width: 20px;
-  height: 20px;
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+export const SwitchContainer = styled.label`
+  display: flex;
+  align-items: center;
   cursor: pointer;
   position: relative;
   margin-top: 20px;
