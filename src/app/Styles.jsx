@@ -453,3 +453,54 @@ export const ButtonDelete = styled.button`
   height: 30px;
   font-size: 16px;
 `;
+
+export const SwitchContainer = styled.label`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  margin-top: 20px;
+  width: 100px;
+  height: 40px;
+  background-color: var(--black);
+  border-radius: 17px;
+  input {
+    width: 100px;
+  }
+`;
+
+export const SwitchSlider = styled.div`
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+  border-radius: 17px;
+  background-color: ${({ isChecked, theme }) =>
+    isChecked ? theme.toggleActive : theme.toggleInactive};
+`;
+
+export const SwitchInput = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  z-index: -1;
+
+  &:checked + ${SwitchSlider} {
+    transform: translateX(calc(100% - 100px));
+  }
+`;
+
+export const SwitchText = styled.span`
+  font-weight: bolder;
+  position: absolute;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--black);
+  transition: 0.3s;
+  transform: ${({ isChecked }) =>
+    isChecked ? "translateX(18px)" : "translateX(10px)"};
+`;
