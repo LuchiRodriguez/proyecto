@@ -1,14 +1,7 @@
 import { useState } from "react";
-import {
-  UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, ButtonDelete,
-  UploadVideo, ChallengeInfo,
-} from "../app/Styles";
+import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, ButtonDelete, UploadVideo, ChallengeInfo, } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
-import {
-  updateChallenge,
-  postChallengeVideo,
-  deleteChallenge,
-} from "../app/api/Challenge";
+import { updateChallenge, postChallengeVideo, deleteChallenge, } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
 import loadingicono from "../app/img/lodingicon.gif"
 
@@ -18,11 +11,13 @@ const Challenge = ({ ch, refetch }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState("");
   const [acceptChallengeError, setAcceptChallengeError] = useState("");
+  const [challengeAccepted, setChallengeAccepted] = useState(ch.player !== null);
   const navigate = useNavigate();
+
   const handleVideo = async (e) => {
     e.preventDefault();
     setIsUploading(true);
-    setUploadError(""); //Clear any previous upload errors
+    setUploadError("");
 
     const formData = new FormData();
     formData.append("file", file);
@@ -52,10 +47,15 @@ const Challenge = ({ ch, refetch }) => {
     try {
       await updateChallenge(ch.id, user.username);
       refetch();
+      setChallengeAccepted(true);
     } catch (error) {
       console.error("Error accepting challenge:", error);
       setAcceptChallengeError("Failed to accept challenge. Please try again");
     }
+  };
+
+  const handleCancel = () => {
+    setChallengeAccepted(false);
   };
 
   const handleDelete = async () => {
@@ -88,14 +88,20 @@ const Challenge = ({ ch, refetch }) => {
         <p>Challenges you to: {ch.description}</p>
         <p>Reward: {ch.points}</p>
 
-        {ch.player != null ? (
-          <p className="watcher">
-            Accepted by <span>{ch.player.username}</span>
-          </p>
+        {challengeAccepted ? (
+          <>
+            <p className="watcher">
+              Accepted by <span>{user.username}</span>
+            </p>
+            <ButtonStyle
+              onClick={handleCancel}>
+              Cancelar desafío
+            </ButtonStyle>
+          </>
         ) : (
-          user.rol == "player" && (
+          user.rol === "player" && (
             <>
-              <ButtonStyle onClick={() => handleClick()}>
+              <ButtonStyle onClick={handleClick}>
                 Accept challenge
               </ButtonStyle>
               {acceptChallengeError && (
@@ -105,7 +111,7 @@ const Challenge = ({ ch, refetch }) => {
           )
         )}
 
-        {ch.player != null && (
+        {challengeAccepted && (
           <UploadVideo>
             {isUploading ? (
               <UploadingDiv>
