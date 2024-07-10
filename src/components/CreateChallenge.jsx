@@ -37,6 +37,9 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
   //that is not displayed or that cannot be modified. the ID
   return (
     <PopUpCreateChallenge $create={create}>
+      <button className="closeButton" onClick={() => setCreate(!create)}>
+        x
+      </button>
       <form onSubmit={handleSubmit}>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <label htmlFor="description">Description: </label>

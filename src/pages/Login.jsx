@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postUser } from "../app/api/Login";
 import { createUser } from "../app/api/Register";
+import SelectRol from "../components/SelectRol";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,6 +17,12 @@ const Login = () => {
   const [points, setPoints] = useState();
   const [user, setUser] = useUserContext();
   const [error, setError] = useState();
+
+  const [isOn, setIsOn] = useState(false);
+
+  const handleToggle = (newValue) => {
+    setIsOn(newValue);
+  };
 
   return (
     <Form>
@@ -99,12 +106,23 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           ></input>
-          <ChooseRol>
+          {/* <ChooseRol>
             <input type="radio" name="rol" onClick={() => setRol("player")} />
             <label htmlFor="jugador">Player</label>
             <input type="radio" name="rol" onClick={() => setRol("watcher")} />
             <label htmlFor="observador">Watcher</label>
-          </ChooseRol>
+          </ChooseRol> */}
+          <SelectRol
+            labelOn="Player"
+            labelOff="Watcher"
+            isChecked={isOn}
+            onChange={handleToggle}
+            theme={{
+              background: "#eee",
+              toggleActive: "#03e9f4", // Custom green
+              toggleInactive: "#f40e03", // Custom red
+            }}
+          />
           <p>
             Already have an account ?<br />
             <span onClick={() => setExistingUser(true)}>Login</span>
