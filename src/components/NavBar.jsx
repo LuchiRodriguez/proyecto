@@ -1,27 +1,52 @@
 import { Link } from "react-router-dom";
 import { NavBarStyle } from "../app/Styles";
-import userImg from "../app/img/user.png";
-import challenge from "../app/img/challenge.png";
-import home from "../app/img/home.png";
-import ranking from "../app/img/ranking.png";
+import userImgWatcher from "../app/img/watcherNavBar/user.png";
+import challengeWatcher from "../app/img/watcherNavBar/challenge.png";
+import homeWatcher from "../app/img/watcherNavBar/home.png";
+import rankingWatcher from "../app/img/watcherNavBar/ranking.png";
+import { useUserContext } from "../app/UserProvider";
+
+import homePlayer from "../app/img/playerNavBar/home.png";
+import userImgPlayer from "../app/img/playerNavBar/user.png";
+import challengePlayer from "../app/img/playerNavBar/challenge.png";
+import rankingPlayer from "../app/img/playerNavBar/ranking.png"
 
 const NavBar = () => {
+  const [user] = useUserContext();
+
   return (
     <NavBarStyle>
-      <ul>
-        <Link to="/">
-          <img src={home} alt="" />
-        </Link>
-        <Link to="/challenges">
-          <img src={challenge} alt="" />
-        </Link>
-        <Link to="/ranking">
-          <img src={ranking} alt="" />
-        </Link>
-        <Link to="/profile">
-          <img src={userImg} alt="" />
-        </Link>
-      </ul>
+      {user.rol === "watcher" && (
+        <ul>
+          <Link to="/">
+            <img src={homeWatcher} alt="" />
+          </Link>
+          <Link to="/challenges">
+            <img src={challengeWatcher} alt="" />
+          </Link>
+          <Link to="/ranking">
+            <img src={rankingWatcher} alt="" />
+          </Link>
+          <Link to="/profile">
+            <img src={userImgWatcher} alt="" />
+          </Link>
+        </ul>)}
+      {user.rol === "player" && (
+        <ul>
+          <Link to="/">
+            <img src={homePlayer} alt="" />
+          </Link>
+          <Link to="/challenges">
+            <img src={challengePlayer} alt="" />
+          </Link>
+          <Link to="/ranking">
+            <img src={rankingPlayer} alt="" />
+          </Link>
+          <Link to="/profile">
+            <img src={userImgPlayer} alt="" />
+          </Link>
+        </ul>
+      )}
     </NavBarStyle>
   );
 };

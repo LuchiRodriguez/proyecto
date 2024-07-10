@@ -185,7 +185,7 @@ export const ChallengeInfo = styled.div`
 export const ChallengeBox = styled.div`
   color: white;
   font-size: small;
-  border: 2px solid var(--blue);
+  border: 2px solid /*var(--blue);*/ ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 15px;
@@ -196,9 +196,9 @@ export const ChallengeBox = styled.div`
 `;
 
 export const ChallengeVideo = styled.div`
-  color: var(--blue);
+  color: /*var(--blue)*/ ${(props) => props.theme.primaryColor};
   font-size: small;
-  border: 2px solid var(--blue);
+  border: 2px solid /*var(--blue);*/ ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
   video {

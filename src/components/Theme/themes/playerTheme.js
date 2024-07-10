@@ -1,4 +1,4 @@
 export const playerTheme = {
     name: "player",
-    primaryColor: "red",
+    primaryColor: "#F40E03",
 };
