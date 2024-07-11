@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Form, ChooseRol } from "../app/Styles";
+import { Form } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ import SelectRol from "../components/SelectRol";
 const Login = () => {
   const navigate = useNavigate();
   const [existingUser, setExistingUser] = useState(true);
-  const [rol, setRol] = useState();
+  const [rol, setRol] = useState("watcher");
   const [username, setUserName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -29,7 +29,7 @@ const Login = () => {
       {existingUser ? (
         <>
           {error && (
-            <p style={{ color: "rgb(255, 0, 0)" }}>
+            <p style={{ color: "#f40e03" }}>
               {" "}
               Failed to login. Please try again
             </p>
@@ -106,12 +106,6 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           ></input>
-          {/* <ChooseRol>
-            <input type="radio" name="rol" onClick={() => setRol("player")} />
-            <label htmlFor="jugador">Player</label>
-            <input type="radio" name="rol" onClick={() => setRol("watcher")} />
-            <label htmlFor="observador">Watcher</label>
-          </ChooseRol> */}
           <SelectRol
             labelOn="Player"
             labelOff="Watcher"

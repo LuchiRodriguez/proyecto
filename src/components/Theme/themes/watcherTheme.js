@@ -1,4 +1,4 @@
 export const watcherTheme = {
     name: "watcher",
-    primaryColor: "blue",
+    primaryColor: "#03e9f4",
 };

@@ -28,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const NavBarStyle = styled.nav`
-  border-top: 1px solid var(--blue);
+  border-top: 1px solid ${(props) => props.theme.primaryColor};
   box-sizing: border-box;
   position: fixed;
   height: 50px;
@@ -102,33 +102,21 @@ export const Form = styled.form`
   }
 `;
 
-export const ChooseRol = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-  padding: 0;
-  width: 80%;
-  font-size: x-small;
-  input {
-    margin: 0;
-    width: 10px;
-    height: 10px;
-  }
-`;
+export const PlayerProfile = styled.div``;
+export const WatcherProfile = styled.div``;
 
 export const PerfilStyle = styled.div`
   justify-content: space-evenly;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid var(--blue);
-  border-radius: 10px;
+  border: 2px solid;
+  border-radius: 10px ${(props) => props.theme.primaryColor};
   padding: 10px;
   color: ${(props) => props.theme.primaryColor};
   height: 88vh;
   background-size: cover;
   background-position: center;
-  
 `;
 
 export const ProfileImg = styled.div`
@@ -163,7 +151,7 @@ export const UserInfo = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
-  color: var(--blue);
+  color: ${(props) => props.theme.primaryColor};
   img {
     width: 40px;
     height: 40px;
@@ -188,7 +176,7 @@ export const ChallengeInfo = styled.div`
 export const ChallengeBox = styled.div`
   color: white;
   font-size: small;
-  border: 2px solid var(--blue);
+  border: 2px solid /*var(--blue);*/ ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 15px;
@@ -200,7 +188,7 @@ export const ChallengeBox = styled.div`
 
 export const Interaction = styled.div`
   display: flex;
-  border-top: 2px solid var(--blue);
+  border-top: 2px solid ${(props) => props.theme.primaryColor};
   margin-top: 10px;
   padding: 10px;
   button {
@@ -216,9 +204,9 @@ export const Interaction = styled.div`
 `;
 
 export const ChallengeVideo = styled.div`
-  color: var(--blue);
+  color: /*var(--blue)*/ ${(props) => props.theme.primaryColor};
   font-size: small;
-  border: 2px solid var(--blue);
+  border: 2px solid /*var(--blue);*/ ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
   video {
@@ -392,7 +380,7 @@ export const Li = styled.li`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 2px solid var(--blue);
+    border: 2px solid /*var(--blue)*/ ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
   p {
@@ -404,10 +392,10 @@ export const ButtonStyle = styled.button`
   border: 1px solid var(--red);
   border-radius: 5px;
   background-color: transparent;
-  color: var(--blue);
+  color: var(--red);
   text-transform: uppercase;
   font-family: Roboto;
-  padding: 7px;
+  padding: 10px;
 `;
 
 export const InputStyle = styled.input`
@@ -430,20 +418,19 @@ export const UploadVideo = styled.div`
     display: block;
     border: 1px solid var(--red);
     background-color: var(--black);
-    color: var(--blue);
-    border-radius: 10px;
+    color: white;
+    border-radius: 5px;
     padding: 10px;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 33%;
   }
   button {
     display: block;
     border: 1px solid var(--red);
     background-color: var(--black);
-    color: var(--blue);
-    border-radius: 10px;
+    color: white;
+    border-radius: 5px;
     padding: 10px;
-    margin: auto;
+    margin-left: 31%;
   }
 `;
 
@@ -476,7 +463,7 @@ export const ThirdPlace = styled.div`
 `;
 
 export const AnotherPlace = styled.div`
-  border: 1px solid var(--blue);
+  border: 1px solid var(--red);
   border-radius: 10px;
 `;
 
@@ -493,16 +480,66 @@ export const ButtonDelete = styled.button`
 `;
 
 export const ChangeProfileButton = styled.button`
-position: fixed;
-border: none;
-top: 30px;
-left: 30px;
-background: none;
+  position: fixed;
+  border: none;
+  top: 30px;
+  left: 30px;
+  background: none;
   img {
-  width: 20px;
-  height: 20px;
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+export const SwitchContainer = styled.label`
+  display: flex;
+  align-items: center;
   cursor: pointer;
-}
+  position: relative;
+  margin-top: 20px;
+  width: 100px;
+  height: 40px;
+  background-color: var(--black);
+  border-radius: 17px;
+  input {
+    width: 100px;
+  }
+`;
+
+export const SwitchSlider = styled.div`
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+  border-radius: 17px;
+  background-color: ${({ $ischecked, theme }) =>
+    $ischecked ? theme.toggleActive : theme.toggleInactive};
+`;
+
+export const SwitchInput = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  z-index: -1;
+
+  &:checked + ${SwitchSlider} {
+    transform: translateX(calc(100% - 100px));
+  }
+`;
+
+export const SwitchText = styled.span`
+  font-weight: bolder;
+  position: absolute;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--black);
+  transition: 0.3s;
+  transform: ${({ $ischecked }) =>
+    $ischecked ? "translateX(18px)" : "translateX(10px)"};
 `;
 
 export const SwitchContainer = styled.label`

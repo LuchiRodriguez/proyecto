@@ -7,19 +7,19 @@ import {
   ChallengeVideo,
   Interaction,
 } from "../app/Styles";
-import dislike from "../app/img/dislike.png";
-import likeImg from "../app/img/like.png";
+import dislikeWatcher from "../app/img/watcherNavBar/dislike.png";
+import likeImgWatcher from "../app/img/watcherNavBar/like.png";
+import likeImgPlayer from "../app/img/playerNavBar/like.png";
+import dislikePlayer from "../app/img/playerNavBar/dislike.png";
 import { useUserContext } from "../app/UserProvider";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const Home = () => {
   const [user] = useUserContext();
-  const [videos, setVideos] = useState([]);
+  const [allChallenges, setAllChallenges] = useState([]);
   const videoRefs = useRef([]);
   const [like, setLike] = useState(false);
-
-  const challenges = videos.filter((video) => video.videoUrl !== null);
 
   const handleLike = async (ch) => {
     const formData = new FormData();
@@ -34,9 +34,13 @@ const Home = () => {
     }
   };
 
+  const challenge = allChallenges.filter(
+    (challenges) => challenges.videos !== null
+  );
+
   useEffect(() => {
     getChallenges().then((data) => {
-      setVideos(data.data);
+      setAllChallenges(data.data);
     });
   }, []);
 
@@ -68,14 +72,14 @@ const Home = () => {
         }
       });
     };
-  }, [videos]);
+  }, [challenge]);
 
   return (
     <>
-      {challenges?.map((challenge, index) => (
+      {challenge?.map((challenge, index) => (
         <ChallengeVideo key={challenge.id}>
           <UserInfo>
-            {challenge.player.imagenUrl ? (
+            {challenge.player.imagenUrl == null ? (
               <img src={challenge.player.imagenUrl} />
             ) : (
               <img
@@ -94,13 +98,22 @@ const Home = () => {
           </ChallengeInfo>
           <Suspense fallback={<div>Loading video...</div>}>
             <LazyVideo
-              src={challenge.videoUrl}
+              src={challenge.videos.videoUrl}
               ref={(el) => (videoRefs.current[index] = el)}
             />
           </Suspense>
           <Interaction>
             <button onClick={() => handleLike(challenge)}>
-              <img src={!like ? likeImg : dislike} alt="" />
+              {user.rol === "watcher" && (
+                <img src={!like ? dislikeWatcher : likeImgWatcher} alt="" />
+              )}
+              {user.rol === "player" && (
+<<<<<<< HEAD
+                <img src={!like ? dislikePlayer : likeImgPlayer} alt="" />)}
+=======
+                <img src={!like ? dislikePlayer : likeImgPlayer} alt="" />
+              )}
+>>>>>>> 4a81f7e39212f166808044923ec911e1351da504
             </button>
           </Interaction>
         </ChallengeVideo>
