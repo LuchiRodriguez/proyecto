@@ -102,12 +102,15 @@ export const Form = styled.form`
   }
 `;
 
+export const PlayerProfile = styled.div``;
+export const WatcherProfile = styled.div``;
+
 export const PerfilStyle = styled.div`
   justify-content: space-evenly;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid ;
+  border: 2px solid;
   border-radius: 10px ${(props) => props.theme.primaryColor};
   padding: 10px;
   color: ${(props) => props.theme.primaryColor};
@@ -377,7 +380,7 @@ export const Li = styled.li`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 2px solid /*var(--blue)*/ ${(props) => props.theme.primaryColor} ;
+    border: 2px solid /*var(--blue)*/ ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
   p {

@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, ChangeProfileButton } from "../app/Styles";
+import {
+  PerfilStyle,
+  ProfileImg,
+  ProfileInfo,
+  LogoutBtn,
+  ChangeProfileButton,
+  PlayerProfile,
+  WatcherProfile,
+} from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
 import { useNavigate } from "react-router-dom";
@@ -41,8 +49,9 @@ const Profile = () => {
 
   return (
     <>
+      {user.rol === "player" && <PlayerProfile></PlayerProfile>}
+      {user.rol === "watcher" && <WatcherProfile></WatcherProfile>}
       <PerfilStyle>
-
         <ProfileImg>
           <input
             type="file"
@@ -64,18 +73,6 @@ const Profile = () => {
           <p>{user.rol}</p>
           <p>{userProfile.username}</p>
         </ProfileImg>
-        {user.rol === "player" && (
-          <ProfileInfo>
-            <p>
-              Points: <br />
-              {userProfile.points}
-            </p>
-            <p>
-              Challenges: <br />
-              {userProfile.challengeCompleted}
-            </p>
-          </ProfileInfo>
-        )}
         {user.rol === "watcher" && (
           <ProfileInfo>
             <p>
@@ -89,10 +86,8 @@ const Profile = () => {
         <img src={logoutBtn} alt="Logout" />
       </LogoutBtn>
       <ChangeProfileButton onClick={() => console.log()}>
-        {user.rol === "watcher" && (
-          <img src={pencilIconWatcher} alt="" />)}
-        {user.rol === "player" && (
-          <img src={pencilIconPlayer} alt="" />)}
+        {user.rol === "watcher" && <img src={pencilIconWatcher} alt="" />}
+        {user.rol === "player" && <img src={pencilIconPlayer} alt="" />}
       </ChangeProfileButton>
       <NavBar />
     </>

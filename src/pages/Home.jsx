@@ -105,9 +105,15 @@ const Home = () => {
           <Interaction>
             <button onClick={() => handleLike(challenge)}>
               {user.rol === "watcher" && (
-                <img src={!like ? dislikeWatcher : likeImgWatcher} alt="" />)}
+                <img src={!like ? dislikeWatcher : likeImgWatcher} alt="" />
+              )}
               {user.rol === "player" && (
+<<<<<<< HEAD
                 <img src={!like ? dislikePlayer : likeImgPlayer} alt="" />)}
+=======
+                <img src={!like ? dislikePlayer : likeImgPlayer} alt="" />
+              )}
+>>>>>>> 4a81f7e39212f166808044923ec911e1351da504
             </button>
           </Interaction>
         </ChallengeVideo>
