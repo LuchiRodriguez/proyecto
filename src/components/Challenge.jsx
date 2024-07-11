@@ -1,9 +1,21 @@
 import { useState } from "react";
-import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, ButtonDelete, UploadVideo, ChallengeInfo, } from "../app/Styles";
+import {
+  UserInfo,
+  ChallengeBox,
+  UploadingDiv,
+  ButtonStyle,
+  ButtonDelete,
+  UploadVideo,
+  ChallengeInfo,
+} from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
-import { updateChallenge, postChallengeVideo, deleteChallenge, } from "../app/api/Challenge";
+import {
+  updateChallenge,
+  postChallengeVideo,
+  deleteChallenge,
+} from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
-import loadingicono from "../app/img/lodingicon.gif"
+import loadingicono from "../app/img/lodingicon.gif";
 
 const Challenge = ({ ch, refetch }) => {
   const [user] = useUserContext();
@@ -11,10 +23,14 @@ const Challenge = ({ ch, refetch }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState("");
   const [acceptChallengeError, setAcceptChallengeError] = useState("");
-  const [challengeAccepted, setChallengeAccepted] = useState(ch.player !== null);
+  const [challengeAccepted, setChallengeAccepted] = useState(
+    ch.player !== null
+  );
   const navigate = useNavigate();
 
   const handleVideo = async (e) => {
+    console.log("paso por aca");
+
     e.preventDefault();
     setIsUploading(true);
     setUploadError("");
@@ -27,19 +43,24 @@ const Challenge = ({ ch, refetch }) => {
     formData.append("challenge", ch.id);
 
     if (file && file.size > 500 * 1024 * 1024) {
-      setUploadError("File size exceeds the limit (500 MB). Please upload a smaller file.");
+      setUploadError(
+        "File size exceeds the limit (500 MB). Please upload a smaller file."
+      );
       setIsUploading(false);
+      console.log("quizas entre por aca");
       return;
     }
 
     try {
+      console.log("tambien paso por aca");
+
       await postChallengeVideo(formData);
       refetch();
       setIsUploading(false);
       navigate("/");
     } catch (error) {
       console.error("Error uploading video:", error);
-      setUploadError("Failed to upload video. Please try again.")
+      setUploadError("Failed to upload video. Please try again.");
       setIsUploading(false);
     }
   };
@@ -94,17 +115,12 @@ const Challenge = ({ ch, refetch }) => {
             <p className="watcher">
               Accepted by <span>{user.username}</span>
             </p>
-            <ButtonStyle
-              onClick={handleCancel}>
-              Cancelar desafío
-            </ButtonStyle>
+            <ButtonStyle onClick={handleCancel}>Cancelar desafío</ButtonStyle>
           </>
         ) : (
           user.rol === "player" && (
             <>
-              <ButtonStyle onClick={handleClick}>
-                Accept challenge
-              </ButtonStyle>
+              <ButtonStyle onClick={handleClick}>Accept challenge</ButtonStyle>
               {acceptChallengeError && (
                 <p style={{ color: "red" }}>{acceptChallengeError}</p>
               )}
@@ -120,10 +136,7 @@ const Challenge = ({ ch, refetch }) => {
                 <h3>Uploading file, please wait...</h3>
               </UploadingDiv>
             ) : (
-              <form
-                onSubmit={() => handleVideo()}
-                encType="multipart/form-data"
-              >
+              <form onSubmit={handleVideo} encType="multipart/form-data">
                 {file ? (
                   <button>Upload video</button>
                 ) : (
