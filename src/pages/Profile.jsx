@@ -7,6 +7,7 @@ import {
   LogoutBtn,
   ChangeProfileButton,
   PlayerProfile,
+  WatcherProfile,
 } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
