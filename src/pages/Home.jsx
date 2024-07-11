@@ -20,6 +20,8 @@ const Home = () => {
   const [allChallenges, setAllChallenges] = useState([]);
   const videoRefs = useRef([]);
   const [like, setLike] = useState(false);
+  
+  const challenge = allChallenges.filter((challenges) => challenges.videos !== null);
 
   const handleLike = async (ch) => {
     const formData = new FormData();
@@ -33,17 +35,13 @@ const Home = () => {
       console.error("Error liking:", error);
     }
   };
-
-  const challenge = allChallenges.filter(
-    (challenges) => challenges.videos !== null
-  );
-
   useEffect(() => {
     getChallenges().then((data) => {
-      setAllChallenges(data.data);
+      setAllChallenges(data);
     });
   }, []);
 
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -107,7 +105,7 @@ const Home = () => {
               {user.rol === "watcher" && (
                 <img src={!like ? dislikeWatcher : likeImgWatcher} alt="" />)}
               {user.rol === "player" && (
-                <img src={!like ? dislike : likeImgPlayerPlayer} alt="" />)}
+                <img src={!like ? dislikePlayer : likeImgPlayer} alt="" />)}
             </button>
           </Interaction>
         </ChallengeVideo>
