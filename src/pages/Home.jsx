@@ -2,6 +2,7 @@ import { useEffect, useState, lazy, Suspense, useRef } from "react";
 import NavBar from "../components/NavBar";
 import { getChallenges } from "../app/api/Challenge";
 import ButtonLike from "../components/ButtonLike";
+import ButtonComment from "../components/ButtonComment";
 import {
   UserInfo,
   ChallengeInfo,
@@ -12,6 +13,7 @@ import {
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const Home = () => {
+  const [comments, setComments] = useState();
   const [allChallenges, setAllChallenges] = useState([]);
   const videoRefs = useRef([]);
 
@@ -85,6 +87,7 @@ const Home = () => {
           </Suspense>
           <Interaction>
             <ButtonLike />
+            <ButtonComment />
           </Interaction>
         </ChallengeVideo>
       ))}

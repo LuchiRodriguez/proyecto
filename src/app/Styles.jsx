@@ -195,6 +195,7 @@ export const Interaction = styled.div`
     background-color: var(--black);
     border: none;
     padding: 0;
+    margin-right: 10px;
   }
   img {
     background-color: var(--black);
@@ -326,6 +327,10 @@ export const PopUpCreateChallenge = styled.div`
     border: none;
     font-size: medium;
   }
+`;
+
+export const PopUpComments = styled.div`
+  display: ${({ $comments }) => ($comments ? "flex" : "none")};
 `;
 
 export const ChallengesList = styled.div`
