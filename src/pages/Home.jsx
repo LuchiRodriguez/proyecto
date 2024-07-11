@@ -34,7 +34,9 @@ const Home = () => {
     }
   };
 
-  const challenge = allChallenges.filter((challenges) => challenges.videos !== null);
+  const challenge = allChallenges.filter(
+    (challenges) => challenges.videos !== null
+  );
 
   useEffect(() => {
     getChallenges().then((data) => {
@@ -103,9 +105,9 @@ const Home = () => {
           <Interaction>
             <button onClick={() => handleLike(challenge)}>
               {user.rol === "watcher" && (
-                <img src={!like ? likeImgWatcher : dislikeWatcher} alt="" />)}
+                <img src={!like ? dislikeWatcher : likeImgWatcher} alt="" />)}
               {user.rol === "player" && (
-                <img src={!like ? likeImgPlayer : dislikePlayer} alt="" />)}
+                <img src={!like ? dislike : likeImgPlayerPlayer} alt="" />)}
             </button>
           </Interaction>
         </ChallengeVideo>
