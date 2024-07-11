@@ -1,25 +1,29 @@
 import { instance } from "./api";
 
 // CREATE
-export const createChallenge = async (formData) => await instance.post("/challenge", formData);
+export const createChallenge = async (formData) =>
+  await instance.post("/challenge", formData);
 
 // READ
 export const getChallenges = async () => await instance.get("/challenge");
 
-
 // DELETE
-export const deleteChallenge = async (id) => await instance.delete(`/challenge/${id}`);
+export const deleteChallenge = async (id) =>
+  await instance.delete(`/challenge/${id}`);
 
 // UPDATE
-export const updateChallenge = async (id, username) => await instance.put(`/challenge/${id}`, { username });
+export const updateChallenge = async (id, username) =>
+  await instance.put(`/challenge/${id}`, { username });
 
 // CANCEL
-export const cancelChallenge = async (id) => await axios.patch(`/challenge/${id}`);
+export const cancelChallenge = async (id) =>
+  await instance.patch(`/challenge/${id}`);
 
 // UPLOAD VIDEO
 // export const postChallengeVideo = async (id, file) => await instance.post(`/${id}/upload`, file);
-export const postChallengeVideo = async (formData) => await instance.post('/challenge/upload', formData, {
-  headers: {
-    'Content-Type': 'multipart/form-data'
-  }
-});
+export const postChallengeVideo = async (formData) =>
+  await instance.post("/challenge/upload", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
