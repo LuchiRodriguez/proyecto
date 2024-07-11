@@ -28,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const NavBarStyle = styled.nav`
-  border-top: 1px solid var(--blue);
+  border-top: 1px solid ${(props) => props.theme.primaryColor};
   box-sizing: border-box;
   position: fixed;
   height: 50px;
@@ -121,8 +121,8 @@ export const PerfilStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid var(--blue);
-  border-radius: 10px;
+  border: 2px solid ;
+  border-radius: 10px ${(props) => props.theme.primaryColor};
   padding: 10px;
   color: ${(props) => props.theme.primaryColor};
   height: 88vh;
@@ -162,7 +162,7 @@ export const UserInfo = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
-  color: var(--blue);
+  color: ${(props) => props.theme.primaryColor};
   img {
     width: 40px;
     height: 40px;
@@ -199,7 +199,7 @@ export const ChallengeBox = styled.div`
 
 export const Interaction = styled.div`
   display: flex;
-  border-top: 2px solid var(--blue);
+  border-top: 2px solid ${(props) => props.theme.primaryColor};
   margin-top: 10px;
   padding: 10px;
   button {
@@ -406,7 +406,7 @@ export const ButtonStyle = styled.button`
   color: var(--red);
   text-transform: uppercase;
   font-family: Roboto;
-  padding: 7px;
+  padding: 10px;
 `;
 
 export const InputStyle = styled.input`
@@ -429,20 +429,19 @@ export const UploadVideo = styled.div`
     display: block;
     border: 1px solid var(--red);
     background-color: var(--black);
-    color: var(--blue);
-    border-radius: 10px;
+    color: white;
+    border-radius: 5px;
     padding: 10px;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 33%;
   }
   button {
     display: block;
     border: 1px solid var(--red);
     background-color: var(--black);
-    color: var(--blue);
-    border-radius: 10px;
+    color: white;
+    border-radius: 5px;
     padding: 10px;
-    margin: auto;
+    margin-left: 31%;
   }
 `;
 

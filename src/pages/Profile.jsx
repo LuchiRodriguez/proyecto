@@ -5,7 +5,8 @@ import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
 import { useNavigate } from "react-router-dom";
 import logoutBtn from "../app/img/logout.png";
-import pencilIcon from "../app/img/pencil.png";
+import pencilIconWatcher from "../app/img/watcherNavBar/pencil.png";
+import pencilIconPlayer from "../app/img/playerNavBar/pencil.png";
 
 const Profile = () => {
   const [user, setUser] = useUserContext();
@@ -88,7 +89,10 @@ const Profile = () => {
         <img src={logoutBtn} alt="Logout" />
       </LogoutBtn>
       <ChangeProfileButton onClick={() => console.log()}>
-        <img src={pencilIcon} alt="" />
+        {user.rol === "watcher" && (
+          <img src={pencilIconWatcher} alt="" />)}
+        {user.rol === "player" && (
+          <img src={pencilIconPlayer} alt="" />)}
       </ChangeProfileButton>
       <NavBar />
     </>

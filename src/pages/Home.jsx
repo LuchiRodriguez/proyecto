@@ -7,8 +7,10 @@ import {
   ChallengeVideo,
   Interaction,
 } from "../app/Styles";
-import dislike from "../app/img/dislike.png";
-import likeImg from "../app/img/like.png";
+import dislikeWatcher from "../app/img/watcherNavBar/dislike.png";
+import likeImgWatcher from "../app/img/watcherNavBar/like.png";
+import likeImgPlayer from "../app/img/playerNavBar/like.png";
+import dislikePlayer from "../app/img/playerNavBar/dislike.png";
 import { useUserContext } from "../app/UserProvider";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
@@ -100,7 +102,10 @@ const Home = () => {
           </Suspense>
           <Interaction>
             <button onClick={() => handleLike(challenge)}>
-              <img src={!like ? likeImg : dislike} alt="" />
+              {user.rol === "watcher" && (
+                <img src={!like ? likeImgWatcher : dislikeWatcher} alt="" />)}
+              {user.rol === "player" && (
+                <img src={!like ? likeImgPlayer : dislikePlayer} alt="" />)}
             </button>
           </Interaction>
         </ChallengeVideo>
