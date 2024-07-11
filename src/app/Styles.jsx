@@ -102,7 +102,9 @@ export const Form = styled.form`
   }
 `;
 
-export const PlayerProfile = styled.div``;
+export const PlayerProfile = styled.div`
+
+`;
 export const WatcherProfile = styled.div``;
 
 export const PerfilStyle = styled.div`

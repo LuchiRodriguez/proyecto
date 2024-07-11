@@ -12,7 +12,8 @@ import {
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
 import { useNavigate } from "react-router-dom";
-import logoutBtn from "../app/img/logout.png";
+import logoutBtnWatcher from "../app/img/watcherNavBar/logout.png";
+import logoutBtnPlayer from "../app/img/playerNavBar/logout.png";
 import pencilIconWatcher from "../app/img/watcherNavBar/pencil.png";
 import pencilIconPlayer from "../app/img/playerNavBar/pencil.png";
 
@@ -49,8 +50,31 @@ const Profile = () => {
 
   return (
     <>
-      {user.rol === "player" && <PlayerProfile></PlayerProfile>}
-      {user.rol === "watcher" && <WatcherProfile></WatcherProfile>}
+      {user.rol === "player" && <PlayerProfile>
+        <LogoutBtn onClick={logout}>
+          <img src={logoutBtnPlayer} alt="Logout" />
+        </LogoutBtn>
+
+        <ChangeProfileButton onClick={() => console.log()}>
+          <img src={pencilIconPlayer} alt="" />;
+        </ChangeProfileButton>
+      </PlayerProfile>}
+      {user.rol === "watcher" && <WatcherProfile>
+        <ProfileInfo>
+          <p>
+            Challenges: <br />
+            {userProfile.proposedChallenge}
+          </p>
+        </ProfileInfo>
+        <LogoutBtn onClick={logout}>
+          <img src={logoutBtnWatcher} alt="Logout" />
+        </LogoutBtn>
+
+        <ChangeProfileButton onClick={() => console.log()}>
+          <img src={pencilIconWatcher} alt="" />
+        </ChangeProfileButton>
+      </WatcherProfile>}
+
       <PerfilStyle>
         <ProfileImg>
           <input
@@ -69,26 +93,10 @@ const Profile = () => {
             alt=""
             style={{ cursor: "pointer" }}
           />
-
           <p>{user.rol}</p>
           <p>{userProfile.username}</p>
         </ProfileImg>
-        {user.rol === "watcher" && (
-          <ProfileInfo>
-            <p>
-              Challenges: <br />
-              {userProfile.proposedChallenge}
-            </p>
-          </ProfileInfo>
-        )}
       </PerfilStyle>
-      <LogoutBtn onClick={logout}>
-        <img src={logoutBtn} alt="Logout" />
-      </LogoutBtn>
-      <ChangeProfileButton onClick={() => console.log()}>
-        {user.rol === "watcher" && <img src={pencilIconWatcher} alt="" />}
-        {user.rol === "player" && <img src={pencilIconPlayer} alt="" />}
-      </ChangeProfileButton>
       <NavBar />
     </>
   );
