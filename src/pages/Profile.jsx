@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from 'react';
 import NavBar from "../components/NavBar";
-import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, ChangeProfileButton, PlayerProfile, WatcherProfile } from '../app/Styles';
+import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, ChangeProfileButton, PlayerProfile, WatcherProfile, VideosContainer, VideoItem } from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,8 @@ import logoutBtnWatcher from "../app/img/watcherNavBar/logout.png";
 import logoutBtnPlayer from "../app/img/playerNavBar/logout.png";
 import pencilIconWatcher from "../app/img/watcherNavBar/pencil.png";
 import pencilIconPlayer from "../app/img/playerNavBar/pencil.png";
+import { getChallenges } from "../app/api/Challenge";
+import LazyVideo from "../components/Lazyvideo";
 
 
 const Profile = () => {
@@ -15,12 +17,28 @@ const Profile = () => {
   const [userProfile, setUserProfile] = useState({});
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [challenges, setChallenges] = useState([]);
+  const videoRefs = useRef([]);
   const refetch = () => {
     getUserByUsername(user.username).then((data) => setUserProfile(data));
   };
 
+
+
   useEffect(() => {
     refetch();
+
+
+    const fetchChallenges = async () => {
+      try {
+        const response = await getChallenges();
+        setChallenges(response.data.filter(ch => ch.player.username === user.username));
+      } catch (error) {
+        console.error("Error fetching challenges:", error);
+      }
+    }
+
+    fetchChallenges();
   }, []);
 
   const handleImageChange = async (event) => {
@@ -69,9 +87,22 @@ const Profile = () => {
           <LogoutBtn onClick={logout}>
             <img src={logoutBtnPlayer} alt="Logout" />
           </LogoutBtn>
-          <ChangeProfileButton onClick={() => console.log()}>
-            <img src={pencilIconPlayer} alt="" />;
+          <ChangeProfileButton onClick={() => setIsOpen(!isOpen)}>
+            <img src={pencilIconPlayer} alt="" />
           </ChangeProfileButton>
+          {isOpen}
+
+          <VideosContainer>
+            {challenges.map((challenge, i) => (
+              <VideoItem key={i}>
+                <div>
+                  src={challenge.videos.videoUrl}
+                  ref={(el) => (videoRefs.current[i] = el)}
+                </div>
+              </VideoItem>
+            ))}
+          </VideosContainer>
+
         </PerfilStyle>
       </PlayerProfile>}
       {user.rol === "watcher" && <WatcherProfile>

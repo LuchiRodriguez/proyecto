@@ -211,6 +211,8 @@ export const ChallengeVideo = styled.div`
   border: 2px solid /*var(--blue);*/ ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
+  margin-bottom: 10px;
+
   video {
     width: 100%;
     border-radius: 10px;
@@ -542,4 +544,19 @@ export const SwitchText = styled.span`
   transition: 0.3s;
   transform: ${({ $ischecked }) =>
     $ischecked ? "translateX(18px)" : "translateX(10px)"};
+`;
+
+export const VideosContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 16px; 
+  margin-top: 20px;
+`;
+
+export const VideoItem = styled.div`
+  video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
 `;
