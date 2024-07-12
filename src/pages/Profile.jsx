@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import NavBar from "../components/NavBar";
 import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, ChangeProfileButton, PlayerProfile, WatcherProfile, VideosContainer, VideoItem } from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
@@ -8,6 +8,7 @@ import logoutBtnWatcher from "../app/img/watcherNavBar/logout.png";
 import logoutBtnPlayer from "../app/img/playerNavBar/logout.png";
 import pencilIconWatcher from "../app/img/watcherNavBar/pencil.png";
 import pencilIconPlayer from "../app/img/playerNavBar/pencil.png";
+import PopupProfile from '../components/PopupProfile';
 
 
 const Profile = () => {
@@ -16,16 +17,15 @@ const Profile = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [videos, setVideos] = useState([]);
-  const videoRefs = useRef([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
   const refetch = () => {
     getUserByUsername(user.username).then((data) => {
       setUserProfile(data)
-      console.log(data)
-      setVideos(data.videos || []);
+      console.log(data.videos)
+      setVideos(data.videos);
     });
   };
-
-
 
   useEffect(() => {
     refetch();
@@ -49,6 +49,15 @@ const Profile = () => {
     setUser();
     navigate("/");
   };
+
+  const openPopUp = (video) => {
+    setSelectedVideo(video);
+    setIsOpen(true);
+  }
+
+  const closePopup = () => {
+    setIsOpen(false);
+  }
 
   return (
     <>
@@ -81,18 +90,17 @@ const Profile = () => {
           <ChangeProfileButton onClick={() => setIsOpen(!isOpen)}>
             <img src={pencilIconPlayer} alt="" />
           </ChangeProfileButton>
-          {isOpen}
 
           <VideosContainer>
             {videos.map((video, i) => {
               return (
-                <VideoItem key={i}>
+                <VideoItem key={i} onClick={() => openPopUp(video)} >
                   <video
                     src={video.videoUrl}
-                    controls
-                    ref={(el) => (videoRefs.current[i] = el)}
                   />
-                </VideoItem>)
+
+                </VideoItem>
+              )
             }
             )}
           </VideosContainer>
@@ -135,11 +143,15 @@ const Profile = () => {
           <ChangeProfileButton onClick={() => setIsOpen(!isOpen)}>
             <img src={pencilIconWatcher} alt="" />
           </ChangeProfileButton>
-          {isOpen}
         </PerfilStyle>
       </WatcherProfile>}
 
-
+      {isOpen && (
+        <PopupProfile
+          video={selectedVideo}
+          onClose={closePopup}
+        />
+      )}
       <NavBar />
     </>
   );

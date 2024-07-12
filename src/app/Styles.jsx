@@ -116,7 +116,7 @@ export const PerfilStyle = styled.div`
   border-radius: 10px ${(props) => props.theme.primaryColor};
   padding: 10px;
   color: ${(props) => props.theme.primaryColor};
-  height: 88vh;
+  height: 100%;
   background-size: cover;
   background-position: center;
 `;
@@ -548,25 +548,58 @@ export const SwitchText = styled.span`
 
 export const VideosContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  grid-template-columns: repeat(2,1fr); 
   gap: 16px; 
   margin-top: 20px;
+  width: 100%; 
 `;
 
 export const VideoItem = styled.div`
-position: relative;
-  width: 100%;
+  position: relative;
   padding-bottom: 100%; 
   overflow: hidden;
   border-radius: 8px;
+  width: 100%; 
+  margin-bottom: 10px; 
 
   video {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     border-radius: 8px;
   }
+`;
+export const PopUpContainer = styled.div`
+    width: 300px; 
+    max-width: 90%; 
+    height: 100%;
+    position: fixed;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    background-color:  rgba(32, 33, 36, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 10px  rgba(32, 33, 36, 0.9);
+    padding: 20px;
+    overflow-y: auto;
+
+    button {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1;
+        width: 100px; 
+        height: 100px; 
+    }
+
+    video {
+        width: 300px;
+        border-radius: 10px;
+    }
 `;
