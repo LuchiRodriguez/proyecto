@@ -13,7 +13,6 @@ const UserProvider = ({ children }) => {
     }
   }, []);
 
-
   return (
     <AppContext.Provider value={[user, setUser]}>
       {children}
