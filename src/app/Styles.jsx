@@ -554,9 +554,19 @@ export const VideosContainer = styled.div`
 `;
 
 export const VideoItem = styled.div`
+position: relative;
+  width: 100%;
+  padding-bottom: 100%; 
+  overflow: hidden;
+  border-radius: 8px;
+
   video {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     border-radius: 8px;
   }
 `;

@@ -8,8 +8,6 @@ import logoutBtnWatcher from "../app/img/watcherNavBar/logout.png";
 import logoutBtnPlayer from "../app/img/playerNavBar/logout.png";
 import pencilIconWatcher from "../app/img/watcherNavBar/pencil.png";
 import pencilIconPlayer from "../app/img/playerNavBar/pencil.png";
-import { getChallenges } from "../app/api/Challenge";
-import LazyVideo from "../components/Lazyvideo";
 
 
 const Profile = () => {
@@ -17,10 +15,14 @@ const Profile = () => {
   const [userProfile, setUserProfile] = useState({});
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [challenges, setChallenges] = useState([]);
+  const [videos, setVideos] = useState([]);
   const videoRefs = useRef([]);
   const refetch = () => {
-    getUserByUsername(user.username).then((data) => setUserProfile(data));
+    getUserByUsername(user.username).then((data) => {
+      setUserProfile(data)
+      console.log(data)
+      setVideos(data.videos || []);
+    });
   };
 
 
@@ -28,17 +30,6 @@ const Profile = () => {
   useEffect(() => {
     refetch();
 
-
-    const fetchChallenges = async () => {
-      try {
-        const response = await getChallenges();
-        setChallenges(response.data.filter(ch => ch.player.username === user.username));
-      } catch (error) {
-        console.error("Error fetching challenges:", error);
-      }
-    }
-
-    fetchChallenges();
   }, []);
 
   const handleImageChange = async (event) => {
@@ -93,14 +84,17 @@ const Profile = () => {
           {isOpen}
 
           <VideosContainer>
-            {challenges.map((challenge, i) => (
-              <VideoItem key={i}>
-                <div>
-                  src={challenge.videos.videoUrl}
-                  ref={(el) => (videoRefs.current[i] = el)}
-                </div>
-              </VideoItem>
-            ))}
+            {videos.map((video, i) => {
+              return (
+                <VideoItem key={i}>
+                  <video
+                    src={video.videoUrl}
+                    controls
+                    ref={(el) => (videoRefs.current[i] = el)}
+                  />
+                </VideoItem>)
+            }
+            )}
           </VideosContainer>
 
         </PerfilStyle>
