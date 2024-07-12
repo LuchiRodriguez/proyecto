@@ -4,7 +4,6 @@ import { useUserContext } from "../app/UserProvider";
 import { PopUpCreateChallenge } from "../app/Styles";
 
 const CreateChallenge = ({ create, setCreate, refetch }) => {
-  // const history = useHistory(); //To get the history object to browse. 
   const [user] = useUserContext();
   const [description, setDescription] = useState("");
   const [points, setPoints] = useState("");
@@ -17,7 +16,6 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
     if (points < 1 || points > 500) {
       setPointsError("Points must be between 1 and 500");
       return;
-
     }
     const formData = new FormData();
     formData.append("description", description);
@@ -33,23 +31,26 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
       setCreate(false);
     } catch (error) {
       console.log("Error creating challenge:", error);
-      setError("Failed to create challenge. Please try again")
+      setError("Failed to create challenge. Please try again");
     }
   };
   //that is not displayed or that cannot be modified. the ID
   return (
     <PopUpCreateChallenge $create={create}>
+      <button className="closeButton" onClick={() => setCreate(!create)}>
+        x
+      </button>
       <form onSubmit={handleSubmit}>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        
-          <label htmlFor="description">Description: </label>
-          <textarea
-            type="text"
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <label htmlFor="description">Description: </label>
+        <textarea
+          type="text"
+          id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+        <div>
           <label htmlFor="points">Points: </label>
           <input
             type="number"
@@ -58,7 +59,7 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
             onChange={(e) => {
               const newPoints = parseInt(e.target.value, 10);
               if (newPoints < 1 || newPoints > 500) {
-                setPointsError("Points must be between 1 and 500")
+                setPointsError("Points must be between 1 and 500");
               } else {
                 setPointsError(""); //Clear the error if the points are valid.
                 setPoints(newPoints);
@@ -68,7 +69,9 @@ const CreateChallenge = ({ create, setCreate, refetch }) => {
             max="500"
             required
           />
-          {pointsError && <p style={{ color: "red" }}>{pointsError}</p>}
+        </div>
+
+        {pointsError && <p style={{ color: "red" }}>{pointsError}</p>}
         <button type="submit">Create challenge</button>
       </form>
     </PopUpCreateChallenge>

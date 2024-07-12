@@ -4,7 +4,7 @@ import { ButtonChallenge, ChallengesList } from "../app/Styles";
 import { getChallenges } from "../app/api/Challenge";
 import { useUserContext } from "../app/UserProvider";
 import Challenge from "../components/Challenge";
-import iconPlus from "../app/img/createImg.png";
+import iconPlus from "../app/img/watcherNavBar/createImg.png";
 import CreateChallenge from "../components/CreateChallenge";
 
 const Challenges = () => {
@@ -13,19 +13,22 @@ const Challenges = () => {
   const [create, setCreate] = useState(false);
 
   const refetch = () => {
-    getChallenges().then((data) => setChallenges(data.data));
+    getChallenges().then((data) => {
+      setChallenges(data.data);
+    });
   };
 
-  const challenge = challenges.filter((video) => video.videoUrl == null);
+  const challenge = challenges.filter((video) => video.videos == null);
 
+//Fetch challenges when component mounts or refetch is called.
   useEffect(() => {
     refetch();
   }, []);
 
   return (
     <>
-      <ChallengesList $create={create}>
-        {challenge?.map((ch) => (
+      <ChallengesList>
+        {challenge.map((ch) => (
           <Challenge key={ch.id} ch={ch} refetch={refetch} />
         ))}
       </ChallengesList>

@@ -1,7 +1,13 @@
 import { useEffect, useState, lazy, Suspense, useRef } from "react";
 import NavBar from "../components/NavBar";
 import { getChallenges } from "../app/api/Challenge";
-import { UserInfo, ChallengeBox, ChallengeInfo } from "../app/Styles";
+import ButtonLike from "../components/ButtonLike";
+import {
+  UserInfo,
+  ChallengeInfo,
+  ChallengeVideo,
+  Interaction,
+} from "../app/Styles";
 
 
 
@@ -9,14 +15,16 @@ import { UserInfo, ChallengeBox, ChallengeInfo } from "../app/Styles";
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const Home = () => {
-  const [videos, setVideos] = useState([]);
+  const [allChallenges, setAllChallenges] = useState([]);
   const videoRefs = useRef([]);
 
-  const challenges = videos.filter((video) => video.videoUrl !== null);
+  const challenge = allChallenges.filter(
+    (challenges) => challenges.videos !== null
+  );
 
   useEffect(() => {
     getChallenges().then((data) => {
-      setVideos(data.data);
+      setAllChallenges(data.data);
     });
   }, []);
 
@@ -48,7 +56,7 @@ const Home = () => {
         }
       });
     };
-  }, [videos]);
+  }, [challenge]);
 
 
 
@@ -56,10 +64,10 @@ const Home = () => {
 
   return (
     <>
-      {challenges?.map((challenge, index) => (
-        <ChallengeBox key={challenge.id}>
+      {challenge?.map((challenge, index) => (
+        <ChallengeVideo key={challenge.id}>
           <UserInfo>
-            {challenge.player.imagenUrl ? (
+            {challenge.player.imagenUrl == null ? (
               <img src={challenge.player.imagenUrl} />
             ) : (
               <img
@@ -78,14 +86,15 @@ const Home = () => {
           </ChallengeInfo>
           <Suspense fallback={<div>Loading video...</div>}>
             <LazyVideo
-              src={challenge.videoUrl}
+              src={challenge.videos.videoUrl}
               ref={(el) => (videoRefs.current[index] = el)}
 
             />
           </Suspense>
-
-        </ChallengeBox>
-
+          <Interaction>
+            <ButtonLike />
+          </Interaction>
+        </ChallengeVideo>
       ))}
       <NavBar />
     </>

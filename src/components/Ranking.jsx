@@ -2,10 +2,14 @@ import NavBar from "./NavBar";
 import { Li, RankingDiv, CrownStyle, FirstPlace, SecondPlace, ThirdPlace, AnotherPlace } from '../app/Styles';
 import { useEffect, useState } from "react";
 import { getUserRanking } from "../app/api/User";
-import rankingCrown from "../app/img/rankingcrown.png";
+import rankingCrownWatcher from "../app/img/watcherNavBar/rankingcrown.png";
+import rankingCrownPlayer from "../app/img/playerNavBar/rankingCrownPlayer.png"
+
+import { useUserContext } from "../app/UserProvider";
 
 const Ranking = () => {
   const [listRanking, setListRankings] = useState([]);
+  const [user] = useUserContext();
 
   useEffect(() => {
     getUserRanking().then((data) => setListRankings(data));
@@ -15,7 +19,10 @@ const Ranking = () => {
     <>
       <RankingDiv>
         <h1>Ranking</h1>
-        <CrownStyle src={rankingCrown} alt="" />
+        {user.rol === "watcher" && (
+          <CrownStyle src={rankingCrownWatcher} alt="" />)}
+        {user.rol === "player" && (
+          <CrownStyle src={rankingCrownPlayer} alt="" />)}
         <ul>
           {listRanking.map((usuario, i) => {
             if (i === 0) {

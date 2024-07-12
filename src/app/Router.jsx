@@ -3,7 +3,6 @@ import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import Challenges from "../pages/Challenges";
 import Ranking from "../components/Ranking";
-import NewLanding from "../pages/NewLanding";
 
 const Router = () => {
   return (
@@ -13,7 +12,6 @@ const Router = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/challenges" element={<Challenges />} />
         <Route path="/ranking" element={<Ranking />} />
-        <Route path="/newlanding" element={<NewLanding />} />
       </Routes>
     </BrowserRouter>
   );

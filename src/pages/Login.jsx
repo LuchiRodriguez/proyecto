@@ -1,15 +1,16 @@
 /* eslint-disable no-unused-vars */
-import { Form, ChooseRol } from "../app/Styles";
+import { Form } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postUser } from "../app/api/Login";
 import { createUser } from "../app/api/Register";
+import SelectRol from "../components/SelectRol";
 
 const Login = () => {
   const navigate = useNavigate();
   const [existingUser, setExistingUser] = useState(true);
-  const [rol, setRol] = useState();
+  const [rol, setRol] = useState("watcher");
   const [username, setUserName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -17,15 +18,25 @@ const Login = () => {
   const [user, setUser] = useUserContext();
   const [error, setError] = useState();
 
+  const [isOn, setIsOn] = useState(false);
+
+  const handleToggle = (newValue) => {
+    setIsOn(newValue);
+  };
+
   return (
     <Form>
       {existingUser ? (
         <>
-          {error &&
-            <p style={{ color: 'rgb(255, 0, 0)' }}> Failed to login. Please try again
-            </p>}
+          {error && (
+            <p style={{ color: "#f40e03" }}>
+              {" "}
+              Failed to login. Please try again
+            </p>
+          )}
 
           <input
+            autoComplete="off"
             type="text"
             id="username"
             name="username"
@@ -34,6 +45,7 @@ const Login = () => {
             required
           ></input>
           <input
+            autoComplete="off"
             type="password"
             id="password"
             name="password"
@@ -68,6 +80,7 @@ const Login = () => {
       ) : (
         <>
           <input
+            autoComplete="off"
             type="text"
             id="username"
             name="username"
@@ -76,6 +89,7 @@ const Login = () => {
             required
           ></input>
           <input
+            autoComplete="off"
             type="text"
             id="email"
             name="email"
@@ -84,6 +98,7 @@ const Login = () => {
             required
           ></input>
           <input
+            autoComplete="off"
             type="password"
             id="password"
             name="password"
@@ -91,12 +106,18 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           ></input>
-          <ChooseRol>
-            <input type="radio" name="rol" onClick={() => setRol("player")} />
-            <label htmlFor="jugador">Player</label>
-            <input type="radio" name="rol" onClick={() => setRol("watcher")} />
-            <label htmlFor="observador">Watcher</label>
-          </ChooseRol>
+          <SelectRol
+            labelOn="Player"
+            labelOff="Watcher"
+            isChecked={isOn}
+            setRol={setRol}
+            onChange={() => handleToggle()}
+            theme={{
+              background: "#eee",
+              toggleActive: "#03e9f4", // Custom green
+              toggleInactive: "#f40e03", // Custom red
+            }}
+          />
           <p>
             Already have an account ?<br />
             <span onClick={() => setExistingUser(true)}>Login</span>

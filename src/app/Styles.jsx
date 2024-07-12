@@ -1,15 +1,25 @@
 import styled, { createGlobalStyle } from "styled-components";
-import HungerGames from "./fonts/HungerGames.ttf";
+import Minecraft from "./fonts/Minecraft.ttf";
+import Roboto from "./fonts/Roboto-Medium.ttf";
 import { Link } from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
 	@font-face {
-		font-family: HungerGames;
-		src: url(${HungerGames});
+		font-family: Minecraft;
+		src: url(${Minecraft});
 	}
+  @font-face {
+		font-family: Roboto;
+		src: url(${Roboto});
+	}
+  :root{
+    --blue: #03e9f4;
+    --red: #f40e03;
+    --black: #202124;
+  }
 	body {
-		background-color: #202124;
-		font-family: HungerGames;
+    text-transform: uppercase;
+		background-color: var(--black);
 		letter-spacing: 4px;
     color: white;
 		margin: 0;
@@ -17,133 +27,15 @@ export const GlobalStyle = createGlobalStyle`
 	}
 `;
 
-export const LandingPage = styled.div`
-  text-align: center;
-  margin-top: 200px;
-  h1 {
-    color: #03e9f4;
-    text-transform: uppercase;
-    font-size: x-large;
-    margin-bottom: 30px;
-  }
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  a {
-    width: 180px;
-    position: relative;
-    display: inline-block;
-    padding: 20px 0;
-    margin: 40px 10px;
-    color: #03e9f4;
-    text-decoration: none;
-    transition: 0.5s;
-    letter-spacing: 4px;
-    overflow: hidden;
-  }
-  a:hover {
-    background: #03e9f4;
-    color: #050801;
-    box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
-      0 0 50px #03e9f4;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-  }
-  a:nth-child(1) {
-    filter: hue-rotate(270deg);
-  }
-  a:nth-child(2) {
-    filter: hue-rotate(110deg);
-  }
-  a span {
-    position: absolute;
-    display: block;
-  }
-  a span:nth-child(1) {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #03e9f4);
-    animation: animate1 1s linear infinite;
-  }
-  @keyframes animate1 {
-    0% {
-      left: -100%;
-    }
-    50%,
-    100% {
-      left: 100%;
-    }
-  }
-  a span:nth-child(2) {
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, #03e9f4);
-    animation: animate2 1s linear infinite;
-    animation-delay: 0.25s;
-  }
-  @keyframes animate2 {
-    0% {
-      top: -100%;
-    }
-    50%,
-    100% {
-      top: 100%;
-    }
-  }
-  a span:nth-child(3) {
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent, #03e9f4);
-    animation: animate3 1s linear infinite;
-    animation-delay: 0.5s;
-  }
-  @keyframes animate3 {
-    0% {
-      right: -100%;
-    }
-    50%,
-    100% {
-      right: 100%;
-    }
-  }
-
-  a span:nth-child(4) {
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent, #03e9f4);
-    animation: animate4 1s linear infinite;
-    animation-delay: 0.75s;
-  }
-  @keyframes animate4 {
-    0% {
-      bottom: -100%;
-    }
-    50%,
-    100% {
-      bottom: 100%;
-    }
-  }
-`;
-
 export const NavBarStyle = styled.nav`
-  border-top: 1px solid #03e9f4;
+  border-top: 1px solid ${(props) => props.theme.primaryColor};
   box-sizing: border-box;
   position: fixed;
   height: 50px;
   width: 100%;
   left: 0;
   bottom: 0;
-  background-color: #202124;
+  background-color: var(--black);
   ul {
     margin: 0 30px;
     padding: 0;
@@ -156,12 +48,13 @@ export const NavBarStyle = styled.nav`
     width: 30px;
     height: 30px;
     padding: 10px;
-    color: #03e9f4;
+    color: var(--blue);
   }
 `;
 
 export const Form = styled.form`
-  color: #03e9f4;
+  font-family: Roboto;
+  color: var(--blue);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -169,71 +62,61 @@ export const Form = styled.form`
   height: 100vh;
   margin: auto;
   input {
-    color: #03e9f4;
-    background-color: #202124 !important;
+    color: var(--blue);
+    background-color: var(--black) !important;
     outline: none;
     text-transform: uppercase;
     margin-top: 60px;
-    border: #03e9f4 3px solid;
+    border: var(--blue) 3px solid;
     border-radius: 10px;
     height: 30px;
     width: 300px;
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
-      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
-      background-color: #202124;
+      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      background-color: var(--black);
     }
     &:active {
-      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
-      background-color: #202124;
+      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      background-color: var(--black);
     }
   }
 
   p {
-    font-size: xx-small;
     text-align: center;
   }
   span {
     cursor: pointer;
   }
   button {
-    background-color: #202124;
-    border: #03e9f4 3px solid;
+    background-color: var(--black);
+    border: var(--blue) 3px solid;
     border-radius: 10px;
-    color: #03e9f4;
+    color: var(--blue);
     padding: 10px;
     margin-top: 30px;
   }
   button:focus {
-    box-shadow: 0 0 10px 0 #03e9f4 inset, 0 0 20px 2px #03e9f4;
+    box-shadow: 0 0 10px 0 var(--blue) inset, 0 0 20px 2px var(--blue);
   }
 `;
 
-export const ChooseRol = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-  padding: 0;
-  width: 80%;
-  font-size: x-small;
-  input {
-    margin: 0;
-    width: 10px;
-    height: 10px;
-  }
-`;
+export const PlayerProfile = styled.div``;
+export const WatcherProfile = styled.div``;
 
 export const PerfilStyle = styled.div`
   justify-content: space-evenly;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid #03e9f4;
-  border-radius: 10px;
+  border: 2px solid;
+  border-radius: 10px ${(props) => props.theme.primaryColor};
   padding: 10px;
-  color: #03e9f4;
+  color: ${(props) => props.theme.primaryColor};
   height: 88vh;
+  background-size: cover;
+  background-position: center;
 `;
 
 export const ProfileImg = styled.div`
@@ -241,10 +124,10 @@ export const ProfileImg = styled.div`
   flex-direction: column;
   align-items: center;
   button {
-    background-color: #202124;
-    border: #03e9f4 3px solid;
+    background-color: var(--black);
+    border: var(--blue) 3px solid;
     border-radius: 10px;
-    color: #03e9f4;
+    color: ${(props) => props.theme.primaryColor};
     padding: 10px;
     margin-top: 30px;
   }
@@ -252,7 +135,7 @@ export const ProfileImg = styled.div`
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    border: 2px solid #03e9f4;
+    border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
 `;
@@ -264,28 +147,66 @@ export const ProfileInfo = styled.div`
 `;
 
 export const UserInfo = styled.div`
+  position: relative;
   display: flex;
   gap: 10px;
   align-items: center;
-  /* font-size: small; */
-  color: #03e9f4;
+  color: ${(props) => props.theme.primaryColor};
   img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 2px solid #03e9f4;
+    border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
+  }
+  p {
+    color: ${(props) => props.theme.primaryColor};
   }
 `;
 
 export const ChallengeInfo = styled.div`
+  font-family: Roboto;
   margin-left: 10px;
+  button {
+    margin-left: 25%;
+    margin-right: 25%;
+  }
 `;
 
 export const ChallengeBox = styled.div`
-  color: #03e9f4;
+  color: white;
   font-size: small;
-  border: 2px solid #03e9f4;
+  border: 2px solid /*var(--blue);*/ ${(props) => props.theme.primaryColor};
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  video {
+    width: 100%;
+    border-radius: 10px;
+  }
+`;
+
+export const Interaction = styled.div`
+  display: flex;
+  border-top: 2px solid ${(props) => props.theme.primaryColor};
+  margin-top: 10px;
+  padding: 10px;
+  button {
+    background-color: var(--black);
+    border: none;
+    padding: 0;
+  }
+  img {
+    background-color: var(--black);
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+export const ChallengeVideo = styled.div`
+  color: /*var(--blue)*/ ${(props) => props.theme.primaryColor};
+  font-size: small;
+  border: 2px solid /*var(--blue);*/ ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
   video {
@@ -297,7 +218,7 @@ export const ChallengeBox = styled.div`
 export const ButtonChallenge = styled(Link)`
   display: flex;
   justify-content: right;
-  padding: 10px;
+  padding: 15px 25px;
   cursor: pointer;
   bottom: 50px;
   right: 0px;
@@ -311,42 +232,54 @@ export const ButtonChallenge = styled(Link)`
 
 export const PopUpCreateChallenge = styled.div`
   display: ${({ $create }) => ($create ? "flex" : "none")};
+  background-color: rgba(32, 33, 36, 0.9);
+  position: absolute;
   align-items: center;
   justify-content: center;
   height: 95vh;
-  color: #03e9f4;
+  color: var(--blue);
   font-size: small;
+  top: 0;
+  bottom: 0;
+  right: 20px;
+  left: 20px;
   form {
-    width: 300px;
-    height: 300px;
     display: flex;
+    width: 100%;
+    height: 300px;
+    background-color: var(--black);
     flex-direction: column;
     justify-content: space-between;
-    border: 2px solid #03e9f4;
+    border: 2px solid var(--blue);
     border-radius: 10px;
     padding: 10px;
+    label {
+      padding: 15px 10px;
+    }
     button {
-      background-color: #202124;
-      border: #03e9f4 3px solid;
+      font-family: Roboto;
+      text-transform: uppercase;
+      background-color: var(--black);
+      border: var(--blue) 3px solid;
       border-radius: 10px;
-      color: #03e9f4;
+      color: var(--blue);
       padding: 10px;
       &:focus {
-        box-shadow: 0 0 10px 0 #03e9f4 inset, 0 0 20px 2px #03e9f4;
+        box-shadow: 0 0 10px 0 var(--blue) inset, 0 0 20px 2px var(--blue);
       }
     }
     div {
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
+      align-items: center;
     }
   }
   textarea {
-    margin: 10px 0;
-    color: #03e9f4;
-    background-color: #202124 !important;
+    color: var(--blue);
+    background-color: var(--black) !important;
     outline: none;
     text-transform: uppercase;
-    border: #03e9f4 3px solid;
+    border: var(--blue) 3px solid;
     border-radius: 10px;
     height: 100px;
     width: 100%;
@@ -354,47 +287,57 @@ export const PopUpCreateChallenge = styled.div`
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
-      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
-      background-color: #202124;
+      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      background-color: var(--black);
     }
     &:active {
-      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
-      background-color: #202124;
+      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      background-color: var(--black);
     }
   }
   input {
     margin: 10px 0;
-    color: #03e9f4;
-    background-color: #202124 !important;
+    color: var(--blue);
+    background-color: var(--black) !important;
     outline: none;
     text-transform: uppercase;
-    border: #03e9f4 3px solid;
+    border: var(--blue) 3px solid;
     border-radius: 10px;
     height: 10px;
     width: 20%;
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
-      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
-      background-color: #202124;
+      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      background-color: var(--black);
     }
     &:active {
-      box-shadow: 0 0 10px 0 #03e9f4, 0 0 20px 2px #03e9f4;
-      background-color: #202124;
+      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      background-color: var(--black);
     }
+  }
+  .closeButton {
+    position: absolute;
+    top: 250px;
+    right: 15px;
+    background-color: var(--black);
+    color: var(--blue);
+    border-radius: 10px;
+    border: none;
+    font-size: medium;
   }
 `;
 
 export const ChallengesList = styled.div`
-  display: ${({ $create }) => ($create ? "none" : "block")};
+  display: block;
 `;
 
 export const UploadingDiv = styled.div`
   display: block;
   margin: auto;
   img {
-    width: 20px;
-    height: 20px;
+    width: 60px;
+    height: 60px;
   }
 `;
 
@@ -402,7 +345,7 @@ export const LogoutBtn = styled.button`
   position: fixed;
   top: 30px;
   right: 30px;
-  background-color: #202124;
+  background-color: var(--black);
   border: none;
   img {
     width: 20px;
@@ -412,85 +355,189 @@ export const LogoutBtn = styled.button`
 `;
 
 export const RankingDiv = styled.div`
-ul{
-padding: 0px;
-display: flex;
-flex-direction: column;
-gap: 15px;
-}
-h1{
-text-align: center;
-}
-`
+  ul {
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  h1 {
+    text-align: center;
+  }
+`;
 
 export const Li = styled.li`
-display: flex;
-align-items: center;
-justify-content: space-between;
-.username{
-width: 140px;
-}
-.points{
-width: 50px;
-}
-img {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .username {
+    width: 140px;
+  }
+  .points {
+    width: 50px;
+  }
+  img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 2px solid #03e9f4;
+    border: 2px solid /*var(--blue)*/ ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
-p{
-  padding: 5px; 
-}
+  p {
+    padding: 5px;
+  }
 `;
 
 export const ButtonStyle = styled.button`
-border: 1px solid #03e9f4;
-border-radius: 5px;
-background-color: transparent;  
-color: white; 
-font-family: HungerGames; 
-padding: 7px; 
-`
+  border: 1px solid var(--red);
+  border-radius: 5px;
+  background-color: transparent;
+  color: var(--red);
+  text-transform: uppercase;
+  font-family: Roboto;
+  padding: 10px;
+`;
 
 export const InputStyle = styled.input`
-border: 1px solid #03e9f4;
-border-radius: 5px;
-background-color: transparent;  
-color: white; 
-padding: 7px; 
-`
+  border: 1px solid var(--blue);
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  padding: 7px;
+`;
+
+export const UploadVideo = styled.div`
+  font-family: Roboto;
+  form {
+    margin-top: 25px;
+  }
+  input {
+    color: var(--black);
+  }
+  input::file-selector-button {
+    display: block;
+    border: 1px solid var(--red);
+    background-color: var(--black);
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 33%;
+  }
+  button {
+    display: block;
+    border: 1px solid var(--red);
+    background-color: var(--black);
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 31%;
+  }
+`;
 
 export const CrownStyle = styled.img`
-margin: auto; 
-display: block; 
-width: 180px; 
-height: 50px; 
-`
+  margin: auto;
+  display: block;
+  width: 180px;
+  height: 50px;
+`;
 
 export const FirstPlace = styled.div`
-background-color: #F2D553;
-list-style: none;
-border-radius: 10px;
-border: 1px solid transparent; 
-`
+  background-color: #f2d553;
+  list-style: none;
+  border-radius: 10px;
+  border: 1px solid transparent;
+`;
 
 export const SecondPlace = styled.div`
-background-color: silver;
-list-style: none;
-border-radius: 10px;
-border: 1px solid transparent; 
-`
+  background-color: silver;
+  list-style: none;
+  border-radius: 10px;
+  border: 1px solid transparent;
+`;
 
 export const ThirdPlace = styled.div`
-background-color: #D9B191;
-list-style: none;
-border-radius: 10px;
-border: 1px solid transparent; 
-`
+  background-color: #d9b191;
+  list-style: none;
+  border-radius: 10px;
+  border: 1px solid transparent;
+`;
 
 export const AnotherPlace = styled.div`
-border: 1px solid #03e9f4;
-border-radius: 10px;
-`
+  border: 1px solid var(--red);
+  border-radius: 10px;
+`;
+
+export const ButtonDelete = styled.button`
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  border: none;
+  position: absolute;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+`;
+
+export const ChangeProfileButton = styled.button`
+  position: fixed;
+  border: none;
+  top: 30px;
+  left: 30px;
+  background: none;
+  img {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+export const SwitchContainer = styled.label`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  margin-top: 20px;
+  width: 100px;
+  height: 40px;
+  background-color: var(--black);
+  border-radius: 17px;
+  input {
+    width: 100px;
+  }
+`;
+
+export const SwitchSlider = styled.div`
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+  border-radius: 17px;
+  background-color: ${({ $ischecked, theme }) =>
+    $ischecked ? theme.toggleActive : theme.toggleInactive};
+`;
+
+export const SwitchInput = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  z-index: -1;
+
+  &:checked + ${SwitchSlider} {
+    transform: translateX(calc(100% - 100px));
+  }
+`;
+
+export const SwitchText = styled.span`
+  font-weight: bolder;
+  position: absolute;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--black);
+  transition: 0.3s;
+  transform: ${({ $ischecked }) =>
+    $ischecked ? "translateX(18px)" : "translateX(10px)"};
+`;

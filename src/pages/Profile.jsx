@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn } from "../app/Styles";
+import {
+  PerfilStyle,
+  ProfileImg,
+  ProfileInfo,
+  LogoutBtn,
+  ChangeProfileButton,
+  PlayerProfile,
+  WatcherProfile,
+} from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
 import { useNavigate } from "react-router-dom";
 import logoutBtn from "../app/img/logout.png";
+import pencilIconWatcher from "../app/img/watcherNavBar/pencil.png";
+import pencilIconPlayer from "../app/img/playerNavBar/pencil.png";
 
 const Profile = () => {
   const [user, setUser] = useUserContext();
@@ -21,7 +31,6 @@ const Profile = () => {
 
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
-    // Here you can do the server's peticion for uploading the image. 
     if (file) {
       const formData = new FormData();
       formData.append("username", userProfile.username);
@@ -31,16 +40,17 @@ const Profile = () => {
       refetch();
     }
   };
+
   const logout = () => {
     localStorage.removeItem("user");
     setUser();
     navigate("/");
   };
 
-
-
   return (
     <>
+      {user.rol === "player" && <PlayerProfile></PlayerProfile>}
+      {user.rol === "watcher" && <WatcherProfile></WatcherProfile>}
       <PerfilStyle>
         <ProfileImg>
           <input
@@ -57,24 +67,12 @@ const Profile = () => {
                 : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
             }
             alt=""
-            onClick={() => document.getElementById("fileInput").click()}
             style={{ cursor: "pointer" }}
           />
+
           <p>{user.rol}</p>
-          <p>{userProfile.username} </p>
+          <p>{userProfile.username}</p>
         </ProfileImg>
-        {user.rol === "player" && (
-          <ProfileInfo>
-            <p>
-              Points: <br />
-              {userProfile.points}
-            </p>
-            <p>
-              Challenges: <br />
-              {userProfile.challengeCompleted}
-            </p>
-          </ProfileInfo>
-        )}
         {user.rol === "watcher" && (
           <ProfileInfo>
             <p>
@@ -84,9 +82,13 @@ const Profile = () => {
           </ProfileInfo>
         )}
       </PerfilStyle>
-      <LogoutBtn onClick={() => logout()}>
-        <img src={logoutBtn} alt="" />
+      <LogoutBtn onClick={logout}>
+        <img src={logoutBtn} alt="Logout" />
       </LogoutBtn>
+      <ChangeProfileButton onClick={() => console.log()}>
+        {user.rol === "watcher" && <img src={pencilIconWatcher} alt="" />}
+        {user.rol === "player" && <img src={pencilIconPlayer} alt="" />}
+      </ChangeProfileButton>
       <NavBar />
     </>
   );
