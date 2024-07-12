@@ -195,6 +195,7 @@ export const Interaction = styled.div`
     background-color: var(--black);
     border: none;
     padding: 0;
+    margin-right: 10px;
   }
   img {
     background-color: var(--black);
@@ -325,6 +326,39 @@ export const PopUpCreateChallenge = styled.div`
     border-radius: 10px;
     border: none;
     font-size: medium;
+  }
+`;
+
+export const PopUpComments = styled.div`
+  display: ${({ $showComments }) => ($showComments ? "flex" : "none")};
+  flex-direction: column;
+  color: ${(props) => props.theme.primaryColor};
+  background-color: rgba(32, 33, 36, 0.9);
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  font-size: small;
+  top: 0;
+  bottom: 0;
+  right: 20px;
+  left: 20px;
+  img {
+    width: 20px;
+    height: 20px;
+    align-self: flex-end;
+    position: absolute;
+    top: 445px;
+    right: 25px;
+    cursor: pointer;
+  }
+  input {
+    background-color: transparent;
+    width: 90%;
+    border: none;
+    border-bottom: 2px solid ${(props) => props.theme.primaryColor};
+    outline: none;
+    padding-bottom: 10px;
+    color: ${(props) => props.theme.primaryColor};
   }
 `;
 

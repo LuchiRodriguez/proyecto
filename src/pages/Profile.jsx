@@ -85,7 +85,7 @@ const Profile = () => {
       <LogoutBtn onClick={logout}>
         <img src={logoutBtn} alt="Logout" />
       </LogoutBtn>
-      <ChangeProfileButton onClick={() => console.log()}>
+      <ChangeProfileButton>
         {user.rol === "watcher" && <img src={pencilIconWatcher} alt="" />}
         {user.rol === "player" && <img src={pencilIconPlayer} alt="" />}
       </ChangeProfileButton>
