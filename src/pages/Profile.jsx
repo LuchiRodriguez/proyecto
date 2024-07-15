@@ -22,7 +22,7 @@ const Profile = () => {
   const refetch = () => {
     getUserByUsername(user.username).then((data) => {
       setUserProfile(data)
-      console.log(data.videos)
+      console.log(data)
       setVideos(data.videos);
     });
   };
@@ -51,7 +51,9 @@ const Profile = () => {
   };
 
   const openPopUp = (video) => {
-    setSelectedVideo(video);
+    const videoArray = Object.values(videos);
+    const videoIndex = videoArray.findIndex(v => v.id === video.id);
+    setSelectedVideo({ ...video, index: videoIndex });
     setIsOpen(true);
   }
 
@@ -150,6 +152,7 @@ const Profile = () => {
         <PopupProfile
           video={selectedVideo}
           onClose={closePopup}
+
         />
       )}
       <NavBar />

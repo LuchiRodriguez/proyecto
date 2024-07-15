@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getUserByUsername } from "../app/api/User";
-import { PopUpContainer, VideosContainer } from "../app/Styles";
+import { PopUpContainer, VideosBox, BtnPopUp, VideoEdit } from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
-import close from "../app/img/playerNavBar/close.png";
+import closeBtn from "../app/img/playerNavBar/close.png";
 
-const PopupProfile = ({ onClose }) => {
+const PopupProfile = ({ onClose, video }) => {
+    const { index } = video;
     const [user] = useUserContext({});
     const { id } = useParams();
     const [videos, setVideos] = useState([]);
 
     const fetchData = () => {
         getUserByUsername(user.username).then((data) => {
+            console.log(data.videos)
             setVideos(data.videos);
         });
 
@@ -26,15 +28,26 @@ const PopupProfile = ({ onClose }) => {
     }
     return (
         <PopUpContainer>
-            {videos.map((video, i) => {
-                return (
+            <VideosBox>
+                <VideoEdit>
+                    <video src={video.videoUrl} controls />
+                </VideoEdit>
+                <BtnPopUp onClick={close}><img src={closeBtn} alt="Close" /></BtnPopUp>
+            </VideosBox>
 
-                    <VideosContainer key={i}>
-                        <video src={video.videoUrl} controls />
-                    </VideosContainer>
-                )
+            {videos.map((video, i) => {
+                if (i !== index)
+                    return (
+                        <VideosBox key={i}>
+                            <VideoEdit>
+                                <video src={video.videoUrl} controls />
+                            </VideoEdit>
+                            <BtnPopUp onClick={close}><img src={closeBtn} alt="Close" /></BtnPopUp>
+                        </VideosBox>
+                    )
             })}
-            <button onClick={close}>{close}</button>
+
+
         </PopUpContainer>
     )
 }
