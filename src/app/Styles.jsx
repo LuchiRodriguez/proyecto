@@ -346,15 +346,17 @@ export const UploadingDiv = styled.div`
 `;
 
 export const LogoutBtn = styled.button`
-  position: fixed;
-  top: 30px;
-  right: 30px;
+  /* position: fixed; */
+
   background-color: var(--black);
   border: none;
   img {
     width: 20px;
     height: 20px;
     cursor: pointer;
+      display: block;
+      margin-top: -204px;
+    margin-left: 280px;
   }
 `;
 
@@ -484,14 +486,15 @@ export const ButtonDelete = styled.button`
 `;
 
 export const ChangeProfileButton = styled.button`
-  position: fixed;
+  /* position: fixed; */
   border: none;
-  top: 30px;
-  left: 30px;
   background: none;
   img {
+    display: block;
     width: 20px;
     height: 20px;
+    margin-right: 280px;
+margin-top: -207px;
   }
 `;
 
@@ -552,6 +555,8 @@ export const VideosContainer = styled.div`
   gap: 16px; 
   margin-top: 20px;
   width: 100%; 
+  border: 2xp solid var(--red);
+  margin-bottom: 30px;
 `;
 
 export const VideoItem = styled.div`
@@ -560,7 +565,7 @@ export const VideoItem = styled.div`
   overflow: hidden;
   border-radius: 8px;
   width: 100%; 
-  margin-bottom: 10px; 
+
 
   video {
     position: absolute;
@@ -573,9 +578,9 @@ export const VideoItem = styled.div`
   }
 `;
 export const PopUpContainer = styled.div`
-    width: 300px; 
+    width: 100%; 
     max-width: 90%; 
-    height: 100%;
+    height: 95%;
     position: fixed;
     top: 50%; 
     left: 50%; 
@@ -585,21 +590,45 @@ export const PopUpContainer = styled.div`
     box-shadow: 0 0 10px  rgba(32, 33, 36, 0.9);
     padding: 20px;
     overflow-y: auto;
+    padding: 10px; 
 
-    button {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        z-index: 1;
-        width: 100px; 
-        height: 100px; 
-    }
 
     video {
         width: 300px;
         border-radius: 10px;
-    }
+        margin: auto; 
+            position: relative;
+    top: 150px;
+    left: 18px;
+}
 `;
+
+export const VideosBox = styled.div`
+height: 600px; 
+border: 1px solid var(--red); 
+
+
+button {
+  position: relative; 
+  bottom: 300px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1;
+}
+
+`
+
+export const BtnPopUp = styled.button`
+        position: fixed;
+        
+        img{
+        width: 20px; 
+        height: 20px;
+            padding: 10px; 
+        }
+`
+
+export const VideoEdit = styled.div`
+
+`
