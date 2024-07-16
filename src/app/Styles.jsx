@@ -117,6 +117,7 @@ export const PerfilStyle = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
+  position: relative; 
 `;
 
 export const ProfileImg = styled.div`
@@ -391,9 +392,15 @@ export const LogoutBtn = styled.button`
     width: 20px;
     height: 20px;
     cursor: pointer;
+<<<<<<< HEAD
     display: block;
     margin-top: -204px;
     margin-left: 280px;
+=======
+      position: absolute;
+      top: 10px; 
+      right: 15px;
+>>>>>>> 346404e25ed68ae1c38b64da4006ff18349e6249
   }
 `;
 
@@ -527,11 +534,16 @@ export const ChangeProfileButton = styled.button`
   border: none;
   background: none;
   img {
-    display: block;
+    position: absolute;
     width: 20px;
     height: 20px;
+<<<<<<< HEAD
     margin-right: 280px;
     margin-top: -207px;
+=======
+    top: 10px;
+    left: 15px; 
+>>>>>>> 346404e25ed68ae1c38b64da4006ff18349e6249
   }
 `;
 
@@ -639,8 +651,13 @@ export const PopUpContainer = styled.div`
 `;
 
 export const VideosBox = styled.div`
+<<<<<<< HEAD
   height: 600px;
   border: 1px solid var(--red);
+=======
+height: 100%; 
+border: 1px solid var(--red); 
+>>>>>>> 346404e25ed68ae1c38b64da4006ff18349e6249
 
   button {
     position: relative;
