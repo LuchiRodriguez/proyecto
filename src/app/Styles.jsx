@@ -102,9 +102,7 @@ export const Form = styled.form`
   }
 `;
 
-export const PlayerProfile = styled.div`
-
-`;
+export const PlayerProfile = styled.div``;
 export const WatcherProfile = styled.div``;
 
 export const PerfilStyle = styled.div`
@@ -365,6 +363,11 @@ export const PopUpComments = styled.div`
     padding-bottom: 10px;
     color: ${(props) => props.theme.primaryColor};
   }
+  div {
+    border: 2px solid ${(props) => props.theme.primaryColor};
+    width: 100%;
+    border-radius: 10px;
+  }
 `;
 
 export const ChallengesList = styled.div`
@@ -389,9 +392,15 @@ export const LogoutBtn = styled.button`
     width: 20px;
     height: 20px;
     cursor: pointer;
+<<<<<<< HEAD
+    display: block;
+    margin-top: -204px;
+    margin-left: 280px;
+=======
       position: absolute;
       top: 10px; 
       right: 15px;
+>>>>>>> 346404e25ed68ae1c38b64da4006ff18349e6249
   }
 `;
 
@@ -528,8 +537,13 @@ export const ChangeProfileButton = styled.button`
     position: absolute;
     width: 20px;
     height: 20px;
+<<<<<<< HEAD
+    margin-right: 280px;
+    margin-top: -207px;
+=======
     top: 10px;
     left: 15px; 
+>>>>>>> 346404e25ed68ae1c38b64da4006ff18349e6249
   }
 `;
 
@@ -586,21 +600,20 @@ export const SwitchText = styled.span`
 
 export const VideosContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(2,1fr); 
-  gap: 16px; 
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
   margin-top: 20px;
-  width: 100%; 
+  width: 100%;
   border: 2xp solid var(--red);
   margin-bottom: 30px;
 `;
 
 export const VideoItem = styled.div`
   position: relative;
-  padding-bottom: 100%; 
+  padding-bottom: 100%;
   overflow: hidden;
   border-radius: 8px;
-  width: 100%; 
-
+  width: 100%;
 
   video {
     position: absolute;
@@ -613,57 +626,57 @@ export const VideoItem = styled.div`
   }
 `;
 export const PopUpContainer = styled.div`
-    width: 100%; 
-    max-width: 90%; 
-    height: 95%;
-    position: fixed;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%);
-    background-color:  rgba(32, 33, 36, 0.9);
+  width: 100%;
+  max-width: 90%;
+  height: 95%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(32, 33, 36, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(32, 33, 36, 0.9);
+  padding: 20px;
+  overflow-y: auto;
+  padding: 10px;
+
+  video {
+    width: 300px;
     border-radius: 10px;
-    box-shadow: 0 0 10px  rgba(32, 33, 36, 0.9);
-    padding: 20px;
-    overflow-y: auto;
-    padding: 10px; 
-
-
-    video {
-        width: 300px;
-        border-radius: 10px;
-        margin: auto; 
-            position: relative;
+    margin: auto;
+    position: relative;
     top: 150px;
     left: 18px;
-}
+  }
 `;
 
 export const VideosBox = styled.div`
+<<<<<<< HEAD
+  height: 600px;
+  border: 1px solid var(--red);
+=======
 height: 100%; 
 border: 1px solid var(--red); 
+>>>>>>> 346404e25ed68ae1c38b64da4006ff18349e6249
 
-
-button {
-  position: relative; 
-  bottom: 300px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        z-index: 1;
-}
-
-`
+  button {
+    position: relative;
+    bottom: 300px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+  }
+`;
 
 export const BtnPopUp = styled.button`
-        position: fixed;
-        
-        img{
-        width: 20px; 
-        height: 20px;
-            padding: 10px; 
-        }
-`
+  position: fixed;
 
-export const VideoEdit = styled.div`
+  img {
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+  }
+`;
 
-`
+export const VideoEdit = styled.div``;

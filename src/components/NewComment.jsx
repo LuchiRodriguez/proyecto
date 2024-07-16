@@ -3,13 +3,14 @@ import { PopUpComments } from "../app/Styles";
 import watcherCheck from "../app/img/watcherNavBar/watcherCheck.png";
 import playerCheck from "../app/img/playerNavBar/playerCheck.png";
 import { useUserContext } from "../app/UserProvider";
+import userImg from "../app/img/playerNavBar/user.png";
 const NewComment = ({ showComments, challenge }) => {
   const [user] = useUserContext();
   const [comments, setComments] = useState([]);
   const [newComment, setNewCommet] = useState();
   useEffect(() => {
     setComments(challenge.videos.comments);
-  }, []);
+  }, [comments]);
   // const handleComments = async () => {
   //   setComments(newComment);
   //   // try {
@@ -23,10 +24,10 @@ const NewComment = ({ showComments, challenge }) => {
       {comments.length > 0 ? (
         <>
           {comments.map((comment) => (
-            <div key={comment.id}>
-              <img src="" alt="" />
+            <div key={comment.newComment}>
+              <img src={userImg} alt="" />
               <p>Username</p>
-              <p>{comment}</p>
+              <p>{comment.newComment}</p>
             </div>
           ))}
         </>
@@ -36,7 +37,9 @@ const NewComment = ({ showComments, challenge }) => {
           <p>Sé el primero en comentar</p>
           <img
             onClick={() => {
-              setComments(newComment), console.log(comments);
+              comments.push({ newComment }),
+                //  navigate("/"),
+                console.log(comments);
             }}
             src={user.rol === "watcher" ? watcherCheck : playerCheck}
             alt=""
