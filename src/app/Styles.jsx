@@ -120,12 +120,19 @@ export const PerfilStyle = styled.div`
   background-size: cover;
   background-position: center;
   position: relative; 
+  min-height: 660px; 
 `;
 
 export const ProfileImg = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+    border-bottom: 2px solid ${(props) => props.theme.primaryColor} ;
+    width: 85vw;
+    padding-bottom: 30px;
+    padding-top: 15px;
+
+
   button {
     background-color: var(--black);
     border: var(--blue) 3px solid;
@@ -141,12 +148,19 @@ export const ProfileImg = styled.div`
     border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
+  p{
+    padding: 5px;
+  }
 `;
 
 export const ProfileInfo = styled.div`
   display: flex;
   text-align: center;
-  gap: 20px;
+  gap: 5px;
+
+p{
+  padding: 20px;
+}
 `;
 
 export const UserInfo = styled.div`
@@ -171,8 +185,8 @@ export const ChallengeInfo = styled.div`
   font-family: Roboto;
   margin-left: 10px;
   button {
-    margin-left: 25%;
-    margin-right: 25%;
+    display: block;
+    margin: auto; 
   }
 `;
 
@@ -377,6 +391,14 @@ export const UploadingDiv = styled.div`
   img {
     width: 60px;
     height: 60px;
+    padding: 5px; 
+    display: block;
+    margin: auto; 
+    
+  }
+
+  h3{
+    text-align: center;
   }
 `;
 
@@ -436,7 +458,14 @@ export const ButtonStyle = styled.button`
   color: var(--red);
   text-transform: uppercase;
   font-family: Roboto;
-  padding: 10px;
+  padding: 10px; 
+
+
+  button{
+  display: block; 
+  margin: auto; 
+
+  }
 `;
 
 export const InputStyle = styled.input`
@@ -454,15 +483,17 @@ export const UploadVideo = styled.div`
   }
   input {
     color: var(--black);
+    display: block; 
+    margin: auto; 
   }
   input::file-selector-button {
-    display: block;
     border: 1px solid var(--red);
     background-color: var(--black);
     color: white;
     border-radius: 5px;
     padding: 10px;
-    margin-left: 33%;
+    display: block; 
+    margin: auto; 
   }
   button {
     display: block;
@@ -471,7 +502,7 @@ export const UploadVideo = styled.div`
     color: white;
     border-radius: 5px;
     padding: 10px;
-    margin-left: 31%;
+    margin: auto; 
   }
 `;
 
@@ -590,9 +621,6 @@ export const VideosContainer = styled.div`
   gap: 10px; 
   margin-top: 20px;
   width: 100%; 
-  border-top: 2px solid var(--red);
-  padding: 5px;
-  margin-bottom: 30px;
 `;
 
 export const VideoItem = styled.div`
