@@ -23,10 +23,9 @@ const Home = () => {
   useEffect(() => {
     if (user) {
       getChallenges().then((data) => {
-        const filteredChallenges = data.data.filter(
-          (challenges) => challenges.videos !== null
+        const challengeFilter = data.filter((challenges) => challenges.videos !== null
         );
-        setFilteredChallenges(filteredChallenges);
+        setFilteredChallenges(challengeFilter);
       });
     }
   }, [user]);
