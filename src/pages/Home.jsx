@@ -12,6 +12,7 @@ import {
 import PlayerComment from "../app/img/playerNavBar/playerDiscomment.png";
 import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
+import moment from "moment";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
@@ -20,6 +21,9 @@ const Home = () => {
   const [showComments, setShowComments] = useState(false);
   const [filteredChallenges, setFilteredChallenges] = useState([]);
   const videoRefs = useRef([]);
+  const newDate = new Date();
+  const formattedDate = moment(newDate).format("YYYY-MM-DDTHH:mm:ss");
+  const parsedDate = moment(formattedDate).toDate();
 
   useEffect(() => {
     if (user) {
@@ -27,7 +31,24 @@ const Home = () => {
         const filteredChallenges = data.data.filter(
           (challenges) => challenges.videos !== null
         );
-        setFilteredChallenges(filteredChallenges);
+        const filteredChallengesWithTranscurredTime = filteredChallenges.map(
+          (video) => {
+            const currentDate = new Date(video.videos.creationDate);
+            console.log(currentDate);
+            console.log(parsedDate);
+            const differenceMs = parsedDate - currentDate;
+            console.log(differenceMs);
+            const differenceSeconds = differenceMs / 1000;
+            const differenceMinutes = differenceSeconds / 60;
+            const differenceHours = differenceMinutes / 60;
+            console.log(`Diferencia en segundos: ${differenceSeconds}`);
+            console.log(`Diferencia en minutos: ${differenceMinutes}`);
+            console.log(`Diferencia en horas: ${differenceHours}`);
+            const transcurredTime = video.videos.creationDate;
+            return transcurredTime;
+          }
+        );
+        setFilteredChallenges(filteredChallengesWithTranscurredTime);
       });
     }
   }, [user]);
@@ -67,6 +88,7 @@ const Home = () => {
       {filteredChallenges?.map((challenge, index) => (
         <ChallengeVideo key={challenge.id}>
           <UserInfo>
+            {challenge.videos.creationDate}
             {challenge.player.imagenUrl == null ? (
               <img src={challenge.player.imagenUrl} />
             ) : (
@@ -76,6 +98,7 @@ const Home = () => {
               />
             )}
             <p>{challenge.player.username}</p>
+            <p>{challenge.videos.creationDate}</p>
           </UserInfo>
           <ChallengeInfo>
             <p>{challenge.description}</p>

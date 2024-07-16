@@ -117,7 +117,7 @@ export const PerfilStyle = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
-  position: relative; 
+  position: relative;
 `;
 
 export const ProfileImg = styled.div`
@@ -392,15 +392,9 @@ export const LogoutBtn = styled.button`
     width: 20px;
     height: 20px;
     cursor: pointer;
-<<<<<<< HEAD
-    display: block;
-    margin-top: -204px;
-    margin-left: 280px;
-=======
-      position: absolute;
-      top: 10px; 
-      right: 15px;
->>>>>>> 346404e25ed68ae1c38b64da4006ff18349e6249
+    position: absolute;
+    top: 10px;
+    right: 15px;
   }
 `;
 
