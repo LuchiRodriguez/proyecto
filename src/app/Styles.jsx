@@ -102,7 +102,9 @@ export const Form = styled.form`
   }
 `;
 
-export const PlayerProfile = styled.div``;
+export const PlayerProfile = styled.div`
+
+`;
 export const WatcherProfile = styled.div``;
 
 export const PerfilStyle = styled.div`
@@ -114,7 +116,7 @@ export const PerfilStyle = styled.div`
   border-radius: 10px ${(props) => props.theme.primaryColor};
   padding: 10px;
   color: ${(props) => props.theme.primaryColor};
-  height: 88vh;
+  height: 100%;
   background-size: cover;
   background-position: center;
 `;
@@ -195,6 +197,7 @@ export const Interaction = styled.div`
     background-color: var(--black);
     border: none;
     padding: 0;
+    margin-right: 10px;
   }
   img {
     background-color: var(--black);
@@ -209,6 +212,8 @@ export const ChallengeVideo = styled.div`
   border: 2px solid /*var(--blue);*/ ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
+  margin-bottom: 10px;
+
   video {
     width: 100%;
     border-radius: 10px;
@@ -328,6 +333,39 @@ export const PopUpCreateChallenge = styled.div`
   }
 `;
 
+export const PopUpComments = styled.div`
+  display: ${({ $showComments }) => ($showComments ? "flex" : "none")};
+  flex-direction: column;
+  color: ${(props) => props.theme.primaryColor};
+  background-color: rgba(32, 33, 36, 0.9);
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  font-size: small;
+  top: 0;
+  bottom: 0;
+  right: 20px;
+  left: 20px;
+  img {
+    width: 20px;
+    height: 20px;
+    align-self: flex-end;
+    position: absolute;
+    top: 445px;
+    right: 25px;
+    cursor: pointer;
+  }
+  input {
+    background-color: transparent;
+    width: 90%;
+    border: none;
+    border-bottom: 2px solid ${(props) => props.theme.primaryColor};
+    outline: none;
+    padding-bottom: 10px;
+    color: ${(props) => props.theme.primaryColor};
+  }
+`;
+
 export const ChallengesList = styled.div`
   display: block;
 `;
@@ -342,15 +380,17 @@ export const UploadingDiv = styled.div`
 `;
 
 export const LogoutBtn = styled.button`
-  position: fixed;
-  top: 30px;
-  right: 30px;
+  /* position: fixed; */
+
   background-color: var(--black);
   border: none;
   img {
     width: 20px;
     height: 20px;
     cursor: pointer;
+      display: block;
+      margin-top: -204px;
+    margin-left: 280px;
   }
 `;
 
@@ -480,14 +520,15 @@ export const ButtonDelete = styled.button`
 `;
 
 export const ChangeProfileButton = styled.button`
-  position: fixed;
+  /* position: fixed; */
   border: none;
-  top: 30px;
-  left: 30px;
   background: none;
   img {
+    display: block;
     width: 20px;
     height: 20px;
+    margin-right: 280px;
+margin-top: -207px;
   }
 `;
 
@@ -519,17 +560,6 @@ export const SwitchSlider = styled.div`
     $ischecked ? theme.toggleActive : theme.toggleInactive};
 `;
 
-export const SwitchText = styled.span`
-  font-weight: bolder;
-  position: absolute;
-  font-size: 12px;
-  line-height: 1;
-  color: var(--black);
-  transition: 0.3s;
-  transform: ${({ $ischecked }) =>
-    $ischecked ? "translateX(18px)" : "translateX(10px)"};
-`;
-
 export const SwitchInput = styled.input`
   opacity: 0;
   width: 0;
@@ -542,3 +572,97 @@ export const SwitchInput = styled.input`
   }
 `;
 
+export const SwitchText = styled.span`
+  font-weight: bolder;
+  position: absolute;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--black);
+  transition: 0.3s;
+  transform: ${({ $ischecked }) =>
+    $ischecked ? "translateX(18px)" : "translateX(10px)"};
+`;
+
+export const VideosContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2,1fr); 
+  gap: 16px; 
+  margin-top: 20px;
+  width: 100%; 
+  border: 2xp solid var(--red);
+  margin-bottom: 30px;
+`;
+
+export const VideoItem = styled.div`
+  position: relative;
+  padding-bottom: 100%; 
+  overflow: hidden;
+  border-radius: 8px;
+  width: 100%; 
+
+
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+`;
+export const PopUpContainer = styled.div`
+    width: 100%; 
+    max-width: 90%; 
+    height: 95%;
+    position: fixed;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    background-color:  rgba(32, 33, 36, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 10px  rgba(32, 33, 36, 0.9);
+    padding: 20px;
+    overflow-y: auto;
+    padding: 10px; 
+
+
+    video {
+        width: 300px;
+        border-radius: 10px;
+        margin: auto; 
+            position: relative;
+    top: 150px;
+    left: 18px;
+}
+`;
+
+export const VideosBox = styled.div`
+height: 600px; 
+border: 1px solid var(--red); 
+
+
+button {
+  position: relative; 
+  bottom: 300px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1;
+}
+
+`
+
+export const BtnPopUp = styled.button`
+        position: fixed;
+        
+        img{
+        width: 20px; 
+        height: 20px;
+            padding: 10px; 
+        }
+`
+
+export const VideoEdit = styled.div`
+
+`

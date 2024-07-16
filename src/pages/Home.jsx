@@ -12,32 +12,19 @@ const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const Home = () => {
   const [user] = useUserContext();
-  const [allChallenges, setAllChallenges] = useState([]);
+  const [showComments, setShowComments] = useState(false);
+  const [filteredChallenges, setFilteredChallenges] = useState([]);
   const videoRefs = useRef([]);
-  const [like, setLike] = useState(false);
-
-  const handleLike = async (ch) => {
-    const formData = new FormData();
-    formData.append("id", ch.id);
-    formData.append("user", user.username);
-    setLike(!like);
-
-    try {
-      await postChallengeVideo(ch.id);
-    } catch (error) {
-      console.error("Error liking:", error);
-    }
-  };
-
-  const challenge = allChallenges.filter(
-    (challenges) => challenges.videos !== null
-  );
-
   useEffect(() => {
-    getChallenges().then((data) => {
-      setAllChallenges(data.data);
-    });
-  }, []);
+    if (user) {
+      getChallenges().then((data) => {
+        const filteredChallenges = data.filter(
+          (challenges) => challenges.videos !== null
+        );
+        setFilteredChallenges(filteredChallenges);
+      });
+    }
+  }, [user]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -67,11 +54,11 @@ const Home = () => {
         }
       });
     };
-  }, [challenge]);
+  }, [filteredChallenges]);
 
   return (
     <>
-      {challenge?.map((challenge, index) => (
+      {filteredChallenges?.map((challenge, index) => (
         <ChallengeVideo key={challenge.id}>
           <UserInfo>
             {challenge.player.imagenUrl == null ? (
@@ -98,15 +85,19 @@ const Home = () => {
             />
           </Suspense>
           <Interaction>
-            <button onClick={() => handleLike(challenge)}>
-              {user.rol === "watcher" && (
-                <img src={!like ? dislikeWatcher : likeImgWatcher} alt="" />
+            <ButtonLike />
+            <button onClick={() => setShowComments(true)}>
+              {user.rol === "watcher" ? (
+                <img src={WatcherComment} alt="" />
+              ) : (
+                <img src={PlayerComment} alt="" />
               )}
               {user.rol === "player" && (
                 <img src={!like ? dislikePlayer : likeImgPlayer} alt="" />
               )}
             </button>
           </Interaction>
+          <NewComment showComments={showComments} challenge={challenge} />
         </ChallengeVideo>
       ))}
       <NavBar />
