@@ -638,7 +638,7 @@ export const PopUpContainer = styled.div`
 `;
 
 export const VideosBox = styled.div`
-height: 600px; 
+height: 100%; 
 border: 1px solid var(--red); 
 
 
