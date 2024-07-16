@@ -73,6 +73,7 @@ const Profile = () => {
               style={{ display: "none" }}
               onChange={handleImageChange}
             />
+            <p>{user.rol}</p>
             <img
               src={
                 userProfile.imagenUrl
@@ -82,9 +83,21 @@ const Profile = () => {
               alt=""
               style={{ cursor: "pointer" }}
             />
-            <p>{user.rol}</p>
+
             <p>{userProfile.username}</p>
+            <ProfileInfo>
+              <p>
+                Challenges <br />
+                {userProfile.challengeCompleted}
+              </p>
+              <br />
+              <p>
+                Points <br />
+                {userProfile.points}
+              </p>
+            </ProfileInfo>
           </ProfileImg>
+
 
           <LogoutBtn onClick={logout}>
             <img src={logoutBtnPlayer} alt="Logout" />
@@ -112,6 +125,7 @@ const Profile = () => {
       {user.rol === "watcher" && <WatcherProfile>
         <PerfilStyle>
           <ProfileImg>
+
             <input
               type="file"
               id="fileInput"
@@ -119,6 +133,7 @@ const Profile = () => {
               style={{ display: "none" }}
               onChange={handleImageChange}
             />
+            <p>{user.rol}</p>
             <img
               src={
                 userProfile.imagenUrl
@@ -128,7 +143,7 @@ const Profile = () => {
               alt=""
               style={{ cursor: "pointer" }}
             />
-            <p>{user.rol}</p>
+
             <p>{userProfile.username}</p>
           </ProfileImg>
           <ProfileInfo>

@@ -110,7 +110,7 @@ const Challenge = ({ ch, refetch }) => {
           <>
             <p className="watcher">
               Accepted by <span>{user.username}</span>
-            </p>
+            </p> <br />
             <ButtonStyle onClick={handleCancel}>Cancelar desafío</ButtonStyle>
           </>
         ) : (
