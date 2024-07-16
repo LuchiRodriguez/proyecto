@@ -1,45 +1,35 @@
 import { useEffect, useState, lazy, Suspense, useRef } from "react";
 import NavBar from "../components/NavBar";
-import { getChallenges, postChallengeVideo } from "../app/api/Challenge";
+import { getChallenges } from "../app/api/Challenge";
+import ButtonLike from "../components/ButtonLike";
+import NewComment from "../components/NewComment";
 import {
   UserInfo,
   ChallengeInfo,
   ChallengeVideo,
   Interaction,
 } from "../app/Styles";
-import dislikeWatcher from "../app/img/watcherNavBar/dislike.png";
-import likeImgWatcher from "../app/img/watcherNavBar/like.png";
-import likeImgPlayer from "../app/img/playerNavBar/like.png";
-import dislikePlayer from "../app/img/playerNavBar/dislike.png";
+import PlayerComment from "../app/img/playerNavBar/playerDiscomment.png";
+import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const Home = () => {
   const [user] = useUserContext();
-  const [allChallenges, setAllChallenges] = useState([]);
+  const [showComments, setShowComments] = useState(false);
+  const [filteredChallenges, setFilteredChallenges] = useState([]);
   const videoRefs = useRef([]);
-  const [like, setLike] = useState(false);
-  
-  const challenge = allChallenges.filter((challenges) => challenges.videos !== null);
-
-  const handleLike = async (ch) => {
-    const formData = new FormData();
-    formData.append("id", ch.id);
-    formData.append("user", user.username);
-    setLike(!like);
-
-    try {
-      await postChallengeVideo(ch.id);
-    } catch (error) {
-      console.error("Error liking:", error);
-    }
-  };
   useEffect(() => {
-    getChallenges().then((data) => {
-      setAllChallenges(data);
-    });
-  }, []);
+    if (user) {
+      getChallenges().then((data) => {
+        const filteredChallenges = data.data.filter(
+          (challenges) => challenges.videos !== null
+        );
+        setFilteredChallenges(filteredChallenges);
+      });
+    }
+  }, [user]);
 
   
   useEffect(() => {
@@ -70,11 +60,11 @@ const Home = () => {
         }
       });
     };
-  }, [challenge]);
+  }, [filteredChallenges]);
 
   return (
     <>
-      {challenge?.map((challenge, index) => (
+      {filteredChallenges?.map((challenge, index) => (
         <ChallengeVideo key={challenge.id}>
           <UserInfo>
             {challenge.player.imagenUrl == null ? (
@@ -101,13 +91,16 @@ const Home = () => {
             />
           </Suspense>
           <Interaction>
-            <button onClick={() => handleLike(challenge)}>
-              {user.rol === "watcher" && (
-                <img src={!like ? dislikeWatcher : likeImgWatcher} alt="" />)}
-              {user.rol === "player" && (
-                <img src={!like ? dislikePlayer : likeImgPlayer} alt="" />)}
+            <ButtonLike />
+            <button onClick={() => setShowComments(true)}>
+              {user.rol === "watcher" ? (
+                <img src={WatcherComment} alt="" />
+              ) : (
+                <img src={PlayerComment} alt="" />
+              )}
             </button>
           </Interaction>
+          <NewComment showComments={showComments} challenge={challenge} />
         </ChallengeVideo>
       ))}
       <NavBar />

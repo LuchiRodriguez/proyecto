@@ -1,24 +1,35 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import NavBar from "../components/NavBar";
-import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, ChangeProfileButton } from "../app/Styles";
+import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, ChangeProfileButton, PlayerProfile, WatcherProfile, VideosContainer, VideoItem } from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
 import { useNavigate } from "react-router-dom";
-import logoutBtn from "../app/img/logout.png";
+import logoutBtnWatcher from "../app/img/watcherNavBar/logout.png";
+import logoutBtnPlayer from "../app/img/playerNavBar/logout.png";
 import pencilIconWatcher from "../app/img/watcherNavBar/pencil.png";
 import pencilIconPlayer from "../app/img/playerNavBar/pencil.png";
+import PopupProfile from '../components/PopupProfile';
+
 
 const Profile = () => {
   const [user, setUser] = useUserContext();
   const [userProfile, setUserProfile] = useState({});
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const [videos, setVideos] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
   const refetch = () => {
-    getUserByUsername(user.username).then((data) => setUserProfile(data));
+    getUserByUsername(user.username).then((data) => {
+      setUserProfile(data)
+      console.log(data)
+      setVideos(data.videos);
+    });
   };
 
   useEffect(() => {
     refetch();
+
   }, []);
 
   const handleImageChange = async (event) => {
@@ -39,61 +50,111 @@ const Profile = () => {
     navigate("/");
   };
 
+  const openPopUp = (video) => {
+    const videoArray = Object.values(videos);
+    const videoIndex = videoArray.findIndex(v => v.id === video.id);
+    setSelectedVideo({ ...video, index: videoIndex });
+    setIsOpen(true);
+  }
+
+  const closePopup = () => {
+    setIsOpen(false);
+  }
+
   return (
     <>
-      <PerfilStyle>
+      {user.rol === "player" && <PlayerProfile>
+        <PerfilStyle>
+          <ProfileImg>
+            <input
+              type="file"
+              id="fileInput"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleImageChange}
+            />
+            <img
+              src={
+                userProfile.imagenUrl
+                  ? userProfile.imagenUrl
+                  : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+              }
+              alt=""
+              style={{ cursor: "pointer" }}
+            />
+            <p>{user.rol}</p>
+            <p>{userProfile.username}</p>
+          </ProfileImg>
 
-        <ProfileImg>
-          <input
-            type="file"
-            id="fileInput"
-            accept="image/*"
-            style={{ display: "none" }}
-            onChange={handleImageChange}
-          />
-          <img
-            src={
-              userProfile.imagenUrl
-                ? userProfile.imagenUrl
-                : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+          <LogoutBtn onClick={logout}>
+            <img src={logoutBtnPlayer} alt="Logout" />
+          </LogoutBtn>
+          <ChangeProfileButton onClick={() => setIsOpen(!isOpen)}>
+            <img src={pencilIconPlayer} alt="" />
+          </ChangeProfileButton>
+
+          <VideosContainer>
+            {videos.map((video, i) => {
+              return (
+                <VideoItem key={i} onClick={() => openPopUp(video)} >
+                  <video
+                    src={video.videoUrl}
+                  />
+
+                </VideoItem>
+              )
             }
-            alt=""
-            style={{ cursor: "pointer" }}
-          />
+            )}
+          </VideosContainer>
 
-          <p>{user.rol}</p>
-          <p>{userProfile.username}</p>
-        </ProfileImg>
-        {user.rol === "player" && (
-          <ProfileInfo>
-            <p>
-              Points: <br />
-              {userProfile.points}
-            </p>
-            <p>
-              Challenges: <br />
-              {userProfile.challengeCompleted}
-            </p>
-          </ProfileInfo>
-        )}
-        {user.rol === "watcher" && (
+        </PerfilStyle>
+      </PlayerProfile>}
+      {user.rol === "watcher" && <WatcherProfile>
+        <PerfilStyle>
+          <ProfileImg>
+            <input
+              type="file"
+              id="fileInput"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleImageChange}
+            />
+            <img
+              src={
+                userProfile.imagenUrl
+                  ? userProfile.imagenUrl
+                  : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+              }
+              alt=""
+              style={{ cursor: "pointer" }}
+            />
+            <p>{user.rol}</p>
+            <p>{userProfile.username}</p>
+          </ProfileImg>
           <ProfileInfo>
             <p>
               Challenges: <br />
               {userProfile.proposedChallenge}
             </p>
           </ProfileInfo>
-        )}
-      </PerfilStyle>
-      <LogoutBtn onClick={logout}>
-        <img src={logoutBtn} alt="Logout" />
-      </LogoutBtn>
-      <ChangeProfileButton onClick={() => console.log()}>
-        {user.rol === "watcher" && (
-          <img src={pencilIconWatcher} alt="" />)}
-        {user.rol === "player" && (
-          <img src={pencilIconPlayer} alt="" />)}
-      </ChangeProfileButton>
+
+          <LogoutBtn onClick={logout}>
+            <img src={logoutBtnWatcher} alt="Logout" />
+          </LogoutBtn>
+
+          <ChangeProfileButton onClick={() => setIsOpen(!isOpen)}>
+            <img src={pencilIconWatcher} alt="" />
+          </ChangeProfileButton>
+        </PerfilStyle>
+      </WatcherProfile>}
+
+      {isOpen && (
+        <PopupProfile
+          video={selectedVideo}
+          onClose={closePopup}
+
+        />
+      )}
       <NavBar />
     </>
   );
