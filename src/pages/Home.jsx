@@ -20,6 +20,7 @@ const Home = () => {
   const [showComments, setShowComments] = useState(false);
   const [filteredChallenges, setFilteredChallenges] = useState([]);
   const videoRefs = useRef([]);
+
   useEffect(() => {
     if (user) {
       getChallenges().then((data) => {
