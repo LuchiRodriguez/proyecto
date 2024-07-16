@@ -18,7 +18,7 @@ const Home = () => {
   useEffect(() => {
     if (user) {
       getChallenges().then((data) => {
-        const filteredChallenges = data.filter(
+        const filteredChallenges = data.data.filter(
           (challenges) => challenges.videos !== null
         );
         setFilteredChallenges(filteredChallenges);
