@@ -531,13 +531,8 @@ export const ChangeProfileButton = styled.button`
     position: absolute;
     width: 20px;
     height: 20px;
-<<<<<<< HEAD
-    margin-right: 280px;
-    margin-top: -207px;
-=======
     top: 10px;
-    left: 15px; 
->>>>>>> 346404e25ed68ae1c38b64da4006ff18349e6249
+    left: 15px;
   }
 `;
 
@@ -645,13 +640,8 @@ export const PopUpContainer = styled.div`
 `;
 
 export const VideosBox = styled.div`
-<<<<<<< HEAD
-  height: 600px;
+  height: 100%;
   border: 1px solid var(--red);
-=======
-height: 100%; 
-border: 1px solid var(--red); 
->>>>>>> 346404e25ed68ae1c38b64da4006ff18349e6249
 
   button {
     position: relative;
