@@ -43,6 +43,9 @@ const Profile = () => {
       refetch();
     }
   };
+  const handleImageClick = () => {
+    document.getElementById('fileInput').click();
+  };
 
   const logout = () => {
     localStorage.removeItem("user");
@@ -65,7 +68,8 @@ const Profile = () => {
     <>
       {user.rol === "player" && <PlayerProfile>
         <PerfilStyle>
-          <ProfileImg>
+          <ProfileImg onClick={handleImageClick}>
+            <p>{user.rol}</p>
             <input
               type="file"
               id="fileInput"
@@ -73,7 +77,6 @@ const Profile = () => {
               style={{ display: "none" }}
               onChange={handleImageChange}
             />
-            <p>{user.rol}</p>
             <img
               src={
                 userProfile.imagenUrl
@@ -124,8 +127,8 @@ const Profile = () => {
       </PlayerProfile>}
       {user.rol === "watcher" && <WatcherProfile>
         <PerfilStyle>
-          <ProfileImg>
-
+          <ProfileImg onClick={handleImageClick}>
+            <p>{user.rol}</p>
             <input
               type="file"
               id="fileInput"
@@ -133,7 +136,6 @@ const Profile = () => {
               style={{ display: "none" }}
               onChange={handleImageChange}
             />
-            <p>{user.rol}</p>
             <img
               src={
                 userProfile.imagenUrl

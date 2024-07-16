@@ -623,7 +623,8 @@ export const VideosContainer = styled.div`
   grid-template-columns: repeat(3,1fr); 
   gap: 10px; 
   margin-top: 20px;
-  width: 100%; 
+  width: 100%;
+  margin-bottom: 30px;  
 `;
 
 export const VideoItem = styled.div`
