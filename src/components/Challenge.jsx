@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, ButtonDelete, UploadVideo, ChallengeInfo } from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { updateChallenge, postChallengeVideo, deleteChallenge, getChallengeById } from "../app/api/Challenge";
@@ -111,7 +112,9 @@ const Challenge = ({ ch, refetch }) => {
             alt=""
           />
         )}
-        <p>{challenge.watcher.username}</p>
+        <Link to={`/profile/${challenge.watcher.username}`}>
+          <p>{challenge.watcher.username}</p>
+        </Link>
         {user.rol === "moderador" && (
           <ButtonDelete onClick={handleDelete}>X</ButtonDelete>
         )}
@@ -171,6 +174,7 @@ const Challenge = ({ ch, refetch }) => {
 };
 
 export default Challenge;
+
 
 
 
