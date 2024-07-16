@@ -1,12 +1,7 @@
 import { useEffect, useState, lazy, Suspense, useRef } from "react";
 import NavBar from "../components/NavBar";
 import { getChallenges, postChallengeVideo } from "../app/api/Challenge";
-import {
-  UserInfo,
-  ChallengeInfo,
-  ChallengeVideo,
-  Interaction,
-} from "../app/Styles";
+import { UserInfo, ChallengeInfo, ChallengeVideo, Interaction } from "../app/Styles";
 import dislikeWatcher from "../app/img/watcherNavBar/dislike.png";
 import likeImgWatcher from "../app/img/watcherNavBar/like.png";
 import likeImgPlayer from "../app/img/playerNavBar/like.png";
