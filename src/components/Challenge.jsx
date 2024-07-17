@@ -29,8 +29,6 @@ const Challenge = ({ ch, refetch }) => {
   const navigate = useNavigate();
 
   const handleVideo = async (e) => {
-    console.log("paso por aca");
-
     e.preventDefault();
     setIsUploading(true);
     setUploadError("");
@@ -52,8 +50,6 @@ const Challenge = ({ ch, refetch }) => {
     }
 
     try {
-      console.log("tambien paso por aca");
-
       await postChallengeVideo(formData);
       refetch();
       setIsUploading(false);
@@ -114,7 +110,7 @@ const Challenge = ({ ch, refetch }) => {
           <>
             <p className="watcher">
               Accepted by <span>{user.username}</span>
-            </p>
+            </p> <br />
             <ButtonStyle onClick={handleCancel}>Cancelar desafío</ButtonStyle>
           </>
         ) : (

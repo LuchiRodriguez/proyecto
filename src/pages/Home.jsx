@@ -1,62 +1,29 @@
-import { useEffect, useState, lazy, Suspense, useRef } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import { getChallenges } from "../app/api/Challenge";
-import ButtonLike from "../components/ButtonLike";
-import {
-  UserInfo,
-  ChallengeInfo,
-  ChallengeVideo,
-  Interaction,
-} from "../app/Styles";
 
-
-
-
-const LazyVideo = lazy(() => import("../components/Lazyvideo"));
+import { useUserContext } from "../app/UserProvider";
+import ChallengeWithVideo from "../components/ChallengeWithVideo";
 
 const Home = () => {
-  const [allChallenges, setAllChallenges] = useState([]);
-  const videoRefs = useRef([]);
+  const [user] = useUserContext();
+  const [filteredChallenges, setFilteredChallenges] = useState([]);
 
-  const challenge = allChallenges.filter(
-    (challenges) => challenges.videos !== null
-  );
 
-  useEffect(() => {
+  const refetch = () => {
     getChallenges().then((data) => {
-      setAllChallenges(data.data);
+      const challengeFilter = data.filter((challenges) => challenges.videos !== null
+      );
+      setFilteredChallenges(challengeFilter);
     });
-  }, []);
+  }
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.play();
-          } else {
-            entry.target.pause();
-          }
-        });
-      },
-      { threshold: 0.5 } // Adjust as needed
-    );
+    if (user) {
+      refetch();
+    }
+  }, [user]);
 
-    videoRefs.current.forEach((video) => {
-      if (video) {
-        observer.observe(video);
-      }
-    });
-
-    return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      videoRefs.current.forEach((video) => {
-        if (video) {
-          observer.unobserve(video);
-        }
-      });
-    };
-  }, [challenge]);
 
 
 
@@ -64,41 +31,12 @@ const Home = () => {
 
   return (
     <>
-      {challenge?.map((challenge, index) => (
-        <ChallengeVideo key={challenge.id}>
-          <UserInfo>
-            {challenge.player.imagenUrl == null ? (
-              <img src={challenge.player.imagenUrl} />
-            ) : (
-              <img
-                src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
-                alt=""
-              />
-            )}
-            <p>{challenge.player.username}</p>
-          </UserInfo>
-          <ChallengeInfo>
-            <p>{challenge.description}</p>
-            <p className="player">
-              {" "}
-              Challenged by <span>{challenge.watcher.username}</span>
-            </p>
-          </ChallengeInfo>
-          <Suspense fallback={<div>Loading video...</div>}>
-            <LazyVideo
-              src={challenge.videos.videoUrl}
-              ref={(el) => (videoRefs.current[index] = el)}
-
-            />
-          </Suspense>
-          <Interaction>
-            <ButtonLike />
-          </Interaction>
-        </ChallengeVideo>
-      ))}
+      {filteredChallenges?.map((challenge, index) =>
+        <ChallengeWithVideo key={challenge.id} index={index} challenge={challenge} refetch={refetch} />
+      )}
       <NavBar />
     </>
-  );
+  )
 };
 
 export default Home;
