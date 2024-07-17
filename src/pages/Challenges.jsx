@@ -14,7 +14,7 @@ const Challenges = () => {
 
   const refetch = () => {
     getChallenges().then((data) => {
-      setChallenges(data.data);
+      setChallenges(data);
     });
   };
 
