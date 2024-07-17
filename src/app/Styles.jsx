@@ -190,6 +190,7 @@ export const ChallengeBox = styled.div`
 
 export const Interaction = styled.div`
   display: flex;
+  align-items: center;
   border-top: 2px solid ${(props) => props.theme.primaryColor};
   margin-top: 10px;
   padding: 10px;

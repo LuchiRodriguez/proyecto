@@ -8,7 +8,7 @@ import {useUserContext} from '../app/UserProvider';
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
-const ChallengeWithVideo = ({challenge, index, refetch, }) => {
+const ChallengeWithVideo = ({challenge, index, refetch }) => {
     const [user] = useUserContext();
     const [showComments, setShowComments] = useState(false);
     const videoRefs = useRef([]);
@@ -47,14 +47,14 @@ const ChallengeWithVideo = ({challenge, index, refetch, }) => {
     <>
         <ChallengeVideo key={challenge.id}>
           <UserInfo>
-            {challenge.player.imagenUrl == null ? (
-              <img src={challenge.player.imagenUrl} />
-            ) : (
+            {challenge.player.imagenUrl !== null ? 
+              <img src={challenge.player.imagenUrl}/>
+             : 
               <img
                 src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
                 alt=""
               />
-            )}
+            }
             <p>{challenge.player.username}</p>
           </UserInfo>
           <ChallengeInfo>
@@ -71,7 +71,8 @@ const ChallengeWithVideo = ({challenge, index, refetch, }) => {
             />
           </Suspense>
           <Interaction>
-            <ButtonLike />
+            <ButtonLike videoId={challenge.videos.id} refetch={refetch}/>
+            <p>{challenge.videos.meGustas.length} Likes</p>
             <button onClick={() => setShowComments(!showComments)}>
               {user.rol === "watcher" ? (
                 <img src={WatcherComment} alt="" />
