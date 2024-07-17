@@ -212,7 +212,7 @@ export const ChallengeVideo = styled.div`
   border: 2px solid /*var(--blue);*/ ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
 
   video {
     width: 100%;
