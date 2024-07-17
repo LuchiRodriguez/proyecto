@@ -49,7 +49,10 @@ const Home = () => {
           }
         );
         setFilteredChallenges(filteredChallengesWithTranscurredTime);
-        console.log(filteredChallengesWithTranscurredTime);
+        console.log([
+          ...filteredChallenges,
+          filteredChallengesWithTranscurredTime,
+        ]);
       });
     }
   }, [user]);
