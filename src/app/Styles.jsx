@@ -118,12 +118,8 @@ export const PerfilStyle = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
-<<<<<<< HEAD
   position: relative;
-=======
-  position: relative; 
-  min-height: 660px; 
->>>>>>> master
+  min-height: 660px;
 `;
 
 export const ProfileImg = styled.div`
@@ -178,8 +174,13 @@ export const UserInfo = styled.div`
     border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
-  p {
-    color: ${(props) => props.theme.primaryColor};
+  div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    p {
+      color: ${(props) => props.theme.primaryColor};
+    }
   }
 `;
 
@@ -419,15 +420,9 @@ export const LogoutBtn = styled.button`
     width: 20px;
     height: 20px;
     cursor: pointer;
-<<<<<<< HEAD
     position: absolute;
     top: 10px;
     right: 15px;
-=======
-      position: absolute;
-      top: 10px; 
-      right: 15px;
->>>>>>> master
   }
 `;
 
@@ -677,13 +672,8 @@ export const PopUpContainer = styled.div`
 `;
 
 export const VideosBox = styled.div`
-<<<<<<< HEAD
   height: 100%;
   border: 1px solid var(--red);
-=======
-height: 100%; 
-border: 1px solid var(--red); 
->>>>>>> master
 
   button {
     position: relative;
