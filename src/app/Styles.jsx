@@ -118,8 +118,9 @@ export const PerfilStyle = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
-  position: relative;
-  min-height: 660px;
+  position: relative; 
+  min-height: 660px; 
+  box-shadow: 3px 3px ${(props) => props.theme.shadowColor};
 `;
 
 export const ProfileImg = styled.div`
@@ -199,7 +200,9 @@ export const ChallengeBox = styled.div`
   border: 2px solid /*var(--blue);*/ ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+  box-shadow: 3px 3px ${(props) => props.theme.shadowColor};
+
   video {
     width: 100%;
     border-radius: 10px;
@@ -230,7 +233,8 @@ export const ChallengeVideo = styled.div`
   border: 2px solid /*var(--blue);*/ ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
-  margin-bottom: 10px;
+      margin-bottom: 20px;
+    box-shadow: 3px 3px ${(props) => props.theme.shadowColor};
 
   video {
     width: 100%;
@@ -567,7 +571,7 @@ export const ChangeProfileButton = styled.button`
     width: 20px;
     height: 20px;
     top: 10px;
-    left: 15px;
+    left: 15px; 
   }
 `;
 
@@ -672,8 +676,8 @@ export const PopUpContainer = styled.div`
 `;
 
 export const VideosBox = styled.div`
-  height: 100%;
-  border: 1px solid var(--red);
+height: 100%; 
+border: 1px solid var(--red); 
 
   button {
     position: relative;
