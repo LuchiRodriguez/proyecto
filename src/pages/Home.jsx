@@ -14,7 +14,27 @@ const Home = () => {
     getChallenges().then((data) => {
       const challengeFilter = data.filter((challenges) => challenges.videos !== null
       );
-      setFilteredChallenges(challengeFilter);
+      const filteredChallengesWithTranscurredTime = filteredChallenges.map(
+          (video) => {
+            const currentDate = new Date(video.videos.creationDate);
+            console.log(currentDate);
+            console.log(parsedDate);
+            const differenceMs = parsedDate - currentDate;
+            console.log(differenceMs);
+            const differenceSeconds = differenceMs / 1000;
+            const differenceMinutes = differenceSeconds / 60;
+            const differenceHours = differenceMinutes / 60;
+            console.log(`Diferencia en segundos: ${differenceSeconds}`);
+            console.log(`Diferencia en minutos: ${differenceMinutes}`);
+            console.log(`Diferencia en horas: ${differenceHours}`);
+            const transcurredTime = video.videos.creationDate;
+            return transcurredTime;
+          }
+        );
+        setFilteredChallenges([
+          ...filteredChallenges,
+          filteredChallengesWithTranscurredTime,
+        ]);
     });
   }
 
