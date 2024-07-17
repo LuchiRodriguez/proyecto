@@ -36,6 +36,7 @@ export const NavBarStyle = styled.nav`
   left: 0;
   bottom: 0;
   background-color: var(--black);
+  z-index: 2;
   ul {
     margin: 0 30px;
     padding: 0;
@@ -336,24 +337,16 @@ export const PopUpComments = styled.div`
   display: ${({ $showComments }) => ($showComments ? "flex" : "none")};
   flex-direction: column;
   color: ${(props) => props.theme.primaryColor};
-  background-color: rgba(32, 33, 36, 0.9);
-  position: fixed;
+  background-color: rgba(32, 33, 36, 1);
+  position: sticky;
   align-items: center;
   justify-content: center;
   font-size: small;
-  top: 0;
-  bottom: 0;
-  right: 20px;
-  left: 20px;
-  img {
-    width: 20px;
-    height: 20px;
-    align-self: flex-end;
-    position: absolute;
-    top: 445px;
-    right: 25px;
-    cursor: pointer;
-  }
+   top: 20px;
+   right: 20px;
+   left: 20px;
+   z-index: 1;
+
   input {
     background-color: transparent;
     width: 90%;
@@ -363,11 +356,23 @@ export const PopUpComments = styled.div`
     padding-bottom: 10px;
     color: ${(props) => props.theme.primaryColor};
   }
-  div {
-    border: 2px solid ${(props) => props.theme.primaryColor};
-    width: 100%;
-    border-radius: 10px;
+
+  .close{
+  color: red;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 10px;
+  
+  img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
   }
+
+  }
+
 `;
 
 export const ChallengesList = styled.div`
@@ -392,15 +397,9 @@ export const LogoutBtn = styled.button`
     width: 20px;
     height: 20px;
     cursor: pointer;
-<<<<<<< HEAD
-    display: block;
-    margin-top: -204px;
-    margin-left: 280px;
-=======
       position: absolute;
       top: 10px; 
       right: 15px;
->>>>>>> 346404e25ed68ae1c38b64da4006ff18349e6249
   }
 `;
 
@@ -651,13 +650,8 @@ export const PopUpContainer = styled.div`
 `;
 
 export const VideosBox = styled.div`
-<<<<<<< HEAD
-  height: 600px;
-  border: 1px solid var(--red);
-=======
 height: 100%; 
 border: 1px solid var(--red); 
->>>>>>> 346404e25ed68ae1c38b64da4006ff18349e6249
 
   button {
     position: relative;
@@ -680,3 +674,42 @@ export const BtnPopUp = styled.button`
 `;
 
 export const VideoEdit = styled.div``;
+
+export const Comments = styled.div`
+border: 2px solid ${(props) => props.theme.primaryColor};
+width: 100%;
+border-radius: 10px;
+box-sizing: border-box;
+padding: 10px;
+margin-bottom: 10px;
+  .user{
+  display: flex;
+  align-items: center;
+  border: none;
+  gap: 10px;
+    img{
+      width: 30px;
+    }
+
+  }
+`;
+
+export const NuevoComment = styled.div`
+border: 2px solid ${(props) => props.theme.primaryColor};
+width: 100%;
+border-radius: 10px;
+margin-bottom: 10px;
+box-sizing: border-box;
+padding: 10px;
+  .check{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  
+    img{
+      width: 30px;
+    }
+
+  }
+`;
