@@ -36,6 +36,7 @@ export const NavBarStyle = styled.nav`
   left: 0;
   bottom: 0;
   background-color: var(--black);
+  z-index: 2;
   ul {
     margin: 0 30px;
     padding: 0;
@@ -110,20 +111,30 @@ export const PerfilStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid;
-  border-radius: 10px ${(props) => props.theme.primaryColor};
+  border: 2px solid ${(props) => props.theme.primaryColor};
+  border-radius: 10px;
   padding: 10px;
   color: ${(props) => props.theme.primaryColor};
   height: 100%;
   background-size: cover;
   background-position: center;
+<<<<<<< HEAD
   position: relative;
+=======
+  position: relative; 
+  min-height: 660px; 
+>>>>>>> master
 `;
 
 export const ProfileImg = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-bottom: 2px solid ${(props) => props.theme.primaryColor};
+  width: 85vw;
+  padding-bottom: 30px;
+  padding-top: 15px;
+
   button {
     background-color: var(--black);
     border: var(--blue) 3px solid;
@@ -139,12 +150,19 @@ export const ProfileImg = styled.div`
     border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
+  p {
+    padding: 5px;
+  }
 `;
 
 export const ProfileInfo = styled.div`
   display: flex;
   text-align: center;
-  gap: 20px;
+  gap: 5px;
+
+  p {
+    padding: 20px;
+  }
 `;
 
 export const UserInfo = styled.div`
@@ -169,8 +187,8 @@ export const ChallengeInfo = styled.div`
   font-family: Roboto;
   margin-left: 10px;
   button {
-    margin-left: 25%;
-    margin-right: 25%;
+    display: block;
+    margin: auto;
   }
 `;
 
@@ -336,24 +354,16 @@ export const PopUpComments = styled.div`
   display: ${({ $showComments }) => ($showComments ? "flex" : "none")};
   flex-direction: column;
   color: ${(props) => props.theme.primaryColor};
-  background-color: rgba(32, 33, 36, 0.9);
-  position: fixed;
+  background-color: rgba(32, 33, 36, 1);
+  position: sticky;
   align-items: center;
   justify-content: center;
   font-size: small;
-  top: 0;
-  bottom: 0;
+  top: 20px;
   right: 20px;
   left: 20px;
-  img {
-    width: 20px;
-    height: 20px;
-    align-self: flex-end;
-    position: absolute;
-    top: 445px;
-    right: 25px;
-    cursor: pointer;
-  }
+  z-index: 1;
+
   input {
     background-color: transparent;
     width: 90%;
@@ -363,10 +373,20 @@ export const PopUpComments = styled.div`
     padding-bottom: 10px;
     color: ${(props) => props.theme.primaryColor};
   }
-  div {
-    border: 2px solid ${(props) => props.theme.primaryColor};
-    width: 100%;
-    border-radius: 10px;
+
+  .close {
+    color: red;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 10px;
+
+    img {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
   }
 `;
 
@@ -380,6 +400,13 @@ export const UploadingDiv = styled.div`
   img {
     width: 60px;
     height: 60px;
+    padding: 5px;
+    display: block;
+    margin: auto;
+  }
+
+  h3 {
+    text-align: center;
   }
 `;
 
@@ -392,9 +419,15 @@ export const LogoutBtn = styled.button`
     width: 20px;
     height: 20px;
     cursor: pointer;
+<<<<<<< HEAD
     position: absolute;
     top: 10px;
     right: 15px;
+=======
+      position: absolute;
+      top: 10px; 
+      right: 15px;
+>>>>>>> master
   }
 `;
 
@@ -440,6 +473,11 @@ export const ButtonStyle = styled.button`
   text-transform: uppercase;
   font-family: Roboto;
   padding: 10px;
+
+  button {
+    display: block;
+    margin: auto;
+  }
 `;
 
 export const InputStyle = styled.input`
@@ -457,15 +495,17 @@ export const UploadVideo = styled.div`
   }
   input {
     color: var(--black);
+    display: block;
+    margin: auto;
   }
   input::file-selector-button {
-    display: block;
     border: 1px solid var(--red);
     background-color: var(--black);
     color: white;
     border-radius: 5px;
     padding: 10px;
-    margin-left: 33%;
+    display: block;
+    margin: auto;
   }
   button {
     display: block;
@@ -474,7 +514,7 @@ export const UploadVideo = styled.div`
     color: white;
     border-radius: 5px;
     padding: 10px;
-    margin-left: 31%;
+    margin: auto;
   }
 `;
 
@@ -589,11 +629,10 @@ export const SwitchText = styled.span`
 
 export const VideosContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
   margin-top: 20px;
   width: 100%;
-  border: 2xp solid var(--red);
   margin-bottom: 30px;
 `;
 
@@ -601,17 +640,17 @@ export const VideoItem = styled.div`
   position: relative;
   padding-bottom: 100%;
   overflow: hidden;
-  border-radius: 8px;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 
   video {
     position: absolute;
     top: 0;
-    left: 0;
     width: 150px;
     height: 150px;
     object-fit: cover;
-    border-radius: 8px;
   }
 `;
 export const PopUpContainer = styled.div`
@@ -623,25 +662,28 @@ export const PopUpContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(32, 33, 36, 0.9);
-  border-radius: 10px;
   box-shadow: 0 0 10px rgba(32, 33, 36, 0.9);
-  padding: 20px;
-  overflow-y: auto;
   padding: 10px;
+  overflow-y: auto;
 
   video {
-    width: 300px;
+    width: 100%;
+    height: 100%;
+    max-height: 90%;
     border-radius: 10px;
-    margin: auto;
-    position: relative;
-    top: 150px;
-    left: 18px;
+    position: absolute;
+    max-width: 95%;
   }
 `;
 
 export const VideosBox = styled.div`
+<<<<<<< HEAD
   height: 100%;
   border: 1px solid var(--red);
+=======
+height: 100%; 
+border: 1px solid var(--red); 
+>>>>>>> master
 
   button {
     position: relative;
@@ -660,7 +702,46 @@ export const BtnPopUp = styled.button`
     width: 20px;
     height: 20px;
     padding: 10px;
+    position: absolute;
+    top: -370px;
   }
 `;
 
 export const VideoEdit = styled.div``;
+
+export const Comments = styled.div`
+  border: 2px solid ${(props) => props.theme.primaryColor};
+  width: 100%;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 10px;
+  .user {
+    display: flex;
+    align-items: center;
+    border: none;
+    gap: 10px;
+    img {
+      width: 30px;
+    }
+  }
+`;
+
+export const NuevoComment = styled.div`
+  border: 2px solid ${(props) => props.theme.primaryColor};
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  .check {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+
+    img {
+      width: 30px;
+    }
+  }
+`;

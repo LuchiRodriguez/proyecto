@@ -5,7 +5,10 @@ export const createChallenge = async (formData) =>
   await instance.post("/challenge", formData);
 
 // READ
-export const getChallenges = async () => await instance.get("/challenge");
+export const getChallenges = async () => {
+const data = await instance.get("/challenge");
+return data.data;
+} 
 
 // DELETE
 export const deleteChallenge = async (id) =>
@@ -16,8 +19,7 @@ export const updateChallenge = async (id, username) =>
   await instance.put(`/challenge/${id}`, { username });
 
 // CANCEL
-export const cancelChallenge = async (id) =>
-  await instance.patch(`/challenge/${id}`);
+export const cancelChallenge = async (id) => await instance.patch(`/challenge/${id}`);
 
 // UPLOAD VIDEO
 // export const postChallengeVideo = async (id, file) => await instance.post(`/${id}/upload`, file);
