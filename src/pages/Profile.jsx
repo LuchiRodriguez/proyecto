@@ -43,6 +43,9 @@ const Profile = () => {
       refetch();
     }
   };
+  const handleImageClick = () => {
+    document.getElementById('fileInput').click();
+  };
 
   const logout = () => {
     localStorage.removeItem("user");
@@ -65,7 +68,8 @@ const Profile = () => {
     <>
       {user.rol === "player" && <PlayerProfile>
         <PerfilStyle>
-          <ProfileImg>
+          <ProfileImg onClick={handleImageClick}>
+            <p>{user.rol}</p>
             <input
               type="file"
               id="fileInput"
@@ -82,9 +86,21 @@ const Profile = () => {
               alt=""
               style={{ cursor: "pointer" }}
             />
-            <p>{user.rol}</p>
+
             <p>{userProfile.username}</p>
+            <ProfileInfo>
+              <p>
+                Challenges <br />
+                {userProfile.challengeCompleted}
+              </p>
+              <br />
+              <p>
+                Points <br />
+                {userProfile.points}
+              </p>
+            </ProfileInfo>
           </ProfileImg>
+
 
           <LogoutBtn onClick={logout}>
             <img src={logoutBtnPlayer} alt="Logout" />
@@ -111,7 +127,8 @@ const Profile = () => {
       </PlayerProfile>}
       {user.rol === "watcher" && <WatcherProfile>
         <PerfilStyle>
-          <ProfileImg>
+          <ProfileImg onClick={handleImageClick}>
+            <p>{user.rol}</p>
             <input
               type="file"
               id="fileInput"
@@ -128,7 +145,7 @@ const Profile = () => {
               alt=""
               style={{ cursor: "pointer" }}
             />
-            <p>{user.rol}</p>
+
             <p>{userProfile.username}</p>
           </ProfileImg>
           <ProfileInfo>
