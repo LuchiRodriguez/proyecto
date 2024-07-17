@@ -211,6 +211,7 @@ export const ChallengeBox = styled.div`
 
 export const Interaction = styled.div`
   display: flex;
+  align-items: center;
   border-top: 2px solid ${(props) => props.theme.primaryColor};
   margin-top: 10px;
   padding: 10px;
@@ -233,8 +234,7 @@ export const ChallengeVideo = styled.div`
   border: 2px solid /*var(--blue);*/ ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
-      margin-bottom: 20px;
-    box-shadow: 3px 3px ${(props) => props.theme.shadowColor};
+  margin-bottom: 40px;
 
   video {
     width: 100%;
