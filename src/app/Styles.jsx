@@ -118,19 +118,18 @@ export const PerfilStyle = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
-  position: relative; 
-  min-height: 660px; 
+  position: relative;
+  min-height: 660px;
 `;
 
 export const ProfileImg = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-    border-bottom: 2px solid ${(props) => props.theme.primaryColor} ;
-    width: 85vw;
-    padding-bottom: 30px;
-    padding-top: 15px;
-
+  border-bottom: 2px solid ${(props) => props.theme.primaryColor};
+  width: 85vw;
+  padding-bottom: 30px;
+  padding-top: 15px;
 
   button {
     background-color: var(--black);
@@ -147,7 +146,7 @@ export const ProfileImg = styled.div`
     border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
-  p{
+  p {
     padding: 5px;
   }
 `;
@@ -157,9 +156,9 @@ export const ProfileInfo = styled.div`
   text-align: center;
   gap: 5px;
 
-p{
-  padding: 20px;
-}
+  p {
+    padding: 20px;
+  }
 `;
 
 export const UserInfo = styled.div`
@@ -175,8 +174,13 @@ export const UserInfo = styled.div`
     border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
-  p {
-    color: ${(props) => props.theme.primaryColor};
+  div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    p {
+      color: ${(props) => props.theme.primaryColor};
+    }
   }
 `;
 
@@ -185,7 +189,7 @@ export const ChallengeInfo = styled.div`
   margin-left: 10px;
   button {
     display: block;
-    margin: auto; 
+    margin: auto;
   }
 `;
 
@@ -356,10 +360,10 @@ export const PopUpComments = styled.div`
   align-items: center;
   justify-content: center;
   font-size: small;
-   top: 20px;
-   right: 20px;
-   left: 20px;
-   z-index: 1;
+  top: 20px;
+  right: 20px;
+  left: 20px;
+  z-index: 1;
 
   input {
     background-color: transparent;
@@ -371,22 +375,20 @@ export const PopUpComments = styled.div`
     color: ${(props) => props.theme.primaryColor};
   }
 
-  .close{
-  color: red;
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  right: 0;
-  top: 10px;
-  
-  img {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-  }
+  .close {
+    color: red;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 10px;
 
+    img {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
   }
-
 `;
 
 export const ChallengesList = styled.div`
@@ -399,13 +401,12 @@ export const UploadingDiv = styled.div`
   img {
     width: 60px;
     height: 60px;
-    padding: 5px; 
+    padding: 5px;
     display: block;
-    margin: auto; 
-    
+    margin: auto;
   }
 
-  h3{
+  h3 {
     text-align: center;
   }
 `;
@@ -419,9 +420,9 @@ export const LogoutBtn = styled.button`
     width: 20px;
     height: 20px;
     cursor: pointer;
-      position: absolute;
-      top: 10px; 
-      right: 15px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
   }
 `;
 
@@ -466,13 +467,11 @@ export const ButtonStyle = styled.button`
   color: var(--red);
   text-transform: uppercase;
   font-family: Roboto;
-  padding: 10px; 
+  padding: 10px;
 
-
-  button{
-  display: block; 
-  margin: auto; 
-
+  button {
+    display: block;
+    margin: auto;
   }
 `;
 
@@ -491,8 +490,8 @@ export const UploadVideo = styled.div`
   }
   input {
     color: var(--black);
-    display: block; 
-    margin: auto; 
+    display: block;
+    margin: auto;
   }
   input::file-selector-button {
     border: 1px solid var(--red);
@@ -500,8 +499,8 @@ export const UploadVideo = styled.div`
     color: white;
     border-radius: 5px;
     padding: 10px;
-    display: block; 
-    margin: auto; 
+    display: block;
+    margin: auto;
   }
   button {
     display: block;
@@ -510,7 +509,7 @@ export const UploadVideo = styled.div`
     color: white;
     border-radius: 5px;
     padding: 10px;
-    margin: auto; 
+    margin: auto;
   }
 `;
 
@@ -568,7 +567,7 @@ export const ChangeProfileButton = styled.button`
     width: 20px;
     height: 20px;
     top: 10px;
-    left: 15px; 
+    left: 15px;
   }
 `;
 
@@ -625,22 +624,21 @@ export const SwitchText = styled.span`
 
 export const VideosContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3,1fr); 
-  gap: 10px; 
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
   margin-top: 20px;
   width: 100%;
-  margin-bottom: 30px;  
+  margin-bottom: 30px;
 `;
 
 export const VideoItem = styled.div`
   position: relative;
   padding-bottom: 100%;
   overflow: hidden;
-  width: 100%; 
-  display: flex; 
+  width: 100%;
+  display: flex;
   justify-content: center;
   margin-top: 10px;
-
 
   video {
     position: absolute;
@@ -651,33 +649,31 @@ export const VideoItem = styled.div`
   }
 `;
 export const PopUpContainer = styled.div`
-    width: 100%; 
-    max-width: 90%; 
-    height: 95%;
-    position: fixed;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%);
-    background-color:  rgba(32, 33, 36, 0.9);
-    box-shadow: 0 0 10px  rgba(32, 33, 36, 0.9);
-    padding: 10px;
-    overflow-y: auto;
+  width: 100%;
+  max-width: 90%;
+  height: 95%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(32, 33, 36, 0.9);
+  box-shadow: 0 0 10px rgba(32, 33, 36, 0.9);
+  padding: 10px;
+  overflow-y: auto;
 
-
-    video {
-        width: 100%;
-        height: 100%; 
-        max-height: 90%;
-        border-radius: 10px;
-            position: absolute;
-            max-width: 95%;
-    
-}
+  video {
+    width: 100%;
+    height: 100%;
+    max-height: 90%;
+    border-radius: 10px;
+    position: absolute;
+    max-width: 95%;
+  }
 `;
 
 export const VideosBox = styled.div`
-height: 100%; 
-border: 1px solid var(--red); 
+  height: 100%;
+  border: 1px solid var(--red);
 
   button {
     position: relative;
@@ -690,54 +686,52 @@ border: 1px solid var(--red);
 `;
 
 export const BtnPopUp = styled.button`
-        position: fixed;
-        
-        img{
-        width: 20px; 
-        height: 20px;
-            padding: 10px; 
-            position: absolute; 
-            top: -370px; 
-        }
-`
+  position: fixed;
+
+  img {
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    position: absolute;
+    top: -370px;
+  }
+`;
 
 export const VideoEdit = styled.div``;
 
 export const Comments = styled.div`
-border: 2px solid ${(props) => props.theme.primaryColor};
-width: 100%;
-border-radius: 10px;
-box-sizing: border-box;
-padding: 10px;
-margin-bottom: 10px;
-  .user{
-  display: flex;
-  align-items: center;
-  border: none;
-  gap: 10px;
-    img{
+  border: 2px solid ${(props) => props.theme.primaryColor};
+  width: 100%;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 10px;
+  .user {
+    display: flex;
+    align-items: center;
+    border: none;
+    gap: 10px;
+    img {
       width: 30px;
     }
-
   }
 `;
 
 export const NuevoComment = styled.div`
-border: 2px solid ${(props) => props.theme.primaryColor};
-width: 100%;
-border-radius: 10px;
-margin-bottom: 10px;
-box-sizing: border-box;
-padding: 10px;
-  .check{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: none;
-  
-    img{
+  border: 2px solid ${(props) => props.theme.primaryColor};
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  .check {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+
+    img {
       width: 30px;
     }
-
   }
 `;
