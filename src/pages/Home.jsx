@@ -49,6 +49,7 @@ const Home = () => {
           }
         );
         setFilteredChallenges(filteredChallengesWithTranscurredTime);
+        console.log(filteredChallengesWithTranscurredTime);
       });
     }
   }, [user]);
@@ -88,7 +89,6 @@ const Home = () => {
       {filteredChallenges?.map((challenge, index) => (
         <ChallengeVideo key={challenge.id}>
           <UserInfo>
-            {challenge.videos.creationDate}
             {challenge.player.imagenUrl == null ? (
               <img src={challenge.player.imagenUrl} />
             ) : (
