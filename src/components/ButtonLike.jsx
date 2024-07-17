@@ -4,20 +4,20 @@ import likeImgPlayer from "../app/img/playerNavBar/like.png";
 import dislikePlayer from "../app/img/playerNavBar/dislike.png";
 import { useUserContext } from "../app/UserProvider";
 import { useState } from "react";
-import { postVideo } from "../app/api/Video";
+import { postLike } from "../app/api/Video";
 
-const ButtonLike = () => {
+const ButtonLike = ({ videoId }) => {
   const [user] = useUserContext();
   const [like, setLike] = useState(false);
 
-  const handleLike = async (ch) => {
-    // const formData = new FormData();
-    // formData.append("id", ch.id);
-    // formData.append("user", user.username);
+  const handleLike = async () => {
+    const formData = new FormData();
+    formData.append("user", user.username);
+    formData.append("video", videoId);
     setLike(!like);
 
     try {
-      await postVideo({ id: ch.id });
+      await postLike(formData);
     } catch (error) {
       console.error("Error liking:", error);
     }

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import { getChallenges } from "../app/api/Challenge";
-
 import { useUserContext } from "../app/UserProvider";
 import ChallengeWithVideo from "../components/ChallengeWithVideo";
 
