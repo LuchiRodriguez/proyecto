@@ -8,8 +8,6 @@ import { UserInfo, ChallengeInfo, ChallengeVideo, Interaction } from "../app/Sty
 import PlayerComment from "../app/img/playerNavBar/playerDiscomment.png";
 import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
-
-import { useUserContext } from "../app/UserProvider";
 import ChallengeWithVideo from "../components/ChallengeWithVideo";
 
 const Home = () => {
@@ -65,7 +63,7 @@ const Home = () => {
                 alt="default"
               />
             )}
-            <Link to={`/profile/${challenge.player.username}`}>  {/* Enlace al perfil del usuario */}
+            <Link to={`/profile/${challenge.player.username}`}>
               <p>{challenge.player.username}</p>
             </Link>
           </UserInfo>
