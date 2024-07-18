@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import NavBar from "../components/NavBar";
-import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, ChangeProfileButton, PlayerProfile, WatcherProfile, VideosContainer, VideoItem } from '../app/Styles';
+import { PerfilStyle, ProfileImg, ProfileInfo, PlayerProfile, WatcherProfile, VideosContainer, VideoItem } from '../app/Styles';
 import { getUserByUsername } from "../app/api/User";
 import PopupProfile from '../components/PopupProfile';
 import { useUserContext } from '../app/UserProvider';
@@ -52,6 +52,81 @@ const UserProfile = () => {
   const closePopup = () => {
     setIsOpen(false);
   };
+  //   return (
+  //     <>
+  //       {user.rol === "player" && userProfile.rol === "watcher" && (
+  //         <WatcherProfile>
+  //           <PerfilStyle>
+  //             <ProfileImg>
+  //               <img
+  //                 src={
+  //                   userProfile.imagenUrl
+  //                     ? userProfile.imagenUrl
+  //                     : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+  //                 }
+  //                 alt=""
+  //               />
+  //               <p>{userProfile.rol}</p>
+  //               <p>{userProfile.username}</p>
+  //             </ProfileImg>
+  //             <ProfileInfo>
+  //               <p>
+  //                 Challenges: <br />
+  //                 {userProfile.proposedChallenge}
+  //               </p>
+  //             </ProfileInfo>
+  //           </PerfilStyle>
+  //         </WatcherProfile>
+  //       )}
+
+  //       {user.rol === "watcher" && userProfile.rol === "player" && (
+  //         <PlayerProfile>
+  //           <PerfilStyle>
+  //             <ProfileImg>
+  //               <img
+  //                 src={
+  //                   userProfile.imagenUrl
+  //                     ? userProfile.imagenUrl
+  //                     : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+  //                 }
+  //                 alt=""
+  //               />
+  //               <p>{userProfile.rol}</p>
+  //               <p>{userProfile.username}</p>
+  //             </ProfileImg>
+  //             <ProfileInfo>
+  //               <p>
+  //                 Challenges <br />
+  //                 {userProfile.challengeCompleted}
+  //               </p>
+  //               <br />
+  //               <p>
+  //                 Points <br />
+  //                 {userProfile.points}
+  //               </p>
+  //             </ProfileInfo>
+  //             <VideosContainer>
+  //               {videos?.map((video, i) => (
+  //                 <VideoItem key={i} onClick={() => openPopUp(video)}>
+  //                   <video src={video.videoUrl} />
+  //                 </VideoItem>
+  //               ))}
+  //             </VideosContainer>
+  //           </PerfilStyle>
+  //         </PlayerProfile>
+  //       )}
+
+  //       {isOpen && (
+  //         <PopupProfile video={selectedVideo} onClose={closePopup} />
+  //       )}
+
+  //       <NavBar />
+  //     </>
+  //   );
+  // }
+  // export default UserProfile;
+
+
 
   return (
     <>
@@ -70,6 +145,23 @@ const UserProfile = () => {
               <p>{userProfile.rol}</p>
               <p>{userProfile.username}</p>
             </ProfileImg>
+            <ProfileInfo>
+              {userProfile.proposedChallenge ?
+                <p>
+                  Challenges: <br />
+                  {userProfile.proposedChallenge}
+                </p> : null}
+              {userProfile.challengeCompleted ?
+                <p>
+                  Challenges: <br />
+                  {userProfile.challengeCompleted}
+                </p> : null}
+              <br />
+              {userProfile.points ? <p>
+                Points <br />
+                {userProfile.points}
+              </p> : null}
+            </ProfileInfo>
             <VideosContainer>
               {videos?.map((video, i) => (
                 <VideoItem key={i} onClick={() => openPopUp(video)}>
@@ -97,10 +189,21 @@ const UserProfile = () => {
               <p>{userProfile.username}</p>
             </ProfileImg>
             <ProfileInfo>
-              <p>
+
+              {userProfile.challengeCompleted ? <p>
+                Challenges: <br />
+                {userProfile.challengeCompleted}
+              </p> : null}
+
+              {userProfile.proposedChallenge ? <p>
                 Challenges: <br />
                 {userProfile.proposedChallenge}
-              </p>
+              </p> : null}
+
+              {userProfile.points ? <p>
+                Points <br />
+                {userProfile.points}
+              </p> : null}
             </ProfileInfo>
           </PerfilStyle>
         </WatcherProfile>
@@ -116,4 +219,3 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
-

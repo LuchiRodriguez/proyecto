@@ -5,7 +5,10 @@ export const createChallenge = async (formData) =>
   await instance.post("/challenge", formData);
 
 // READ
-export const getChallenges = async () => await instance.get("/challenge");
+export const getChallenges = async () => {
+  const data = await instance.get("/challenge");
+  return data.data;
+}
 
 // READ (by ID)
 export const getChallengeById = async (id) => await instance.get(`/challenge/${id}`);

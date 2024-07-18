@@ -1,12 +1,8 @@
 import { Suspense, useState, lazy, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import ButtonLike from "./ButtonLike";
 import NewComment from "./NewComment";
-import {
-  UserInfo,
-  ChallengeInfo,
-  ChallengeVideo,
-  Interaction,
-} from "../app/Styles";
+import { UserInfo, ChallengeInfo, ChallengeVideo, Interaction } from "../app/Styles";
 import PlayerComment from "../app/img/playerNavBar/playerDiscomment.png";
 import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
@@ -61,7 +57,11 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
             />
           )}
           <div>
-            <p>{challenge.player.username}</p>
+            <p>
+              <Link to={`/profile/${challenge.player.username}`}>
+                {challenge.player.username}
+              </Link>
+            </p>
             <p>{challenge.transcurredTime}</p>
           </div>
         </UserInfo>
@@ -69,7 +69,10 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           <p>{challenge.description}</p>
           <p className="player">
             {" "}
-            Challenged by <span>{challenge.watcher.username}</span>
+            Challenged by{" "}
+            <Link to={`/profile/${challenge.watcher.username}`}>
+              {challenge.watcher.username}
+            </Link>
           </p>
         </ChallengeInfo>
         <Suspense fallback={<div>Loading video...</div>}>
