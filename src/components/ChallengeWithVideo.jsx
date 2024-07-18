@@ -1,5 +1,4 @@
 import { Suspense, useState, lazy, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
 import ButtonLike from "./ButtonLike";
 import NewComment from "./NewComment";
 import { UserInfo, ChallengeInfo, ChallengeVideo, Interaction } from "../app/Styles";
@@ -19,7 +18,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   const videoRefs = useRef([]);
   const navigate = useNavigate();
 
-  // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
+  // When we deploy the app, and we have a fixed URL, update and uncomment the code below
   // const url = "https://www-example-com.cdn.ampproject.org/c/s/www.example.com";
 
   const handleCopy = (url) => {
