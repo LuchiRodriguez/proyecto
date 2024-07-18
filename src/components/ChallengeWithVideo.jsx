@@ -62,7 +62,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
 console.log(challenge)
   return (
     <>
-        <ChallengeVideo key={challenge.id}>
+        <ChallengeVideo>
           <UserInfo>
             {challenge.player.imagenUrl !== null ? 
               <img src={challenge.player.imagenUrl}/>
@@ -74,26 +74,13 @@ console.log(challenge)
             }
             {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
           </UserInfo>
-          <ChallengeInfo>
-            <p>{challenge.description}</p>
-            <p className="player">
-              {" "}
-              Challenged by {challenge.watcher.username ? <span>{challenge.watcher.username}</span> : <span>{challenge.watcher}</span>}
-            </p>
-          </ChallengeInfo>
-          <Suspense fallback={<div>Loading video...</div>}>
-            <LazyVideo
-              src={challenge.videos.videoUrl}
-              ref={(el) => (videoRefs.current[index] = el)}
-            />
-        </Suspense>
         <ChallengeInfo>
           <p onClick={() => navigate("/visit/" + challenge.id)}>
             {challenge.description}
           </p>
           <p className="player">
             {" "}
-            Challenged by <span>{challenge.watcher.username}</span>
+            Challenged by {challenge.watcher.username ? <span>{challenge.watcher.username}</span> : <span>{challenge.watcher}</span>}
           </p>
         </ChallengeInfo>
         <Suspense fallback={<div>Loading video...</div>}>
