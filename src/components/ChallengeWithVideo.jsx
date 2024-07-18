@@ -10,6 +10,10 @@ import {
 import PlayerComment from "../app/img/playerNavBar/playerDiscomment.png";
 import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
+import shareW from "../app/img/watcherNavBar/shareWatcher.png";
+import shareP from "../app/img/playerNavBar/sharePlayer.png";
+import { useNavigate } from "react-router-dom";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
@@ -17,6 +21,14 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   const [user] = useUserContext();
   const [showComments, setShowComments] = useState(false);
   const videoRefs = useRef([]);
+  const navigate = useNavigate();
+
+  // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
+  // const url = "https://www-example-com.cdn.ampproject.org/c/s/www.example.com";
+
+  const handleCopy = (url) => {
+    navigator.clipboard.writeText(url);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,30 +59,28 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
       });
     };
   }, [challenge]);
-
   console.log(challenge)
   return (
     <>
-      <ChallengeVideo key={challenge.id}>
+      <ChallengeVideo>
         <UserInfo>
-          {challenge.player.imagenUrl == null ? (
+          {challenge.player.imagenUrl !== null ?
             <img src={challenge.player.imagenUrl} />
-          ) : (
+            :
             <img
               src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
               alt=""
             />
-          )}
-          <div>
-            <p>{challenge.player.username}</p>
-            <p>{challenge.transcurredTime}</p>
-          </div>
+          }
+          {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
         </UserInfo>
         <ChallengeInfo>
-          <p>{challenge.description}</p>
+          <p onClick={() => navigate("/visit/" + challenge.id)}>
+            {challenge.description}
+          </p>
           <p className="player">
             {" "}
-            Challenged by <span>{challenge.watcher.username}</span>
+            Challenged by {challenge.watcher.username ? <span>{challenge.watcher.username}</span> : <span>{challenge.watcher}</span>}
           </p>
         </ChallengeInfo>
         <Suspense fallback={<div>Loading video...</div>}>
@@ -80,7 +90,8 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           />
         </Suspense>
         <Interaction>
-          <ButtonLike videoId={challenge.video.id} refetch={refetch} />
+          <ButtonLike videoId={challenge.videos.id} refetch={refetch} />
+          <p>{challenge.videos.meGustas.length} Likes</p>
           <button onClick={() => setShowComments(!showComments)}>
             {user.rol === "watcher" ? (
               <img src={WatcherComment} alt="" />
@@ -88,6 +99,19 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
               <img src={PlayerComment} alt="" />
             )}
           </button>
+          <CopyToClipboard
+            onCopy={() =>
+              handleCopy("http://localhost:5173/visit/" + challenge.id)
+            }
+          >
+            <button>
+              {user.rol === "watcher" ? (
+                <img src={shareW} alt="" />
+              ) : (
+                <img src={shareP} alt="" />
+              )}
+            </button>
+          </CopyToClipboard>
         </Interaction>
         <NewComment
           comments={challenge.videos.comments}

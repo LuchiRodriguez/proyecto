@@ -97,7 +97,7 @@ const Challenge = ({ ch, refetch }) => {
             alt=""
           />
         )}
-        <p>{ch.watcher.username}</p>
+        <p>{ch.watcher}</p>
         {user.rol === "moderador" && (
           <ButtonDelete onClick={handleDelete}>X</ButtonDelete>
         )}
@@ -105,12 +105,12 @@ const Challenge = ({ ch, refetch }) => {
       <ChallengeInfo>
         <p>Challenges you to: {ch.description}</p>
         <p>Reward: {ch.points}</p>
-
         {challengeAccepted ? (
           <>
             <p className="watcher">
               Accepted by <span>{user.username}</span>
-            </p> <br />
+            </p>{" "}
+            <br />
             <ButtonStyle onClick={handleCancel}>Cancelar desafío</ButtonStyle>
           </>
         ) : (
@@ -123,7 +123,6 @@ const Challenge = ({ ch, refetch }) => {
             </>
           )
         )}
-
         {challengeAccepted && (
           <UploadVideo>
             {isUploading ? (

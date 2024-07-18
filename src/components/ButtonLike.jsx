@@ -3,13 +3,37 @@ import likeImgWatcher from "../app/img/watcherNavBar/like.png";
 import likeImgPlayer from "../app/img/playerNavBar/like.png";
 import dislikePlayer from "../app/img/playerNavBar/dislike.png";
 import { useUserContext } from "../app/UserProvider";
-import { useState } from "react";
-import { postLike } from "../app/api/Video";
-
+import { useEffect, useState } from "react";
+import { postVideo, getVideoById } from '../app/api/Video';
+import { getUserByUsername } from '../app/api/User';
 
 const ButtonLike = ({ videoId, refetch }) => {
   const [user] = useUserContext();
   const [like, setLike] = useState(false);
+  const [userProfile, setUserProfile] = useState([]);
+  const [meGusta, setMeGusta] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userProfileData = await getUserByUsername(user.username);
+        setUserProfile(userProfileData);
+
+        const videoData = await getVideoById(videoId);
+        setMeGusta(videoData.data.meGustas);
+
+        if (userProfileData.meGustas.includes(videoId)) {
+          setLike(true);
+        } else {
+          setLike(false);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [user.username, videoId]);
 
   const handleLike = async (e) => {
     e.preventDefault();
@@ -17,9 +41,8 @@ const ButtonLike = ({ videoId, refetch }) => {
     formData.append("user", user.username);
     formData.append("video", videoId);
 
-
     try {
-      await postLike(formData)
+      await postVideo(formData);
       setLike(!like);
       refetch();
     } catch (error) {
@@ -28,12 +51,12 @@ const ButtonLike = ({ videoId, refetch }) => {
   };
   return (
     <form onSubmit={handleLike}>
-      <button type="submit">
+      < button type="submit">
         {user.rol === "watcher" && (
-          <img src={like ? dislikeWatcher : likeImgWatcher} alt="" />
+          <img src={!like ? dislikeWatcher : likeImgWatcher} alt="" />
         )}
         {user.rol === "player" && (
-          <img src={like ? dislikePlayer : likeImgPlayer} alt="" />
+          <img src={!like ? dislikePlayer : likeImgPlayer} alt="" />
         )}
       </button>
     </form>
