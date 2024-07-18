@@ -80,7 +80,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           />
         </Suspense>
         <Interaction>
-          <ButtonLike />
+          <ButtonLike videoId={challenge.video.id} refetch={refetch} />
           <button onClick={() => setShowComments(!showComments)}>
             {user.rol === "watcher" ? (
               <img src={WatcherComment} alt="" />
