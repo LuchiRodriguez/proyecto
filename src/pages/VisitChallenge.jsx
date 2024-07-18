@@ -7,7 +7,7 @@ import {
 } from "../app/Styles";
 import { getChallengeById } from "../app/api/Challenge";
 import NavBar from "../components/NavBar";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ButtonLike from "../components/ButtonLike";
 import PlayerComment from "../app/img/playerNavBar/playerDiscomment.png";
 import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
@@ -16,12 +16,15 @@ import shareP from "../app/img/playerNavBar/sharePlayer.png";
 import { useUserContext } from "../app/UserProvider";
 import NewComment from "../components/NewComment";
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
+import { CopyToClipboard } from "react-copy-to-clipboard";
 const VisitChallenge = () => {
   const [user] = useUserContext();
   const { id } = useParams();
   const [challenge, setChallenge] = useState();
   const [showComments, setShowComments] = useState(false);
-  const navigate = useNavigate();
+  const handleCopy = (url) => {
+    navigator.clipboard.writeText(url);
+  };
 
   const refetch = () => {
     getChallengeById(id).then((data) => setChallenge(data));
@@ -68,13 +71,19 @@ const VisitChallenge = () => {
                 <img src={PlayerComment} alt="" />
               )}
             </button>
-            <button onClick={() => navigate("/visit/" + challenge.id)}>
-              {user.rol === "watcher" ? (
-                <img src={shareW} alt="" />
-              ) : (
-                <img src={shareP} alt="" />
-              )}
-            </button>
+            <CopyToClipboard
+              onCopy={() =>
+                handleCopy("http://localhost:5173/visit/" + challenge.id)
+              }
+            >
+              <button>
+                {user.rol === "watcher" ? (
+                  <img src={shareW} alt="" />
+                ) : (
+                  <img src={shareP} alt="" />
+                )}
+              </button>
+            </CopyToClipboard>
           </Interaction>
           <NewComment
             comments={challenge.videos.comments}

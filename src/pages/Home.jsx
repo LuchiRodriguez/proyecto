@@ -20,12 +20,15 @@ const Home = () => {
       const filteredChallengesWithTranscurredTime = challengeFilter.map(
         (video) => {
           const currentDate = new Date(video.videos.creationDate);
+          console.log(currentDate);
           const differenceMs = parsedDate - currentDate;
           const differenceSeconds = differenceMs / 1000;
           const differenceMinutes = differenceSeconds / 60;
           const differenceHours = differenceMinutes / 60;
           const difference = () => {
-            if (differenceHours >= 24) {
+            if (differenceHours > 48) {
+              return currentDate;
+            } else if (36 > differenceHours >= 24) {
               return "Yesterday";
             } else if (differenceHours >= 1) {
               return Math.round(differenceHours) + "h ago";
