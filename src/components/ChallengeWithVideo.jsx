@@ -54,7 +54,6 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
       });
     };
   }, [challenge]);
-  console.log(challenge)
   return (
     <>
       <ChallengeVideo>
