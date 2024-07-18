@@ -187,7 +187,7 @@ export const UserInfo = styled.div`
 
 export const ChallengeInfo = styled.div`
   font-family: Roboto;
-  margin-left: 10px;
+  margin-left: 3px;
   button {
     display: block;
     margin: auto;
@@ -204,7 +204,7 @@ export const ChallengeBox = styled.div`
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 30px;
-  box-shadow: 3px 3px ${(props) => props.theme.shadowColor};
+  box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor} , 0 0 10px 2px ${(props) => props.theme.shadowColor};
 
   video {
     width: 100%;
@@ -228,6 +228,9 @@ export const Interaction = styled.div`
     background-color: var(--black);
     width: 20px;
     height: 20px;
+  }
+  p{
+    margin-right: 10px;
   }
 `;
 
@@ -285,7 +288,7 @@ export const PopUpCreateChallenge = styled.div`
     border: 2px solid var(--blue);
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 3px 3px ${(props) => props.theme.shadowColor};
+    box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor} , 0 0 10px 2px ${(props) => props.theme.shadowColor};
     label {
       padding: 15px 10px;
     }
