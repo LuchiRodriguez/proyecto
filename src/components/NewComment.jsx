@@ -55,7 +55,7 @@ const NewComment = ({comments, showComments, videoChallenge, refetch }) => {
             <Comments key={comment.id}>
              <div className="user">
              <img src={userImg} alt="" />
-             <p>{user.username}</p>
+             <p>{comment.user}</p>
              </div>
               <p>{comment.content}</p>
             </Comments>

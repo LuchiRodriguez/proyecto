@@ -97,7 +97,7 @@ const Challenge = ({ ch, refetch }) => {
             alt=""
           />
         )}
-        <p>{ch.watcher.username}</p>
+        <p>{ch.watcher}</p>
         {user.rol === "moderador" && (
           <ButtonDelete onClick={handleDelete}>X</ButtonDelete>
         )}

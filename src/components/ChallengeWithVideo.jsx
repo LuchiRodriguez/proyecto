@@ -47,7 +47,7 @@ const ChallengeWithVideo = ({challenge, index, refetch }) => {
       });
     };
   }, [challenge]);
-
+console.log(challenge)
   return (
     <>
         <ChallengeVideo key={challenge.id}>
@@ -60,13 +60,13 @@ const ChallengeWithVideo = ({challenge, index, refetch }) => {
                 alt=""
               />
             }
-            <p>{challenge.player.username}</p>
+            {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
           </UserInfo>
           <ChallengeInfo>
             <p>{challenge.description}</p>
             <p className="player">
               {" "}
-              Challenged by <span>{challenge.watcher.username}</span>
+              Challenged by {challenge.watcher.username ? <span>{challenge.watcher.username}</span> : <span>{challenge.watcher}</span>}
             </p>
           </ChallengeInfo>
           <Suspense fallback={<div>Loading video...</div>}>
