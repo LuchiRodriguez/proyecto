@@ -1,12 +1,8 @@
 import { Suspense, useState, lazy, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import ButtonLike from "./ButtonLike";
 import NewComment from "./NewComment";
-import {
-  UserInfo,
-  ChallengeInfo,
-  ChallengeVideo,
-  Interaction,
-} from "../app/Styles";
+import { UserInfo, ChallengeInfo, ChallengeVideo, Interaction } from "../app/Styles";
 import PlayerComment from "../app/img/playerNavBar/playerDiscomment.png";
 import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
@@ -59,21 +55,21 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
       });
     };
   }, [challenge]);
-console.log(challenge)
+  console.log(challenge)
   return (
     <>
-        <ChallengeVideo>
-          <UserInfo>
-            {challenge.player.imagenUrl !== null ? 
-              <img src={challenge.player.imagenUrl}/>
-             : 
-              <img
-                src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
-                alt=""
-              />
-            }
-            {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
-          </UserInfo>
+      <ChallengeVideo>
+        <UserInfo>
+          {challenge.player.imagenUrl !== null ?
+            <img src={challenge.player.imagenUrl} />
+            :
+            <img
+              src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+              alt=""
+            />
+          }
+          {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
+        </UserInfo>
         <ChallengeInfo>
           <p onClick={() => navigate("/visit/" + challenge.id)}>
             {challenge.description}
