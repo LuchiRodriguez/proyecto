@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import NavBar from "../components/NavBar";
-import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, ChangeProfileButton, PlayerProfile, WatcherProfile, VideosContainer, VideoItem } from '../app/Styles';
+import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, PlayerProfile, WatcherProfile, VideosContainer, VideoItem } from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
 import { useNavigate } from "react-router-dom";
 import logoutBtnWatcher from "../app/img/watcherNavBar/logout.png";
 import logoutBtnPlayer from "../app/img/playerNavBar/logout.png";
-import pencilIconWatcher from "../app/img/watcherNavBar/pencil.png";
-import pencilIconPlayer from "../app/img/playerNavBar/pencil.png";
 import PopupProfile from '../components/PopupProfile';
 
 
@@ -105,9 +103,6 @@ const Profile = () => {
           <LogoutBtn onClick={logout}>
             <img src={logoutBtnPlayer} alt="Logout" />
           </LogoutBtn>
-          <ChangeProfileButton onClick={() => setIsOpen(!isOpen)}>
-            <img src={pencilIconPlayer} alt="" />
-          </ChangeProfileButton>
 
           <VideosContainer>
             {videos.map((video, i) => {
@@ -159,9 +154,6 @@ const Profile = () => {
             <img src={logoutBtnWatcher} alt="Logout" />
           </LogoutBtn>
 
-          <ChangeProfileButton onClick={() => setIsOpen(!isOpen)}>
-            <img src={pencilIconWatcher} alt="" />
-          </ChangeProfileButton>
         </PerfilStyle>
       </WatcherProfile>}
 

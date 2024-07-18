@@ -16,11 +16,10 @@ import { useNavigate } from "react-router-dom";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
-const ChallengeWithVideo = ({ challenge, index, refetch }) => {
-  const [user] = useUserContext();
-  const [showComments, setShowComments] = useState(false);
-  const videoRefs = useRef([]);
-  const navigate = useNavigate();
+const ChallengeWithVideo = ({challenge, index, refetch }) => {
+    const [user] = useUserContext();
+    const [showComments, setShowComments] = useState(false);
+    const videoRefs = useRef([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,6 +52,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   }, [challenge]);
 
   return (
+<<<<<<< HEAD
     <ChallengeVideo key={challenge.id}>
       <UserInfo>
         {challenge.player.imagenUrl == null ? (
@@ -108,6 +108,48 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
         refetch={refetch}
       />
     </ChallengeVideo>
+=======
+    <>
+        <ChallengeVideo key={challenge.id}>
+          <UserInfo>
+            {challenge.player.imagenUrl !== null ? 
+              <img src={challenge.player.imagenUrl}/>
+             : 
+              <img
+                src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+                alt=""
+              />
+            }
+            <p>{challenge.player.username}</p>
+          </UserInfo>
+          <ChallengeInfo>
+            <p>{challenge.description}</p>
+            <p className="player">
+              {" "}
+              Challenged by <span>{challenge.watcher.username}</span>
+            </p>
+          </ChallengeInfo>
+          <Suspense fallback={<div>Loading video...</div>}>
+            <LazyVideo
+              src={challenge.videos.videoUrl}
+              ref={(el) => (videoRefs.current[index] = el)}
+            />
+          </Suspense>
+          <Interaction>
+            <ButtonLike videoId={challenge.videos.id} refetch={refetch}/>
+            <p>{challenge.videos.meGustas.length} Likes</p>
+            <button onClick={() => setShowComments(!showComments)}>
+              {user.rol === "watcher" ? (
+                <img src={WatcherComment} alt="" />
+              ) : (
+                <img src={PlayerComment} alt="" />
+              )}
+            </button>
+          </Interaction>
+          <NewComment comments={challenge.videos.comments} setShowComments={setShowComments} showComments={showComments} videoChallenge={challenge.videos.id} refetch={refetch}/>
+        </ChallengeVideo>
+    </>
+>>>>>>> master
   );
 };
 
