@@ -20,7 +20,7 @@ const Home = () => {
       const filteredChallengesWithTranscurredTime = challengeFilter.map(
         (video) => {
           const currentDate = new Date(video.videos.creationDate);
-          console.log(currentDate);
+    
           const differenceMs = parsedDate - currentDate;
           const differenceSeconds = differenceMs / 1000;
           const differenceMinutes = differenceSeconds / 60;
