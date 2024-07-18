@@ -67,7 +67,9 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
               alt=""
             />
           }
-          {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
+          <Link to={`/profile/${challenge.player.username}`}>
+            {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
+          </Link>
         </UserInfo>
         <ChallengeInfo>
           <p onClick={() => navigate("/visit/" + challenge.id)}>
@@ -75,7 +77,9 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           </p>
           <p className="player">
             {" "}
-            Challenged by {challenge.watcher.username ? <span>{challenge.watcher.username}</span> : <span>{challenge.watcher}</span>}
+            Challenged by
+            <Link to={`/profile/${challenge.watcher.username}`}>{challenge.watcher.username ? <span>{challenge.watcher.username}</span> : <span>{challenge.watcher}</span>}
+            </Link>
           </p>
         </ChallengeInfo>
         <Suspense fallback={<div>Loading video...</div>}>
