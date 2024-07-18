@@ -1,5 +1,4 @@
 import { Suspense, useState, lazy, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
 import ButtonLike from "./ButtonLike";
 import NewComment from "./NewComment";
 import { UserInfo, ChallengeInfo, ChallengeVideo, Interaction } from "../app/Styles";
@@ -8,7 +7,7 @@ import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
 import shareW from "../app/img/watcherNavBar/shareWatcher.png";
 import shareP from "../app/img/playerNavBar/sharePlayer.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
@@ -19,7 +18,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   const videoRefs = useRef([]);
   const navigate = useNavigate();
 
-  // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
+  // When we deploy the app, and we have a fixed URL, update and uncomment the code below
   // const url = "https://www-example-com.cdn.ampproject.org/c/s/www.example.com";
 
   const handleCopy = (url) => {
@@ -55,7 +54,6 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
       });
     };
   }, [challenge]);
-  console.log(challenge)
   return (
     <>
       <ChallengeVideo>
