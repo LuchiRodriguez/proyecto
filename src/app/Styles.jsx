@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
 	}
   :root{
     --blue: #03e9f4;
-    --magenta: #F205C7;
+    --magenta: #B358DC;
     --black: #202124;
   }
 	body {
@@ -175,14 +175,19 @@ export const UserInfo = styled.div`
     border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
-  div {
+  /* div {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    p {
+  } */
+
+  a {
+    text-decoration: none; 
+      p{
       color: ${(props) => props.theme.primaryColor};
+      }
+      
     }
-  }
 `;
 
 export const ChallengeInfo = styled.div`
@@ -194,6 +199,19 @@ export const ChallengeInfo = styled.div`
   }
   p:first-child {
     cursor: pointer;
+  }
+
+  .player{
+
+    a{
+      text-decoration: none; 
+      
+    }
+    
+    span{
+      margin-left: 4px;
+      color: ${(props) => props.theme.primaryColor}
+    }
   }
 `;
 
