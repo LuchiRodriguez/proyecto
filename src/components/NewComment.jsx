@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Comments, PopUpComments, NuevoComment } from "../app/Styles";
+import { Comments, PopUpComments, NuevoComment } from '../app/Styles';
 import watcherCheck from "../app/img/watcherNavBar/watcherCheck.png";
 import playerCheck from "../app/img/playerNavBar/playerCheck.png";
 import { useUserContext } from "../app/UserProvider";
-import userImg from "../app/img/playerNavBar/user.png";
-import { createComment } from "../app/api/Comments";
+import userImgPlayer from "../app/img/playerNavBar/user.png";
+import userImgWatcher from "../app/img/watcherNavBar/user.png"
+import { createComment } from '../app/api/Comments';
 
 const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
   const [user] = useUserContext();
@@ -33,6 +34,7 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
   };
   return (
     <PopUpComments $showComments={showComments}>
+
       {comments.length > 0 ? (
         <>
           <NuevoComment>
@@ -52,11 +54,11 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
           </NuevoComment>
           {comments.map((comment) => (
             <Comments key={comment.id}>
-             <div className="user">
-             <img src={userImg} alt="" />
-             <p>{comment.user}</p>
-             </div>
-              <p>{comment.content}</p>
+              <div className="user">
+                <img src={user.rol === "watcher" ? userImgWatcher : userImgPlayer} alt="" />
+                <p>{user.username}</p>
+              </div>
+              <p className="text">{comment.content}</p>
             </Comments>
           ))}
         </>
@@ -64,7 +66,10 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
         <>
           <p>Aún no hay comentarios</p>
           <p>Sé el primero en comentar</p>
-          <input type="text" onChange={(e) => setContent(e.target.value)} />
+          <input
+            type="text"
+            onChange={(e) => setContent(e.target.value)}
+          />
           <img
             onClick={handleComments}
             src={user.rol === "watcher" ? watcherCheck : playerCheck}
