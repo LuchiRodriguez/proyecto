@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
 	}
   :root{
     --blue: #03e9f4;
-    --magenta: #B358DC;
+    --magenta: #18f807;
     --black: #202124;
   }
 	body {
@@ -120,7 +120,7 @@ export const PerfilStyle = styled.div`
   background-position: center;
   position: relative; 
   min-height: 660px; 
-  box-shadow: 3px 3px ${(props) => props.theme.shadowColor};
+  box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor}, 0 0 10px 2px ${(props) => props.theme.shadowColor}; 
 `;
 
 export const ProfileImg = styled.div`

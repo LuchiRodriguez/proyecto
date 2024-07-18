@@ -1,5 +1,5 @@
 export const playerTheme = {
     name: "player",
-    primaryColor: "#B358DC",
-    shadowColor: "#703A88",
+    primaryColor: "#18f807",
+    shadowColor: "#18f807",
 };
