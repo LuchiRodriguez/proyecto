@@ -7,7 +7,7 @@ import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
 import shareW from "../app/img/watcherNavBar/shareWatcher.png";
 import shareP from "../app/img/playerNavBar/sharePlayer.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
