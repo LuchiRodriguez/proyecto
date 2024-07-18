@@ -59,21 +59,34 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
       });
     };
   }, [challenge]);
-
+console.log(challenge)
   return (
     <>
-      <ChallengeVideo key={challenge.id}>
-        <UserInfo>
-          {challenge.player.imagenUrl !== null ? (
-            <img src={challenge.player.imagenUrl} />
-          ) : (
-            <img
-              src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
-              alt=""
+        <ChallengeVideo key={challenge.id}>
+          <UserInfo>
+            {challenge.player.imagenUrl !== null ? 
+              <img src={challenge.player.imagenUrl}/>
+             : 
+              <img
+                src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+                alt=""
+              />
+            }
+            {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
+          </UserInfo>
+          <ChallengeInfo>
+            <p>{challenge.description}</p>
+            <p className="player">
+              {" "}
+              Challenged by {challenge.watcher.username ? <span>{challenge.watcher.username}</span> : <span>{challenge.watcher}</span>}
+            </p>
+          </ChallengeInfo>
+          <Suspense fallback={<div>Loading video...</div>}>
+            <LazyVideo
+              src={challenge.videos.videoUrl}
+              ref={(el) => (videoRefs.current[index] = el)}
             />
-          )}
-          <p>{challenge.player.username}</p>
-        </UserInfo>
+        </Suspense>
         <ChallengeInfo>
           <p onClick={() => navigate("/visit/" + challenge.id)}>
             {challenge.description}

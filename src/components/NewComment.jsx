@@ -52,10 +52,10 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
           </NuevoComment>
           {comments.map((comment) => (
             <Comments key={comment.id}>
-              <div className="user">
-                <img src={userImg} alt="" />
-                <p>{user.username}</p>
-              </div>
+             <div className="user">
+             <img src={userImg} alt="" />
+             <p>{comment.user}</p>
+             </div>
               <p>{comment.content}</p>
             </Comments>
           ))}
