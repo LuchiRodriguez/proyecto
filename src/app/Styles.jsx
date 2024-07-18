@@ -192,6 +192,9 @@ export const ChallengeInfo = styled.div`
     display: block;
     margin: auto;
   }
+  p:first-child {
+    cursor: pointer;
+  }
 `;
 
 export const ChallengeBox = styled.div`
