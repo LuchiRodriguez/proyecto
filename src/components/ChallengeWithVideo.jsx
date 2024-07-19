@@ -65,7 +65,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
             <img
               src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
               alt=""
-            />
+            />)
           }
           <Link to={`/profile/${challenge.player.username ? challenge.player.username : challenge.player}`}>
             {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
