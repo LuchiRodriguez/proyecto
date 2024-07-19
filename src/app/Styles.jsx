@@ -13,6 +13,8 @@ export const GlobalStyle = createGlobalStyle`
 		src: url(${Roboto});
 	}
   :root{
+    --blue: #03e9f4;
+    --green: #18f807;
     --black: #202124;
   }
 	body {
@@ -47,13 +49,13 @@ export const NavBarStyle = styled.nav`
     width: 30px;
     height: 30px;
     padding: 10px;
-    color: var(--blue);
+    color: ${(props) => props.theme.primaryColor};
   }
 `;
 
 export const Form = styled.form`
   font-family: Roboto;
-  color: var(--blue);
+  color: ${(props) => props.theme.primaryColor};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -61,23 +63,25 @@ export const Form = styled.form`
   height: 100vh;
   margin: auto;
   input {
-    color: var(--blue);
+    color: ${(props) => props.theme.primaryColor};
     background-color: var(--black) !important;
     outline: none;
     text-transform: uppercase;
     margin-top: 60px;
-    border: var(--blue) 3px solid;
+    border: ${(props) => props.theme.primaryColor} 3px solid;
     border-radius: 10px;
     height: 30px;
     width: 300px;
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
-      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
+        0 0 20px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
     &:active {
-      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
+        0 0 20px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
   }
@@ -90,14 +94,15 @@ export const Form = styled.form`
   }
   button {
     background-color: var(--black);
-    border: var(--blue) 3px solid;
+    border: ${(props) => props.theme.primaryColor} 3px solid;
     border-radius: 10px;
-    color: var(--blue);
+    color: ${(props) => props.theme.primaryColor};
     padding: 10px;
     margin-top: 30px;
   }
   button:focus {
-    box-shadow: 0 0 10px 0 var(--blue) inset, 0 0 20px 2px var(--blue);
+    box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor} inset,
+      0 0 20px 2px ${(props) => props.theme.primaryColor};
   }
 `;
 
@@ -133,7 +138,7 @@ export const ProfileImg = styled.div`
 
   button {
     background-color: var(--black);
-    border: var(--blue) 3px solid;
+    border: ${(props) => props.theme.primaryColor} 3px solid;
     border-radius: 10px;
     color: ${(props) => props.theme.primaryColor};
     padding: 10px;
@@ -214,7 +219,7 @@ export const ChallengeInfo = styled.div`
 export const ChallengeBox = styled.div`
   color: white;
   font-size: small;
-  border: 2px solid /*var(--blue);*/ ${(props) => props.theme.primaryColor};
+  border: 2px solid ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 30px;
@@ -290,6 +295,8 @@ export const ChallengeVideo = styled.div`
   /* color: ${(props) => props.theme.primaryColor}; */
   font-size: small;
   border: 2px solid ${(props) => props.theme.primaryColor};
+  box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor},
+    0 0 10px 2px ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 40px;
@@ -322,7 +329,7 @@ export const PopUpCreateChallenge = styled.div`
   align-items: center;
   justify-content: center;
   height: 95vh;
-  color: var(--blue);
+  color: ${(props) => props.theme.primaryColor};
   font-size: small;
   top: 0;
   bottom: 0;
@@ -336,7 +343,7 @@ export const PopUpCreateChallenge = styled.div`
     background-color: var(--black);
     flex-direction: column;
     justify-content: space-between;
-    border: 2px solid var(--blue);
+    border: 2px solid ${(props) => props.theme.primaryColor};
     border-radius: 10px;
     padding: 10px;
     box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor},
@@ -349,12 +356,13 @@ export const PopUpCreateChallenge = styled.div`
       font-family: Roboto;
       text-transform: uppercase;
       background-color: var(--black);
-      border: var(--blue) 3px solid;
+      border: ${(props) => props.theme.primaryColor} 3px solid;
       border-radius: 10px;
-      color: var(--blue);
+      color: ${(props) => props.theme.primaryColor};
       padding: 10px;
       &:focus {
-        box-shadow: 0 0 10px 0 var(--blue) inset, 0 0 20px 2px var(--blue);
+        box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor} inset,
+          0 0 20px 2px ${(props) => props.theme.primaryColor};
       }
     }
     div {
@@ -364,11 +372,11 @@ export const PopUpCreateChallenge = styled.div`
     }
   }
   textarea {
-    color: var(--blue);
+    color: ${(props) => props.theme.primaryColor};
     background-color: var(--black) !important;
     outline: none;
     text-transform: uppercase;
-    border: var(--blue) 3px solid;
+    border: ${(props) => props.theme.primaryColor} 3px solid;
     border-radius: 10px;
     height: 100px;
     width: 100%;
@@ -376,32 +384,36 @@ export const PopUpCreateChallenge = styled.div`
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
-      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
+        0 0 20px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
     &:active {
-      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
+        0 0 20px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
   }
   input {
     margin: 10px 0;
-    color: var(--blue);
+    color: ${(props) => props.theme.primaryColor};
     background-color: var(--black) !important;
     outline: none;
     text-transform: uppercase;
-    border: var(--blue) 3px solid;
+    border: ${(props) => props.theme.primaryColor} 3px solid;
     border-radius: 10px;
     height: 10px;
     width: 20%;
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
-      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
+        0 0 20px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
     &:active {
-      box-shadow: 0 0 10px 0 var(--blue), 0 0 20px 2px var(--blue);
+      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
+        0 0 20px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
   }
@@ -410,7 +422,7 @@ export const PopUpCreateChallenge = styled.div`
     top: 140px;
     right: 32px;
     background-color: var(--black);
-    color: var(--blue);
+    color: ${(props) => props.theme.primaryColor};
     border-radius: 10px;
     border: none;
     font-size: large;
@@ -442,7 +454,7 @@ export const PopUpComments = styled.div`
   }
 
   .close {
-    color: var(--green);
+    color: ${(props) => props.theme.primaryColor};
     background-color: transparent;
     border: none;
     position: absolute;
@@ -527,10 +539,10 @@ export const Li = styled.li`
 `;
 
 export const ButtonStyle = styled.button`
-  border: 1px solid var(--green);
+  border: 1px solid ${(props) => props.theme.primaryColor};
   border-radius: 5px;
   background-color: transparent;
-  color: var(--green);
+  color: ${(props) => props.theme.primaryColor};
   text-transform: uppercase;
   font-family: Roboto;
   padding: 10px;
@@ -542,7 +554,7 @@ export const ButtonStyle = styled.button`
 `;
 
 export const InputStyle = styled.input`
-  border: 1px solid var(--blue);
+  border: 1px solid ${(props) => props.theme.primaryColor};
   border-radius: 5px;
   background-color: transparent;
   color: white;
@@ -560,7 +572,7 @@ export const UploadVideo = styled.div`
     margin: auto;
   }
   input::file-selector-button {
-    border: 1px solid var(--green);
+    border: 1px solid ${(props) => props.theme.primaryColor};
     background-color: var(--black);
     color: white;
     border-radius: 5px;
@@ -570,7 +582,7 @@ export const UploadVideo = styled.div`
   }
   button {
     display: block;
-    border: 1px solid var(--green);
+    border: 1px solid ${(props) => props.theme.primaryColor};
     background-color: var(--black);
     color: white;
     border-radius: 5px;
@@ -608,12 +620,12 @@ export const ThirdPlace = styled.div`
 `;
 
 export const AnotherPlace = styled.div`
-  border: 1px solid var(--green);
+  border: 1px solid ${(props) => props.theme.primaryColor};
   border-radius: 10px;
 `;
 
 export const ButtonDelete = styled.button`
-  background-color: var(--green);
+  background-color: ${(props) => props.theme.primaryColor};
   border-radius: 50%;
   color: white;
   border: none;
@@ -723,7 +735,6 @@ export const PopUpContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(32, 33, 36, 0.9);
-  box-shadow: 0 0 10px rgba(32, 33, 36, 0.9);
   padding: 10px;
   overflow-y: auto;
 
@@ -739,7 +750,7 @@ export const PopUpContainer = styled.div`
 
 export const VideosBox = styled.div`
   height: 100%;
-  border: 1px solid var(--green);
+  border: 1px solid ${(props) => props.theme.primaryColor};
 
   button {
     position: relative;
