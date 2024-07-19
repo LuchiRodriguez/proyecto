@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
 	}
   :root{
     --blue: #03e9f4;
-    --magenta: #B358DC;
+    --green: #18f807;
     --black: #202124;
   }
 	body {
@@ -120,7 +120,7 @@ export const PerfilStyle = styled.div`
   background-position: center;
   position: relative; 
   min-height: 660px; 
-  box-shadow: 3px 3px ${(props) => props.theme.shadowColor};
+  box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor}, 0 0 10px 2px ${(props) => props.theme.shadowColor}; 
 `;
 
 export const ProfileImg = styled.div`
@@ -407,7 +407,7 @@ export const PopUpComments = styled.div`
   }
 
   .close {
-    color: var(--magenta);
+    color: var(--green);
     background-color: transparent;
     border: none;
     position: absolute;
@@ -492,10 +492,10 @@ export const Li = styled.li`
 `;
 
 export const ButtonStyle = styled.button`
-  border: 1px solid var(--magenta);
+  border: 1px solid var(--green);
   border-radius: 5px;
   background-color: transparent;
-  color: var(--magenta);
+  color: var(--green);
   text-transform: uppercase;
   font-family: Roboto;
   padding: 10px;
@@ -525,7 +525,7 @@ export const UploadVideo = styled.div`
     margin: auto;
   }
   input::file-selector-button {
-    border: 1px solid var(--magenta);
+    border: 1px solid var(--green);
     background-color: var(--black);
     color: white;
     border-radius: 5px;
@@ -535,7 +535,7 @@ export const UploadVideo = styled.div`
   }
   button {
     display: block;
-    border: 1px solid var(--magenta);
+    border: 1px solid var(--green);
     background-color: var(--black);
     color: white;
     border-radius: 5px;
@@ -573,12 +573,12 @@ export const ThirdPlace = styled.div`
 `;
 
 export const AnotherPlace = styled.div`
-  border: 1px solid var(--magenta);
+  border: 1px solid var(--green);
   border-radius: 10px;
 `;
 
 export const ButtonDelete = styled.button`
-  background-color: var(--magenta);
+  background-color: var(--green);
   border-radius: 50%;
   color: white;
   border: none;
@@ -704,7 +704,7 @@ export const PopUpContainer = styled.div`
 
 export const VideosBox = styled.div`
 height: 100%; 
-border: 1px solid var(--magenta); 
+border: 1px solid var(--green); 
 
   button {
     position: relative;
