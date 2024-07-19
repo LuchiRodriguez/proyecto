@@ -3,24 +3,14 @@ import { Comments, PopUpComments, NuevoComment } from '../app/Styles';
 import watcherCheck from "../app/img/watcherNavBar/watcherCheck.png";
 import playerCheck from "../app/img/playerNavBar/playerCheck.png";
 import { useUserContext } from "../app/UserProvider";
-<<<<<<< HEAD
-import { createComment } from "../app/api/Comments";
-import { getUserByUsername } from '../app/api/User';
-=======
 import { createComment } from '../app/api/Comments';
-import {getUserByComments} from '../app/api/User';
->>>>>>> master
+import { getUserByComments } from '../app/api/User';
 
 const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
   const [user] = useUserContext();
   const [content, setContent] = useState("");
-<<<<<<< HEAD
-  const [profileImg, setProfileImg] = useState("")
-
-=======
   const [users, setUsers] = useState([]);
-  
->>>>>>> master
+
   useEffect(() => {
     getUserByComments(comments).then((data) => {
       setUsers(data)
@@ -74,24 +64,10 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
           {comments.map((comment, i) => (
             <Comments key={comment.id}>
               <div className="user">
-<<<<<<< HEAD
-                {profileImg != null ? (
-                  <img src={profileImg} />
-                ) : (
-                  <img
-                    src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
-                    alt=""
-                  />
-                )}
-                <p>{comment.user}</p>
-              </div>
-              <p>{comment.content}</p>
-=======
                 <img src={users[i]?.imagenUrl ? users[i]?.imagenUrl : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"} alt="" />
                 <p>{comment.user}</p>
               </div>
               <p className="text">{comment.content}</p>
->>>>>>> master
             </Comments>
           ))}
         </>

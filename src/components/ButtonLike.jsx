@@ -4,12 +4,7 @@ import likeImgPlayer from "../app/img/playerNavBar/like.png";
 import dislikePlayer from "../app/img/playerNavBar/dislike.png";
 import { useUserContext } from "../app/UserProvider";
 import { useEffect, useState } from "react";
-<<<<<<< HEAD
 import { postVideo, getVideoById } from '../app/api/Video';
-import { getUserByUsername } from '../app/api/User';
-=======
-import {postVideo, getVideoById} from '../app/api/Video';
->>>>>>> master
 
 const ButtonLike = ({ videoId, refetch }) => {
   const [user] = useUserContext();
@@ -19,19 +14,6 @@ const ButtonLike = ({ videoId, refetch }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-<<<<<<< HEAD
-        const userProfileData = await getUserByUsername(user.username);
-        setUserProfile(userProfileData);
-
-        const videoData = await getVideoById(videoId);
-        setMeGusta(videoData.data.meGustas);
-
-        if (userProfileData.meGustas.includes(videoId)) {
-          setLike(true);
-        } else {
-          setLike(false);
-        }
-=======
         const videoData = await getVideoById(videoId);
         const meGustas = videoData.data.meGustas;
         setMeGusta(meGustas);
@@ -43,7 +25,6 @@ const ButtonLike = ({ videoId, refetch }) => {
         });
 
         setLike(userHasLiked);
->>>>>>> master
       } catch (error) {
         console.error("Error fetching data:", error);
       }

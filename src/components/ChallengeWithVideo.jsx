@@ -54,10 +54,6 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
       });
     };
   }, [challenge]);
-<<<<<<< HEAD
-
-=======
->>>>>>> master
   return (
     <>
       <ChallengeVideo>
@@ -70,13 +66,9 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
               alt=""
             />
           }
-<<<<<<< HEAD
-          {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
-=======
           <Link to={`/profile/${challenge.player.username}`}>
             {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
           </Link>
->>>>>>> master
         </UserInfo>
         <ChallengeInfo>
           <p onClick={() => navigate("/visit/" + challenge.id)}>
