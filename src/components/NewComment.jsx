@@ -60,9 +60,7 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
             <Comments key={comment.id}>
               <div className="user">
                 <img src={users[i]?.imagenUrl ? users[i]?.imagenUrl : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"} alt="" />
-                <Link to={`/profile/${comment.user}`}>
-                  <p>{comment.user}</p>
-                </Link>
+                <p>{comment.user}</p>
               </div>
               <p className="text">{comment.content}</p>
             </Comments>
