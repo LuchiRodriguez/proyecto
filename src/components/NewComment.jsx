@@ -3,15 +3,18 @@ import { Comments, PopUpComments, NuevoComment } from '../app/Styles';
 import watcherCheck from "../app/img/watcherNavBar/watcherCheck.png";
 import playerCheck from "../app/img/playerNavBar/playerCheck.png";
 import { useUserContext } from "../app/UserProvider";
-import userImgPlayer from "../app/img/playerNavBar/user.png";
-import userImgWatcher from "../app/img/watcherNavBar/user.png"
 import { createComment } from '../app/api/Comments';
+import {getUserByComments} from '../app/api/User';
 
 const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
   const [user] = useUserContext();
   const [content, setContent] = useState("");
-
+  const [users, setUsers] = useState([]);
+  
   useEffect(() => {
+    getUserByComments(comments).then((data) => {
+      setUsers(data)
+    })
     refetch();
   }, []);
 
@@ -32,6 +35,7 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
       console.error("Error comment:", error);
     }
   };
+
   return (
     <PopUpComments $showComments={showComments}>
 
@@ -52,11 +56,11 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
               onChange={(e) => setContent(e.target.value)}
             />
           </NuevoComment>
-          {comments.map((comment) => (
+          {comments.map((comment, i) => (
             <Comments key={comment.id}>
               <div className="user">
-                <img src={user.rol === "watcher" ? userImgWatcher : userImgPlayer} alt="" />
-                <p>{user.username}</p>
+                <img src={users[i]?.imagenUrl ? users[i]?.imagenUrl : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"} alt="" />
+                <p>{comment.user}</p>
               </div>
               <p className="text">{comment.content}</p>
             </Comments>
