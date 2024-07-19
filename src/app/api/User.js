@@ -30,3 +30,12 @@ export const getUserRanking = async () => {
     throw error;
   }
 };
+
+export const getUserByComments = async (comments) => {
+  const data = await Promise.all(comments.map(async (user) => {
+    const r = await instance.get(`/user/${user.user}`);
+    return r.data;
+  }))
+  return data;
+}
+
