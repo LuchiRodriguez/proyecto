@@ -308,7 +308,8 @@ export const PopUpCreateChallenge = styled.div`
     padding: 10px;
     box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor} , 0 0 10px 2px ${(props) => props.theme.shadowColor};
     label {
-      padding: 15px 10px;
+      padding: 5px;
+      padding-left: 8px; 
     }
     button {
       font-family: Roboto;
@@ -371,14 +372,14 @@ export const PopUpCreateChallenge = styled.div`
     }
   }
   .closeButton {
-    position: absolute;
-    top: 250px;
-    right: 15px;
+    position: fixed;
+    top: 140px;
+    right: 32px;
     background-color: var(--black);
     color: var(--blue);
     border-radius: 10px;
     border: none;
-    font-size: medium;
+    font-size: large;
   }
 `;
 
