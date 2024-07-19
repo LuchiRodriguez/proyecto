@@ -11,20 +11,19 @@ import { useParams } from "react-router-dom";
 import ButtonLike from "../components/ButtonLike";
 import PlayerComment from "../app/img/playerNavBar/playerDiscomment.png";
 import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
-import shareW from "../app/img/watcherNavBar/shareWatcher.png";
-import shareP from "../app/img/playerNavBar/sharePlayer.png";
 import { useUserContext } from "../app/UserProvider";
 import NewComment from "../components/NewComment";
+import ShareButton from "../components/ShareButton";
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
-import { CopyToClipboard } from "react-copy-to-clipboard";
+
 const VisitChallenge = () => {
   const [user] = useUserContext();
   const { id } = useParams();
   const [challenge, setChallenge] = useState();
   const [showComments, setShowComments] = useState(false);
-  const handleCopy = (url) => {
-    navigator.clipboard.writeText(url);
-  };
+
+  // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
+  const url = "http://localhost:5173/visit/" + id;
 
   const refetch = () => {
     getChallengeById(id).then((data) => setChallenge(data));
@@ -71,19 +70,11 @@ const VisitChallenge = () => {
                 <img src={PlayerComment} alt="" />
               )}
             </button>
-            <CopyToClipboard
-              onCopy={() =>
-                handleCopy("http://localhost:5173/visit/" + challenge.id)
-              }
-            >
-              <button>
-                {user.rol === "watcher" ? (
-                  <img src={shareW} alt="" />
-                ) : (
-                  <img src={shareP} alt="" />
-                )}
-              </button>
-            </CopyToClipboard>
+            <ShareButton
+              url={url}
+              title={challenge.description}
+              thumbnail={challenge.videos.videoUrl + "/path/to/thumbnail.jpg"}
+            />
           </Interaction>
           <NewComment
             comments={challenge.videos.comments}

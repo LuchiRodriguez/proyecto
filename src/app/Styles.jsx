@@ -13,8 +13,6 @@ export const GlobalStyle = createGlobalStyle`
 		src: url(${Roboto});
 	}
   :root{
-    --blue: #03e9f4;
-    --green: #18f807;
     --black: #202124;
   }
 	body {
@@ -118,9 +116,10 @@ export const PerfilStyle = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
-  position: relative; 
-  min-height: 660px; 
-  box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor}, 0 0 10px 2px ${(props) => props.theme.shadowColor}; 
+  position: relative;
+  min-height: 660px;
+  box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor},
+    0 0 10px 2px ${(props) => props.theme.shadowColor};
 `;
 
 export const ProfileImg = styled.div`
@@ -182,12 +181,11 @@ export const UserInfo = styled.div`
   } */
 
   a {
-    text-decoration: none; 
-      p{
+    text-decoration: none;
+    p {
       color: ${(props) => props.theme.primaryColor};
-      }
-      
     }
+  }
 `;
 
 export const ChallengeInfo = styled.div`
@@ -201,16 +199,14 @@ export const ChallengeInfo = styled.div`
     cursor: pointer;
   }
 
-  .player{
-
-    a{
-      text-decoration: none; 
-      
+  .player {
+    a {
+      text-decoration: none;
     }
-    
-    span{
+
+    span {
       margin-left: 4px;
-      color: ${(props) => props.theme.primaryColor}
+      color: ${(props) => props.theme.primaryColor};
     }
   }
 `;
@@ -222,7 +218,8 @@ export const ChallengeBox = styled.div`
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 30px;
-  box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor} , 0 0 10px 2px ${(props) => props.theme.shadowColor};
+  box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor},
+    0 0 10px 2px ${(props) => props.theme.shadowColor};
 
   video {
     width: 100%;
@@ -236,19 +233,56 @@ export const Interaction = styled.div`
   border-top: 2px solid ${(props) => props.theme.primaryColor};
   margin-top: 10px;
   padding: 10px;
+  gap: 10px;
+  div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
   button {
     background-color: var(--black);
     border: none;
     padding: 0;
-    margin-right: 10px;
   }
   img {
     background-color: var(--black);
     width: 20px;
     height: 20px;
   }
-  p{
+  p {
     margin-right: 10px;
+  }
+`;
+
+export const ShareList = styled.div`
+  display: ${({ $share }) => ($share ? "block" : "none")};
+  width: 100%;
+  height: 100%;
+  background-color: rgba(32, 33, 36, 0.9);
+  position: absolute;
+  left: 0;
+  ul {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-content: flex-start;
+    position: absolute;
+    top: 40vh;
+    left: 20px;
+    right: 20px;
+    border: 2px solid ${(props) => props.theme.primaryColor};
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    button {
+      display: flex;
+      gap: 10px;
+      border-bottom: 2px solid ${(props) => props.theme.primaryColor};
+      align-items: center;
+      p {
+        font-family: Roboto;
+      }
+    }
   }
 `;
 
@@ -264,7 +298,6 @@ export const ChallengeVideo = styled.div`
     width: 100%;
     border-radius: 10px;
   }
-
 `;
 
 export const ButtonChallenge = styled(Link)`
@@ -295,7 +328,7 @@ export const PopUpCreateChallenge = styled.div`
   bottom: 0;
   right: 20px;
   left: 20px;
-  
+
   form {
     display: flex;
     width: 100%;
@@ -306,10 +339,11 @@ export const PopUpCreateChallenge = styled.div`
     border: 2px solid var(--blue);
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor} , 0 0 10px 2px ${(props) => props.theme.shadowColor};
+    box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor},
+      0 0 10px 2px ${(props) => props.theme.shadowColor};
     label {
       padding: 5px;
-      padding-left: 8px; 
+      padding-left: 8px;
     }
     button {
       font-family: Roboto;
@@ -484,7 +518,7 @@ export const Li = styled.li`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 2px solid /*var(--blue)*/ ${(props) => props.theme.primaryColor};
+    border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
   p {
@@ -599,7 +633,7 @@ export const ChangeProfileButton = styled.button`
     width: 20px;
     height: 20px;
     top: 10px;
-    left: 15px; 
+    left: 15px;
   }
 `;
 
@@ -704,8 +738,8 @@ export const PopUpContainer = styled.div`
 `;
 
 export const VideosBox = styled.div`
-height: 100%; 
-border: 1px solid var(--green); 
+  height: 100%;
+  border: 1px solid var(--green);
 
   button {
     position: relative;
@@ -744,14 +778,14 @@ export const Comments = styled.div`
     border: none;
     gap: 10px;
     img {
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
     }
   }
-  .text{
-    color: white; 
+  .text {
+    color: white;
   }
 `;
 
@@ -762,7 +796,7 @@ export const NuevoComment = styled.div`
   margin-bottom: 10px;
   box-sizing: border-box;
   padding: 10px;
-      color: white; 
+  color: white;
   .check {
     display: flex;
     align-items: center;
@@ -771,6 +805,5 @@ export const NuevoComment = styled.div`
     img {
       width: 30px;
     }
-    
   }
 `;
