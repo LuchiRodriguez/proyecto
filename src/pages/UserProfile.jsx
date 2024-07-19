@@ -13,7 +13,7 @@ const UserProfile = () => {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  console.log(userProfile)
+ 
   useEffect(() => {
     getUserByUsername(username).then((data) => {
       setUserProfile(data);
