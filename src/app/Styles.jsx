@@ -13,8 +13,6 @@ export const GlobalStyle = createGlobalStyle`
 		src: url(${Roboto});
 	}
   :root{
-    --blue: #03e9f4;
-    --red: #f40e03;
     --black: #202124;
   }
 	body {
@@ -118,8 +116,8 @@ export const PerfilStyle = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
-  position: relative; 
-  min-height: 660px; 
+  position: relative;
+  min-height: 660px;
   box-shadow: 3px 3px ${(props) => props.theme.shadowColor};
 `;
 
@@ -218,16 +216,53 @@ export const Interaction = styled.div`
   border-top: 2px solid ${(props) => props.theme.primaryColor};
   margin-top: 10px;
   padding: 10px;
+  gap: 10px;
+  div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
   button {
     background-color: var(--black);
     border: none;
     padding: 0;
-    margin-right: 10px;
   }
   img {
     background-color: var(--black);
     width: 20px;
     height: 20px;
+  }
+`;
+
+export const ShareList = styled.div`
+  display: ${({ $share }) => ($share ? "block" : "none")};
+  width: 100%;
+  height: 100%;
+  background-color: rgba(32, 33, 36, 0.9);
+  position: absolute;
+  left: 0;
+  ul {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-content: flex-start;
+    position: absolute;
+    top: 40vh;
+    left: 20px;
+    right: 20px;
+    border: 2px solid ${(props) => props.theme.primaryColor};
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    button {
+      display: flex;
+      gap: 10px;
+      border-bottom: 2px solid ${(props) => props.theme.primaryColor};
+      align-items: center;
+      p {
+        font-family: Roboto;
+      }
+    }
   }
 `;
 
@@ -459,7 +494,7 @@ export const Li = styled.li`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 2px solid /*var(--blue)*/ ${(props) => props.theme.primaryColor};
+    border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
   p {
@@ -574,7 +609,7 @@ export const ChangeProfileButton = styled.button`
     width: 20px;
     height: 20px;
     top: 10px;
-    left: 15px; 
+    left: 15px;
   }
 `;
 
@@ -679,8 +714,8 @@ export const PopUpContainer = styled.div`
 `;
 
 export const VideosBox = styled.div`
-height: 100%; 
-border: 1px solid var(--red); 
+  height: 100%;
+  border: 1px solid var(--red);
 
   button {
     position: relative;
