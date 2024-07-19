@@ -1,18 +1,13 @@
 import { Suspense, useState, lazy, useRef, useEffect } from "react";
 import ButtonLike from "./ButtonLike";
 import NewComment from "./NewComment";
-import {
-  UserInfo,
-  ChallengeInfo,
-  ChallengeVideo,
-  Interaction,
-} from "../app/Styles";
+import { UserInfo, ChallengeInfo, ChallengeVideo, Interaction } from "../app/Styles";
 import PlayerComment from "../app/img/playerNavBar/playerDiscomment.png";
 import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
 import shareW from "../app/img/watcherNavBar/shareWatcher.png";
 import shareP from "../app/img/playerNavBar/sharePlayer.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
@@ -23,7 +18,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   const videoRefs = useRef([]);
   const navigate = useNavigate();
 
-  // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
+  // When we deploy the app, and we have a fixed URL, update and uncomment the code below
   // const url = "https://www-example-com.cdn.ampproject.org/c/s/www.example.com";
 
   const handleCopy = (url) => {
@@ -59,7 +54,10 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
       });
     };
   }, [challenge]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
   return (
     <>
       <ChallengeVideo>
@@ -72,7 +70,13 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
               alt=""
             />
           }
+<<<<<<< HEAD
           {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
+=======
+          <Link to={`/profile/${challenge.player.username}`}>
+            {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
+          </Link>
+>>>>>>> master
         </UserInfo>
         <ChallengeInfo>
           <p onClick={() => navigate("/visit/" + challenge.id)}>
@@ -80,7 +84,9 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           </p>
           <p className="player">
             {" "}
-            Challenged by {challenge.watcher.username ? <span>{challenge.watcher.username}</span> : <span>{challenge.watcher}</span>}
+            Challenged by
+            <Link to={`/profile/${challenge.watcher.username}`}>{challenge.watcher.username ? <span>{challenge.watcher.username}</span> : <span>{challenge.watcher}</span>}
+            </Link>
           </p>
         </ChallengeInfo>
         <Suspense fallback={<div>Loading video...</div>}>

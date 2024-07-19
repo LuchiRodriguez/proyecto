@@ -20,7 +20,7 @@ const Challenges = () => {
 
   const challenge = challenges.filter((video) => video.videos == null);
 
-//Fetch challenges when component mounts or refetch is called.
+  //Fetch challenges when component mounts or refetch is called.
   useEffect(() => {
     refetch();
   }, []);
