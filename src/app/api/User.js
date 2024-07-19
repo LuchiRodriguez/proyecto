@@ -39,3 +39,11 @@ export const getUserByComments = async (comments) => {
   return data;
 }
 
+export const getUserByComment = async (comments) => {
+  const data = await Promise.all(comments.map(async (user) => {
+    const r = await instance.get(`/user/${user}`);
+    return r.data;
+  }))
+  return data;
+}
+

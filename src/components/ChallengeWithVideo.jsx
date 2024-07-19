@@ -1,14 +1,17 @@
 import { Suspense, useState, lazy, useRef, useEffect } from "react";
 import ButtonLike from "./ButtonLike";
 import NewComment from "./NewComment";
-import { UserInfo, ChallengeInfo, ChallengeVideo, Interaction } from "../app/Styles";
+import {
+  UserInfo,
+  ChallengeInfo,
+  ChallengeVideo,
+  Interaction,
+} from "../app/Styles";
 import PlayerComment from "../app/img/playerNavBar/playerDiscomment.png";
 import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
-import shareW from "../app/img/watcherNavBar/shareWatcher.png";
-import shareP from "../app/img/playerNavBar/sharePlayer.png";
+import ShareButton from "./ShareButton";
 import { Link, useNavigate } from "react-router-dom";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
@@ -18,12 +21,8 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   const videoRefs = useRef([]);
   const navigate = useNavigate();
 
-  // When we deploy the app, and we have a fixed URL, update and uncomment the code below
-  // const url = "https://www-example-com.cdn.ampproject.org/c/s/www.example.com";
-
-  const handleCopy = (url) => {
-    navigator.clipboard.writeText(url);
-  };
+  // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
+  const url = "http://localhost:5173/visit/";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -58,16 +57,20 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
     <>
       <ChallengeVideo>
         <UserInfo>
-          {challenge.player.imagenUrl !== null ?
+          {challenge.player.imagenUrl !== null ? (
             <img src={challenge.player.imagenUrl} />
-            :
+          ) : (
             <img
               src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
               alt=""
             />
-          }
+          )}
           <Link to={`/profile/${challenge.player.username}`}>
-            {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
+            {challenge.player.username ? (
+              <p>{challenge.player.username}</p>
+            ) : (
+              <p>{challenge.player}</p>
+            )}
           </Link>
         </UserInfo>
         <ChallengeInfo>
@@ -77,7 +80,12 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           <p className="player">
             {" "}
             Challenged by
-            <Link to={`/profile/${challenge.watcher.username}`}>{challenge.watcher.username ? <span>{challenge.watcher.username}</span> : <span>{challenge.watcher}</span>}
+            <Link to={`/profile/${challenge.watcher.username}`}>
+              {challenge.watcher.username ? (
+                <span>{challenge.watcher.username}</span>
+              ) : (
+                <span>{challenge.watcher}</span>
+              )}
             </Link>
           </p>
         </ChallengeInfo>
@@ -88,8 +96,10 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           />
         </Suspense>
         <Interaction>
-          <ButtonLike videoId={challenge.videos.id} refetch={refetch} />
-          <p>{challenge.videos.meGustas.length} Likes</p>
+          <div>
+            <ButtonLike videoId={challenge.videos.id} refetch={refetch} />
+            <p>{challenge.videos.meGustas.length}</p>
+          </div>
           <button onClick={() => setShowComments(!showComments)}>
             {user.rol === "watcher" ? (
               <img src={WatcherComment} alt="" />
@@ -97,19 +107,11 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
               <img src={PlayerComment} alt="" />
             )}
           </button>
-          <CopyToClipboard
-            onCopy={() =>
-              handleCopy("http://localhost:5173/visit/" + challenge.id)
-            }
-          >
-            <button>
-              {user.rol === "watcher" ? (
-                <img src={shareW} alt="" />
-              ) : (
-                <img src={shareP} alt="" />
-              )}
-            </button>
-          </CopyToClipboard>
+          <ShareButton
+            url={url + challenge.videos.id}
+            title={challenge.description}
+            thumbnail={challenge.videos.videoUrl + "/path/to/thumbnail.jpg"}
+          />
         </Interaction>
         <NewComment
           comments={challenge.videos.comments}

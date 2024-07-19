@@ -1,18 +1,22 @@
 import NavBar from "./NavBar";
 import { Li, RankingDiv, CrownStyle, FirstPlace, SecondPlace, ThirdPlace, AnotherPlace } from '../app/Styles';
 import { useEffect, useState } from "react";
-import { getUserRanking } from "../app/api/User";
+import {getUserRanking, getUserByComment} from '../app/api/User';
 import rankingCrownWatcher from "../app/img/watcherNavBar/rankingcrown.png";
 import rankingCrownPlayer from "../app/img/playerNavBar/rankingCrownPlayer.png"
 
 import { useUserContext } from "../app/UserProvider";
 
 const Ranking = () => {
-  const [listRanking, setListRankings] = useState([]);
   const [user] = useUserContext();
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    getUserRanking().then((data) => setListRankings(data));
+    getUserRanking().then((data) => {
+      getUserByComment(data).then(dataUser => {
+        setUsers(dataUser)
+      })
+    });
   }, []);
 
   return (
@@ -24,7 +28,7 @@ const Ranking = () => {
         {user.rol === "player" && (
           <CrownStyle src={rankingCrownPlayer} alt="" />)}
         <ul>
-          {listRanking.map((usuario, i) => {
+          {users.map((usuario, i) => {
             if (i === 0) {
               return (
                 <FirstPlace key={usuario.id}>
