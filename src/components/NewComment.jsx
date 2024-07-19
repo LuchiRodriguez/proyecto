@@ -3,17 +3,23 @@ import { Comments, PopUpComments, NuevoComment } from "../app/Styles";
 import watcherCheck from "../app/img/watcherNavBar/watcherCheck.png";
 import playerCheck from "../app/img/playerNavBar/playerCheck.png";
 import { useUserContext } from "../app/UserProvider";
-import userImg from "../app/img/playerNavBar/user.png";
 import { createComment } from "../app/api/Comments";
+import { getUserByUsername } from '../app/api/User';
 
 const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
   const [user] = useUserContext();
   const [content, setContent] = useState("");
+  const [profileImg, setProfileImg] = useState("")
 
   useEffect(() => {
     refetch();
-  }, []);
+    getUserByUsername().then((data) => {
+      setProfileImg(data.imagenUrl);
 
+    })
+
+  }, []);
+  console.log(comments)
   const handleComments = async (e) => {
     e.preventDefault();
 
@@ -52,10 +58,17 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
           </NuevoComment>
           {comments.map((comment) => (
             <Comments key={comment.id}>
-             <div className="user">
-             <img src={userImg} alt="" />
-             <p>{comment.user}</p>
-             </div>
+              <div className="user">
+                {profileImg != null ? (
+                  <img src={profileImg} />
+                ) : (
+                  <img
+                    src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+                    alt=""
+                  />
+                )}
+                <p>{comment.user}</p>
+              </div>
               <p>{comment.content}</p>
             </Comments>
           ))}
