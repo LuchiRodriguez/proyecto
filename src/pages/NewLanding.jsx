@@ -1,5 +1,6 @@
 import "../app/Landing.css";
 import { Link } from "react-router-dom";
+import logo from "../app/img/watcherNavBar/logoAim.png";
 
 const NewLanding = () => {
   const numberOfEls = 50;
@@ -79,7 +80,7 @@ const NewLanding = () => {
       </div>
       <div className="boot-screen">
         <div className="boot-sequence">
-          <h1 className="boot-sequence-text">WELCOME</h1>
+          <img src={logo} alt="boot-sequence-image" />
           <Link to="/login">
             <button
               className="btn"
