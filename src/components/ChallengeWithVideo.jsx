@@ -54,6 +54,8 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
       });
     };
   }, [challenge]);
+
+  console.log(challenge)
   return (
     <>
       <ChallengeVideo>
@@ -66,7 +68,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
               alt=""
             />
           }
-          <Link to={`/profile/${challenge.player.username}`}>
+          <Link to={`/profile/${challenge.player.username ? challenge.player.username : challenge.player}`}>
             {challenge.player.username ? <p>{challenge.player.username}</p> : <p>{challenge.player}</p>}
           </Link>
         </UserInfo>
@@ -77,7 +79,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           <p className="player">
             {" "}
             Challenged by
-            <Link to={`/profile/${challenge.watcher.username}`}>{challenge.watcher.username ? <span>{challenge.watcher.username}</span> : <span>{challenge.watcher}</span>}
+            <Link to={`/profile/${challenge.watcher.username ? challenge.watcher.username : challenge.watcher}`}>{challenge.watcher.username ? <span>{challenge.watcher.username}</span> : <span>{challenge.watcher}</span>}
             </Link>
           </p>
         </ChallengeInfo>
