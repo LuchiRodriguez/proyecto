@@ -345,11 +345,12 @@ export const PopUpCreateChallenge = styled.div`
   font-size: small;
   top: 0;
   bottom: 0;
-  right: 20px;
-  left: 20px;
+  right: 0;
+  left: 0;
 
   form {
     display: flex;
+    margin: 0 20px;
     width: 100%;
     height: 300px;
     background-color: var(--black);
@@ -431,7 +432,7 @@ export const PopUpCreateChallenge = styled.div`
   }
   .closeButton {
     position: fixed;
-    top: 140px;
+    top: 30vh;
     right: 32px;
     background-color: var(--black);
     color: ${(props) => props.theme.primaryColor};
