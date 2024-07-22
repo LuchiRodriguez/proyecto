@@ -54,17 +54,17 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
     };
   }, [challenge]);
   return (
-    <>
-      <ChallengeVideo>
-        <UserInfo>
-          {challenge.player.imagenUrl !== null ? (
-            <img src={challenge.player.imagenUrl} />
-          ) : (
-            <img
-              src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
-              alt=""
-            />
-          )}
+    <ChallengeVideo>
+      <UserInfo>
+        {challenge.player.imagenUrl !== null ? (
+          <img src={challenge.player.imagenUrl} />
+        ) : (
+          <img
+            src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+            alt=""
+          />
+        )}
+        <div>
           <Link to={`/profile/${challenge.player.username}`}>
             {challenge.player.username ? (
               <p>{challenge.player.username}</p>
@@ -72,57 +72,58 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
               <p>{challenge.player}</p>
             )}
           </Link>
-        </UserInfo>
-        <ChallengeInfo>
-          <p onClick={() => navigate("/visit/" + challenge.id)}>
-            {challenge.description}
-          </p>
-          <p className="player">
-            {" "}
-            Challenged by
-            <Link to={`/profile/${challenge.watcher.username}`}>
-              {challenge.watcher.username ? (
-                <span>{challenge.watcher.username}</span>
-              ) : (
-                <span>{challenge.watcher}</span>
-              )}
-            </Link>
-          </p>
-        </ChallengeInfo>
-        <Suspense fallback={<div>Loading video...</div>}>
-          <LazyVideo
-            src={challenge.videos.videoUrl}
-            ref={(el) => (videoRefs.current[index] = el)}
-          />
-        </Suspense>
-        <Interaction>
-          <div>
-            <ButtonLike videoId={challenge.videos.id} refetch={refetch} />
-            <p>{challenge.videos.meGustas.length}</p>
-          </div>
-          <button onClick={() => setShowComments(!showComments)}>
-            {user.rol === "watcher" ? (
-              <img src={WatcherComment} alt="" />
+          <p>{challenge.transcurredTime}</p>
+        </div>
+      </UserInfo>
+      <ChallengeInfo>
+        <p onClick={() => navigate("/visit/" + challenge.id)}>
+          {challenge.description}
+        </p>
+        <p className="player">
+          {" "}
+          Challenged by
+          <Link to={`/profile/${challenge.watcher.username}`}>
+            {challenge.watcher.username ? (
+              <span>{challenge.watcher.username}</span>
             ) : (
-              <img src={PlayerComment} alt="" />
+              <span>{challenge.watcher}</span>
             )}
-          </button>
-          <ShareButton
-            url={url + challenge.videos.id}
-            title={challenge.description}
-            thumbnail={challenge.videos.videoUrl + "/path/to/thumbnail.jpg"}
-            setShowComments={setShowComments}
-          />
-        </Interaction>
-        <NewComment
-          comments={challenge.videos.comments}
-          setShowComments={setShowComments}
-          showComments={showComments}
-          videoChallenge={challenge.videos.id}
-          refetch={refetch}
+          </Link>
+        </p>
+      </ChallengeInfo>
+      <Suspense fallback={<div>Loading video...</div>}>
+        <LazyVideo
+          src={challenge.videos.videoUrl}
+          ref={(el) => (videoRefs.current[index] = el)}
         />
-      </ChallengeVideo>
-    </>
+      </Suspense>
+      <Interaction>
+        <div>
+          <ButtonLike videoId={challenge.videos.id} refetch={refetch} />
+          <p>{challenge.videos.meGustas.length}</p>
+        </div>
+        <button onClick={() => setShowComments(!showComments)}>
+          {user.rol === "watcher" ? (
+            <img src={WatcherComment} alt="" />
+          ) : (
+            <img src={PlayerComment} alt="" />
+          )}
+        </button>
+        <ShareButton
+          url={url + challenge.videos.id}
+          title={challenge.description}
+          thumbnail={challenge.videos.videoUrl + "/path/to/thumbnail.jpg"}
+          setShowComments={setShowComments}
+        />
+      </Interaction>
+      <NewComment
+        comments={challenge.videos.comments}
+        setShowComments={setShowComments}
+        showComments={showComments}
+        videoChallenge={challenge.videos.id}
+        refetch={refetch}
+      />
+    </ChallengeVideo>
   );
 };
 

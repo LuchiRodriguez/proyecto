@@ -180,11 +180,11 @@ export const UserInfo = styled.div`
     border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
-  /* div {
+  div {
     display: flex;
     width: 100%;
     justify-content: space-between;
-  } */
+  }
 
   a {
     text-decoration: none;
@@ -752,19 +752,39 @@ export const Comments = styled.div`
 export const NuevoComment = styled.div`
   border: 2px solid ${(props) => props.theme.primaryColor};
   width: 100%;
+  box-sizing: border-box;
   border-radius: 10px;
   margin-bottom: 10px;
-  box-sizing: border-box;
   padding: 10px;
   color: white;
-  .check {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: none;
-    img {
-      width: 30px;
-    }
+  text-align: center;
+  input {
+    color: white;
+  }
+  img {
+    position: absolute;
+    right: 25px;
+    top: 40px;
+    width: 30px;
+  }
+`;
+
+export const FirstComment = styled.div`
+  border: 2px solid ${(props) => props.theme.primaryColor};
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  input {
+    color: white;
+  }
+
+  img {
+    position: absolute;
+    right: 25px;
+    bottom: 30px;
+    width: 30px;
   }
 `;
 
