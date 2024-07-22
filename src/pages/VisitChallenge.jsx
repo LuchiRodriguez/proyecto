@@ -26,7 +26,11 @@ const VisitChallenge = () => {
   const url = "http://localhost:5173/visit/" + id;
 
   const refetch = () => {
-    getChallengeById(id).then((data) => setChallenge(data));
+    getChallengeById(id).then((data) => {
+      setChallenge(data.data);
+      console.log(data.data)
+    }
+    )
   };
 
   useEffect(() => {
