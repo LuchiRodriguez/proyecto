@@ -47,3 +47,8 @@ export const getUserByComment = async (comments) => {
   return data;
 }
 
+export const getPlayerByVideo = async (challenge) => {
+const r = await instance.get(`/user/${challenge.player.username ? challenge.player.username : challenge.player}`);
+  return r.data;
+}
+

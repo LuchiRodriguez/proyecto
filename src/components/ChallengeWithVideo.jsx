@@ -12,12 +12,14 @@ import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
 import ShareButton from "./ShareButton";
 import { Link, useNavigate } from "react-router-dom";
+import {getPlayerByVideo} from '../app/api/User';
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   const [user] = useUserContext();
   const [showComments, setShowComments] = useState(false);
+  const [player, setPlayer] = useState({});
   const videoRefs = useRef([]);
   const navigate = useNavigate();
 
@@ -25,6 +27,10 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   const url = "http://localhost:5173/visit/";
 
   useEffect(() => {
+    getPlayerByVideo(challenge).then(usuarios => {
+      console.log(usuarios)
+      setPlayer(usuarios)
+    })
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -57,8 +63,8 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   return (
     <ChallengeVideo>
       <UserInfo>
-        {challenge.player.imagenUrl !== null ? (
-          <img src={challenge.player.imagenUrl} />
+        {player.imagenUrl !== null ? (
+          <img src={player.imagenUrl} />
         ) : (
           <img
             src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
@@ -66,12 +72,8 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           />
         )}
         <div>
-          <Link to={`/profile/${challenge.player.username}`}>
-            {challenge.player.username ? (
-              <p>{challenge.player.username}</p>
-            ) : (
-              <p>{challenge.player}</p>
-            )}
+          <Link to={`/profile/${player.username}`}>
+          <p>{player.username}</p>
           </Link>
           <p>{challenge.transcurredTime}</p>
         </div>
@@ -83,7 +85,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
         <p className="player">
           {" "}
           Challenged by
-          <Link to={`/profile/${challenge.watcher.username}`}>
+          <Link to={`/profile/${challenge.watcher.username ? challenge.watcher.username : challenge.watcher}`}>
             {challenge.watcher.username ? (
               <span>{challenge.watcher.username}</span>
             ) : (
