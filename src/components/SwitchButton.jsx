@@ -1,11 +1,16 @@
 import { SwitchButtonContainer } from "../app/Styles";
 import player from "../app/img/playerNavBar/player.png";
 import watcher from "../app/img/watcherNavBar/watcher.png";
-const SwitchButton = () => {
+const SwitchButton = ({ handleToggle }) => {
   return (
     <SwitchButtonContainer>
       <input type="checkbox" id="toggle" />
-      <label htmlFor="toggle"></label>
+      <label
+        htmlFor="toggle"
+        onClick={() => {
+          handleToggle();
+        }}
+      ></label>
 
       <div className="day-night-cont">
         <span className="the-sun">
@@ -19,7 +24,7 @@ const SwitchButton = () => {
       </div>
 
       <div className="switch">
-        <div className="button">{/* <div className="b-inside"></div> */}</div>
+        <div className="button"></div>
       </div>
     </SwitchButtonContainer>
   );
