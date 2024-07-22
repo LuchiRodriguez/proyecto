@@ -5,24 +5,27 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postUser } from "../app/api/Login";
 import { createUser } from "../app/api/Register";
-// import SelectRol from "../components/SelectRol";
 import SwitchButton from "../components/SwitchButton";
 
 const Login = () => {
   const navigate = useNavigate();
   const [existingUser, setExistingUser] = useState(true);
-  const [rol, setRol] = useState(true);
+  const [rol, setRol] = useState("player");
   const [username, setUserName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [points, setPoints] = useState();
-  const [user, setUser] = useUserContext();
+  const [setUser] = useUserContext();
   const [error, setError] = useState();
+  const [checked, setChecked] = useState(true);
 
-  const [isOn, setIsOn] = useState(false);
-
-  const handleToggle = (newValue) => {
-    setIsOn(newValue);
+  const handleToggle = () => {
+    setChecked(!checked);
+    if (!checked) {
+      setRol("player");
+    } else {
+      setRol("watcher");
+    }
   };
 
   return (
@@ -107,19 +110,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           ></input>
-          <SwitchButton />
-          {/* <SelectRol
-            labelOn="Player"
-            labelOff="Watcher"
-            isChecked={isOn}
-            setRol={setRol}
-            onChange={() => handleToggle()}
-            theme={{
-              background: "#eee",
-              toggleActive: "#03e9f4", // Custom green
-              toggleInactive: "#f40e03", // Custom red
-            }}
-          /> */}
+          <SwitchButton handleToggle={handleToggle} />
           <p>
             Already have an account ?<br />
             <span onClick={() => setExistingUser(true)}>Login</span>

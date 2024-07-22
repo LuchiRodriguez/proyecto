@@ -72,7 +72,7 @@ export const Form = styled.form`
     height: 30px;
     width: 300px;
     padding: 10px;
-    box-shadow: 0 0 10px 0, 0 0 20px 2px;
+    box-shadow: 0 0 5px 0, 0 0 10px 2px;
   }
 
   p {
@@ -362,8 +362,8 @@ export const PopUpCreateChallenge = styled.div`
       color: ${(props) => props.theme.primaryColor};
       padding: 10px;
       &:focus {
-        box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor} inset,
-          0 0 20px 2px ${(props) => props.theme.primaryColor};
+        box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor} inset,
+          0 0 10px 2px ${(props) => props.theme.primaryColor};
       }
     }
     div {
@@ -385,13 +385,13 @@ export const PopUpCreateChallenge = styled.div`
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
-      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
-        0 0 20px 2px ${(props) => props.theme.primaryColor};
+      box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor},
+        0 0 10px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
     &:active {
-      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
-        0 0 20px 2px ${(props) => props.theme.primaryColor};
+      box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor},
+        0 0 10px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
   }
@@ -408,13 +408,13 @@ export const PopUpCreateChallenge = styled.div`
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
-      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
-        0 0 20px 2px ${(props) => props.theme.primaryColor};
+      box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor},
+        0 0 10px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
     &:active {
-      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
-        0 0 20px 2px ${(props) => props.theme.primaryColor};
+      box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor},
+        0 0 10px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
   }
@@ -650,57 +650,6 @@ export const ChangeProfileButton = styled.button`
   }
 `;
 
-export const SwitchContainer = styled.label`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  margin-top: 20px;
-  width: 100px;
-  height: 40px;
-  background-color: var(--black);
-  border-radius: 17px;
-  input {
-    width: 100px;
-  }
-`;
-
-export const SwitchSlider = styled.div`
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: 0.4s;
-  border-radius: 17px;
-  background-color: ${({ $ischecked, theme }) =>
-    $ischecked ? theme.toggleActive : theme.toggleInactive};
-`;
-
-export const SwitchInput = styled.input`
-  opacity: 0;
-  width: 0;
-  height: 0;
-  position: absolute;
-  z-index: -1;
-
-  &:checked + ${SwitchSlider} {
-    transform: translateX(calc(100% - 100px));
-  }
-`;
-
-export const SwitchText = styled.span`
-  font-weight: bolder;
-  position: absolute;
-  font-size: 12px;
-  line-height: 1;
-  color: var(--black);
-  transition: 0.3s;
-  transform: ${({ $ischecked }) =>
-    $ischecked ? "translateX(18px)" : "translateX(10px)"};
-`;
-
 export const VideosContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -831,6 +780,7 @@ export const SwitchButtonContainer = styled.div`
   input[type="checkbox"] {
     position: absolute;
     visibility: hidden;
+    box-shadow: 0 0 5px 0, 0 0 10px 2px;
   }
 
   input#toggle[type="checkbox"] {
@@ -856,7 +806,6 @@ export const SwitchButtonContainer = styled.div`
     position: relative;
     border: 2px solid var(--green);
     border-radius: 25px;
-    box-shadow: inset 0 0 10px var(--blue);
     -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
     height: 40px;
     width: 100px;
@@ -873,19 +822,6 @@ export const SwitchButtonContainer = styled.div`
     top: 5px;
     left: 5px;
   }
-
-  /* .switch .button .b-inside {
-    display: block;
-    position: absolute;
-    border: 1px solid #888;
-    border-radius: 100%;
-    background: var(--blue);
-    height: 15px;
-    width: 15px;
-    top: 7px;
-    left: 7px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
-  } */
 
   .day-night-cont {
     display: block;
@@ -941,6 +877,7 @@ export const SwitchButtonContainer = styled.div`
     background: var(--blue);
   }
 `;
+
 export const ErrorPage = styled.div`
   display: flex;
   flex-direction: column;
