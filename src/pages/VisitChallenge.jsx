@@ -25,15 +25,7 @@ const VisitChallenge = () => {
   const newDate = new Date();
   const formattedDate = moment(newDate).format("YYYY-MM-DDTHH:mm:ss");
   const currentDate = moment(formattedDate).toDate();
-  const week = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+  const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 
   // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
   const url = "http://localhost:5173/visit/" + id;
@@ -47,7 +39,7 @@ const VisitChallenge = () => {
       const differenceHours = differenceMinutes / 60;
       const difference = () => {
         if (differenceHours > 36) {
-          return week[creationDate.getDay()];
+          return week[creationDate.getDay()] + " " + creationDate.getDay();
         } else if (36 > differenceHours >= 24) {
           return "Yesterday";
         } else if (differenceHours >= 1) {

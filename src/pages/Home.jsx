@@ -11,15 +11,7 @@ const Home = () => {
   const newDate = new Date();
   const formattedDate = moment(newDate).format("YYYY-MM-DDTHH:mm:ss");
   const currentDate = moment(formattedDate).toDate();
-  const week = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+  const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 
   const refetch = () => {
     getChallenges().then((data) => {
@@ -34,8 +26,8 @@ const Home = () => {
           const differenceMinutes = differenceSeconds / 60;
           const differenceHours = differenceMinutes / 60;
           const difference = () => {
-            if (differenceHours > 48) {
-              return week[creationDate.getDay()];
+            if (differenceHours > 36) {
+              return week[creationDate.getDay()] + " " + creationDate.getDay();
             } else if (36 > differenceHours >= 24) {
               return "Yesterday";
             } else if (differenceHours >= 1) {
