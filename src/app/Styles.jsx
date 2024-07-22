@@ -54,55 +54,56 @@ export const NavBarStyle = styled.nav`
 `;
 
 export const Form = styled.form`
+  animation: neon 2s ease infinite;
   font-family: Roboto;
-  color: ${(props) => props.theme.primaryColor};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: auto;
   input {
-    color: ${(props) => props.theme.primaryColor};
-    background-color: var(--black) !important;
+    animation: neon 2s ease infinite;
+    background-color: var(--black);
     outline: none;
     text-transform: uppercase;
     margin-top: 60px;
     border: ${(props) => props.theme.primaryColor} 3px solid;
-    border-radius: 10px;
+    border-radius: 25px;
     height: 30px;
     width: 300px;
-    padding: 6px;
-    transition: all 0.15s ease-in-out;
-    &:focus {
-      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
-        0 0 20px 2px ${(props) => props.theme.primaryColor};
-      background-color: var(--black);
-    }
-    &:active {
-      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
-        0 0 20px 2px ${(props) => props.theme.primaryColor};
-      background-color: var(--black);
-    }
+    padding: 10px;
+    box-shadow: 0 0 5px 0, 0 0 10px 2px;
   }
 
   p {
+    margin-top: 40px;
     text-align: center;
   }
   span {
     cursor: pointer;
   }
   button {
+    animation: neon 2s ease infinite;
+    color: var(--blue);
     background-color: var(--black);
     border: ${(props) => props.theme.primaryColor} 3px solid;
-    border-radius: 10px;
-    color: ${(props) => props.theme.primaryColor};
+    border-radius: 25px;
     padding: 10px;
-    margin-top: 30px;
+    margin-top: 10px;
   }
-  button:focus {
-    box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor} inset,
-      0 0 20px 2px ${(props) => props.theme.primaryColor};
+  @keyframes neon {
+    0% {
+      color: var(--blue);
+      border-color: var(--blue);
+    }
+    50% {
+      color: var(--green);
+      border-color: var(--green);
+    }
+    100% {
+      color: var(--blue);
+      border-color: var(--blue);
+    }
   }
 `;
 
@@ -361,8 +362,8 @@ export const PopUpCreateChallenge = styled.div`
       color: ${(props) => props.theme.primaryColor};
       padding: 10px;
       &:focus {
-        box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor} inset,
-          0 0 20px 2px ${(props) => props.theme.primaryColor};
+        box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor} inset,
+          0 0 10px 2px ${(props) => props.theme.primaryColor};
       }
     }
     div {
@@ -384,13 +385,13 @@ export const PopUpCreateChallenge = styled.div`
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
-      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
-        0 0 20px 2px ${(props) => props.theme.primaryColor};
+      box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor},
+        0 0 10px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
     &:active {
-      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
-        0 0 20px 2px ${(props) => props.theme.primaryColor};
+      box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor},
+        0 0 10px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
   }
@@ -407,13 +408,13 @@ export const PopUpCreateChallenge = styled.div`
     padding: 6px;
     transition: all 0.15s ease-in-out;
     &:focus {
-      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
-        0 0 20px 2px ${(props) => props.theme.primaryColor};
+      box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor},
+        0 0 10px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
     &:active {
-      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
-        0 0 20px 2px ${(props) => props.theme.primaryColor};
+      box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor},
+        0 0 10px 2px ${(props) => props.theme.primaryColor};
       background-color: var(--black);
     }
   }
@@ -649,57 +650,6 @@ export const ChangeProfileButton = styled.button`
   }
 `;
 
-export const SwitchContainer = styled.label`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  margin-top: 20px;
-  width: 100px;
-  height: 40px;
-  background-color: var(--black);
-  border-radius: 17px;
-  input {
-    width: 100px;
-  }
-`;
-
-export const SwitchSlider = styled.div`
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: 0.4s;
-  border-radius: 17px;
-  background-color: ${({ $ischecked, theme }) =>
-    $ischecked ? theme.toggleActive : theme.toggleInactive};
-`;
-
-export const SwitchInput = styled.input`
-  opacity: 0;
-  width: 0;
-  height: 0;
-  position: absolute;
-  z-index: -1;
-
-  &:checked + ${SwitchSlider} {
-    transform: translateX(calc(100% - 100px));
-  }
-`;
-
-export const SwitchText = styled.span`
-  font-weight: bolder;
-  position: absolute;
-  font-size: 12px;
-  line-height: 1;
-  color: var(--black);
-  transition: 0.3s;
-  transform: ${({ $ischecked }) =>
-    $ischecked ? "translateX(18px)" : "translateX(10px)"};
-`;
-
 export const VideosContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -816,5 +766,144 @@ export const NuevoComment = styled.div`
     img {
       width: 30px;
     }
+  }
+`;
+
+export const SwitchButtonContainer = styled.div`
+  display: block;
+  position: absolute;
+  width: 500px;
+  height: 350px;
+  margin: auto;
+  top: 20vh;
+
+  input[type="checkbox"] {
+    position: absolute;
+    visibility: hidden;
+    box-shadow: 0 0 5px 0, 0 0 10px 2px;
+  }
+
+  input#toggle[type="checkbox"] {
+    display: none;
+  }
+
+  label {
+    position: absolute;
+    height: 40px;
+    width: 120px;
+    display: block;
+    top: 0px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 9999;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+
+  .switch {
+    display: block;
+    position: relative;
+    border: 2px solid var(--green);
+    border-radius: 25px;
+    -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
+    height: 40px;
+    width: 100px;
+    margin: auto;
+  }
+
+  .switch .button {
+    display: block;
+    position: absolute;
+    border-radius: 100%;
+    background: var(--green);
+    height: 30px;
+    width: 30px;
+    top: 5px;
+    left: 5px;
+  }
+
+  .day-night-cont {
+    display: block;
+    position: absolute;
+    width: 180px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 40px;
+    top: 0px;
+  }
+
+  .day-night-cont .the-sun {
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 5px;
+  }
+
+  .day-night-cont .the-moon {
+    display: block;
+    position: absolute;
+    right: 35px;
+    top: 5px;
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .day-night-cont .the-moon .moon-inside {
+    display: block;
+    position: absolute;
+    left: 8px;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+  }
+
+  .switch .button {
+    transition: left 0.25s ease-in-out;
+    -webkit-transition: left 0.25s ease-in-out;
+  }
+
+  input[type="checkbox"]:checked ~ .switch {
+    border: 2px solid var(--blue);
+  }
+  input[type="checkbox"]:checked ~ .switch .button {
+    position: absolute;
+    left: 64px;
+    background: var(--blue);
+  }
+`;
+
+export const ErrorPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+  color: var(--black);
+  text-align: center;
+
+  h1 {
+    font-size: 5rem;
+    margin: 0;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  a {
+    font-size: 1.2rem;
+    color: ${(props) => props.theme.primaryColor};
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 `;

@@ -5,6 +5,7 @@ import UserProfile from "../pages/UserProfile";  // Importa la nueva página
 import Challenges from "../pages/Challenges";
 import Ranking from "../components/Ranking";
 import VisitChallenge from "../pages/VisitChallenge";
+import NotFoundPage from "../pages/NotFoundPage";
 
 const Router = () => {
   return (
@@ -16,6 +17,7 @@ const Router = () => {
         <Route path="/profile/:username" element={<UserProfile />} />
         <Route path="/challenges" element={<Challenges />} />
         <Route path="/ranking" element={<Ranking />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
