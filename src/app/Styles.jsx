@@ -232,6 +232,8 @@ export const ChallengeBox = styled.div`
   margin-bottom: 30px;
   box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor},
     0 0 10px 2px ${(props) => props.theme.shadowColor};
+    opacity: 0;
+    animation: ${fadeInUp} 0.5s ease-out forwards; 
 
   video {
     width: 100%;
@@ -308,7 +310,7 @@ export const ChallengeVideo = styled.div`
   margin-bottom: 40px;
   opacity: 0;
     animation: ${fadeInUp} 0.5s ease-out forwards; 
-    tranform: translateY(20px);
+    transform: translateY(20px);
 
   video {
     width: 100%;
@@ -687,7 +689,7 @@ export const VideoItem = styled.div`
 `;
 export const PopUpContainer = styled.div`
   width: 100%;
-  max-width: 90%;
+  max-width: 95%;
   height: 95%;
   position: fixed;
   top: 50%;
@@ -700,13 +702,16 @@ export const PopUpContainer = styled.div`
   display: flex; 
   align-items: center; 
   justify-content: center;
-
+  opacity: 0;
+    animation: ${fadeInUp} 0.5s ease-out forwards; 
+    top: 0; 
+    left: 0; 
 
 `;
 
 export const VideosBox = styled.div`
 width: 100%; 
-  height: auto;
+  height: 90%;
   border: 1px solid ${(props) => props.theme.primaryColor};
   position: relative; 
   padding: 20px; 
@@ -715,22 +720,23 @@ width: 100%;
   align-items: center;
   justify-content: center;
   display: flex; 
+  box-sizing: border-box;
 
 `;
 
 export const BtnPopUp = styled.button`
-  position: fixed;
-  top: 3px; 
-  left: 10px; 
+  position: absolute;
+  top: -3px; 
+  left: -3px; 
   background: none; 
   border: none; 
   cursor: pointer; 
   z-index: 2;
+  padding: 10px; 
   
   img {
     width: 20px;
     height: 20px;
-    padding: 10px;
   }
 `;
 
@@ -749,6 +755,7 @@ video {
   max-width: 100%;
   max-height: 100%; 
   border-radius: 10px;
+  padding: 10px; 
 }
 `;
 
