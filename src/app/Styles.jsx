@@ -54,8 +54,8 @@ export const NavBarStyle = styled.nav`
 `;
 
 export const Form = styled.form`
+  color: var(--blue);
   font-family: Roboto;
-  color: ${(props) => props.theme.primaryColor};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,17 +63,15 @@ export const Form = styled.form`
   height: 100vh;
   margin: auto;
   input {
-    color: ${(props) => props.theme.primaryColor};
-    background-color: var(--black) !important;
+    background-color: var(--black);
     outline: none;
     text-transform: uppercase;
     margin-top: 60px;
     border: ${(props) => props.theme.primaryColor} 3px solid;
-    border-radius: 10px;
+    border-radius: 25px;
     height: 30px;
     width: 300px;
-    padding: 6px;
-    transition: all 0.15s ease-in-out;
+    padding: 10px;
     &:focus {
       box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
         0 0 20px 2px ${(props) => props.theme.primaryColor};
@@ -93,10 +91,10 @@ export const Form = styled.form`
     cursor: pointer;
   }
   button {
+    color: var(--blue);
     background-color: var(--black);
     border: ${(props) => props.theme.primaryColor} 3px solid;
-    border-radius: 10px;
-    color: ${(props) => props.theme.primaryColor};
+    border-radius: 25px;
     padding: 10px;
     margin-top: 30px;
   }
@@ -816,5 +814,127 @@ export const NuevoComment = styled.div`
     img {
       width: 30px;
     }
+  }
+`;
+
+export const SwitchButtonContainer = styled.div`
+  display: block;
+  position: absolute;
+  width: 500px;
+  height: 350px;
+  margin: auto;
+  top: 20vh;
+
+  input[type="checkbox"] {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  input#toggle[type="checkbox"] {
+    display: none;
+  }
+
+  label {
+    position: absolute;
+    height: 40px;
+    width: 120px;
+    display: block;
+    top: 0px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 9999;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+
+  .switch {
+    display: block;
+    position: relative;
+    border: 2px solid var(--green);
+    border-radius: 25px;
+    box-shadow: inset 0 0 10px var(--blue);
+    -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
+    height: 40px;
+    width: 100px;
+    margin: auto;
+  }
+
+  .switch .button {
+    display: block;
+    position: absolute;
+    border-radius: 100%;
+    background: var(--green);
+    height: 30px;
+    width: 30px;
+    top: 5px;
+    left: 5px;
+  }
+
+  /* .switch .button .b-inside {
+    display: block;
+    position: absolute;
+    border: 1px solid #888;
+    border-radius: 100%;
+    background: var(--blue);
+    height: 15px;
+    width: 15px;
+    top: 7px;
+    left: 7px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+  } */
+
+  .day-night-cont {
+    display: block;
+    position: absolute;
+    width: 180px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 40px;
+    top: 0px;
+  }
+
+  .day-night-cont .the-sun {
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 5px;
+  }
+
+  .day-night-cont .the-moon {
+    display: block;
+    position: absolute;
+    right: 35px;
+    top: 5px;
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .day-night-cont .the-moon .moon-inside {
+    display: block;
+    position: absolute;
+    left: 8px;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+  }
+
+  .switch .button {
+    transition: left 0.25s ease-in-out;
+    -webkit-transition: left 0.25s ease-in-out;
+  }
+
+  input[type="checkbox"]:checked ~ .switch {
+    border: 2px solid var(--blue);
+  }
+  input[type="checkbox"]:checked ~ .switch .button {
+    position: absolute;
+    left: 64px;
+    background: var(--blue);
   }
 `;

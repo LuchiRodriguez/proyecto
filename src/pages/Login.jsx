@@ -5,12 +5,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postUser } from "../app/api/Login";
 import { createUser } from "../app/api/Register";
-import SelectRol from "../components/SelectRol";
+// import SelectRol from "../components/SelectRol";
+import SwitchButton from "../components/SwitchButton";
 
 const Login = () => {
   const navigate = useNavigate();
   const [existingUser, setExistingUser] = useState(true);
-  const [rol, setRol] = useState("watcher");
+  const [rol, setRol] = useState(true);
   const [username, setUserName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -106,7 +107,8 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           ></input>
-          <SelectRol
+          <SwitchButton />
+          {/* <SelectRol
             labelOn="Player"
             labelOff="Watcher"
             isChecked={isOn}
@@ -117,7 +119,7 @@ const Login = () => {
               toggleActive: "#03e9f4", // Custom green
               toggleInactive: "#f40e03", // Custom red
             }}
-          />
+          /> */}
           <p>
             Already have an account ?<br />
             <span onClick={() => setExistingUser(true)}>Login</span>
