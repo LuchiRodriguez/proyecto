@@ -53,6 +53,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
       });
     };
   }, [challenge]);
+
   return (
     <>
       <ChallengeVideo>

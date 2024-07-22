@@ -1,8 +1,19 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 import Minecraft from "./fonts/Minecraft.ttf";
 import Roboto from "./fonts/Roboto-Medium.ttf";
 import { Link } from "react-router-dom";
 
+const fadeInUp = keyframes`
+0% {
+  opacity: 0; 
+  transform: translateY(20px);
+}
+
+100%{
+  opacity: 1; 
+  transform: translateY(0);
+}
+`
 export const GlobalStyle = createGlobalStyle`
 	@font-face {
 		font-family: Minecraft;
@@ -177,11 +188,6 @@ export const UserInfo = styled.div`
     border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
-  /* div {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-  } */
 
   a {
     text-decoration: none;
@@ -298,10 +304,14 @@ export const ChallengeVideo = styled.div`
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 40px;
+  opacity: 0;
+    animation: ${fadeInUp} 0.5s ease-out forwards; 
+    tranform: translateY(20px);
 
   video {
     width: 100%;
     border-radius: 10px;
+    
   }
 `;
 
@@ -735,44 +745,61 @@ export const PopUpContainer = styled.div`
   background-color: rgba(32, 33, 36, 0.9);
   padding: 10px;
   overflow-y: auto;
+  border-radius: 10px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
 
-  video {
-    width: 100%;
-    height: 100%;
-    max-height: 90%;
-    border-radius: 10px;
-    position: absolute;
-    max-width: 95%;
-  }
+
 `;
 
 export const VideosBox = styled.div`
-  height: 100%;
+width: 100%; 
+  height: auto;
   border: 1px solid ${(props) => props.theme.primaryColor};
+  position: relative; 
+  padding: 20px; 
+  max-width: 90%;
+  max-height: 90vh;
+  align-items: center;
+  justify-content: center;
+  display: flex; 
 
-  button {
-    position: relative;
-    bottom: 300px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1;
-  }
 `;
 
 export const BtnPopUp = styled.button`
   position: fixed;
-
+  top: 3px; 
+  left: 10px; 
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  z-index: 2;
+  
   img {
     width: 20px;
     height: 20px;
     padding: 10px;
-    position: absolute;
-    top: -370px;
   }
 `;
 
-export const VideoEdit = styled.div``;
+export const VideoEdit = styled.div`
+position: relative; 
+width: 100%; 
+height: 100%; 
+display: flex; 
+align-items: center; 
+justify-content: center;
+overflow: hidden;
+
+video {
+  width: 100%; 
+  height: auto; 
+  max-width: 100%;
+  max-height: 100%; 
+  border-radius: 10px;
+}
+`;
 
 export const Comments = styled.div`
   border: 2px solid ${(props) => props.theme.primaryColor};

@@ -28,11 +28,11 @@ const PopupProfile = ({ onClose, video }) => {
     }
     return (
         <PopUpContainer>
+            <BtnPopUp onClick={close}><img src={closeBtn} alt="Close" /></BtnPopUp>
             <VideosBox>
                 <VideoEdit>
                     <video src={video.videoUrl} controls />
                 </VideoEdit>
-                <BtnPopUp onClick={close}><img src={closeBtn} alt="Close" /></BtnPopUp>
             </VideosBox>
 
             {videos.map((video, i) => {
