@@ -71,7 +71,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
             alt=""
           />
         )}
-        <div>
+        <div className="time">
           <Link to={`/profile/${player.username}`}>
           <p>{player.username}</p>
           </Link>

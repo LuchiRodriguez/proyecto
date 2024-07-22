@@ -191,6 +191,12 @@ export const UserInfo = styled.div`
     border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
+    .time{
+        display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    }
 
   a {
     text-decoration: none;
