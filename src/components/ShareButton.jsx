@@ -14,12 +14,16 @@ import {
 import { useState } from "react";
 import { ShareList } from "../app/Styles";
 
-const ShareButton = ({ url, title, thumbnail }) => {
+const ShareButton = ({ url, title, thumbnail, setShowComments }) => {
   const [user] = useUserContext();
   const [share, setShare] = useState(false);
   return (
     <>
-      <button onClick={() => setShare(!share)}>
+      <button
+        onClick={() => {
+          setShare(!share), setShowComments(false);
+        }}
+      >
         {user.rol === "watcher" ? (
           <img src={shareW} alt="" />
         ) : (
@@ -33,6 +37,7 @@ const ShareButton = ({ url, title, thumbnail }) => {
             title={title}
             hashtag="#AIM #challenge"
             thumbnail={thumbnail}
+            onClick={() => setShare(!share)}
           >
             <FacebookIcon size={32} round />
             <p>Compartir en Facebook</p>
@@ -42,6 +47,7 @@ const ShareButton = ({ url, title, thumbnail }) => {
             title={title}
             hashtag="#AIM #challenge"
             thumbnail={thumbnail}
+            onClick={() => setShare(!share)}
           >
             <TwitterIcon size={32} round />
             <p>Compartir en Twitter</p>
@@ -51,6 +57,7 @@ const ShareButton = ({ url, title, thumbnail }) => {
             title={title}
             hashtag="#AIM #challenge"
             thumbnail={thumbnail}
+            onClick={() => setShare(!share)}
           >
             <LinkedinIcon size={32} round />
             <p>Compartir en LinkedIn</p>
@@ -60,6 +67,7 @@ const ShareButton = ({ url, title, thumbnail }) => {
             title={title}
             hashtag="#AIM #challenge"
             thumbnail={thumbnail}
+            onClick={() => setShare(!share)}
           >
             <WhatsappIcon size={32} round />
             <p>Compartir en WhatsApp</p>

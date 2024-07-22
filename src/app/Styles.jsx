@@ -263,8 +263,11 @@ export const ShareList = styled.div`
   height: 100%;
   background-color: rgba(32, 33, 36, 0.9);
   position: absolute;
+  top: 0;
   left: 0;
+  overflow: hidden;
   ul {
+    background-color: var(--black);
     display: flex;
     gap: 10px;
     flex-direction: column;
