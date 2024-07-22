@@ -13,7 +13,7 @@ const fadeInUp = keyframes`
   opacity: 1; 
   transform: translateY(0);
 }
-`
+`;
 export const GlobalStyle = createGlobalStyle`
 	@font-face {
 		font-family: Minecraft;
@@ -232,8 +232,8 @@ export const ChallengeBox = styled.div`
   margin-bottom: 30px;
   box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor},
     0 0 10px 2px ${(props) => props.theme.shadowColor};
-    opacity: 0;
-    animation: ${fadeInUp} 0.5s ease-out forwards; 
+  opacity: 0;
+  animation: ${fadeInUp} 0.5s ease-out forwards;
 
   video {
     width: 100%;
@@ -309,13 +309,12 @@ export const ChallengeVideo = styled.div`
   border-radius: 10px;
   margin-bottom: 40px;
   opacity: 0;
-    animation: ${fadeInUp} 0.5s ease-out forwards; 
-    transform: translateY(20px);
+  animation: ${fadeInUp} 0.5s ease-out forwards;
+  transform: translateY(20px);
 
   video {
     width: 100%;
     border-radius: 10px;
-    
   }
 `;
 
@@ -699,42 +698,41 @@ export const PopUpContainer = styled.div`
   background-color: rgba(32, 33, 36, 0.9);
   padding: 10px;
   overflow-y: auto;
-  border-radius: 10px; 
-  display: flex; 
-  align-items: center; 
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
   justify-content: center;
   opacity: 0;
-    animation: ${fadeInUp} 0.5s ease-out forwards; 
-    top: 0; 
-    left: 0; 
-
+  animation: ${fadeInUp} 0.5s ease-out forwards;
+  top: 0;
+  left: 0;
 `;
 
 export const VideosBox = styled.div`
-width: 100%; 
+  width: 100%;
   height: 90%;
   border: 1px solid ${(props) => props.theme.primaryColor};
-  position: relative; 
-  padding: 20px; 
+  border-radius: 10px;
+  position: relative;
+  padding: 20px;
   max-width: 90%;
   max-height: 90vh;
   align-items: center;
   justify-content: center;
-  display: flex; 
+  display: flex;
   box-sizing: border-box;
-
 `;
 
 export const BtnPopUp = styled.button`
   position: absolute;
-  top: -3px; 
-  left: -3px; 
-  background: none; 
-  border: none; 
-  cursor: pointer; 
+  top: -3px;
+  left: -3px;
+  background: none;
+  border: none;
+  cursor: pointer;
   z-index: 2;
-  padding: 10px; 
-  
+  padding: 10px;
+
   img {
     width: 20px;
     height: 20px;
@@ -742,22 +740,22 @@ export const BtnPopUp = styled.button`
 `;
 
 export const VideoEdit = styled.div`
-position: relative; 
-width: 100%; 
-height: 100%; 
-display: flex; 
-align-items: center; 
-justify-content: center;
-overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 
-video {
-  width: 100%; 
-  height: auto; 
-  max-width: 100%;
-  max-height: 100%; 
-  border-radius: 10px;
-  padding: 10px; 
-}
+  video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    padding: 10px;
+  }
 `;
 
 export const Comments = styled.div`
