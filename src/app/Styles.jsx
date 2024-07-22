@@ -802,7 +802,6 @@ export const SwitchButtonContainer = styled.div`
     position: relative;
     border: 2px solid var(--green);
     border-radius: 25px;
-    -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
     height: 40px;
     width: 100px;
     margin: auto;
