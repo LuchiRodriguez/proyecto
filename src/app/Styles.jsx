@@ -54,15 +54,15 @@ export const NavBarStyle = styled.nav`
 `;
 
 export const Form = styled.form`
-  color: var(--blue);
+  animation: neon 2s ease infinite;
   font-family: Roboto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: auto;
   input {
+    animation: neon 2s ease infinite;
     background-color: var(--black);
     outline: none;
     text-transform: uppercase;
@@ -72,35 +72,38 @@ export const Form = styled.form`
     height: 30px;
     width: 300px;
     padding: 10px;
-    &:focus {
-      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
-        0 0 20px 2px ${(props) => props.theme.primaryColor};
-      background-color: var(--black);
-    }
-    &:active {
-      box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor},
-        0 0 20px 2px ${(props) => props.theme.primaryColor};
-      background-color: var(--black);
-    }
+    box-shadow: 0 0 10px 0, 0 0 20px 2px;
   }
 
   p {
+    margin-top: 40px;
     text-align: center;
   }
   span {
     cursor: pointer;
   }
   button {
+    animation: neon 2s ease infinite;
     color: var(--blue);
     background-color: var(--black);
     border: ${(props) => props.theme.primaryColor} 3px solid;
     border-radius: 25px;
     padding: 10px;
-    margin-top: 30px;
+    margin-top: 10px;
   }
-  button:focus {
-    box-shadow: 0 0 10px 0 ${(props) => props.theme.primaryColor} inset,
-      0 0 20px 2px ${(props) => props.theme.primaryColor};
+  @keyframes neon {
+    0% {
+      color: var(--blue);
+      border-color: var(--blue);
+    }
+    50% {
+      color: var(--green);
+      border-color: var(--green);
+    }
+    100% {
+      color: var(--blue);
+      border-color: var(--blue);
+    }
   }
 `;
 
