@@ -255,9 +255,6 @@ export const Interaction = styled.div`
     width: 20px;
     height: 20px;
   }
-  p {
-    margin-right: 10px;
-  }
 `;
 
 export const ShareList = styled.div`
@@ -293,7 +290,6 @@ export const ShareList = styled.div`
 `;
 
 export const ChallengeVideo = styled.div`
-  /* color: ${(props) => props.theme.primaryColor}; */
   font-size: small;
   border: 2px solid ${(props) => props.theme.primaryColor};
   box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor},

@@ -15,10 +15,9 @@ const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [points, setPoints] = useState();
-  const [setUser] = useUserContext();
+  const [user, setUser] = useUserContext();
   const [error, setError] = useState();
   const [checked, setChecked] = useState(true);
-
   const handleToggle = () => {
     setChecked(!checked);
     if (!checked) {
@@ -38,7 +37,6 @@ const Login = () => {
               Failed to login. Please try again
             </p>
           )}
-
           <input
             autoComplete="off"
             type="text"
