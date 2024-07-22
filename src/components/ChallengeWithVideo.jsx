@@ -112,6 +112,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
             url={url + challenge.videos.id}
             title={challenge.description}
             thumbnail={challenge.videos.videoUrl + "/path/to/thumbnail.jpg"}
+            setShowComments={setShowComments}
           />
         </Interaction>
         <NewComment
