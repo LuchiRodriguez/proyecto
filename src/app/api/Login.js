@@ -17,7 +17,7 @@ import { setAuth } from "./api";
 export const postUser = async (username, password) => {
   try {
     const response = await axios.post(
-      "https://aim-e50q.onrender.com/login",
+      "https://aim-hovn.onrender.com/login",
       {},
       {
         headers: {
