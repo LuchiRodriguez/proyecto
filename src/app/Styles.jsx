@@ -938,3 +938,32 @@ export const SwitchButtonContainer = styled.div`
     background: var(--blue);
   }
 `;
+export const ErrorPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+  color: var(--black);
+  text-align: center;
+
+  h1 {
+    font-size: 5rem;
+    margin: 0;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  a {
+    font-size: 1.2rem;
+    color: ${(props) => props.theme.primaryColor};
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+`;
