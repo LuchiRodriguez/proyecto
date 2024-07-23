@@ -12,7 +12,7 @@ import challengePlayer from "../app/img/playerNavBar/challenge.png";
 import rankingPlayer from "../app/img/playerNavBar/ranking.png"
 import aimLogo from "../app/img/watcherNavBar/logoAim.png";
 import { useEffect, useState } from "react";
-import { getVideoById } from "../app/api/Video";
+import { getAllVideos } from "../app/api/Video";
 
 const NavBar = () => {
   const [user] = useUserContext();
@@ -22,7 +22,7 @@ const NavBar = () => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const videos = await getVideoById();
+      const videos = await getAllVideos();
       setVideoId(videos.map(video => video.id));
     }
 
