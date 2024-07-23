@@ -12,7 +12,7 @@ import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
 import ShareButton from "./ShareButton";
 import { Link, useNavigate } from "react-router-dom";
-import {getPlayerByVideo} from '../app/api/User';
+import { getPlayerByVideo } from '../app/api/User';
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
@@ -73,7 +73,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
         )}
         <div className="time">
           <Link to={`/profile/${player.username}`}>
-          <p>{player.username}</p>
+            <p>{player.username}</p>
           </Link>
           <p>{challenge.transcurredTime}</p>
         </div>
