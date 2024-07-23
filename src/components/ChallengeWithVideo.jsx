@@ -12,7 +12,9 @@ import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
 import ShareButton from "./ShareButton";
 import { Link, useNavigate } from "react-router-dom";
-import {getPlayerByVideo} from '../app/api/User';
+import { getPlayerByVideo } from "../app/api/User";
+import shareW from "../app/img/watcherNavBar/shareWatcher.png";
+import shareP from "../app/img/playerNavBar/sharePlayer.png";
 
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
@@ -22,15 +24,16 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   const [player, setPlayer] = useState({});
   const videoRefs = useRef([]);
   const navigate = useNavigate();
+  const [share, setShare] = useState(false);
 
   // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
   const url = "http://localhost:5173/visit/";
 
   useEffect(() => {
-    getPlayerByVideo(challenge).then(usuarios => {
-      console.log(usuarios)
-      setPlayer(usuarios)
-    })
+    getPlayerByVideo(challenge).then((usuarios) => {
+      console.log(usuarios);
+      setPlayer(usuarios);
+    });
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -61,7 +64,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   }, [challenge]);
 
   return (
-    <ChallengeVideo>
+    <ChallengeVideo $share={share}>
       <UserInfo>
         {player.imagenUrl !== null ? (
           <img src={player.imagenUrl} />
@@ -73,7 +76,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
         )}
         <div className="time">
           <Link to={`/profile/${player.username}`}>
-          <p>{player.username}</p>
+            <p>{player.username}</p>
           </Link>
           <p>{challenge.transcurredTime}</p>
         </div>
@@ -85,7 +88,13 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
         <p className="player">
           {" "}
           Challenged by
-          <Link to={`/profile/${challenge.watcher.username ? challenge.watcher.username : challenge.watcher}`}>
+          <Link
+            to={`/profile/${
+              challenge.watcher.username
+                ? challenge.watcher.username
+                : challenge.watcher
+            }`}
+          >
             {challenge.watcher.username ? (
               <span>{challenge.watcher.username}</span>
             ) : (
@@ -112,13 +121,26 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
             <img src={PlayerComment} alt="" />
           )}
         </button>
-        <ShareButton
-          url={url + challenge.videos.id}
-          title={challenge.description}
-          thumbnail={challenge.videos.videoUrl + "/path/to/thumbnail.jpg"}
-          setShowComments={setShowComments}
-        />
+        <button
+          onClick={() => {
+            setShare(!share), setShowComments(false);
+          }}
+        >
+          {user.rol === "watcher" ? (
+            <img src={shareW} alt="" />
+          ) : (
+            <img src={shareP} alt="" />
+          )}
+        </button>
       </Interaction>
+      <ShareButton
+        url={url + challenge.videos.id}
+        title={challenge.description}
+        thumbnail={challenge.videos.videoUrl + "/path/to/thumbnail.jpg"}
+        setShowComments={setShowComments}
+        share={share}
+        setShare={setShare}
+      />
       <NewComment
         comments={challenge.videos.comments}
         setShowComments={setShowComments}
