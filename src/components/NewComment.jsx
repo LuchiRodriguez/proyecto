@@ -22,7 +22,7 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
     });
     refetch();
   }, []);
-
+  console.log(comments)
   const handleComments = async (e) => {
     e.preventDefault();
 
