@@ -31,6 +31,7 @@ const ShareButton = ({ url, title, thumbnail, setShowComments }) => {
         )}
       </button>
       <ShareList $share={share}>
+        <button>X</button>
         <ul>
           <FacebookShareButton
             url={url}

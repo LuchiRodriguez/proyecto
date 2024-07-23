@@ -191,12 +191,12 @@ export const UserInfo = styled.div`
     border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
-    .time{
-        display: flex;
+  .time {
+    display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    }
+  }
 
   a {
     text-decoration: none;
@@ -383,6 +383,10 @@ export const PopUpCreateChallenge = styled.div`
           0 0 10px 2px ${(props) => props.theme.primaryColor};
       }
     }
+    div:first-child {
+      display: flex;
+      justify-content: space-between;
+    }
     div {
       display: flex;
       justify-content: space-around;
@@ -436,11 +440,8 @@ export const PopUpCreateChallenge = styled.div`
     }
   }
   .closeButton {
-    position: fixed;
-    top: 30vh;
-    right: 32px;
     background-color: var(--black);
-    color: ${(props) => props.theme.primaryColor};
+    color: #03e9f4;
     border-radius: 10px;
     border: none;
     font-size: large;
@@ -831,7 +832,6 @@ export const SwitchButtonContainer = styled.div`
   display: block;
   position: absolute;
   width: 500px;
-  height: 350px;
   margin: auto;
   top: 20vh;
 
