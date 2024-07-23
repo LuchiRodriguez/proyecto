@@ -57,12 +57,14 @@ export const NavBarStyle = styled.nav`
   }
 
   img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     padding: 10px;
     color: ${(props) => props.theme.primaryColor};
   }
-`;
+  
+  
+  `;
 
 export const Form = styled.form`
   animation: neon 2s ease infinite;
@@ -160,10 +162,10 @@ export const ProfileImg = styled.div`
     margin-top: 30px;
   }
   img {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    border: 2px solid ${(props) => props.theme.primaryColor};
+    border: 4px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
   p {

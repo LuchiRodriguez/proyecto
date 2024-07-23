@@ -89,11 +89,10 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           {" "}
           Challenged by
           <Link
-            to={`/profile/${
-              challenge.watcher.username
+            to={`/profile/${challenge.watcher.username
                 ? challenge.watcher.username
                 : challenge.watcher
-            }`}
+              }`}
           >
             {challenge.watcher.username ? (
               <span>{challenge.watcher.username}</span>
