@@ -721,10 +721,10 @@ export const PopUpContainer = styled.div`
   transform: translate(-50%, -50%);
   background-color: rgba(32, 33, 36, 0.9);
   padding: 10px;
-      display: flex;
-    flex-direction: column;
-    gap: 20px;
-  align-items: center; 
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
   overflow-y: auto;
   border-radius: 10px;
   opacity: 0;
@@ -852,7 +852,7 @@ export const SwitchButtonContainer = styled.div`
   position: absolute;
   width: 500px;
   margin: auto;
-  top: 15vh;
+  top: 160px;
 
   input[type="checkbox"] {
     position: absolute;
