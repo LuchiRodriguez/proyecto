@@ -157,8 +157,8 @@ export const ProfileImg = styled.div`
     margin-top: 30px;
   }
   img {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
