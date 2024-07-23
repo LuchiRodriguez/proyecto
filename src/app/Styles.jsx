@@ -81,7 +81,7 @@ export const Form = styled.form`
     border: ${(props) => props.theme.primaryColor} 3px solid;
     border-radius: 25px;
     height: 30px;
-    width: 300px;
+    width: 30vh;
     padding: 10px;
     box-shadow: 0 0 5px 0, 0 0 10px 2px;
   }
@@ -130,7 +130,10 @@ export const PerfilStyle = styled.div`
   border-radius: 10px;
   padding: 10px;
   color: ${(props) => props.theme.primaryColor};
-  height: 100%;
+  height: 87vh;
+  @media (max-height: 812px) {
+    height: 85vh;
+  }
   background-size: cover;
   background-position: center;
   position: relative;
@@ -313,13 +316,19 @@ export const ChallengeVideo = styled.div`
     0 0 10px 2px ${(props) => props.theme.primaryColor};
   padding: 10px;
   border-radius: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   opacity: 0;
   animation: ${fadeInUp} 0.5s ease-out forwards;
   transform: translateY(20px);
-
   video {
-    width: 100%;
+    height: 67vh;
+
+    @media (max-height: 852px) {
+      height: 65vh;
+    }
+    @media (max-height: 812px) {
+      height: 63vh;
+    }
     border-radius: 10px;
   }
 `;
@@ -833,7 +842,7 @@ export const SwitchButtonContainer = styled.div`
   position: absolute;
   width: 500px;
   margin: auto;
-  top: 20vh;
+  top: 15vh;
 
   input[type="checkbox"] {
     position: absolute;
