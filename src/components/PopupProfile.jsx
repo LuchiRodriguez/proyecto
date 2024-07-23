@@ -34,7 +34,6 @@ const PopupProfile = ({ onClose, video }) => {
                 </VideoEdit>
                 <BtnPopUp onClick={close}><img src={closeBtn} alt="Close" /></BtnPopUp>
             </VideosBox>
-
             {videos.map((video, i) => {
                 if (i !== index)
                     return (
@@ -46,8 +45,6 @@ const PopupProfile = ({ onClose, video }) => {
                         </VideosBox>
                     )
             })}
-
-
         </PopUpContainer>
     )
 }

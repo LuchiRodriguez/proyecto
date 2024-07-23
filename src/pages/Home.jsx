@@ -10,7 +10,8 @@ const Home = () => {
   const [filteredChallenges, setFilteredChallenges] = useState([]);
   const newDate = new Date();
   const formattedDate = moment(newDate).format("YYYY-MM-DDTHH:mm:ss");
-  const parsedDate = moment(formattedDate).toDate();
+  const currentDate = moment(formattedDate).toDate();
+  const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 
   const refetch = () => {
     getChallenges().then((data) => {
@@ -19,15 +20,14 @@ const Home = () => {
       );
       const filteredChallengesWithTranscurredTime = challengeFilter.map(
         (video) => {
-          const currentDate = new Date(video.videos.creationDate);
-    
-          const differenceMs = parsedDate - currentDate;
+          const creationDate = new Date(video.videos.creationDate);
+          const differenceMs = currentDate - creationDate;
           const differenceSeconds = differenceMs / 1000;
           const differenceMinutes = differenceSeconds / 60;
           const differenceHours = differenceMinutes / 60;
           const difference = () => {
-            if (differenceHours > 48) {
-              return currentDate;
+            if (differenceHours > 36) {
+              return week[creationDate.getDay()] + " " + creationDate.getDay();
             } else if (36 > differenceHours >= 24) {
               return "Yesterday";
             } else if (differenceHours >= 1) {

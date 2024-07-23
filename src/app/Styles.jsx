@@ -1,8 +1,19 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 import Minecraft from "./fonts/Minecraft.ttf";
 import Roboto from "./fonts/Roboto-Medium.ttf";
 import { Link } from "react-router-dom";
 
+const fadeInUp = keyframes`
+0% {
+  opacity: 0; 
+  transform: translateY(20px);
+}
+
+100%{
+  opacity: 1; 
+  transform: translateY(0);
+}
+`;
 export const GlobalStyle = createGlobalStyle`
 	@font-face {
 		font-family: Minecraft;
@@ -180,11 +191,12 @@ export const UserInfo = styled.div`
     border: 2px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
-  /* div {
+  .time {
     display: flex;
-    width: 100%;
     justify-content: space-between;
-  } */
+    align-items: center;
+    width: 100%;
+  }
 
   a {
     text-decoration: none;
@@ -226,6 +238,8 @@ export const ChallengeBox = styled.div`
   margin-bottom: 30px;
   box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor},
     0 0 10px 2px ${(props) => props.theme.shadowColor};
+  opacity: 0;
+  animation: ${fadeInUp} 0.5s ease-out forwards;
 
   video {
     width: 100%;
@@ -255,9 +269,6 @@ export const Interaction = styled.div`
     width: 20px;
     height: 20px;
   }
-  p {
-    margin-right: 10px;
-  }
 `;
 
 export const ShareList = styled.div`
@@ -266,8 +277,11 @@ export const ShareList = styled.div`
   height: 100%;
   background-color: rgba(32, 33, 36, 0.9);
   position: absolute;
+  top: 0;
   left: 0;
+  overflow: hidden;
   ul {
+    background-color: var(--black);
     display: flex;
     gap: 10px;
     flex-direction: column;
@@ -293,7 +307,6 @@ export const ShareList = styled.div`
 `;
 
 export const ChallengeVideo = styled.div`
-  /* color: ${(props) => props.theme.primaryColor}; */
   font-size: small;
   border: 2px solid ${(props) => props.theme.primaryColor};
   box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor},
@@ -301,6 +314,9 @@ export const ChallengeVideo = styled.div`
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 40px;
+  opacity: 0;
+  animation: ${fadeInUp} 0.5s ease-out forwards;
+  transform: translateY(20px);
 
   video {
     width: 100%;
@@ -334,11 +350,12 @@ export const PopUpCreateChallenge = styled.div`
   font-size: small;
   top: 0;
   bottom: 0;
-  right: 20px;
-  left: 20px;
+  right: 0;
+  left: 0;
 
   form {
     display: flex;
+    margin: 0 20px;
     width: 100%;
     height: 300px;
     background-color: var(--black);
@@ -365,6 +382,10 @@ export const PopUpCreateChallenge = styled.div`
         box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor} inset,
           0 0 10px 2px ${(props) => props.theme.primaryColor};
       }
+    }
+    div:first-child {
+      display: flex;
+      justify-content: space-between;
     }
     div {
       display: flex;
@@ -419,11 +440,8 @@ export const PopUpCreateChallenge = styled.div`
     }
   }
   .closeButton {
-    position: fixed;
-    top: 140px;
-    right: 32px;
     background-color: var(--black);
-    color: ${(props) => props.theme.primaryColor};
+    color: #03e9f4;
     border-radius: 10px;
     border: none;
     font-size: large;
@@ -678,7 +696,7 @@ export const VideoItem = styled.div`
 `;
 export const PopUpContainer = styled.div`
   width: 100%;
-  max-width: 90%;
+  max-width: 95%;
   height: 95%;
   position: fixed;
   top: 50%;
@@ -687,44 +705,65 @@ export const PopUpContainer = styled.div`
   background-color: rgba(32, 33, 36, 0.9);
   padding: 10px;
   overflow-y: auto;
-
-  video {
-    width: 100%;
-    height: 100%;
-    max-height: 90%;
-    border-radius: 10px;
-    position: absolute;
-    max-width: 95%;
-  }
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: ${fadeInUp} 0.5s ease-out forwards;
+  top: 0;
+  left: 0;
 `;
 
 export const VideosBox = styled.div`
-  height: 100%;
+  width: 100%;
+  height: 90%;
   border: 1px solid ${(props) => props.theme.primaryColor};
-
-  button {
-    position: relative;
-    bottom: 300px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1;
-  }
+  border-radius: 10px;
+  position: relative;
+  padding: 20px;
+  max-width: 90%;
+  max-height: 90vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  box-sizing: border-box;
 `;
 
 export const BtnPopUp = styled.button`
-  position: fixed;
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  padding: 10px;
 
   img {
     width: 20px;
     height: 20px;
-    padding: 10px;
-    position: absolute;
-    top: -370px;
   }
 `;
 
-export const VideoEdit = styled.div``;
+export const VideoEdit = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    padding: 10px;
+  }
+`;
 
 export const Comments = styled.div`
   border: 2px solid ${(props) => props.theme.primaryColor};
@@ -753,19 +792,39 @@ export const Comments = styled.div`
 export const NuevoComment = styled.div`
   border: 2px solid ${(props) => props.theme.primaryColor};
   width: 100%;
+  box-sizing: border-box;
   border-radius: 10px;
   margin-bottom: 10px;
-  box-sizing: border-box;
   padding: 10px;
   color: white;
-  .check {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: none;
-    img {
-      width: 30px;
-    }
+  text-align: center;
+  input {
+    color: white;
+  }
+  img {
+    position: absolute;
+    right: 25px;
+    top: 40px;
+    width: 30px;
+  }
+`;
+
+export const FirstComment = styled.div`
+  border: 2px solid ${(props) => props.theme.primaryColor};
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  input {
+    color: white;
+  }
+
+  img {
+    position: absolute;
+    right: 25px;
+    bottom: 30px;
+    width: 30px;
   }
 `;
 
@@ -773,7 +832,6 @@ export const SwitchButtonContainer = styled.div`
   display: block;
   position: absolute;
   width: 500px;
-  height: 350px;
   margin: auto;
   top: 20vh;
 
@@ -806,7 +864,6 @@ export const SwitchButtonContainer = styled.div`
     position: relative;
     border: 2px solid var(--green);
     border-radius: 25px;
-    -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
     height: 40px;
     width: 100px;
     margin: auto;

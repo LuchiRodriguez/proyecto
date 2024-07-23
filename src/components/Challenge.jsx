@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useUserContext } from "../app/UserProvider";
 import { updateChallenge, postChallengeVideo, deleteChallenge, getChallengeById } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import loadingicono from "../app/img/lodingicon.gif";
 
 const Challenge = ({ ch, refetch }) => {
@@ -18,7 +19,6 @@ const Challenge = ({ ch, refetch }) => {
   );
   const navigate = useNavigate();
 
-  // Función para obtener el desafío actualizado desde el backend
   const fetchChallenge = async () => {
     try {
       const { data } = await getChallengeById(ch.id);
@@ -38,13 +38,6 @@ const Challenge = ({ ch, refetch }) => {
     setIsUploading(true);
     setUploadError("");
 
-    const formData = new FormData();
-    formData.append("player", user.username);
-    formData.append("watcher", challenge.watcher.username);
-    formData.append("file", file);
-    formData.append("points", challenge.points);
-    formData.append("challenge", challenge.id);
-
     if (file && file.size > 500 * 1024 * 1024) {
       setUploadError(
         "File size exceeds the limit (500 MB). Please upload a smaller file."
@@ -54,7 +47,24 @@ const Challenge = ({ ch, refetch }) => {
     }
 
     try {
-      await postChallengeVideo(formData);
+      // Subir video a Cloudinary
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "proyectaim"); 
+console.log(file)
+      const cloudinaryResponse = await axios.post('https://api.cloudinary.com/v1_1/dht6hwart/video/upload', formData); // Reemplaza con tu cloud_name
+      const uploadedVideoUrl = cloudinaryResponse.data.url;
+
+      // Enviar la URL del video al backend
+      console.log(uploadedVideoUrl)
+      const backendFormData = new FormData();
+      backendFormData.append("player", user.username);
+      backendFormData.append("watcher", challenge.watcher.username);
+      backendFormData.append("file", uploadedVideoUrl); // Envía la URL del video en lugar del archivo
+      backendFormData.append("points", challenge.points);
+      backendFormData.append("challenge", challenge.id);
+
+      await postChallengeVideo(backendFormData);
       refetch();
       setIsUploading(false);
       navigate("/");
@@ -162,6 +172,7 @@ const Challenge = ({ ch, refetch }) => {
 };
 
 export default Challenge;
+
 
 
 
