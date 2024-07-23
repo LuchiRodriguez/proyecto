@@ -62,9 +62,7 @@ export const NavBarStyle = styled.nav`
     padding: 10px;
     color: ${(props) => props.theme.primaryColor};
   }
-  
-  
-  `;
+`;
 
 export const Form = styled.form`
   animation: neon 2s ease infinite;
@@ -854,7 +852,7 @@ export const SwitchButtonContainer = styled.div`
   position: absolute;
   width: 500px;
   margin: auto;
-  top: 160px;
+  top: 100px;
 
   input[type="checkbox"] {
     position: absolute;
