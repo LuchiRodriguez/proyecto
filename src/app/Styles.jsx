@@ -492,6 +492,14 @@ export const ChallengesList = styled.div`
   display: block;
 `;
 
+export const WithoutChallenges = styled.div`
+  text-align: center;
+  margin-top: 400px;
+  border: 3px solid ${(props) => props.theme.primaryColor};
+  border-radius: 10px;
+  padding: 10px;
+`;
+
 export const UploadingDiv = styled.div`
   display: block;
   margin: auto;

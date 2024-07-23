@@ -4,13 +4,13 @@ import likeImgPlayer from "../app/img/playerNavBar/like.png";
 import dislikePlayer from "../app/img/playerNavBar/dislike.png";
 import { useUserContext } from "../app/UserProvider";
 import { useEffect, useState } from "react";
-import {postVideo, getVideoById} from '../app/api/Video';
+import { postVideo, getVideoById } from '../app/api/Video';
 
-const ButtonLike = ({videoId, refetch}) => {
+const ButtonLike = ({ videoId, refetch }) => {
   const [user] = useUserContext();
   const [like, setLike] = useState(false);
   const [meGusta, setMeGusta] = useState([]);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -48,16 +48,16 @@ const ButtonLike = ({videoId, refetch}) => {
     }
   };
   return (
- <form onSubmit={handleLike}>
-     <button type="submit">
-      {user.rol === "watcher" && (
-        <img src={!like ? dislikeWatcher : likeImgWatcher} alt="" />
-      )}
-      {user.rol === "player" && (
-        <img src={!like ? dislikePlayer : likeImgPlayer} alt="" />
-      )}
-    </button>
- </form>
+    <form onSubmit={handleLike}>
+      < button type="submit">
+        {user.rol === "watcher" && (
+          <img src={!like ? dislikeWatcher : likeImgWatcher} alt="" />
+        )}
+        {user.rol === "player" && (
+          <img src={!like ? dislikePlayer : likeImgPlayer} alt="" />
+        )}
+      </button>
+    </form>
   );
 };
 
