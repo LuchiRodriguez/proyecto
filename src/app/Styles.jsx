@@ -697,11 +697,12 @@ export const PopUpContainer = styled.div`
   transform: translate(-50%, -50%);
   background-color: rgba(32, 33, 36, 0.9);
   padding: 10px;
+      display: flex;
+    flex-direction: column;
+    gap: 20px;
+  align-items: center; 
   overflow-y: auto;
   border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   opacity: 0;
   animation: ${fadeInUp} 0.5s ease-out forwards;
   top: 0;
@@ -721,6 +722,7 @@ export const VideosBox = styled.div`
   justify-content: center;
   display: flex;
   box-sizing: border-box;
+  margin-top: 10px;
 `;
 
 export const BtnPopUp = styled.button`
