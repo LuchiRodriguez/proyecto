@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
-import { Comments, PopUpComments, NuevoComment } from '../app/Styles';
+import {
+  Comments,
+  PopUpComments,
+  NuevoComment,
+  FirstComment,
+} from "../app/Styles";
 import watcherCheck from "../app/img/watcherNavBar/watcherCheck.png";
 import playerCheck from "../app/img/playerNavBar/playerCheck.png";
 import { useUserContext } from "../app/UserProvider";
-import { createComment } from '../app/api/Comments';
-import { getUserByComments } from '../app/api/User';
+import { createComment } from "../app/api/Comments";
+import { getUserByComments } from "../app/api/User";
 
 const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
   const [user] = useUserContext();
@@ -13,8 +18,8 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
 
   useEffect(() => {
     getUserByComments(comments).then((data) => {
-      setUsers(data)
-    })
+      setUsers(data);
+    });
     refetch();
   }, []);
   console.log(comments)
@@ -38,18 +43,15 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
 
   return (
     <PopUpComments $showComments={showComments}>
-
       {comments.length > 0 ? (
         <>
           <NuevoComment>
-            <div className="check">
-              <p>Agregar comentario</p>
-              <img
-                onClick={handleComments}
-                src={user.rol === "watcher" ? watcherCheck : playerCheck}
-                alt=""
-              />
-            </div>
+            <p>Agregar comentario</p>
+            <img
+              onClick={handleComments}
+              src={user.rol === "watcher" ? watcherCheck : playerCheck}
+              alt=""
+            />
             <input
               value={content}
               type="text"
@@ -59,7 +61,14 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
           {comments.map((comment, i) => (
             <Comments key={comment.id}>
               <div className="user">
-                <img src={users[i]?.imagenUrl ? users[i]?.imagenUrl : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"} alt="" />
+                <img
+                  src={
+                    users[i]?.imagenUrl
+                      ? users[i]?.imagenUrl
+                      : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+                  }
+                  alt=""
+                />
                 <p>{comment.user}</p>
               </div>
               <p className="text">{comment.content}</p>
@@ -67,19 +76,16 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
           ))}
         </>
       ) : (
-        <>
+        <FirstComment>
           <p>Aún no hay comentarios</p>
           <p>Sé el primero en comentar</p>
-          <input
-            type="text"
-            onChange={(e) => setContent(e.target.value)}
-          />
           <img
             onClick={handleComments}
             src={user.rol === "watcher" ? watcherCheck : playerCheck}
             alt=""
           />
-        </>
+          <input type="text" onChange={(e) => setContent(e.target.value)} />
+        </FirstComment>
       )}
     </PopUpComments>
   );

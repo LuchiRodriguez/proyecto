@@ -1,11 +1,23 @@
 import axios from "axios";
 import { setAuth } from "./api";
 
+// export const postUser = async (username, password) => {
+//   try {
+//     const response = await axios.post(
+//       "http://localhost:8080/login",
+//       {},
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: "basic " + btoa(username + ":" + password),
+//         },
+//       }
+//     );
 
 export const postUser = async (username, password) => {
   try {
     const response = await axios.post(
-      "http://localhost:8080/login",
+      "https://aim-hovn.onrender.com/login",
       {},
       {
         headers: {
@@ -25,4 +37,3 @@ export const postUser = async (username, password) => {
     throw error;
   }
 };
-
