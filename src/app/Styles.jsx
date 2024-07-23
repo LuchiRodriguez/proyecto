@@ -57,12 +57,14 @@ export const NavBarStyle = styled.nav`
   }
 
   img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     padding: 10px;
     color: ${(props) => props.theme.primaryColor};
   }
-`;
+  
+  
+  `;
 
 export const Form = styled.form`
   animation: neon 2s ease infinite;
