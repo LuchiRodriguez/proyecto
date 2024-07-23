@@ -16,11 +16,6 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
       setUsers(data)
     })
     refetch();
-    getUserByUsername().then((data) => {
-      setProfileImg(data.imagenUrl);
-
-    })
-
   }, []);
   console.log(comments)
   const handleComments = async (e) => {
