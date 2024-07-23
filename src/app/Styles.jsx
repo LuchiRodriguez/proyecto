@@ -160,7 +160,7 @@ export const ProfileImg = styled.div`
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border: 2px solid ${(props) => props.theme.primaryColor};
+    border: 4px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
   p {
