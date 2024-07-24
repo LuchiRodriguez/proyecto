@@ -131,7 +131,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
         </button>
       </Interaction>
       <ShareButton
-        url={url + challenge.videos.id}
+        url={url + challenge.id}
         title={challenge.description}
         thumbnail={challenge.videos.videoUrl + "/path/to/thumbnail.jpg"}
         setShowComments={setShowComments}
