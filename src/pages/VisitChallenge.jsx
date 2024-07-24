@@ -15,6 +15,8 @@ import { useUserContext } from "../app/UserProvider";
 import NewComment from "../components/NewComment";
 import ShareButton from "../components/ShareButton";
 import moment from "moment";
+import shareW from "../app/img/watcherNavBar/shareWatcher.png";
+import shareP from "../app/img/playerNavBar/sharePlayer.png";
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const VisitChallenge = () => {
@@ -27,6 +29,7 @@ const VisitChallenge = () => {
   const currentDate = moment(formattedDate).toDate();
   const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
   const url = "https://www.aimapp.es/visit/" + id;
+  const [share, setShare] = useState(false);
 
   const refetch = () => {
     getChallengeById(id).then((data) => {
@@ -108,6 +111,17 @@ const VisitChallenge = () => {
                 <img src={WatcherComment} alt="" />
               ) : (
                 <img src={PlayerComment} alt="" />
+              )}
+            </button>
+            <button
+              onClick={() => {
+                setShare(!share), setShowComments(false);
+              }}
+            >
+              {user.rol === "watcher" ? (
+                <img src={shareW} alt="" />
+              ) : (
+                <img src={shareP} alt="" />
               )}
             </button>
             <ShareButton
