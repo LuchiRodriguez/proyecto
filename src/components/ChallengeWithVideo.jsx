@@ -25,7 +25,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   const videoRefs = useRef([]);
   const navigate = useNavigate();
   const [share, setShare] = useState(false);
-  const url = "http://www.aimapp.es/visit/";
+  const url = "https://www.aimapp.es/visit/";
 
   useEffect(() => {
     getPlayerByVideo(challenge).then((usuarios) => {
