@@ -28,7 +28,7 @@ const VisitChallenge = () => {
   const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 
   // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
-  const url = "http://localhost:5173/visit/" + id;
+  const url = "https://www.aimapp.es//visit/" + id;
 
   const refetch = () => {
     getChallengeById(id).then((data) => {
@@ -68,7 +68,7 @@ const VisitChallenge = () => {
               <img src={challenge.player.imagenUrl} />
             ) : (
               <img
-                src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+                src="https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
                 alt=""
               />
             )}

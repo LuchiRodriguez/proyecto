@@ -31,7 +31,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
 
   useEffect(() => {
     getPlayerByVideo(challenge).then((usuarios) => {
-      console.log(usuarios);
+      
       setPlayer(usuarios);
     });
     const observer = new IntersectionObserver(
@@ -70,7 +70,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           <img src={player.imagenUrl} />
         ) : (
           <img
-            src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+            src="https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
             alt=""
           />
         )}

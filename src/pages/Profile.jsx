@@ -20,7 +20,7 @@ const Profile = () => {
   const refetch = () => {
     getUserByUsername(user.username).then((data) => {
       setUserProfile(data)
-      console.log(data)
+      
       setVideos(data.videos);
     });
   };
@@ -79,7 +79,7 @@ const Profile = () => {
               src={
                 userProfile.imagenUrl
                   ? userProfile.imagenUrl
-                  : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+                  : "https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
               }
               alt=""
               style={{ cursor: "pointer" }}
@@ -135,7 +135,7 @@ const Profile = () => {
               src={
                 userProfile.imagenUrl
                   ? userProfile.imagenUrl
-                  : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+                  : "https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
               }
               alt=""
               style={{ cursor: "pointer" }}
