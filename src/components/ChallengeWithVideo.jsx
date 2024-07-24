@@ -25,13 +25,10 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   const videoRefs = useRef([]);
   const navigate = useNavigate();
   const [share, setShare] = useState(false);
-
-  // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
-  const url = "http://localhost:5173/visit/";
+  const url = "http://www.aimapp.es/visit/";
 
   useEffect(() => {
     getPlayerByVideo(challenge).then((usuarios) => {
-      
       setPlayer(usuarios);
     });
     const observer = new IntersectionObserver(
@@ -89,10 +86,11 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           {" "}
           Challenged by
           <Link
-            to={`/profile/${challenge.watcher.username
+            to={`/profile/${
+              challenge.watcher.username
                 ? challenge.watcher.username
                 : challenge.watcher
-              }`}
+            }`}
           >
             {challenge.watcher.username ? (
               <span>{challenge.watcher.username}</span>

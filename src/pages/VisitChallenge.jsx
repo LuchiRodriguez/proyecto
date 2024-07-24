@@ -26,9 +26,7 @@ const VisitChallenge = () => {
   const formattedDate = moment(newDate).format("YYYY-MM-DDTHH:mm:ss");
   const currentDate = moment(formattedDate).toDate();
   const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
-
-  // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
-  const url = "https://www.aimapp.es//visit/" + id;
+  const url = "https://www.aimapp.es/visit/" + id;
 
   const refetch = () => {
     getChallengeById(id).then((data) => {
