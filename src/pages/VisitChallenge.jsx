@@ -129,6 +129,8 @@ const VisitChallenge = () => {
               title={challenge.description}
               thumbnail={challenge.videos.videoUrl + "/path/to/thumbnail.jpg"}
               setShowComments={setShowComments}
+              share={share}
+              setShare={setShare}
             />
           </Interaction>
           <NewComment
