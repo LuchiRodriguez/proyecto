@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import NavBar from "../components/NavBar";
 import { 
   PerfilStyle, ProfileImg, ProfileInfo, 
-  PlayerProfile, WatcherProfile, VideosContainer, VideoItem 
+   VideosContainer, VideoItem 
 } from '../app/Styles';
 import { getUserByUsername } from "../app/api/User";
 import PopupProfile from '../components/PopupProfile';
@@ -78,7 +78,7 @@ const UserProfile = () => {
   return (
     <>
       {user.rol === "player" && (
-        <PlayerProfile>
+        <div>
           <PerfilStyle>
             <ProfileImg>
               <img
@@ -94,11 +94,11 @@ const UserProfile = () => {
             {renderProfileInfo()}
             {renderVideos()}
           </PerfilStyle>
-        </PlayerProfile>
+        </div>
       )}
 
       {user.rol === "watcher" && (
-        <WatcherProfile>
+        <div>
           <PerfilStyle>
             <ProfileImg>
               <img
@@ -113,7 +113,7 @@ const UserProfile = () => {
             </ProfileImg>
             {renderProfileInfo()}
           </PerfilStyle>
-        </WatcherProfile>
+        </div>
       )}
 
       {isOpen && (

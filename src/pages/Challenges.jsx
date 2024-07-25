@@ -33,19 +33,16 @@ const Challenges = () => {
 
   const challenge = challenges.filter((video) => video.videos == null);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
-
   return (
     <>
       <ChallengesList>
-        {challenge.length > 0 ? (
+        {!loading ? challenge.length > 0 ? (
           challenge.map((ch) => (
             <Challenge key={ch.id} ch={ch} refetch={refetch} />
           ))
         ) : (
           <WithoutChallenges>No challenges available</WithoutChallenges>
-        )}
+        ) : <div>Loading...</div>}
       </ChallengesList>
       {user.rol === "watcher" && (
         <ButtonChallenge onClick={() => setCreate(!create)}>

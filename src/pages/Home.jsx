@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import NavBar from "../components/NavBar";
 import { getChallenges } from "../app/api/Challenge";
 import { useUserContext } from "../app/UserProvider";
@@ -10,18 +10,16 @@ const Home = () => {
   const [filteredChallenges, setFilteredChallenges] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const currentDate = moment();
+  const currentDate = useMemo(() => moment(), []);
 
   const refetch = useCallback(async () => {
     setLoading(true);
     try {
       const data = await getChallenges();
-      const challengeFilter = data.filter(
-        (challenges) => challenges.videos !== null
-      );
-      const filteredChallengesWithTranscurredTime = challengeFilter.map(
-        (video) => {
-          const creationDate = moment(video.videos.creationDate);
+      const filteredChallengesWithTranscurredTime = data
+        .filter((challenge) => challenge.videos !== null)
+        .map((challenge) => {
+          const creationDate = moment(challenge.videos.creationDate);
           const difference = moment.duration(currentDate.diff(creationDate));
 
           const transcurredTime = difference.asHours() > 36 
@@ -34,9 +32,8 @@ const Home = () => {
             ? `${Math.floor(difference.asMinutes())}m ago`
             : "NOW";
 
-          return { ...video, transcurredTime };
-        }
-      );
+          return { ...challenge, transcurredTime };
+        });
       setFilteredChallenges(filteredChallengesWithTranscurredTime);
     } catch (err) {
       setError("Failed to fetch challenges");
@@ -52,23 +49,23 @@ const Home = () => {
     }
   }, [user, refetch]);
 
-  if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   return (
     <>
-      {filteredChallenges?.map((challenge, index) => (
+      {!loading ? filteredChallenges.map((challenge, index) => (
         <ChallengeWithVideo
           key={challenge.id}
           index={index}
           challenge={challenge}
           refetch={refetch}
         />
-      ))}
+      )) : <div>Loading...</div>}
       <NavBar />
     </>
   );
 };
 
 export default Home;
+
 

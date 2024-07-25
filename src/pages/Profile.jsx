@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from "../components/NavBar";
 import { 
   PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, 
-  PlayerProfile, WatcherProfile, VideosContainer, VideoItem 
+  VideosContainer, VideoItem 
 } from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
@@ -72,13 +72,15 @@ const Profile = () => {
     setIsOpen(false);
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return <><div>Loading...</div> <NavBar/></>;
+  }
   if (error) return <div>{error}</div>;
 
   return (
     <>
       {user.rol === "player" ? (
-        <PlayerProfile>
+        <div>
           <PerfilStyle>
             <ProfileImg onClick={handleImageClick}>
               <p>{user.rol}</p>
@@ -122,9 +124,9 @@ const Profile = () => {
               ))}
             </VideosContainer>
           </PerfilStyle>
-        </PlayerProfile>
+        </div>
       ) : (
-        <WatcherProfile>
+        <div>
           <PerfilStyle>
             <ProfileImg onClick={handleImageClick}>
               <p>{user.rol}</p>
@@ -156,7 +158,7 @@ const Profile = () => {
               <img src={logoutBtnWatcher} alt="Logout" />
             </LogoutBtn>
           </PerfilStyle>
-        </WatcherProfile>
+        </div>
       )}
       {isOpen && (
         <PopupProfile
