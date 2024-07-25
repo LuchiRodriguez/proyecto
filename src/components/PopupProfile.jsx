@@ -13,7 +13,7 @@ const PopupProfile = ({ onClose, video }) => {
 
     const fetchData = () => {
         getUserByUsername(user.username).then((data) => {
-            console.log(data.videos)
+            
             setVideos(data.videos);
         });
 

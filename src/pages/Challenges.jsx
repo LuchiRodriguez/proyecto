@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import { ButtonChallenge, ChallengesList } from "../app/Styles";
+import { ButtonChallenge, ChallengesList, WithoutChallenges } from "../app/Styles";
 import { getChallenges } from "../app/api/Challenge";
 import { useUserContext } from "../app/UserProvider";
 import Challenge from "../components/Challenge";
@@ -28,9 +28,9 @@ const Challenges = () => {
   return (
     <>
       <ChallengesList>
-        {challenge.map((ch) => (
+        {challenge && challenge.length > 0 ? challenge.map((ch) => (
           <Challenge key={ch.id} ch={ch} refetch={refetch} />
-        ))}
+        )) : (<WithoutChallenges>No challenges available</WithoutChallenges>)}
       </ChallengesList>
       {user.rol === "watcher" && (
         <ButtonChallenge onClick={() => setCreate(!create)}>

@@ -22,7 +22,7 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
     });
     refetch();
   }, []);
-
+ 
   const handleComments = async (e) => {
     e.preventDefault();
 
@@ -65,7 +65,7 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
                   src={
                     users[i]?.imagenUrl
                       ? users[i]?.imagenUrl
-                      : "https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+                      : "https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
                   }
                   alt=""
                 />

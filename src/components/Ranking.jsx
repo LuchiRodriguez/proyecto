@@ -38,7 +38,7 @@ const Ranking = () => {
                       <img src={usuario.imagenUrl} />
                     ) : (
                       <img
-                        src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+                        src="https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
                         alt=""
                       />
                     )}
@@ -56,7 +56,7 @@ const Ranking = () => {
                       <img src={usuario.imagenUrl} />
                     ) : (
                       <img
-                        src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+                        src="https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
                         alt=""
                       />
                     )}
@@ -75,7 +75,7 @@ const Ranking = () => {
                       <img src={usuario.imagenUrl} />
                     ) : (
                       <img
-                        src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+                        src="https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
                         alt=""
                       />
                     )}
@@ -93,7 +93,7 @@ const Ranking = () => {
                       <img src={usuario.imagenUrl} />
                     ) : (
                       <img
-                        src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+                        src="https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
                         alt=""
                       />
                     )}

@@ -57,8 +57,8 @@ export const NavBarStyle = styled.nav`
   }
 
   img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     padding: 10px;
     color: ${(props) => props.theme.primaryColor};
   }
@@ -154,10 +154,10 @@ export const ProfileImg = styled.div`
     margin-top: 30px;
   }
   img {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    border: 2px solid ${(props) => props.theme.primaryColor};
+    border: 4px solid ${(props) => props.theme.primaryColor};
     object-fit: cover;
   }
   p {
@@ -495,6 +495,14 @@ export const ChallengesList = styled.div`
   display: block;
 `;
 
+export const WithoutChallenges = styled.div`
+  text-align: center;
+  margin-top: 400px;
+  border: 3px solid ${(props) => props.theme.primaryColor};
+  border-radius: 10px;
+  padding: 10px;
+`;
+
 export const UploadingDiv = styled.div`
   display: block;
   margin: auto;
@@ -707,11 +715,12 @@ export const PopUpContainer = styled.div`
   transform: translate(-50%, -50%);
   background-color: rgba(32, 33, 36, 0.9);
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
   overflow-y: auto;
   border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   opacity: 0;
   animation: ${fadeInUp} 0.5s ease-out forwards;
   top: 0;
@@ -731,6 +740,7 @@ export const VideosBox = styled.div`
   justify-content: center;
   display: flex;
   box-sizing: border-box;
+  margin-top: 10px;
 `;
 
 export const BtnPopUp = styled.button`

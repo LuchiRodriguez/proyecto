@@ -25,13 +25,10 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   const videoRefs = useRef([]);
   const navigate = useNavigate();
   const [share, setShare] = useState(false);
-
-  // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
-  const url = "http://localhost:5173/visit/";
+  const url = "https://www.aimapp.es/visit/";
 
   useEffect(() => {
     getPlayerByVideo(challenge).then((usuarios) => {
-      console.log(usuarios);
       setPlayer(usuarios);
     });
     const observer = new IntersectionObserver(
@@ -70,7 +67,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           <img src={player.imagenUrl} />
         ) : (
           <img
-            src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+            src="https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
             alt=""
           />
         )}
@@ -134,7 +131,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
         </button>
       </Interaction>
       <ShareButton
-        url={url + challenge.videos.id}
+        url={url + challenge.id}
         title={challenge.description}
         thumbnail={challenge.videos.videoUrl + "/path/to/thumbnail.jpg"}
         setShowComments={setShowComments}
