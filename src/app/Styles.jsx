@@ -140,7 +140,6 @@ export const ProfileImg = styled.div`
   align-items: center;
   border-bottom: 2px solid ${(props) => props.theme.primaryColor};
   width: 85vw;
-  padding-bottom: 30px;
   padding-top: 15px;
 
   button {
@@ -674,9 +673,7 @@ export const VideosContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  margin-top: 20px;
   width: 100%;
-  margin-bottom: 30px;
 `;
 
 export const VideoItem = styled.div`
