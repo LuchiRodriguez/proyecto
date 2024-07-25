@@ -127,10 +127,8 @@ export const PerfilStyle = styled.div`
   border-radius: 10px;
   padding: 10px;
   color: ${(props) => props.theme.primaryColor};
-  height: 82vh;
-  @media (min-height: 812px) {
-    height: 72vh;
-  }
+  height: 84vh;
+  overflow: auto;
   position: relative;
   box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor},
     0 0 10px 2px ${(props) => props.theme.shadowColor};
@@ -315,14 +313,7 @@ export const ChallengeVideo = styled.div`
   animation: ${fadeInUp} 0.5s ease-out forwards;
   transform: translateY(20px);
   video {
-    height: 67vh;
-
-    @media (max-height: 852px) {
-      height: 65vh;
-    }
-    @media (max-height: 812px) {
-      height: 63vh;
-    }
+    height: 57vh;
     border-radius: 10px;
   }
 `;
