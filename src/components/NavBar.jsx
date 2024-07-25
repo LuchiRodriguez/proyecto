@@ -65,7 +65,7 @@ const NavBar = () => {
           <Link to="/challenges">
             <img src={challengePlayer} alt="" />
           </Link>
-          <img src={aimLogo} alt="Aim Logo" onClick={handleLogoClick} />
+          <img src={aimLogo} alt="Aim Logo" />
           <Link to="/ranking">
             <img src={rankingPlayer} alt="" />
           </Link>

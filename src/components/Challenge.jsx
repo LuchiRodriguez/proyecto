@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, ButtonDelete, UploadVideo, ChallengeInfo } from "../app/Styles";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../app/UserProvider";
@@ -17,9 +17,14 @@ const Challenge = ({ ch, refetch }) => {
   const [challengeAccepted, setChallengeAccepted] = useState(
     ch.player?.username === user.username
   );
+  const [mediaStream, setMediaStream] = useState(null);
+  const [mediaBlobUrl, setMediaBlobUrl] = useState(null);
+  const [recording, setRecording] = useState(false);
+  const videoRef = useRef(null);
+  const mediaRecorderRef = useRef(null);
   const navigate = useNavigate();
 
-  const fetchChallenge = async () => {
+  const fetchChallenge = useCallback(async () => {
     try {
       const { data } = await getChallengeById(ch.id);
       setChallenge(data);
@@ -27,11 +32,11 @@ const Challenge = ({ ch, refetch }) => {
     } catch (error) {
       console.error("Error fetching challenge:", error);
     }
-  };
+  }, [ch.id, user.username]);
 
   useEffect(() => {
     fetchChallenge();
-  }, []);
+  }, [fetchChallenge]);
 
   const handleVideo = async (e) => {
     e.preventDefault();
@@ -47,20 +52,17 @@ const Challenge = ({ ch, refetch }) => {
     }
 
     try {
-      // Subir video a Cloudinary
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "proyectaim"); 
-console.log(file)
-      const cloudinaryResponse = await axios.post('https://api.cloudinary.com/v1_1/dht6hwart/video/upload', formData); // Reemplaza con tu cloud_name
+      formData.append("upload_preset", "proyectaim");
+
+      const cloudinaryResponse = await axios.post('https://api.cloudinary.com/v1_1/dht6hwart/video/upload', formData);
       const uploadedVideoUrl = cloudinaryResponse.data.url;
 
-      // Enviar la URL del video al backend
-      console.log(uploadedVideoUrl)
       const backendFormData = new FormData();
       backendFormData.append("player", user.username);
       backendFormData.append("watcher", challenge.watcher.username);
-      backendFormData.append("file", uploadedVideoUrl); // Envía la URL del video en lugar del archivo
+      backendFormData.append("file", uploadedVideoUrl);
       backendFormData.append("points", challenge.points);
       backendFormData.append("challenge", challenge.id);
 
@@ -87,7 +89,7 @@ console.log(file)
 
   const handleCancel = async () => {
     try {
-      await updateChallenge(ch.id, ""); // Pass an empty string to cancel the challenge
+      await updateChallenge(ch.id, "");
       fetchChallenge();
     } catch (error) {
       console.error("Error cancelling challenge:", error);
@@ -103,6 +105,52 @@ console.log(file)
       console.error("Error deleting challenge:", error);
       setAcceptChallengeError("Failed to delete challenge. Please try again");
     }
+  };
+
+  const handleRecording = (blob) => {
+    const file = new File([blob], "recorded-video.mp4", { type: "video/mp4" });
+    setFile(file);
+    setMediaBlobUrl(URL.createObjectURL(blob));
+  };
+
+  const startRecording = async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    setMediaStream(stream);
+    videoRef.current.srcObject = stream;
+    videoRef.current.play();
+
+    const mediaRecorder = new MediaRecorder(stream);
+    mediaRecorderRef.current = mediaRecorder;
+    const chunks = [];
+
+    mediaRecorder.ondataavailable = (e) => {
+      chunks.push(e.data);
+    };
+
+    mediaRecorder.onstop = () => {
+      const blob = new Blob(chunks, { type: "video/mp4" });
+      handleRecording(blob);
+      stream.getTracks().forEach(track => track.stop());
+    };
+
+    mediaRecorder.start();
+    setRecording(true);
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorderRef.current) {
+      mediaRecorderRef.current.stop();
+      setRecording(false);
+    }
+  };
+
+  const cancelRecording = () => {
+    if (mediaStream) {
+      mediaStream.getTracks().forEach(track => track.stop());
+    }
+    setFile(null);
+    setMediaBlobUrl(null);
+    setRecording(false);
   };
 
   return (
@@ -142,14 +190,32 @@ console.log(file)
               ) : (
                 <form onSubmit={handleVideo} encType="multipart/form-data">
                   {file ? (
-                    <button>Upload video</button>
+                    <>
+                      <video src={mediaBlobUrl} controls />
+                      <button type="submit">Upload video</button>
+                      <button type="button" onClick={cancelRecording}>Cancel Video</button>
+                    </>
                   ) : (
-                    <input
-                      id="file-upload"
-                      type="file"
-                      accept="video/*"
-                      onChange={(e) => setFile(e.target.files[0])}
-                    />
+                    <>
+                      <input
+                        id="file-upload"
+                        type="file"
+                        accept="video/*"
+                        onChange={(e) => setFile(e.target.files[0])}
+                      />
+                      {recording || mediaStream ? (
+                        <video ref={videoRef} autoPlay />
+                      ) : null}
+                      {!recording ? (
+                        <button type="button" onClick={startRecording}>
+                          Start Recording
+                        </button>
+                      ) : (
+                        <button type="button" onClick={stopRecording}>
+                          Stop Recording
+                        </button>
+                      )}
+                    </>
                   )}
                 </form>
               )}
@@ -172,6 +238,12 @@ console.log(file)
 };
 
 export default Challenge;
+
+
+
+
+
+
 
 
 
