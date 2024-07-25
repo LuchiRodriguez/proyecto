@@ -6,5 +6,3 @@ export const postVideo = async (obj) => {
 }
 
 export const getVideoById = async (id) => await instance.get(`/videos/${id}`);
-
-export const getAllVideos = async () => await instance.get('/videos');

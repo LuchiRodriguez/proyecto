@@ -2,6 +2,7 @@ import styled, { createGlobalStyle, keyframes } from "styled-components";
 import Minecraft from "./fonts/Minecraft.ttf";
 import Roboto from "./fonts/Roboto-Medium.ttf";
 import { Link } from "react-router-dom";
+import wallpaper from "../app/img/watcherNavBar/wallpaper.png";
 
 const fadeInUp = keyframes`
 0% {
@@ -30,7 +31,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 	body {
     text-transform: uppercase;
-		background-color: var(--black);
+		background: url(${wallpaper});
+    background-size: cover;
 		letter-spacing: 4px;
     color: white;
 		margin: 0;
@@ -123,6 +125,7 @@ export const PerfilStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #232222c7;
   border: 2px solid ${(props) => props.theme.primaryColor};
   border-radius: 10px;
   padding: 10px;
@@ -232,6 +235,7 @@ export const ChallengeBox = styled.div`
   margin-bottom: 30px;
   box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor},
     0 0 10px 2px ${(props) => props.theme.shadowColor};
+    background: #232222c7;
   opacity: 0;
   animation: ${fadeInUp} 0.5s ease-out forwards;
 
@@ -310,6 +314,7 @@ export const ChallengeVideo = styled.div`
   margin-bottom: 50px;
   opacity: 0;
   animation: ${fadeInUp} 0.5s ease-out forwards;
+  background: #232222c7;
   transform: translateY(20px);
   video {
     height: 57vh;
@@ -490,6 +495,7 @@ export const WithoutChallenges = styled.div`
   margin-top: 400px;
   border: 3px solid ${(props) => props.theme.primaryColor};
   border-radius: 10px;
+  background:  #232222c7;
   padding: 10px;
 `;
 
@@ -614,8 +620,7 @@ export const UploadVideo = styled.div`
 export const CrownStyle = styled.img`
   margin: auto;
   display: block;
-  width: 180px;
-  height: 50px;
+  width: 150px;  
 `;
 
 export const FirstPlace = styled.div`
@@ -640,6 +645,7 @@ export const ThirdPlace = styled.div`
 `;
 
 export const AnotherPlace = styled.div`
+  background: #232222c7; 
   border: 1px solid ${(props) => props.theme.primaryColor};
   border-radius: 10px;
 `;
@@ -701,7 +707,7 @@ export const PopUpContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(32, 33, 36, 0.9);
+  background-color: #23222280;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -729,6 +735,7 @@ export const VideosBox = styled.div`
   display: flex;
   box-sizing: border-box;
   margin-top: 10px;
+      background: #232222c7
 `;
 
 export const BtnPopUp = styled.button`

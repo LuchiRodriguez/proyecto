@@ -12,7 +12,7 @@ import challengePlayer from "../app/img/playerNavBar/challenge.png";
 import rankingPlayer from "../app/img/playerNavBar/ranking.png"
 import aimLogo from "../app/img/watcherNavBar/logoAim.png";
 import { useEffect, useState } from "react";
-import { getAllVideos } from "../app/api/Video";
+import { getChallenges } from '../app/api/Challenge';
 
 const NavBar = () => {
   const [user] = useUserContext();
@@ -21,19 +21,19 @@ const NavBar = () => {
 
 
   useEffect(() => {
-    const fetchVideos = async () => {
-      const videos = await getAllVideos();
-      setVideoId(videos.map(video => video.id));
+    const fetchChallengeIds = async () => {
+      const challenges = await getChallenges();
+      console.log(challenges)
+      setVideoId(challenges.map(challenge => challenge.videos.id));
     }
-
-    fetchVideos();
+    fetchChallengeIds();
   }, []);
 
   const handleLogoClick = () => {
     if (videoId.length > 0) {
       const randomIndex = Math.floor(Math.random() * videoId.length);
       const randomVideoId = videoId[randomIndex];
-      navigate(`/?videoId=${randomVideoId}`);
+      navigate(`/visit/${randomVideoId}`);
     } else {
       navigate(`/`);
     }
@@ -49,7 +49,7 @@ const NavBar = () => {
           <Link to="/challenges">
             <img src={challengeWatcher} alt="challenges" />
           </Link>
-          <img src={aimLogo} alt="Aim Logo" onClick={handleLogoClick} />
+          <img src={aimLogo} alt="Aim Logo" onClick={handleLogoClick} />;
           <Link to="/ranking">
             <img src={rankingWatcher} alt="ranking" />
           </Link>
