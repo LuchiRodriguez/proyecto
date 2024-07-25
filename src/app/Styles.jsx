@@ -118,9 +118,6 @@ export const Form = styled.form`
   }
 `;
 
-export const PlayerProfile = styled.div``;
-export const WatcherProfile = styled.div``;
-
 export const PerfilStyle = styled.div`
   justify-content: space-evenly;
   display: flex;
@@ -130,14 +127,11 @@ export const PerfilStyle = styled.div`
   border-radius: 10px;
   padding: 10px;
   color: ${(props) => props.theme.primaryColor};
-  height: 87vh;
-  @media (max-height: 812px) {
-    height: 85vh;
+  height: 82vh;
+  @media (min-height: 812px) {
+    height: 72vh;
   }
-  background-size: cover;
-  background-position: center;
   position: relative;
-  min-height: 660px;
   box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor},
     0 0 10px 2px ${(props) => props.theme.shadowColor};
 `;
@@ -842,7 +836,7 @@ export const SwitchButtonContainer = styled.div`
   position: absolute;
   width: 500px;
   margin: auto;
-  top: 15vh;
+  bottom: 85vh;
 
   input[type="checkbox"] {
     position: absolute;

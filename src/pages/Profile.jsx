@@ -1,13 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, PlayerProfile, WatcherProfile, VideosContainer, VideoItem } from '../app/Styles';
+import {
+  PerfilStyle,
+  ProfileImg,
+  ProfileInfo,
+  LogoutBtn,
+  VideosContainer,
+  VideoItem,
+} from "../app/Styles";
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
 import { useNavigate } from "react-router-dom";
 import logoutBtnWatcher from "../app/img/watcherNavBar/logout.png";
 import logoutBtnPlayer from "../app/img/playerNavBar/logout.png";
-import PopupProfile from '../components/PopupProfile';
-
+import PopupProfile from "../components/PopupProfile";
 
 const Profile = () => {
   const [user, setUser] = useUserContext();
@@ -19,15 +25,14 @@ const Profile = () => {
 
   const refetch = () => {
     getUserByUsername(user.username).then((data) => {
-      setUserProfile(data)
-      console.log(data)
+      setUserProfile(data);
+      console.log(data);
       setVideos(data.videos);
     });
   };
 
   useEffect(() => {
     refetch();
-
   }, []);
 
   const handleImageChange = async (event) => {
@@ -42,7 +47,7 @@ const Profile = () => {
     }
   };
   const handleImageClick = () => {
-    document.getElementById('fileInput').click();
+    document.getElementById("fileInput").click();
   };
 
   const logout = () => {
@@ -53,18 +58,18 @@ const Profile = () => {
 
   const openPopUp = (video) => {
     const videoArray = Object.values(videos);
-    const videoIndex = videoArray.findIndex(v => v.id === video.id);
+    const videoIndex = videoArray.findIndex((v) => v.id === video.id);
     setSelectedVideo({ ...video, index: videoIndex });
     setIsOpen(true);
-  }
+  };
 
   const closePopup = () => {
     setIsOpen(false);
-  }
+  };
 
   return (
     <>
-      {user.rol === "player" && <PlayerProfile>
+      {user.rol === "player" && (
         <PerfilStyle>
           <ProfileImg onClick={handleImageClick}>
             <p>{user.rol}</p>
@@ -99,7 +104,6 @@ const Profile = () => {
             </ProfileInfo>
           </ProfileImg>
 
-
           <LogoutBtn onClick={logout}>
             <img src={logoutBtnPlayer} alt="Logout" />
           </LogoutBtn>
@@ -107,20 +111,15 @@ const Profile = () => {
           <VideosContainer>
             {videos.map((video, i) => {
               return (
-                <VideoItem key={i} onClick={() => openPopUp(video)} >
-                  <video
-                    src={video.videoUrl}
-                  />
-
+                <VideoItem key={i} onClick={() => openPopUp(video)}>
+                  <video src={video.videoUrl} />
                 </VideoItem>
-              )
-            }
-            )}
+              );
+            })}
           </VideosContainer>
-
         </PerfilStyle>
-      </PlayerProfile>}
-      {user.rol === "watcher" && <WatcherProfile>
+      )}
+      {user.rol === "watcher" && (
         <PerfilStyle>
           <ProfileImg onClick={handleImageClick}>
             <p>{user.rol}</p>
@@ -153,17 +152,9 @@ const Profile = () => {
           <LogoutBtn onClick={logout}>
             <img src={logoutBtnWatcher} alt="Logout" />
           </LogoutBtn>
-
         </PerfilStyle>
-      </WatcherProfile>}
-
-      {isOpen && (
-        <PopupProfile
-          video={selectedVideo}
-          onClose={closePopup}
-
-        />
       )}
+      {isOpen && <PopupProfile video={selectedVideo} onClose={closePopup} />}
       <NavBar />
     </>
   );
