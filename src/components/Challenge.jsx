@@ -174,12 +174,12 @@ const Challenge = ({ ch, refetch }) => {
       <ChallengeInfo>
         <p>Challenges you to: {challenge.description}</p>
         <p>Reward: {challenge.points}</p>
-
+        {challenge.player ?  <p className="watcher">
+              Accepted by <Link to={`/profile/${challenge.watcher.username}`}><span>{challenge.player.username || challenge.player}</span></Link>
+            </p> : null}
         {challengeAccepted ? (
           <>
-            <p className="watcher">
-              Accepted by <span>{user.username}</span>
-            </p>
+           
             <ButtonStyle onClick={handleCancel}>Cancelar desafío</ButtonStyle>
             <UploadVideo>
               {isUploading ? (
