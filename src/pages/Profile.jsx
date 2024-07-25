@@ -1,34 +1,43 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from "../components/NavBar";
-import { PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, PlayerProfile, WatcherProfile, VideosContainer, VideoItem } from '../app/Styles';
+import { 
+  PerfilStyle, ProfileImg, ProfileInfo, LogoutBtn, 
+  PlayerProfile, WatcherProfile, VideosContainer, VideoItem 
+} from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
 import { getUserByUsername, updateUserImage } from "../app/api/User";
-import { useNavigate } from "react-router-dom";
 import logoutBtnWatcher from "../app/img/watcherNavBar/logout.png";
 import logoutBtnPlayer from "../app/img/playerNavBar/logout.png";
 import PopupProfile from '../components/PopupProfile';
 
-
 const Profile = () => {
   const [user, setUser] = useUserContext();
   const [userProfile, setUserProfile] = useState({});
-  const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  const refetch = () => {
-    getUserByUsername(user.username).then((data) => {
-      setUserProfile(data)
-      
+  const refetch = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await getUserByUsername(user.username);
+      setUserProfile(data);
       setVideos(data.videos);
-    });
-  };
+    } catch (err) {
+      setError('Failed to fetch user data');
+    } finally {
+      setLoading(false);
+    }
+  }, [user.username]);
 
   useEffect(() => {
     refetch();
-
-  }, []);
+  }, [refetch]);
 
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
@@ -41,13 +50,14 @@ const Profile = () => {
       refetch();
     }
   };
+
   const handleImageClick = () => {
     document.getElementById('fileInput').click();
   };
 
   const logout = () => {
     localStorage.removeItem("user");
-    setUser();
+    setUser(null);
     navigate("/");
   };
 
@@ -56,112 +66,102 @@ const Profile = () => {
     const videoIndex = videoArray.findIndex(v => v.id === video.id);
     setSelectedVideo({ ...video, index: videoIndex });
     setIsOpen(true);
-  }
+  };
 
   const closePopup = () => {
     setIsOpen(false);
-  }
+  };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <>
-      {user.rol === "player" && <PlayerProfile>
-        <PerfilStyle>
-          <ProfileImg onClick={handleImageClick}>
-            <p>{user.rol}</p>
-            <input
-              type="file"
-              id="fileInput"
-              accept="image/*"
-              style={{ display: "none" }}
-              onChange={handleImageChange}
-            />
-            <img
-              src={
-                userProfile.imagenUrl
-                  ? userProfile.imagenUrl
-                  : "https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
-              }
-              alt=""
-              style={{ cursor: "pointer" }}
-            />
-
-            <p>{userProfile.username}</p>
+      {user.rol === "player" ? (
+        <PlayerProfile>
+          <PerfilStyle>
+            <ProfileImg onClick={handleImageClick}>
+              <p>{user.rol}</p>
+              <input
+                type="file"
+                id="fileInput"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={handleImageChange}
+              />
+              <img
+                src={
+                  userProfile.imagenUrl
+                    ? userProfile.imagenUrl
+                    : "https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
+                }
+                alt=""
+                style={{ cursor: "pointer" }}
+              />
+              <p>{userProfile.username}</p>
+              <ProfileInfo>
+                <p>
+                  Challenges <br />
+                  {userProfile.challengeCompleted}
+                </p>
+                <br />
+                <p>
+                  Points <br />
+                  {userProfile.points}
+                </p>
+              </ProfileInfo>
+            </ProfileImg>
+            <LogoutBtn onClick={logout}>
+              <img src={logoutBtnPlayer} alt="Logout" />
+            </LogoutBtn>
+            <VideosContainer>
+              {videos.map((video, i) => (
+                <VideoItem key={i} onClick={() => openPopUp(video)}>
+                  <video src={video.videoUrl} />
+                </VideoItem>
+              ))}
+            </VideosContainer>
+          </PerfilStyle>
+        </PlayerProfile>
+      ) : (
+        <WatcherProfile>
+          <PerfilStyle>
+            <ProfileImg onClick={handleImageClick}>
+              <p>{user.rol}</p>
+              <input
+                type="file"
+                id="fileInput"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={handleImageChange}
+              />
+              <img
+                src={
+                  userProfile.imagenUrl
+                    ? userProfile.imagenUrl
+                    : "https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
+                }
+                alt=""
+                style={{ cursor: "pointer" }}
+              />
+              <p>{userProfile.username}</p>
+            </ProfileImg>
             <ProfileInfo>
               <p>
-                Challenges <br />
-                {userProfile.challengeCompleted}
-              </p>
-              <br />
-              <p>
-                Points <br />
-                {userProfile.points}
+                Challenges: <br />
+                {userProfile.proposedChallenge}
               </p>
             </ProfileInfo>
-          </ProfileImg>
-
-
-          <LogoutBtn onClick={logout}>
-            <img src={logoutBtnPlayer} alt="Logout" />
-          </LogoutBtn>
-
-          <VideosContainer>
-            {videos.map((video, i) => {
-              return (
-                <VideoItem key={i} onClick={() => openPopUp(video)} >
-                  <video
-                    src={video.videoUrl}
-                  />
-
-                </VideoItem>
-              )
-            }
-            )}
-          </VideosContainer>
-
-        </PerfilStyle>
-      </PlayerProfile>}
-      {user.rol === "watcher" && <WatcherProfile>
-        <PerfilStyle>
-          <ProfileImg onClick={handleImageClick}>
-            <p>{user.rol}</p>
-            <input
-              type="file"
-              id="fileInput"
-              accept="image/*"
-              style={{ display: "none" }}
-              onChange={handleImageChange}
-            />
-            <img
-              src={
-                userProfile.imagenUrl
-                  ? userProfile.imagenUrl
-                  : "https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
-              }
-              alt=""
-              style={{ cursor: "pointer" }}
-            />
-
-            <p>{userProfile.username}</p>
-          </ProfileImg>
-          <ProfileInfo>
-            <p>
-              Challenges: <br />
-              {userProfile.proposedChallenge}
-            </p>
-          </ProfileInfo>
-
-          <LogoutBtn onClick={logout}>
-            <img src={logoutBtnWatcher} alt="Logout" />
-          </LogoutBtn>
-
-        </PerfilStyle>
-      </WatcherProfile>}
-
+            <LogoutBtn onClick={logout}>
+              <img src={logoutBtnWatcher} alt="Logout" />
+            </LogoutBtn>
+          </PerfilStyle>
+        </WatcherProfile>
+      )}
       {isOpen && (
         <PopupProfile
           video={selectedVideo}
           onClose={closePopup}
-
         />
       )}
       <NavBar />
@@ -170,3 +170,4 @@ const Profile = () => {
 };
 
 export default Profile;
+

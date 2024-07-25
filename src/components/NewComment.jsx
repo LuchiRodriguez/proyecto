@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import {
   Comments,
   PopUpComments,
@@ -17,29 +17,51 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    getUserByComments(comments).then((data) => {
+    const fetchUsers = async () => {
+      const data = await getUserByComments(comments);
       setUsers(data);
-    });
-    refetch();
-  }, []);
- 
-  const handleComments = async (e) => {
-    e.preventDefault();
+    };
+    fetchUsers();
+  }, [comments]);
 
-    const formData = new FormData();
+  const handleComments = useCallback(
+    async (e) => {
+      e.preventDefault();
 
-    formData.append("content", content);
-    formData.append("user", user.username);
-    formData.append("video", videoChallenge);
+      const formData = new FormData();
+      formData.append("content", content);
+      formData.append("user", user.username);
+      formData.append("video", videoChallenge);
 
-    try {
-      await createComment(formData);
-      refetch();
-      setContent("");
-    } catch (error) {
-      console.error("Error comment:", error);
-    }
-  };
+      try {
+        await createComment(formData);
+        refetch();
+        setContent("");
+      } catch (error) {
+        console.error("Error comment:", error);
+      }
+    },
+    [content, user.username, videoChallenge, refetch]
+  );
+
+  const handleContentChange = (e) => setContent(e.target.value);
+
+  const renderComments = () =>
+    comments.map((comment, i) => (
+      <Comments key={comment.id}>
+        <div className="user">
+          <img
+            src={
+              users[i]?.imagenUrl ||
+              "https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
+            }
+            alt=""
+          />
+          <p>{comment.user}</p>
+        </div>
+        <p className="text">{comment.content}</p>
+      </Comments>
+    ));
 
   return (
     <PopUpComments $showComments={showComments}>
@@ -50,30 +72,15 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
             <img
               onClick={handleComments}
               src={user.rol === "watcher" ? watcherCheck : playerCheck}
-              alt=""
+              alt="Submit Comment"
             />
             <input
               value={content}
               type="text"
-              onChange={(e) => setContent(e.target.value)}
+              onChange={handleContentChange}
             />
           </NuevoComment>
-          {comments.map((comment, i) => (
-            <Comments key={comment.id}>
-              <div className="user">
-                <img
-                  src={
-                    users[i]?.imagenUrl
-                      ? users[i]?.imagenUrl
-                      : "https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
-                  }
-                  alt=""
-                />
-                <p>{comment.user}</p>
-              </div>
-              <p className="text">{comment.content}</p>
-            </Comments>
-          ))}
+          {renderComments()}
         </>
       ) : (
         <FirstComment>
@@ -82,9 +89,9 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
           <img
             onClick={handleComments}
             src={user.rol === "watcher" ? watcherCheck : playerCheck}
-            alt=""
+            alt="Submit Comment"
           />
-          <input type="text" onChange={(e) => setContent(e.target.value)} />
+          <input value={content} type="text" onChange={handleContentChange} />
         </FirstComment>
       )}
     </PopUpComments>
@@ -92,3 +99,4 @@ const NewComment = ({ comments, showComments, videoChallenge, refetch }) => {
 };
 
 export default NewComment;
+

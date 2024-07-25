@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import NavBar from "../components/NavBar";
 import { getChallenges } from "../app/api/Challenge";
 import { useUserContext } from "../app/UserProvider";
@@ -8,49 +8,52 @@ import moment from "moment";
 const Home = () => {
   const [user] = useUserContext();
   const [filteredChallenges, setFilteredChallenges] = useState([]);
-  const newDate = new Date();
-  const formattedDate = moment(newDate).format("YYYY-MM-DDTHH:mm:ss");
-  const currentDate = moment(formattedDate).toDate();
-  const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const currentDate = moment();
 
-  const refetch = () => {
-    getChallenges().then((data) => {
+  const refetch = useCallback(async () => {
+    setLoading(true);
+    try {
+      const data = await getChallenges();
       const challengeFilter = data.filter(
         (challenges) => challenges.videos !== null
       );
       const filteredChallengesWithTranscurredTime = challengeFilter.map(
         (video) => {
-          const creationDate = new Date(video.videos.creationDate);
-          const differenceMs = currentDate - creationDate;
-          const differenceSeconds = differenceMs / 1000;
-          const differenceMinutes = differenceSeconds / 60;
-          const differenceHours = differenceMinutes / 60;
-          const difference = () => {
-            if (differenceHours > 36) {
-              return week[creationDate.getDay()] + " " + creationDate.getDay();
-            } else if (36 > differenceHours >= 24) {
-              return "Yesterday";
-            } else if (differenceHours >= 1) {
-              return Math.round(differenceHours) + "h ago";
-            } else if (60 > differenceMinutes >= 1) {
-              return Math.round(differenceMinutes) + "m ago";
-            } else {
-              return "NOW";
-            }
-          };
-          const transcurredTime = difference();
+          const creationDate = moment(video.videos.creationDate);
+          const difference = moment.duration(currentDate.diff(creationDate));
+
+          const transcurredTime = difference.asHours() > 36 
+            ? creationDate.format("ddd D")
+            : difference.asHours() >= 24 
+            ? "Yesterday"
+            : difference.asHours() >= 1 
+            ? `${Math.floor(difference.asHours())}h ago`
+            : difference.asMinutes() >= 1 
+            ? `${Math.floor(difference.asMinutes())}m ago`
+            : "NOW";
+
           return { ...video, transcurredTime };
         }
       );
       setFilteredChallenges(filteredChallengesWithTranscurredTime);
-    });
-  };
+    } catch (err) {
+      setError("Failed to fetch challenges");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }, [currentDate]);
 
   useEffect(() => {
     if (user) {
       refetch();
     }
-  }, [user]);
+  }, [user, refetch]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <>
@@ -68,3 +71,4 @@ const Home = () => {
 };
 
 export default Home;
+
