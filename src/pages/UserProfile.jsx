@@ -67,7 +67,7 @@ const UserProfile = () => {
 
   const renderVideos = () => (
     <VideosContainer>
-      {videos.map((video, i) => (
+      {videos?.map((video, i) => (
         <VideoItem key={i} onClick={() => openPopUp(video)}>
           <video src={video.videoUrl} />
         </VideoItem>
