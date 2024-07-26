@@ -4,6 +4,7 @@ import watcher from "../app/img/watcherNavBar/watcher.png";
 const SwitchButton = ({ handleToggle }) => {
   return (
     <SwitchButtonContainer>
+      
       <input type="checkbox" id="toggle" />
       <label
         htmlFor="toggle"
@@ -26,6 +27,7 @@ const SwitchButton = ({ handleToggle }) => {
       <div className="switch">
         <div className="button"></div>
       </div>
+      <p className="decide">Decide tu rol</p>
     </SwitchButtonContainer>
   );
 };
