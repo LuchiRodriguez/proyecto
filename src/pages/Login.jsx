@@ -56,7 +56,7 @@ const Login = () => {
             required
           ></input>
           <p>
-            New in Final-Project ?<br />
+            New in AIM?<br />
             <span onClick={() => setExistingUser(false)}>
               Create an account
             </span>
