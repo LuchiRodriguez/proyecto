@@ -66,7 +66,14 @@ export const NavBarStyle = styled.nav`
   }
 `;
 
+export const NewLandingWrapper = styled.div`
+background: rgba(32, 33, 36, 0.9);
+width: 100%;
+  height: 100vh;
+`
+
 export const Form = styled.form`
+background: rgba(32, 33, 36, 0.9) !important;
   animation: neon 2s ease infinite;
   font-family: Roboto;
   display: flex;

@@ -242,6 +242,10 @@ interaction {
     }
 }
 
+.wallpaperContainer {
+    background: rgba(32, 33, 36, 0.9) !important;
+}
+
 .app-container {
     &.screen-jerk {
         animation-name: screen-jerk;

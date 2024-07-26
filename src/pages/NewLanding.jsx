@@ -1,6 +1,7 @@
 import "../app/Landing.css";
 import { Link } from "react-router-dom";
 import logo from "../app/img/watcherNavBar/logoAim.png";
+import { NewLandingWrapper } from '../app/Styles';
 
 const NewLanding = () => {
   const numberOfEls = 50;
@@ -66,7 +67,7 @@ const NewLanding = () => {
   }
 
   return (
-    <>
+    <NewLandingWrapper>
       <div className="app-container">
         <div className="overlay">
           <div className="scanlines"></div>
@@ -133,7 +134,7 @@ const NewLanding = () => {
         </div>
         <div id="console" className="console"></div>
       </div>
-    </>
+    </NewLandingWrapper>
   );
 };
 

@@ -24,6 +24,7 @@ const Challenges = () => {
       console.error(err);
     } finally {
       setLoading(false);
+      error
     }
   }, []);
 
