@@ -529,19 +529,19 @@ export const WithoutChallenges = styled.div`
 export const UploadingDiv = styled.div`
   display: block;
   margin: auto;
-  position: fixed; 
+
   img {
     width: 60px;
     height: 60px;
     padding: 5px;
     display: block;
     margin: auto;
-    position: fixed; 
+
   }
 
   h3 {
     text-align: center;
-    position: fixed; 
+
   }
 
     @media (max-width: 768px) {
