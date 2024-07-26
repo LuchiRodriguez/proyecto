@@ -1,19 +1,22 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, ButtonDelete, UploadVideo, ChallengeInfo } from "../app/Styles";
+import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, UploadVideo, ChallengeInfo } from "../app/Styles";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../app/UserProvider";
-import { updateChallenge, postChallengeVideo, deleteChallenge, getChallengeById } from "../app/api/Challenge";
+import { updateChallenge, postChallengeVideo } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import loadingicono from "../app/img/lodingicon.gif";
+import {getUserByUsername} from '../app/api/User';
 
 const Challenge = ({ ch, refetch }) => {
+  console.log(ch)
   const [user] = useUserContext();
   const [file, setFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState("");
   const [acceptChallengeError, setAcceptChallengeError] = useState("");
-  const [challenge, setChallenge] = useState(ch);
+  const [usuario, setUsuario] = useState({})
+  console.log(usuario)
   // const [challengeAccepted, setChallengeAccepted] = useState(
   //   ch.player?.username === user.username
   // );
@@ -26,13 +29,15 @@ const Challenge = ({ ch, refetch }) => {
 
   const fetchChallenge = useCallback(async () => {
     try {
-      const { data } = await getChallengeById(ch.id);
-      setChallenge(data);
-      // setChallengeAccepted(data.player?.username || data.player === user.username);
+      if (ch.player != null) {
+        const data = await getUserByUsername(ch.player.username || ch.player);
+        setUsuario(data);
+      }
+      // setchAccepted(data.player?.username || data.player === user.username);
     } catch (error) {
       console.error("Error fetching challenge:", error);
     }
-  }, [ch.id, user.username]);
+  }, [ch]);
 
   useEffect(() => {
     fetchChallenge();
@@ -61,10 +66,10 @@ const Challenge = ({ ch, refetch }) => {
 
       const backendFormData = new FormData();
       backendFormData.append("player", user.username);
-      backendFormData.append("watcher", challenge.watcher.username);
+      backendFormData.append("watcher", ch.watcher.username);
       backendFormData.append("file", uploadedVideoUrl);
-      backendFormData.append("points", challenge.points);
-      backendFormData.append("challenge", challenge.id);
+      backendFormData.append("points", ch.points);
+      backendFormData.append("challenge", ch.id);
 
       await postChallengeVideo(backendFormData);
       refetch();
@@ -94,16 +99,6 @@ const Challenge = ({ ch, refetch }) => {
     } catch (error) {
       console.error("Error cancelling challenge:", error);
       setAcceptChallengeError("Failed to cancel challenge. Please try again");
-    }
-  };
-
-  const handleDelete = async () => {
-    try {
-      await deleteChallenge(ch.id);
-      refetch();
-    } catch (error) {
-      console.error("Error deleting challenge:", error);
-      setAcceptChallengeError("Failed to delete challenge. Please try again");
     }
   };
 
@@ -156,30 +151,27 @@ const Challenge = ({ ch, refetch }) => {
   return (
     <ChallengeBox>
       <UserInfo>
-        {challenge.watcher.imagenUrl != null ? (
-          <img src={challenge.watcher.imagenUrl} />
+        {ch.watcher.imagenUrl != null ? (
+          <img src={ch.watcher.imagenUrl} />
         ) : (
           <img
             src="https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
             alt=""
           />
         )}
-        <Link to={`/profile/${challenge.watcher.username}`}>
-          <p>{challenge.watcher.username}</p>
+        <Link to={`/profile/${ch.watcher.username}`}>
+          <p>{ch.watcher.username}</p>
         </Link>
-        {user.rol === "moderador" && (
-          <ButtonDelete onClick={handleDelete}>X</ButtonDelete>
-        )}
       </UserInfo>
       <ChallengeInfo>
-        <p>Challenges you to: {challenge.description}</p>
-        <p>Reward: {challenge.points}</p>
-        {challenge.player ? (
+        <p>Challenges you to: {ch.description}</p>
+        <p>Reward: {ch.points}</p>
+        {ch.player ? (
           <p className="watcher">
-            Accepted by <Link to={`/profile/${challenge.watcher.username}`}><span>{challenge.player.username || challenge.player}</span></Link>
+            Accepted by <Link to={`/profile/${ch.watcher.username}`}><span>{ch.player.username || ch.player}</span></Link>
           </p>
         ) : null}
-        {challenge.player.username === user.username ? (
+        {usuario?.username === user.username ? (
           <>
             <ButtonStyle onClick={handleCancel}>Cancelar desafío</ButtonStyle>
             <UploadVideo>
@@ -224,7 +216,7 @@ const Challenge = ({ ch, refetch }) => {
             </UploadVideo>
           </>
         ) : (
-          user.rol === "player" && challenge.player === null && (
+          user.rol === "player" && ch.player === null && (
             <>
               <ButtonStyle onClick={handleClick}>Accept challenge</ButtonStyle>
               {acceptChallengeError && (
