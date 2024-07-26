@@ -21,7 +21,7 @@ const NavBar = () => {
   useEffect(() => {
     const fetchChallenge = async () => {
       const challenges = await getChallenges();
-      console.log(challenges)
+  
 
       const ids = challenges
         .filter(challenge => challenge.videos && challenge.videos.videoUrl)

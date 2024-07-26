@@ -14,9 +14,9 @@ const Challenge = ({ ch, refetch }) => {
   const [uploadError, setUploadError] = useState("");
   const [acceptChallengeError, setAcceptChallengeError] = useState("");
   const [challenge, setChallenge] = useState(ch);
-  const [challengeAccepted, setChallengeAccepted] = useState(
-    ch.player?.username === user.username
-  );
+  // const [challengeAccepted, setChallengeAccepted] = useState(
+  //   ch.player?.username === user.username
+  // );
   const [mediaStream, setMediaStream] = useState(null);
   const [mediaBlobUrl, setMediaBlobUrl] = useState(null);
   const [recording, setRecording] = useState(false);
@@ -28,7 +28,7 @@ const Challenge = ({ ch, refetch }) => {
     try {
       const { data } = await getChallengeById(ch.id);
       setChallenge(data);
-      setChallengeAccepted(data.player?.username === user.username);
+      // setChallengeAccepted(data.player?.username || data.player === user.username);
     } catch (error) {
       console.error("Error fetching challenge:", error);
     }
@@ -179,7 +179,7 @@ const Challenge = ({ ch, refetch }) => {
             Accepted by <Link to={`/profile/${challenge.watcher.username}`}><span>{challenge.player.username || challenge.player}</span></Link>
           </p>
         ) : null}
-        {challengeAccepted ? (
+        {challenge.player.username === user.username ? (
           <>
             <ButtonStyle onClick={handleCancel}>Cancelar desafío</ButtonStyle>
             <UploadVideo>
