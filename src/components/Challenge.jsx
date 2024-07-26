@@ -62,7 +62,7 @@ const Challenge = ({ ch, refetch }) => {
       formData.append("upload_preset", "proyectaim");
 
       const cloudinaryResponse = await axios.post('https://api.cloudinary.com/v1_1/dht6hwart/video/upload', formData);
-      const uploadedVideoUrl = cloudinaryResponse.data.url;
+      const uploadedVideoUrl = cloudinaryResponse.data.secure_url;
 
       const backendFormData = new FormData();
       backendFormData.append("player", user.username);
