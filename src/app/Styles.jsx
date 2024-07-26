@@ -214,16 +214,16 @@ export const ChallengeInfo = styled.div`
     cursor: pointer;
   }
 
-  .player {
-    a {
+  
+  a {
       text-decoration: none;
     }
 
-    span {
+  span {
       margin-left: 4px;
       color: ${(props) => props.theme.primaryColor};
     }
-  }
+  
 `;
 
 export const ChallengeBox = styled.div`
