@@ -11,33 +11,29 @@ import userImgPlayer from "../app/img/playerNavBar/user.png";
 import challengePlayer from "../app/img/playerNavBar/challenge.png";
 import rankingPlayer from "../app/img/playerNavBar/ranking.png"
 import aimLogo from "../app/img/watcherNavBar/logoAim.png";
-// import { useEffect, useState } from "react";
-// import { getChallenges } from '../app/api/Challenge';
+import { useEffect, useState } from "react";
+import { getChallenges } from '../app/api/Challenge';
 
 const NavBar = () => {
   const [user] = useUserContext();
-  // const [videoId, setVideoId] = useState([]);
-  // const navigate = useNavigate();
+  const [challengeId, setChallengeId] = useState([]);
 
+  useEffect(() => {
+    const fetchChallenge = async () => {
+      const challenges = await getChallenges();
+      console.log(challenges)
 
-  // useEffect(() => {
-  //   const fetchChallengeIds = async () => {
-  //     const challenges = await getChallenges();
-  //     console.log(challenges)
-  //     setVideoId(challenges.map(challenge => challenge.videos.videoUrl));
-  //   }
-  //   fetchChallengeIds();
-  // }, []);
+      const ids = challenges
+        .filter(challenge => challenge.videos && challenge.videos.videoUrl)
+        .map(challenge => challenge.id);
+      if (ids.length > 0) {
+        const randomIndex = Math.floor(Math.random() * ids.length);
+        setChallengeId(ids[randomIndex]);
+      }
+    }
 
-  // const handleLogoClick = () => {
-  //   if (videoId.length > 0) {
-  //     const randomIndex = Math.floor(Math.random() * videoId.length);
-  //     const randomVideoId = videoId[randomIndex];
-  //     navigate(`/visit/${randomVideoId}`);
-  //   } else {
-  //     navigate(`/`);
-  //   }
-  // }
+    fetchChallenge();
+  }, []);
 
   return (
     <NavBarStyle>
@@ -49,7 +45,11 @@ const NavBar = () => {
           <Link to="/challenges">
             <img src={challengeWatcher} alt="challenges" />
           </Link>
-          {<img src={aimLogo} alt="Aim Logo" /*onClick={handleLogoClick}*/ />}
+          {challengeId && (
+            <Link to={`/visit/${challengeId}`}>
+              <img src={aimLogo} alt="Aim Logo" />
+            </Link>
+          )}
           <Link to="/ranking">
             <img src={rankingWatcher} alt="ranking" />
           </Link>
@@ -65,7 +65,11 @@ const NavBar = () => {
           <Link to="/challenges">
             <img src={challengePlayer} alt="" />
           </Link>
-          <img src={aimLogo} alt="Aim Logo" /*onClick={handleLogoClick} */ />
+          {challengeId && (
+            <Link to={`/visit/${challengeId}`}>
+              <img src={aimLogo} alt="Aim Logo" />
+            </Link>
+          )}
           <Link to="/ranking">
             <img src={rankingPlayer} alt="" />
           </Link>
