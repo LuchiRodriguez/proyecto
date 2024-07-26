@@ -198,6 +198,16 @@ export const UserInfo = styled.div`
       color: ${(props) => props.theme.primaryColor};
     }
   }
+
+    @media (max-width: 768px) {
+    img {
+      width: 30px;
+      height: 30px;
+    }
+    .time {
+      font-size: x-small;
+    }
+  }
 `;
 
 export const ChallengeInfo = styled.div`
@@ -220,6 +230,12 @@ export const ChallengeInfo = styled.div`
       margin-left: 4px;
       color: ${(props) => props.theme.primaryColor};
     }
+
+     @media (max-width: 768px) {
+    p {
+      font-size: small;
+    }
+  }
   
 `;
 
@@ -238,6 +254,10 @@ export const ChallengeBox = styled.div`
   video {
     width: 100%;
     border-radius: 10px;
+  }
+  @media (max-width: 768px) {
+    font-size: x-small;
+    padding: 5px;
   }
 `;
 
@@ -507,6 +527,16 @@ export const UploadingDiv = styled.div`
   h3 {
     text-align: center;
   }
+
+    @media (max-width: 768px) {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+    h3 {
+      font-size: small;
+    }
+  }
 `;
 
 export const LogoutBtn = styled.button`
@@ -571,6 +601,11 @@ export const ButtonStyle = styled.button`
     display: block;
     margin: auto;
   }
+
+  @media (max-width: 768px) {
+    padding: 5px;
+    font-size: x-small;
+  }
 `;
 
 export const InputStyle = styled.input`
@@ -608,6 +643,18 @@ export const UploadVideo = styled.div`
     border-radius: 5px;
     padding: 10px;
     margin: auto;
+  }
+
+    @media (max-width: 768px) {
+    form {
+      margin-top: 15px;
+    }
+    input::file-selector-button {
+      padding: 5px;
+    }
+    button {
+      padding: 5px;
+    }
   }
 `;
 
@@ -654,6 +701,10 @@ export const ButtonDelete = styled.button`
   width: 30px;
   height: 30px;
   font-size: 16px;
+
+    @media (max-width: 768px) {
+    padding: 3px;
+  }
 `;
 
 export const ChangeProfileButton = styled.button`
@@ -835,7 +886,9 @@ export const SwitchButtonContainer = styled.div`
   width: 500px;
   margin: auto;
   bottom: 85vh;
-
+.decide{
+margin-top: 5px;
+}
   input[type="checkbox"] {
     position: absolute;
     visibility: hidden;
