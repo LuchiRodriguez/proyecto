@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, UploadVideo, ChallengeInfo } from "../app/Styles";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../app/UserProvider";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import loadingicono from "../app/img/lodingicon.gif";
 import { getUserByUsername } from '../app/api/User';
+import WebcamCapture from './WebcamCapture';
 
 const Challenge = ({ ch, refetch }) => {
   const [user] = useUserContext();
@@ -16,11 +17,8 @@ const Challenge = ({ ch, refetch }) => {
   const [uploadError, setUploadError] = useState("");
   const [acceptChallengeError, setAcceptChallengeError] = useState("");
   const [usuario, setUsuario] = useState({});
-  const [mediaStream, setMediaStream] = useState(null);
   const [mediaBlobUrl, setMediaBlobUrl] = useState(null);
-  const [recording, setRecording] = useState(false);
-  const videoRef = useRef(null);
-  const mediaRecorderRef = useRef(null);
+  const [useCamera, setUseCamera] = useState(false); // Estado para manejar la selección de la cámara
   const navigate = useNavigate();
 
   const fetchChallenge = useCallback(async () => {
@@ -44,9 +42,7 @@ const Challenge = ({ ch, refetch }) => {
     setUploadError("");
 
     if (file && file.size > 500 * 1024 * 1024) {
-      setUploadError(
-        "File size exceeds the limit (500 MB). Please upload a smaller file."
-      );
+      setUploadError("File size exceeds the limit (500 MB). Please upload a smaller file.");
       setIsUploading(false);
       return;
     }
@@ -99,50 +95,14 @@ const Challenge = ({ ch, refetch }) => {
     }
   };
 
-  const handleRecording = (blob) => {
+  const handleRecordingComplete = (blob) => {
     const file = new File([blob], "recorded-video.mp4", { type: "video/mp4" });
     setFile(file);
     setMediaBlobUrl(URL.createObjectURL(blob));
   };
 
-  const startRecording = async () => {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-    setMediaStream(stream);
-    videoRef.current.srcObject = stream;
-    videoRef.current.play();
-
-    const mediaRecorder = new MediaRecorder(stream);
-    mediaRecorderRef.current = mediaRecorder;
-    const chunks = [];
-
-    mediaRecorder.ondataavailable = (e) => {
-      chunks.push(e.data);
-    };
-
-    mediaRecorder.onstop = () => {
-      const blob = new Blob(chunks, { type: "video/mp4" });
-      handleRecording(blob);
-      stream.getTracks().forEach(track => track.stop());
-    };
-
-    mediaRecorder.start();
-    setRecording(true);
-  };
-
-  const stopRecording = () => {
-    if (mediaRecorderRef.current) {
-      mediaRecorderRef.current.stop();
-      setRecording(false);
-    }
-  };
-
-  const cancelRecording = () => {
-    if (mediaStream) {
-      mediaStream.getTracks().forEach(track => track.stop());
-    }
-    setFile(null);
-    setMediaBlobUrl(null);
-    setRecording(false);
+  const selectUploadOption = (option) => {
+    setUseCamera(option === 'camera');
   };
 
   return (
@@ -183,27 +143,24 @@ const Challenge = ({ ch, refetch }) => {
                     <>
                       <video src={mediaBlobUrl} controls />
                       <button type="submit">Upload video</button>
-                      <button type="button" onClick={cancelRecording}>Cancel Video</button>
+                      <button type="button" onClick={() => setFile(null)}>Cancel Video</button>
                     </>
                   ) : (
                     <>
-                      <input
-                        id="file-upload"
-                        type="file"
-                        accept="video/*"
-                        onChange={(e) => setFile(e.target.files[0])}
-                      />
-                      {recording || mediaStream ? (
-                        <video ref={videoRef} autoPlay />
-                      ) : null}
-                      {!recording ? (
-                        <button type="button" onClick={startRecording}>
-                          Start Recording
-                        </button>
+                      {!useCamera ? (
+                        <>
+                          <button type="button" onClick={() => selectUploadOption('camera')}>
+                            Use Camera
+                          </button>
+                          <input
+                            id="file-upload"
+                            type="file"
+                            accept="video/*"
+                            onChange={(e) => setFile(e.target.files[0])}
+                          />
+                        </>
                       ) : (
-                        <button type="button" onClick={stopRecording}>
-                          Stop Recording
-                        </button>
+                        <WebcamCapture onRecordingComplete={handleRecordingComplete} />
                       )}
                     </>
                   )}
