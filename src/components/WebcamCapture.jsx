@@ -6,13 +6,16 @@ const WebcamCapture = ({ onRecordingComplete }) => {
   const [recording, setRecording] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const [videoChunks, setVideoChunks] = useState([]);
-  const [cameraFacingMode, setCameraFacingMode] = useState('user'); // 'user' para cámara frontal, 'environment' para cámara trasera
+  const [cameraFacingMode, setCameraFacingMode] = useState('user');
 
   const startRecording = () => {
+    setVideoChunks([]);
     const recorder = new MediaRecorder(webcamRef.current.stream);
     setMediaRecorder(recorder);
     recorder.ondataavailable = (event) => {
-      setVideoChunks((prev) => [...prev, event.data]);
+      if (event.data && event.data.size > 0) {
+        setVideoChunks((prev) => [...prev, event.data]);
+      }
     };
     recorder.start();
     setRecording(true);
@@ -21,25 +24,18 @@ const WebcamCapture = ({ onRecordingComplete }) => {
   const stopRecording = () => {
     mediaRecorder.stop();
     setRecording(false);
-    const blob = new Blob(videoChunks, { type: 'video/mp4' });
-    onRecordingComplete(blob);
   };
+
+  useEffect(() => {
+    if (!recording && videoChunks.length > 0) {
+      const blob = new Blob(videoChunks, { type: 'video/mp4' });
+      onRecordingComplete(blob);
+    }
+  }, [recording, videoChunks, onRecordingComplete]);
 
   const toggleCamera = () => {
     setCameraFacingMode((prevMode) => (prevMode === 'user' ? 'environment' : 'user'));
   };
-
-  useEffect(() => {
-    if (recording) {
-      const recorder = new MediaRecorder(webcamRef.current.stream);
-      setMediaRecorder(recorder);
-      recorder.ondataavailable = (event) => {
-        setVideoChunks((prev) => [...prev, event.data]);
-      };
-      recorder.start();
-      setRecording(true);
-    }
-  }, [webcamRef, recording]);
 
   return (
     <div>

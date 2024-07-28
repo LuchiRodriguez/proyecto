@@ -18,7 +18,7 @@ const Challenge = ({ ch, refetch }) => {
   const [acceptChallengeError, setAcceptChallengeError] = useState("");
   const [usuario, setUsuario] = useState({});
   const [mediaBlobUrl, setMediaBlobUrl] = useState(null);
-  const [useCamera, setUseCamera] = useState(false); // Estado para manejar la selección de la cámara
+  const [useCamera, setUseCamera] = useState(false);
   const navigate = useNavigate();
 
   const fetchChallenge = useCallback(async () => {
