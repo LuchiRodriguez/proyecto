@@ -661,6 +661,11 @@ export const UploadVideo = styled.div`
     margin: auto;
   }
 
+  .camera{
+  margin-top: 6px;
+  margin-bottom: 10px;
+  }
+
     @media (max-width: 768px) {
     form {
       margin-top: 15px;

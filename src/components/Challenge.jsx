@@ -142,14 +142,14 @@ const Challenge = ({ ch, refetch }) => {
                   {file ? (
                     <>
                       <video src={mediaBlobUrl} controls />
-                      <button type="submit">Upload video</button>
+                      <button className="camera" type="submit">Upload video</button>
                       <button type="button" onClick={() => setFile(null)}>Cancel Video</button>
                     </>
                   ) : (
                     <>
                       {!useCamera ? (
                         <>
-                          <button type="button" onClick={() => selectUploadOption('camera')}>
+                          <button className="camera" type="button" onClick={() => selectUploadOption('camera')}>
                             Use Camera
                           </button>
                           <input

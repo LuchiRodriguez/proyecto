@@ -45,7 +45,7 @@ const WebcamCapture = ({ onRecordingComplete }) => {
         videoConstraints={{ facingMode: cameraFacingMode }}
       />
       <div>
-        <button type="button" onClick={recording ? stopRecording : startRecording}>
+        <button className='camera' type="button" onClick={recording ? stopRecording : startRecording}>
           {recording ? 'Stop Recording' : 'Start Recording'}
         </button>
         <button type="button" onClick={toggleCamera}>
