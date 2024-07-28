@@ -785,6 +785,8 @@ export const PopUpContainer = styled.div`
   animation: ${fadeInUp} 0.5s ease-out forwards;
   top: 0;
   left: 0;
+  margin: 10px;
+  box-sizing: border-box;
 `;
 
 export const VideosBox = styled.div`
@@ -801,18 +803,19 @@ export const VideosBox = styled.div`
   display: flex;
   box-sizing: border-box;
   margin-top: 10px;
-      background: #232222c7
+  background: #232222c7;
 `;
 
 export const BtnPopUp = styled.button`
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 2;
-  padding: 10px;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    padding: 5px;
+  
 
   img {
     width: 20px;
@@ -820,14 +823,27 @@ export const BtnPopUp = styled.button`
   }
 `;
 
-export const VideoEdit = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
+export const VideoInfo = styled.div`
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  flex-direction: column;
+  gap: 5px;
+`;
+
+export const VideoEdit = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    flex-direction: column;
 
   video {
     width: 100%;
@@ -835,7 +851,8 @@ export const VideoEdit = styled.div`
     max-width: 100%;
     max-height: 100%;
     border-radius: 10px;
-    padding: 10px;
+    padding: 12px;
+    box-sizing: border-box;
   }
 `;
 

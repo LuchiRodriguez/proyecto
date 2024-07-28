@@ -164,6 +164,7 @@ const Profile = () => {
         <PopupProfile
           video={selectedVideo}
           onClose={closePopup}
+          refetch={refetch}
         />
       )}
       <NavBar />

@@ -1,9 +1,12 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { getUserByUsername } from "../app/api/User";
-import { PopUpContainer, VideosBox, BtnPopUp, VideoEdit } from '../app/Styles';
+import { PopUpContainer, ChallengeVideo, BtnPopUp, VideoEdit, Interaction } from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
 import closeBtn from "../app/img/playerNavBar/close.png";
+import PlayerComment from '../app/img/playerNavBar/playerDiscomment.png';
+import WatcherComment from '../app/img/watcherNavBar/watcherDiscommet.png';
+import ButtonLike from './ButtonLike';
 
 const PopupProfile = ({ onClose, video }) => {
   const { index } = video;
@@ -12,6 +15,7 @@ const PopupProfile = ({ onClose, video }) => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
 
   const fetchData = useCallback(async () => {
     try {
@@ -32,26 +36,48 @@ const PopupProfile = ({ onClose, video }) => {
   const close = () => {
     onClose();
   };
-
-  if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   return (
     <PopUpContainer>
-      <VideosBox>
+      <ChallengeVideo>
         <VideoEdit>
           <video src={video.videoUrl} controls />
+          <Interaction>
+        <div>
+          <ButtonLike videoId={video.id} refetch={fetchData}/>
+          <p>{video.meGustas.length}</p>
+        </div>
+          <button>
+          <img
+            src={user.rol === "watcher" ? WatcherComment : PlayerComment}
+            alt="Comment"
+          />
+        </button>
+        </Interaction>
         </VideoEdit>
         <BtnPopUp onClick={close}><img src={closeBtn} alt="Close" /></BtnPopUp>
-      </VideosBox>
-      {videos.map((video, i) => (
+      </ChallengeVideo>
+      {videos.map((vid, i) => (
         i !== index && (
-          <VideosBox key={video.id}>
+          <ChallengeVideo key={vid.id}>
             <VideoEdit>
-              <video src={video.videoUrl} controls />
+              <video src={vid.videoUrl} controls />
             </VideoEdit>
             <BtnPopUp onClick={close}><img src={closeBtn} alt="Close" /></BtnPopUp>
-          </VideosBox>
+            <Interaction>
+            <div>
+          <ButtonLike videoId={video.id}  refetch={fetchData}/>
+          <p>{video.meGustas.length}</p>
+        </div>
+              <button>
+          <img
+            src={user.rol === "watcher" ? WatcherComment : PlayerComment}
+            alt="Comment"
+          />
+        </button>
+            </Interaction>
+          </ChallengeVideo>
         )
       ))}
     </PopUpContainer>

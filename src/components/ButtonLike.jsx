@@ -6,7 +6,7 @@ import likeImgWatcher from "../app/img/watcherNavBar/like.png";
 import likeImgPlayer from "../app/img/playerNavBar/like.png";
 import dislikePlayer from "../app/img/playerNavBar/dislike.png";
 
-const ButtonLike = ({ videoId, refetch }) => {
+const ButtonLike = ({ videoId, refetch}) => {
   const [user] = useUserContext();
   const [like, setLike] = useState(false);
 
