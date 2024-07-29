@@ -2,7 +2,7 @@ import styled, { createGlobalStyle, keyframes } from "styled-components";
 import Minecraft from "./fonts/Minecraft.ttf";
 import Roboto from "./fonts/Roboto-Medium.ttf";
 import { Link } from "react-router-dom";
-// import wallpaper from "../app/img/watcherNavBar/wallpaper.png";
+import wallpaper from "../app/img/watcherNavBar/wallpaper.png";
 
 const fadeInUp = keyframes`
 0% {
@@ -31,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 	body {
     text-transform: uppercase;
-    background-color: var(--black);
+    background: url(${wallpaper});
     background-size: cover;
 		letter-spacing: 4px;
     color: white;
