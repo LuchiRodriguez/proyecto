@@ -186,7 +186,7 @@ const Challenge = ({ ch, refetch }) => {
                             type="button"
                             onClick={() => selectUploadOption("camera")}
                           >
-                            Use Camera
+                            Cámara
                           </button>
                           <input
                             id="file-upload"
