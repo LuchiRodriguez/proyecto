@@ -5,26 +5,23 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postUser } from "../app/api/Login";
 import { createUser } from "../app/api/Register";
-import SwitchButton from "../components/SwitchButton";
+// import SwitchButton from "../components/SwitchButton";
+import player from "../app/img/playerNavBar/player.png";
+import watcher from "../app/img/watcherNavBar/watcher.png";
 
 const Login = () => {
   const navigate = useNavigate();
   const [existingUser, setExistingUser] = useState(true);
-  const [rol, setRol] = useState("player");
+  const [rol, setRol] = useState();
   const [username, setUserName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [points, setPoints] = useState();
   const [user, setUser] = useUserContext();
   const [error, setError] = useState();
-  const [checked, setChecked] = useState(true);
-  const handleToggle = () => {
-    setChecked(!checked);
-    if (!checked) {
-      setRol("player");
-    } else {
-      setRol("watcher");
-    }
+
+  const handleRolChange = (event) => {
+    setRol(event.target.value);
   };
 
   return (
@@ -56,7 +53,8 @@ const Login = () => {
             required
           ></input>
           <p>
-            New in AIM?<br />
+            New in AIM?
+            <br />
             <span onClick={() => setExistingUser(false)}>
               Create an account
             </span>
@@ -81,7 +79,35 @@ const Login = () => {
         </>
       ) : (
         <>
-          <SwitchButton handleToggle={handleToggle} />
+          <p>Selecciona tu rol:</p>
+          <fieldset required>
+            <div>
+              <label htmlFor="player">
+                <img src={player} alt="" />
+              </label>
+
+              <input
+                type="radio"
+                name="rol"
+                id="player"
+                value="player"
+                onChange={handleRolChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="watcher">
+                <img src={watcher} alt="" />
+              </label>
+
+              <input
+                type="radio"
+                name="rol"
+                id="watcher"
+                value="watcher"
+                onChange={handleRolChange}
+              />
+            </div>
+          </fieldset>
           <input
             autoComplete="off"
             type="text"
@@ -125,6 +151,7 @@ const Login = () => {
                 points,
               });
               setUser({ rol, username, password });
+              console.log(rol);
               localStorage.setItem(
                 "user",
                 JSON.stringify({ rol, username, password })
