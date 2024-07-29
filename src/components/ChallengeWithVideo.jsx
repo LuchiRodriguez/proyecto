@@ -1,4 +1,11 @@
-import { Suspense, useState, lazy, useRef, useEffect, useCallback } from "react";
+import {
+  Suspense,
+  useState,
+  lazy,
+  useRef,
+  useEffect,
+  useCallback,
+} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ButtonLike from "./ButtonLike";
 import NewComment from "./NewComment";
@@ -117,10 +124,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           />
         </button>
         <button onClick={handleShareClick}>
-          <img
-            src={user.rol === "watcher" ? shareW : shareP}
-            alt="Share"
-          />
+          <img src={user.rol === "watcher" ? shareW : shareP} alt="Share" />
         </button>
       </Interaction>
       {share && (
@@ -147,5 +151,3 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
 };
 
 export default ChallengeWithVideo;
-
-

@@ -1,13 +1,20 @@
 import { useEffect, useState, useCallback } from "react";
-import { UserInfo, ChallengeBox, UploadingDiv, ButtonStyle, UploadVideo, ChallengeInfo } from "../app/Styles";
+import {
+  UserInfo,
+  ChallengeBox,
+  UploadingDiv,
+  ButtonStyle,
+  UploadVideo,
+  ChallengeInfo,
+} from "../app/Styles";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../app/UserProvider";
 import { updateChallenge, postChallengeVideo } from "../app/api/Challenge";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import loadingicono from "../app/img/lodingicon.gif";
-import { getUserByUsername } from '../app/api/User';
-import WebcamCapture from './WebcamCapture';
+import { getUserByUsername } from "../app/api/User";
+import WebcamCapture from "./WebcamCapture";
 
 const Challenge = ({ ch, refetch }) => {
   const [user] = useUserContext();
@@ -24,7 +31,9 @@ const Challenge = ({ ch, refetch }) => {
   const fetchChallenge = useCallback(async () => {
     try {
       if (challenge.player != null) {
-        const data = await getUserByUsername(challenge.player.username || challenge.player);
+        const data = await getUserByUsername(
+          challenge.player.username || challenge.player
+        );
         setUsuario(data);
       }
     } catch (error) {
@@ -42,7 +51,9 @@ const Challenge = ({ ch, refetch }) => {
     setUploadError("");
 
     if (file && file.size > 500 * 1024 * 1024) {
-      setUploadError("File size exceeds the limit (500 MB). Please upload a smaller file.");
+      setUploadError(
+        "File size exceeds the limit (500 MB). Please upload a smaller file."
+      );
       setIsUploading(false);
       return;
     }
@@ -52,7 +63,10 @@ const Challenge = ({ ch, refetch }) => {
       formData.append("file", file);
       formData.append("upload_preset", "proyectaim");
 
-      const cloudinaryResponse = await axios.post('https://api.cloudinary.com/v1_1/dht6hwart/video/upload', formData);
+      const cloudinaryResponse = await axios.post(
+        "https://api.cloudinary.com/v1_1/dht6hwart/video/upload",
+        formData
+      );
       const uploadedVideoUrl = cloudinaryResponse.data.secure_url;
 
       const backendFormData = new FormData();
@@ -102,7 +116,7 @@ const Challenge = ({ ch, refetch }) => {
   };
 
   const selectUploadOption = (option) => {
-    setUseCamera(option === 'camera');
+    setUseCamera(option === "camera");
   };
 
   return (
@@ -125,7 +139,10 @@ const Challenge = ({ ch, refetch }) => {
         <p>Reward: {challenge.points}</p>
         {challenge.player ? (
           <p className="watcher">
-            Accepted by <Link to={`/profile/${challenge.watcher.username}`}><span>{challenge.player.username || challenge.player}</span></Link>
+            Accepted by{" "}
+            <Link to={`/profile/${challenge.watcher.username}`}>
+              <span>{challenge.player.username || challenge.player}</span>
+            </Link>
           </p>
         ) : null}
         {usuario?.username === user.username && challenge.player ? (
@@ -142,14 +159,22 @@ const Challenge = ({ ch, refetch }) => {
                   {file ? (
                     <>
                       <video src={mediaBlobUrl} controls />
-                      <button className="camera" type="submit">Upload video</button>
-                      <button type="button" onClick={() => setFile(null)}>Cancel Video</button>
+                      <button className="camera" type="submit">
+                        Upload video
+                      </button>
+                      <button type="button" onClick={() => setFile(null)}>
+                        Cancel Video
+                      </button>
                     </>
                   ) : (
                     <>
                       {!useCamera ? (
                         <>
-                          <button className="camera" type="button" onClick={() => selectUploadOption('camera')}>
+                          <button
+                            className="camera"
+                            type="button"
+                            onClick={() => selectUploadOption("camera")}
+                          >
                             Use Camera
                           </button>
                           <input
@@ -160,7 +185,9 @@ const Challenge = ({ ch, refetch }) => {
                           />
                         </>
                       ) : (
-                        <WebcamCapture onRecordingComplete={handleRecordingComplete} />
+                        <WebcamCapture
+                          onRecordingComplete={handleRecordingComplete}
+                        />
                       )}
                     </>
                   )}
@@ -170,7 +197,8 @@ const Challenge = ({ ch, refetch }) => {
             </UploadVideo>
           </>
         ) : (
-          user.rol === "player" && challenge.player === null && (
+          user.rol === "player" &&
+          challenge.player === null && (
             <>
               <ButtonStyle onClick={handleClick}>Accept challenge</ButtonStyle>
               {acceptChallengeError && (

@@ -2,7 +2,7 @@ import styled, { createGlobalStyle, keyframes } from "styled-components";
 import Minecraft from "./fonts/Minecraft.ttf";
 import Roboto from "./fonts/Roboto-Medium.ttf";
 import { Link } from "react-router-dom";
-import wallpaper from "../app/img/watcherNavBar/wallpaper.png";
+// import wallpaper from "../app/img/watcherNavBar/wallpaper.png";
 
 const fadeInUp = keyframes`
 0% {
@@ -31,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 	body {
     text-transform: uppercase;
-		background: url(${wallpaper});
+    background-color: var(--black);
     background-size: cover;
 		letter-spacing: 4px;
     color: white;
@@ -67,13 +67,13 @@ export const NavBarStyle = styled.nav`
 `;
 
 export const NewLandingWrapper = styled.div`
-background: rgba(32, 33, 36, 0.9);
-width: 100%;
+  background: rgba(32, 33, 36, 0.9);
+  width: 100%;
   height: 100vh;
-`
+`;
 
 export const Form = styled.form`
-background: rgba(32, 33, 36, 0.9) !important;
+  background: rgba(32, 33, 36, 0.9) !important;
   animation: neon 2s ease infinite;
   font-family: Roboto;
   display: flex;
@@ -208,7 +208,7 @@ export const UserInfo = styled.div`
     }
   }
 
-    @media (max-width: 768px) {
+  @media (max-width: 768px) {
     img {
       width: 30px;
       height: 30px;
@@ -230,22 +230,20 @@ export const ChallengeInfo = styled.div`
     cursor: pointer;
   }
 
-  
   a {
-      text-decoration: none;
-    }
+    text-decoration: none;
+  }
 
   span {
-      margin-left: 4px;
-      color: ${(props) => props.theme.primaryColor};
-    }
+    margin-left: 4px;
+    color: ${(props) => props.theme.primaryColor};
+  }
 
-     @media (max-width: 768px) {
+  @media (max-width: 768px) {
     p {
       font-size: small;
     }
   }
-  
 `;
 
 export const ChallengeBox = styled.div`
@@ -257,7 +255,7 @@ export const ChallengeBox = styled.div`
   margin-bottom: 30px;
   box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor},
     0 0 10px 2px ${(props) => props.theme.shadowColor};
-    background: #232222c7;
+  background: #232222c7;
   opacity: 0;
   animation: ${fadeInUp} 0.5s ease-out forwards;
 
@@ -521,7 +519,7 @@ export const WithoutChallenges = styled.div`
   margin-top: 400px;
   border: 3px solid ${(props) => props.theme.primaryColor};
   border-radius: 10px;
-  background:  #232222c7;
+  background: #232222c7;
   padding: 10px;
 `;
 
@@ -535,15 +533,13 @@ export const UploadingDiv = styled.div`
     padding: 5px;
     display: block;
     margin: auto;
-
   }
 
   h3 {
     text-align: center;
-
   }
 
-    @media (max-width: 768px) {
+  @media (max-width: 768px) {
     img {
       width: 40px;
       height: 40px;
@@ -660,12 +656,12 @@ export const UploadVideo = styled.div`
     margin: auto;
   }
 
-  .camera{
-  margin-top: 6px;
-  margin-bottom: 10px;
+  .camera {
+    margin-top: 6px;
+    margin-bottom: 10px;
   }
 
-    @media (max-width: 768px) {
+  @media (max-width: 768px) {
     form {
       margin-top: 15px;
     }
@@ -681,7 +677,7 @@ export const UploadVideo = styled.div`
 export const CrownStyle = styled.img`
   margin: auto;
   display: block;
-  width: 150px;  
+  width: 150px;
 `;
 
 export const FirstPlace = styled.div`
@@ -706,7 +702,7 @@ export const ThirdPlace = styled.div`
 `;
 
 export const AnotherPlace = styled.div`
-  background: #232222c7; 
+  background: #232222c7;
   border: 1px solid ${(props) => props.theme.primaryColor};
   border-radius: 10px;
 `;
@@ -722,7 +718,7 @@ export const ButtonDelete = styled.button`
   height: 30px;
   font-size: 16px;
 
-    @media (max-width: 768px) {
+  @media (max-width: 768px) {
     padding: 3px;
   }
 `;
@@ -797,15 +793,14 @@ export const VideosBox = styled.div`
 `;
 
 export const BtnPopUp = styled.button`
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 2;
-    padding: 5px;
-  
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  padding: 5px;
 
   img {
     width: 20px;
@@ -827,13 +822,13 @@ export const VideoInfo = styled.div`
 `;
 
 export const VideoEdit = styled.div`
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  flex-direction: column;
 
   video {
     width: 100%;
@@ -915,9 +910,9 @@ export const SwitchButtonContainer = styled.div`
   width: 500px;
   margin: auto;
   bottom: 85vh;
-.decide{
-margin-top: 5px;
-}
+  .decide {
+    margin-top: 5px;
+  }
   input[type="checkbox"] {
     position: absolute;
     visibility: hidden;
