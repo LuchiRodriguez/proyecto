@@ -73,6 +73,7 @@ export const NewLandingWrapper = styled.div`
 `;
 
 export const Form = styled.form`
+  overflow: hidden;
   background: rgba(32, 33, 36, 0.9) !important;
   animation: neon 2s ease infinite;
   font-family: Roboto;
@@ -86,7 +87,7 @@ export const Form = styled.form`
     background-color: var(--black);
     outline: none;
     text-transform: uppercase;
-    margin-top: 60px;
+    margin-top: 30px;
     border: ${(props) => props.theme.primaryColor} 3px solid;
     border-radius: 25px;
     height: 30px;
@@ -96,7 +97,7 @@ export const Form = styled.form`
   }
 
   p {
-    margin-top: 40px;
+    margin-top: 30px;
     text-align: center;
   }
   span {
@@ -110,6 +111,27 @@ export const Form = styled.form`
     border-radius: 25px;
     padding: 10px;
     margin-top: 10px;
+  }
+  fieldset {
+    display: flex;
+    gap: 50px;
+    border: none;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        width: 40px;
+        height: 40px;
+      }
+      input {
+        color: black;
+        width: 20px;
+        height: 10px;
+        margin: 0;
+        box-shadow: none;
+      }
+    }
   }
   @keyframes neon {
     0% {
@@ -920,115 +942,6 @@ export const FirstComment = styled.div`
     right: 25px;
     bottom: 30px;
     width: 30px;
-  }
-`;
-
-export const SwitchButtonContainer = styled.div`
-  display: block;
-  position: absolute;
-  width: 500px;
-  margin: auto;
-  bottom: 85vh;
-  .decide {
-    margin-top: 5px;
-  }
-  input[type="checkbox"] {
-    position: absolute;
-    visibility: hidden;
-    box-shadow: 0 0 5px 0, 0 0 10px 2px;
-  }
-
-  input#toggle[type="checkbox"] {
-    display: none;
-  }
-
-  label {
-    position: absolute;
-    height: 40px;
-    width: 120px;
-    display: block;
-    top: 0px;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    z-index: 9999;
-    cursor: pointer;
-    margin: 0 auto;
-  }
-
-  .switch {
-    display: block;
-    position: relative;
-    border: 2px solid var(--green);
-    border-radius: 25px;
-    height: 40px;
-    width: 100px;
-    margin: auto;
-  }
-
-  .switch .button {
-    display: block;
-    position: absolute;
-    border-radius: 100%;
-    background: var(--green);
-    height: 30px;
-    width: 30px;
-    top: 5px;
-    left: 5px;
-  }
-
-  .day-night-cont {
-    display: block;
-    position: absolute;
-    width: 180px;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    height: 40px;
-    top: 0px;
-  }
-
-  .day-night-cont .the-sun {
-    display: block;
-    position: absolute;
-    left: 0px;
-    top: 5px;
-  }
-
-  .day-night-cont .the-moon {
-    display: block;
-    position: absolute;
-    right: 35px;
-    top: 5px;
-    img {
-      width: 32px;
-      height: 32px;
-    }
-  }
-
-  .day-night-cont .the-moon .moon-inside {
-    display: block;
-    position: absolute;
-    left: 8px;
-    height: 20px;
-    width: 20px;
-    border-radius: 100%;
-  }
-
-  .switch .button {
-    transition: left 0.25s ease-in-out;
-    -webkit-transition: left 0.25s ease-in-out;
-  }
-
-  input[type="checkbox"]:checked ~ .switch {
-    border: 2px solid var(--blue);
-  }
-  input[type="checkbox"]:checked ~ .switch .button {
-    position: absolute;
-    left: 64px;
-    background: var(--blue);
   }
 `;
 
