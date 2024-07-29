@@ -128,7 +128,8 @@ background: rgba(32, 33, 36, 0.9) !important;
 `;
 
 export const PerfilStyle = styled.div`
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -150,7 +151,7 @@ export const ProfileImg = styled.div`
   align-items: center;
   border-bottom: 2px solid ${(props) => props.theme.primaryColor};
   width: 85vw;
-  padding-top: 15px;
+  padding-top: 25px;
 
   button {
     background-color: var(--black);
@@ -749,19 +750,9 @@ export const VideosContainer = styled.div`
 `;
 
 export const VideoItem = styled.div`
-  position: relative;
-  padding-bottom: 100%;
-  overflow: hidden;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-
   video {
-    position: absolute;
-    top: 0;
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: 60%;
     object-fit: cover;
   }
 `;
@@ -773,7 +764,7 @@ export const PopUpContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #23222280;
+  background-color: black;
   padding: 10px;
   display: flex;
   flex-direction: column;

@@ -63,9 +63,7 @@ const PopupProfile = ({ onClose, video }) => {
           <ChallengeVideo key={vid.id}>
             <VideoEdit>
               <video src={vid.videoUrl} controls />
-            </VideoEdit>
-            <BtnPopUp onClick={close}><img src={closeBtn} alt="Close" /></BtnPopUp>
-            <Interaction>
+              <Interaction>
             <div>
           <ButtonLike videoId={video.id}  refetch={fetchData}/>
           <p>{video.meGustas.length}</p>
@@ -77,6 +75,8 @@ const PopupProfile = ({ onClose, video }) => {
           />
         </button>
             </Interaction>
+            </VideoEdit>
+            <BtnPopUp onClick={close}><img src={closeBtn} alt="Close" /></BtnPopUp>
           </ChallengeVideo>
         )
       ))}
