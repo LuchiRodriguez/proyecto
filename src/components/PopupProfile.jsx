@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { getUserByUsername } from "../app/api/User";
-import { PopUpContainer, ChallengeVideo, BtnPopUp, VideoEdit, Interaction } from '../app/Styles';
+import {PopUpContainer, ChallengeVideo, BtnPopUp, VideoEdit, Interaction, VideoProfile} from '../app/Styles';
 import { useUserContext } from "../app/UserProvider";
 import closeBtn from "../app/img/playerNavBar/close.png";
 import PlayerComment from '../app/img/playerNavBar/playerDiscomment.png';
@@ -40,7 +40,7 @@ const PopupProfile = ({ onClose, video }) => {
 
   return (
     <PopUpContainer>
-      <ChallengeVideo>
+      <VideoProfile>
         <VideoEdit>
           <video src={video.videoUrl} controls />
           <Interaction>
@@ -57,10 +57,10 @@ const PopupProfile = ({ onClose, video }) => {
         </Interaction>
         </VideoEdit>
         <BtnPopUp onClick={close}><img src={closeBtn} alt="Close" /></BtnPopUp>
-      </ChallengeVideo>
+      </VideoProfile>
       {videos.map((vid, i) => (
         i !== index && (
-          <ChallengeVideo key={vid.id}>
+          <VideoProfile key={vid.id}>
             <VideoEdit>
               <video src={vid.videoUrl} controls />
               <Interaction>
@@ -77,7 +77,7 @@ const PopupProfile = ({ onClose, video }) => {
             </Interaction>
             </VideoEdit>
             <BtnPopUp onClick={close}><img src={closeBtn} alt="Close" /></BtnPopUp>
-          </ChallengeVideo>
+          </VideoProfile>
         )
       ))}
     </PopUpContainer>

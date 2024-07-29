@@ -346,6 +346,25 @@ export const ChallengeVideo = styled.div`
   }
 `;
 
+export const VideoProfile = styled.div`
+  width: 92%;
+  font-size: small;
+  border: 2px solid ${(props) => props.theme.primaryColor};
+  box-shadow: 0 0 5px 0 ${(props) => props.theme.primaryColor},
+    0 0 10px 2px ${(props) => props.theme.primaryColor};
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  opacity: 0;
+  animation: ${fadeInUp} 0.5s ease-out forwards;
+  background: #232222c7;
+  transform: translateY(20px);
+  video {
+    height: 57vh;
+    border-radius: 10px;
+  }
+`;
+
 export const ButtonChallenge = styled(Link)`
   display: flex;
   justify-content: right;
