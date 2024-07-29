@@ -56,7 +56,7 @@ const Login = () => {
             required
           ></input>
           <p>
-            New in Final-Project ?<br />
+            New in AIM?<br />
             <span onClick={() => setExistingUser(false)}>
               Create an account
             </span>
@@ -81,6 +81,7 @@ const Login = () => {
         </>
       ) : (
         <>
+          <SwitchButton handleToggle={handleToggle} />
           <input
             autoComplete="off"
             type="text"
@@ -108,7 +109,6 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           ></input>
-          <SwitchButton handleToggle={handleToggle} />
           <p>
             Already have an account ?<br />
             <span onClick={() => setExistingUser(true)}>Login</span>

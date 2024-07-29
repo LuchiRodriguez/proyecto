@@ -10,25 +10,51 @@ import homePlayer from "../app/img/playerNavBar/home.png";
 import userImgPlayer from "../app/img/playerNavBar/user.png";
 import challengePlayer from "../app/img/playerNavBar/challenge.png";
 import rankingPlayer from "../app/img/playerNavBar/ranking.png"
+import aimLogo from "../app/img/watcherNavBar/logoAim.png";
+import { useEffect, useState } from "react";
+import { getChallenges } from '../app/api/Challenge';
 
 const NavBar = () => {
   const [user] = useUserContext();
+  const [challengeId, setChallengeId] = useState([]);
+
+  useEffect(() => {
+    const fetchChallenge = async () => {
+      const challenges = await getChallenges();
+  
+
+      const ids = challenges
+        .filter(challenge => challenge.videos && challenge.videos.videoUrl)
+        .map(challenge => challenge.id);
+      if (ids.length > 0) {
+        const randomIndex = Math.floor(Math.random() * ids.length);
+        setChallengeId(ids[randomIndex]);
+      }
+    }
+
+    fetchChallenge();
+  }, []);
 
   return (
     <NavBarStyle>
       {user.rol === "watcher" && (
         <ul>
           <Link to="/">
-            <img src={homeWatcher} alt="" />
+            <img src={homeWatcher} alt="home" />
           </Link>
           <Link to="/challenges">
-            <img src={challengeWatcher} alt="" />
+            <img src={challengeWatcher} alt="challenges" />
           </Link>
+          {challengeId && (
+            <Link to={`/visit/${challengeId}`}>
+              <img src={aimLogo} alt="Aim Logo" />
+            </Link>
+          )}
           <Link to="/ranking">
-            <img src={rankingWatcher} alt="" />
+            <img src={rankingWatcher} alt="ranking" />
           </Link>
           <Link to="/profile">
-            <img src={userImgWatcher} alt="" />
+            <img src={userImgWatcher} alt="profile" />
           </Link>
         </ul>)}
       {user.rol === "player" && (
@@ -39,6 +65,11 @@ const NavBar = () => {
           <Link to="/challenges">
             <img src={challengePlayer} alt="" />
           </Link>
+          {challengeId && (
+            <Link to={`/visit/${challengeId}`}>
+              <img src={aimLogo} alt="Aim Logo" />
+            </Link>
+          )}
           <Link to="/ranking">
             <img src={rankingPlayer} alt="" />
           </Link>

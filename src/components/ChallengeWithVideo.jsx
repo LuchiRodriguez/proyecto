@@ -1,6 +1,15 @@
-import { Suspense, useState, lazy, useRef, useEffect } from "react";
+import {
+  Suspense,
+  useState,
+  lazy,
+  useRef,
+  useEffect,
+  useCallback,
+} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import ButtonLike from "./ButtonLike";
 import NewComment from "./NewComment";
+import ShareButton from "./ShareButton";
 import {
   UserInfo,
   ChallengeInfo,
@@ -10,8 +19,6 @@ import {
 import PlayerComment from "../app/img/playerNavBar/playerDiscomment.png";
 import WatcherComment from "../app/img/watcherNavBar/watcherDiscommet.png";
 import { useUserContext } from "../app/UserProvider";
-import ShareButton from "./ShareButton";
-import { Link, useNavigate } from "react-router-dom";
 import { getPlayerByVideo } from "../app/api/User";
 import shareW from "../app/img/watcherNavBar/shareWatcher.png";
 import shareP from "../app/img/playerNavBar/sharePlayer.png";
@@ -22,18 +29,18 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
   const [user] = useUserContext();
   const [showComments, setShowComments] = useState(false);
   const [player, setPlayer] = useState({});
+  const [share, setShare] = useState(false);
   const videoRefs = useRef([]);
   const navigate = useNavigate();
-  const [share, setShare] = useState(false);
-
-  // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
-  const url = "http://localhost:5173/visit/";
+  const url = "https://www.aimapp.es/visit/";
 
   useEffect(() => {
-    getPlayerByVideo(challenge).then((usuarios) => {
-      console.log(usuarios);
+    const fetchPlayer = async () => {
+      const usuarios = await getPlayerByVideo(challenge);
       setPlayer(usuarios);
-    });
+    };
+    fetchPlayer();
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -44,34 +51,39 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           }
         });
       },
-      { threshold: 0.5 } // Adjust as needed
+      { threshold: 0.5 }
     );
 
-    videoRefs.current.forEach((video) => {
-      if (video) {
-        observer.observe(video);
-      }
+    const videos = videoRefs.current;
+    videos.forEach((video) => {
+      if (video) observer.observe(video);
     });
 
     return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      videoRefs.current.forEach((video) => {
-        if (video) {
-          observer.unobserve(video);
-        }
+      videos.forEach((video) => {
+        if (video) observer.unobserve(video);
       });
     };
   }, [challenge]);
 
+  const handleShareClick = useCallback(() => {
+    setShare((prevShare) => !prevShare);
+    setShowComments(false);
+  }, []);
+
+  const handleCommentClick = useCallback(() => {
+    setShowComments((prevShowComments) => !prevShowComments);
+  }, []);
+
   return (
     <ChallengeVideo $share={share}>
       <UserInfo>
-        {player.imagenUrl !== null ? (
-          <img src={player.imagenUrl} />
+        {player.imagenUrl ? (
+          <img src={player.imagenUrl} alt="Player Avatar" />
         ) : (
           <img
-            src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
-            alt=""
+            src="https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
+            alt="Default Avatar"
           />
         )}
         <div className="time">
@@ -82,23 +94,15 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
         </div>
       </UserInfo>
       <ChallengeInfo>
-        <p onClick={() => navigate("/visit/" + challenge.id)}>
+        <p onClick={() => navigate(`/visit/${challenge.id}`)}>
           {challenge.description}
         </p>
         <p className="player">
-          {" "}
           Challenged by
           <Link
-            to={`/profile/${challenge.watcher.username
-                ? challenge.watcher.username
-                : challenge.watcher
-              }`}
+            to={`/profile/${challenge.watcher.username || challenge.watcher}`}
           >
-            {challenge.watcher.username ? (
-              <span>{challenge.watcher.username}</span>
-            ) : (
-              <span>{challenge.watcher}</span>
-            )}
+            <span>{challenge.watcher.username || challenge.watcher}</span>
           </Link>
         </p>
       </ChallengeInfo>
@@ -113,40 +117,35 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           <ButtonLike videoId={challenge.videos.id} refetch={refetch} />
           <p>{challenge.videos.meGustas.length}</p>
         </div>
-        <button onClick={() => setShowComments(!showComments)}>
-          {user.rol === "watcher" ? (
-            <img src={WatcherComment} alt="" />
-          ) : (
-            <img src={PlayerComment} alt="" />
-          )}
+        <button onClick={handleCommentClick}>
+          <img
+            src={user.rol === "watcher" ? WatcherComment : PlayerComment}
+            alt="Comment"
+          />
         </button>
-        <button
-          onClick={() => {
-            setShare(!share), setShowComments(false);
-          }}
-        >
-          {user.rol === "watcher" ? (
-            <img src={shareW} alt="" />
-          ) : (
-            <img src={shareP} alt="" />
-          )}
+        <button onClick={handleShareClick}>
+          <img src={user.rol === "watcher" ? shareW : shareP} alt="Share" />
         </button>
       </Interaction>
-      <ShareButton
-        url={url + challenge.videos.id}
-        title={challenge.description}
-        thumbnail={challenge.videos.videoUrl + "/path/to/thumbnail.jpg"}
-        setShowComments={setShowComments}
-        share={share}
-        setShare={setShare}
-      />
-      <NewComment
-        comments={challenge.videos.comments}
-        setShowComments={setShowComments}
-        showComments={showComments}
-        videoChallenge={challenge.videos.id}
-        refetch={refetch}
-      />
+      {share && (
+        <ShareButton
+          url={`${url}${challenge.id}`}
+          title={challenge.description}
+          thumbnail={`${challenge.videos.videoUrl}/path/to/thumbnail.jpg`}
+          setShowComments={setShowComments}
+          share={share}
+          setShare={setShare}
+        />
+      )}
+      {showComments && (
+        <NewComment
+          comments={challenge.videos.comments}
+          setShowComments={setShowComments}
+          showComments={showComments}
+          videoChallenge={challenge.videos.id}
+          refetch={refetch}
+        />
+      )}
     </ChallengeVideo>
   );
 };

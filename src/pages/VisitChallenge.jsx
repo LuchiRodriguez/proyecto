@@ -15,6 +15,8 @@ import { useUserContext } from "../app/UserProvider";
 import NewComment from "../components/NewComment";
 import ShareButton from "../components/ShareButton";
 import moment from "moment";
+import shareW from "../app/img/watcherNavBar/shareWatcher.png";
+import shareP from "../app/img/playerNavBar/sharePlayer.png";
 const LazyVideo = lazy(() => import("../components/Lazyvideo"));
 
 const VisitChallenge = () => {
@@ -26,9 +28,8 @@ const VisitChallenge = () => {
   const formattedDate = moment(newDate).format("YYYY-MM-DDTHH:mm:ss");
   const currentDate = moment(formattedDate).toDate();
   const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
-
-  // Cuando despleguemos la app, y tengamos URL fija, actualizar y descomentar el código de acá abajo
-  const url = "http://localhost:5173/visit/" + id;
+  const url = "https://www.aimapp.es/visit/" + id;
+  const [share, setShare] = useState(false);
 
   const refetch = () => {
     getChallengeById(id).then((data) => {
@@ -68,7 +69,7 @@ const VisitChallenge = () => {
               <img src={challenge.player.imagenUrl} />
             ) : (
               <img
-                src="https://res.cloudinary.com/dappzkn6l/image/upload/v1719672139/21104_jqfpvo.png"
+                src="https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
                 alt=""
               />
             )}
@@ -112,11 +113,24 @@ const VisitChallenge = () => {
                 <img src={PlayerComment} alt="" />
               )}
             </button>
+            <button
+              onClick={() => {
+                setShare(!share), setShowComments(false);
+              }}
+            >
+              {user.rol === "watcher" ? (
+                <img src={shareW} alt="" />
+              ) : (
+                <img src={shareP} alt="" />
+              )}
+            </button>
             <ShareButton
               url={url}
               title={challenge.description}
               thumbnail={challenge.videos.videoUrl + "/path/to/thumbnail.jpg"}
               setShowComments={setShowComments}
+              share={share}
+              setShare={setShare}
             />
           </Interaction>
           <NewComment
