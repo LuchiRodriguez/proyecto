@@ -106,7 +106,7 @@ const ChallengeWithVideo = ({ challenge, index, refetch }) => {
           </Link>
         </p>
       </ChallengeInfo>
-      <Suspense fallback={<div>Loading video...</div>}>
+      <Suspense>
         <LazyVideo
           src={challenge.videos.videoUrl}
           ref={(el) => (videoRefs.current[index] = el)}
