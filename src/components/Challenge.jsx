@@ -26,10 +26,15 @@ const Challenge = ({ ch, refetch }) => {
   const [usuario, setUsuario] = useState({});
   const [mediaBlobUrl, setMediaBlobUrl] = useState(null);
   const [useCamera, setUseCamera] = useState(false);
+  const [watcher, setWatcher] = useState({});
   const navigate = useNavigate();
 
   const fetchChallenge = useCallback(async () => {
     try {
+      const resData = await getUserByUsername(
+        challenge.watcher.username || challenge.watcher
+      );
+      setWatcher(resData);
       if (challenge.player != null) {
         const data = await getUserByUsername(
           challenge.player.username || challenge.player
@@ -71,7 +76,7 @@ const Challenge = ({ ch, refetch }) => {
 
       const backendFormData = new FormData();
       backendFormData.append("player", user.username);
-      backendFormData.append("watcher", challenge.watcher.username);
+      backendFormData.append("watcher", watcher.username);
       backendFormData.append("file", uploadedVideoUrl);
       backendFormData.append("points", challenge.points);
       backendFormData.append("challenge", challenge.id);
@@ -122,16 +127,16 @@ const Challenge = ({ ch, refetch }) => {
   return (
     <ChallengeBox>
       <UserInfo>
-        {challenge.watcher.imagenUrl != null ? (
-          <img src={challenge.watcher.imagenUrl} />
+        {watcher.imagenUrl != null ? (
+          <img src={watcher.imagenUrl} />
         ) : (
           <img
             src="https://res.cloudinary.com/dappzkn6l/image/upload/v1721810662/21104_j1nx92.png"
             alt=""
           />
         )}
-        <Link to={`/profile/${challenge.watcher.username}`}>
-          <p>{challenge.watcher.username}</p>
+        <Link to={`/profile/${watcher.username}`}>
+          <p>{watcher.username}</p>
         </Link>
       </UserInfo>
       <ChallengeInfo>
@@ -140,7 +145,13 @@ const Challenge = ({ ch, refetch }) => {
         {challenge.player ? (
           <p className="watcher">
             Accepted by{" "}
-            <Link to={`/profile/${challenge.watcher.username}`}>
+            <Link
+              to={`/profile/${
+                challenge.player.username
+                  ? challenge.player.username
+                  : challenge.player
+              }`}
+            >
               <span>{challenge.player.username || challenge.player}</span>
             </Link>
           </p>
