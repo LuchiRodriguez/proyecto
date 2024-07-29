@@ -138,8 +138,6 @@ export const PerfilStyle = styled.div`
   border-radius: 10px;
   padding: 10px;
   color: ${(props) => props.theme.primaryColor};
-  height: 84vh;
-  overflow: auto;
   position: relative;
   box-shadow: 0 0 5px 0 ${(props) => props.theme.shadowColor},
     0 0 10px 2px ${(props) => props.theme.shadowColor};
@@ -750,9 +748,10 @@ export const VideosContainer = styled.div`
 `;
 
 export const VideoItem = styled.div`
+  height: 60%;
   video {
     width: 100%;
-    height: 60%;
+    height: 100%;
     object-fit: cover;
   }
 `;
@@ -764,7 +763,7 @@ export const PopUpContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: black;
+  background-color: #232222c7;
   padding: 10px;
   display: flex;
   flex-direction: column;
