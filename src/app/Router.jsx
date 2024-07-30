@@ -1,15 +1,18 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Home from "../pages/Home";
 import Profile from "../pages/Profile";
-import UserProfile from "../pages/UserProfile";  // Importa la nueva página
+import UserProfile from "../pages/UserProfile";
 import Challenges from "../pages/Challenges";
 import Ranking from "../components/Ranking";
 import VisitChallenge from "../pages/VisitChallenge";
 import NotFoundPage from "../pages/NotFoundPage";
+import GlobalStyleWrapper from "../components/GlobalStyleWrapper";
 
-const Router = () => {
+const AppRoutes = () => {
+  const location = useLocation();
   return (
-    <BrowserRouter>
+    <>
+      <GlobalStyleWrapper location={location} />
       <Routes>
         <Route index element={<Home />} />
         <Route path="/profile" element={<Profile />} />
@@ -19,6 +22,15 @@ const Router = () => {
         <Route path="/ranking" element={<Ranking />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+    </>
+  )
+}
+const Router = () => {
+
+
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 };
