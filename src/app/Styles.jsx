@@ -31,7 +31,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 	body {
     text-transform: uppercase;
-		background: url(${wallpaper});
+    background: ${({ location }) => {
+    if (!location) return 'rgb(32, 33, 36)';
+    const pathname = location.pathname;
+    return pathname === '/' || pathname === '/login'
+      ? 'rgb(32, 33, 36)'
+      : `url(${wallpaper})`;
+  }};
     background-size: cover;
 		letter-spacing: 4px;
     color: white;
@@ -65,12 +71,6 @@ export const NavBarStyle = styled.nav`
     color: ${(props) => props.theme.primaryColor};
   }
 `;
-
-export const NewLandingWrapper = styled.div`
-background: rgba(32, 33, 36, 0.9);
-width: 100%;
-  height: 100vh;
-`
 
 export const Form = styled.form`
 background: rgba(32, 33, 36, 0.9) !important;
